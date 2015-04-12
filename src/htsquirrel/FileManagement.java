@@ -24,6 +24,7 @@
 package htsquirrel;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  *
@@ -84,6 +85,42 @@ public class FileManagement {
             result = true;
         }
         return result;
+    }
+    
+    // create new config.properties file
+    public static void createNewConfig() throws IOException {
+        if (htsFileExists()) {
+            File htsPath = new File(getHtsPath());
+            htsPath.delete();
+        }
+        if (!(htsDirExists())) {
+            File htsPath = new File(getHtsPath());
+            htsPath.mkdir();
+        }
+        if (configDirExists()) {
+            File configPath = new File(getConfigPath());
+            deleteDir(configPath);
+        }
+        if (configFileExists()) {
+            File configPath = new File(getConfigPath());
+            configPath.delete();
+        }
+        File configPath = new File(getConfigPath());
+        configPath.createNewFile();
+    }
+    
+    // delete directory
+    private static void deleteDir(File directory) {
+        File[] files = directory.listFiles();
+        for (File file : files) {
+            if (file.isDirectory()) {
+                deleteDir(file);
+                file.delete();
+            } else {
+                file.delete();
+            }
+        }
+        directory.delete();
     }
     
 }
