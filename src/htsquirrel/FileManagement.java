@@ -29,4 +29,19 @@ package htsquirrel;
  */
 public class FileManagement {
     
+    // get user home directory path
+    public static String getHomePath() {
+        return System.getProperty("user.home");
+    }
+    
+    // get .htsquirrel directory path
+    public static String getHtsPath() {
+        return getHomePath() + "/.htsquirrel";
+    }
+    
+    // get config.properties path
+    public static String getConfigPath() {
+        return getHtsPath() + "/config.properties";
+    }
+    
 }
