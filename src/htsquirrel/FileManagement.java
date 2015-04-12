@@ -23,6 +23,8 @@
  */
 package htsquirrel;
 
+import java.io.File;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -42,6 +44,46 @@ public class FileManagement {
     // get config.properties path
     public static String getConfigPath() {
         return getHtsPath() + "/config.properties";
+    }
+    
+    // check if .htsquirrel directory exists
+    public static boolean htsDirExists() {
+        boolean result = false;
+        File htsPath = new File(getHtsPath());
+        if (htsPath.exists() & htsPath.isDirectory()) {
+            result = true;
+        }
+        return result;
+    }
+    
+    // check if .htsquirrel file exists
+    public static boolean htsFileExists() {
+        boolean result = false;
+        File htsPath = new File(getHtsPath());
+        if (htsPath.exists() & htsPath.isFile()) {
+            result = true;
+        }
+        return result;
+    }
+    
+    // check if config.properties file exists
+    public static boolean configFileExists() {
+        boolean result = false;
+        File configPath = new File(getConfigPath());
+        if (configPath.exists() & configPath.isFile()) {
+            result = true;
+        }
+        return result;
+    }
+    
+    // check if config.properties directory exists
+    public static boolean configDirExists() {
+        boolean result = false;
+        File configPath = new File(getConfigPath());
+        if (configPath.exists() & configPath.isDirectory()) {
+            result = true;
+        }
+        return result;
     }
     
 }
