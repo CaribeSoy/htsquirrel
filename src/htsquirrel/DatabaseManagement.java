@@ -26,7 +26,9 @@ package htsquirrel;
 import static htsquirrel.FileManagement.*;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -45,4 +47,18 @@ public class DatabaseManagement {
         return connection;
     }
     
+    // check if table exists
+    public static boolean tableExists(Connection connection, String tableName)
+            throws SQLException {
+        boolean tableExists = false;
+        DatabaseMetaData dbMetaData = connection.getMetaData();
+        ResultSet resultSet = dbMetaData.getTables(null, null, null, null);
+        while (resultSet.next()) {
+            if (tableName.equals(resultSet.getString("TABLE_NAME"))) {
+                tableExists = true;
+            }
+        }
+        return tableExists;
+    }
+
 }
