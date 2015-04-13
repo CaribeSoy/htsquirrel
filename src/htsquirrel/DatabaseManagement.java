@@ -100,6 +100,9 @@ public class DatabaseManagement {
     // get team ids
     public static ArrayList<Integer> getTeamIds(Connection connection,
             int userId) throws SQLException {
+        if (!(tableExists(connection, "TEAMS"))) {
+            createTeamsTable(connection);
+        }
         ArrayList<Integer> teamIds = new ArrayList<>();
         String sqlCode = "SELECT TEAM_ID FROM TEAMS " +
                 "WHERE USER_ID = " + userId;
