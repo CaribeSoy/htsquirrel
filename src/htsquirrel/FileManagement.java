@@ -47,9 +47,14 @@ public class FileManagement {
         return getHtsPath() + "/config.properties";
     }
 
-    // get database directory path
+    // get database file path
     public static String getDatabasePath() {
         return getHtsPath() + "/htsquirrel.h2.db";
+    }
+    
+    // get database file path short
+    public static String getDatabasePathShort() {
+        return getHtsPath() + "/htsquirrel";
     }
 
     // check if .htsquirrel directory exists
