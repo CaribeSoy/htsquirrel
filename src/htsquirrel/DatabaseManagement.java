@@ -23,10 +23,26 @@
  */
 package htsquirrel;
 
+import static htsquirrel.FileManagement.*;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
  */
 public class DatabaseManagement {
+    
+    // create database connection
+    public static Connection createDatabaseConnection()
+            throws IOException,ClassNotFoundException, SQLException {
+        deleteDatabaseDir();
+        String dbUrl = "jdbc:h2:" + getDatabasePathShort();
+        Class.forName("org.h2.Driver");
+        Connection connection = DriverManager.getConnection(dbUrl);
+        return connection;
+    }
     
 }
