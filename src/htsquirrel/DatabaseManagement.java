@@ -31,6 +31,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -94,6 +95,21 @@ public class DatabaseManagement {
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
+    }
+    
+    // get team ids
+    public static ArrayList<Integer> getTeamIds(Connection connection,
+            int userId) throws SQLException {
+        ArrayList<Integer> teamIds = new ArrayList<>();
+        String sqlCode = "SELECT TEAM_ID FROM TEAMS " +
+                "WHERE USER_ID = " + userId;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            teamIds.add(resultSet.getInt("TEAM_ID"));
+        }
+        statement.close();
+        return teamIds;
     }
 
 }
