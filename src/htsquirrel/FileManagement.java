@@ -31,22 +31,27 @@ import java.io.IOException;
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
  */
 public class FileManagement {
-    
+
     // get user home directory path
     public static String getHomePath() {
         return System.getProperty("user.home");
     }
-    
+
     // get .htsquirrel directory path
     public static String getHtsPath() {
         return getHomePath() + "/.htsquirrel";
     }
-    
-    // get config.properties path
+
+    // get config.properties file path
     public static String getConfigPath() {
         return getHtsPath() + "/config.properties";
     }
-    
+
+    // get database directory path
+    public static String getDatabasePath() {
+        return getHtsPath() + "/database";
+    }
+
     // check if .htsquirrel directory exists
     public static boolean htsDirExists() {
         boolean result = false;
@@ -56,7 +61,7 @@ public class FileManagement {
         }
         return result;
     }
-    
+
     // check if .htsquirrel file exists
     public static boolean htsFileExists() {
         boolean result = false;
@@ -66,7 +71,7 @@ public class FileManagement {
         }
         return result;
     }
-    
+
     // check if config.properties file exists
     public static boolean configFileExists() {
         boolean result = false;
@@ -76,7 +81,7 @@ public class FileManagement {
         }
         return result;
     }
-    
+
     // check if config.properties directory exists
     public static boolean configDirExists() {
         boolean result = false;
@@ -86,7 +91,27 @@ public class FileManagement {
         }
         return result;
     }
-    
+
+    // check if database directory exists
+    public static boolean databaseDirExists() {
+        boolean result = false;
+        File databasePath = new File(getDatabasePath());
+        if (databasePath.exists() & databasePath.isDirectory()) {
+            result = true;
+        }
+        return result;
+    }
+
+    // check if database file exists
+    public static boolean databaseFileExists() {
+        boolean result = false;
+        File databasePath = new File(getDatabasePath());
+        if (databasePath.exists() & databasePath.isFile()) {
+            result = true;
+        }
+        return result;
+    }
+
     // create new config.properties file
     public static void createNewConfig() throws IOException {
         if (htsFileExists()) {
@@ -108,7 +133,29 @@ public class FileManagement {
         File configPath = new File(getConfigPath());
         configPath.createNewFile();
     }
-    
+
+    // create new database directory
+    public static void createNewDatabase() throws IOException {
+        if (htsFileExists()) {
+            File htsPath = new File(getHtsPath());
+            htsPath.delete();
+        }
+        if (!(htsDirExists())) {
+            File htsPath = new File(getHtsPath());
+            htsPath.mkdir();
+        }
+        if (databaseFileExists()) {
+            File databasePath = new File(getDatabasePath());
+            databasePath.delete();
+        }
+        if (databaseDirExists()) {
+            File databasePath = new File(getDatabasePath());
+            deleteDir(databasePath);
+        }
+        File databasePath = new File(getDatabasePath());
+        databasePath.mkdir();
+    }
+
     // delete directory
     private static void deleteDir(File directory) {
         File[] files = directory.listFiles();
@@ -122,5 +169,5 @@ public class FileManagement {
         }
         directory.delete();
     }
-    
+
 }
