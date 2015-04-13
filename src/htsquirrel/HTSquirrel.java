@@ -48,6 +48,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HT Squirrel");
         setMinimumSize(new java.awt.Dimension(960, 540));
+        setName("frameHTSquirrel"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
