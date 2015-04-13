@@ -1,0 +1,3 @@
+# HT Squirrel
+
+Hattrick Squirrel
