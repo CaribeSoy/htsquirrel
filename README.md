@@ -4,4 +4,5 @@ Hattrick Squirrel
 
 ## Third-party libraries
 
-[H2](http://h2database.com/)
+* [H2](http://h2database.com/)
+* [Scribe](https://github.com/fernandezpablo85/scribe-java)
