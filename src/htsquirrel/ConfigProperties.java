@@ -23,10 +23,29 @@
  */
 package htsquirrel;
 
+import static htsquirrel.FileManagement.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
  */
 public class ConfigProperties {
+    
+    // get user id from config.properties
+    public static String getUserIdProperty() throws IOException {
+        String userIdProperty;
+        if (!(configFileExists())) {
+            createNewConfig();
+        }
+        Properties properties = new Properties();
+        InputStream inputStream = new FileInputStream(getConfigPath());
+        properties.load(inputStream);
+        userIdProperty = properties.getProperty("USER_ID", "0");
+        return userIdProperty;
+    }
     
 }
