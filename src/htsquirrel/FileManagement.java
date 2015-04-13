@@ -49,7 +49,7 @@ public class FileManagement {
 
     // get database directory path
     public static String getDatabasePath() {
-        return getHtsPath() + "/database";
+        return getHtsPath() + "/htsquirrel.h2.db";
     }
 
     // check if .htsquirrel directory exists
@@ -134,26 +134,12 @@ public class FileManagement {
         configPath.createNewFile();
     }
 
-    // create new database directory
-    public static void createNewDatabase() throws IOException {
-        if (htsFileExists()) {
-            File htsPath = new File(getHtsPath());
-            htsPath.delete();
-        }
-        if (!(htsDirExists())) {
-            File htsPath = new File(getHtsPath());
-            htsPath.mkdir();
-        }
-        if (databaseFileExists()) {
-            File databasePath = new File(getDatabasePath());
-            databasePath.delete();
-        }
+    // delete database directory
+    public static void deleteDatabaseDir() throws IOException {
         if (databaseDirExists()) {
             File databasePath = new File(getDatabasePath());
             deleteDir(databasePath);
         }
-        File databasePath = new File(getDatabasePath());
-        databasePath.mkdir();
     }
 
     // delete directory
