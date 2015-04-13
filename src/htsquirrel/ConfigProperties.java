@@ -36,15 +36,21 @@ import java.util.Properties;
 public class ConfigProperties {
     
     // get user id from config.properties
-    public static String getUserIdProperty() throws IOException {
-        String userIdProperty;
+    public static int getUserIdProperty() throws IOException {
+        String userId;
+        int userIdProperty;
         if (!(configFileExists())) {
             createNewConfig();
         }
         Properties properties = new Properties();
         InputStream inputStream = new FileInputStream(getConfigPath());
         properties.load(inputStream);
-        userIdProperty = properties.getProperty("USER_ID", "0");
+        userId = properties.getProperty("USER_ID", "0");
+        try {
+            userIdProperty = Integer.parseInt(userId);
+        } catch (NumberFormatException ex) {
+            userIdProperty = 0;
+        }
         return userIdProperty;
     }
     
