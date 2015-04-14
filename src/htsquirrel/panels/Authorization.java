@@ -25,6 +25,11 @@ package htsquirrel.panels;
 
 import static htsquirrel.OAuth.*;
 import java.awt.Desktop;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -56,6 +61,10 @@ public class Authorization extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,6 +75,24 @@ public class Authorization extends javax.swing.JPanel {
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+
+        jMenuItem1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        jMenuItem1.setText("Copy");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
+
+        jMenuItem2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        jMenuItem2.setText("Paste");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(jMenuItem2);
 
         setMinimumSize(new java.awt.Dimension(900, 485));
 
@@ -94,6 +121,7 @@ public class Authorization extends javax.swing.JPanel {
         jLabel4.setText("Authorization link:");
 
         jTextField1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        jTextField1.setComponentPopupMenu(jPopupMenu1);
 
         jLabel5.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 102, 0));
@@ -111,6 +139,7 @@ public class Authorization extends javax.swing.JPanel {
         jLabel6.setText("Enter verification code:");
 
         jTextField2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        jTextField2.setComponentPopupMenu(jPopupMenu2);
 
         jButton1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         jButton1.setText("Authorize");
@@ -197,6 +226,27 @@ public class Authorization extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jLabel5MouseClicked
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        String chppUrl = jTextField1.getText();
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Clipboard clipboard = toolkit.getSystemClipboard();
+        StringSelection stringSelection = new StringSelection(chppUrl);
+        clipboard.setContents(stringSelection, null);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Clipboard clipboard = toolkit.getSystemClipboard();
+        try {
+            String string = (String) clipboard.getData(DataFlavor.stringFlavor);
+            jTextField2.setText(string);
+        } catch (UnsupportedFlavorException ex) {
+            Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+        } catch (IOException ex) {
+            Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     public void refreshAuthorization() {
         jLabel7.setVisible(false);
         OAuthService oAuthService = getOAuthService();
@@ -214,6 +264,10 @@ public class Authorization extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private static javax.swing.JLabel jLabel7;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private static javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
