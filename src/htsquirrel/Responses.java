@@ -23,10 +23,33 @@
  */
 package htsquirrel;
 
+import static htsquirrel.DownloadManagement.*;
+import static htsquirrel.OAuth.*;
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
+import org.scribe.model.Token;
+import org.scribe.oauth.OAuthService;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
  */
 public class Responses {
+    
+    public static int getUserId(OAuthService oAuthService,
+            Token accessToken)
+            throws ParserConfigurationException, SAXException, IOException {
+        int userId;
+        String xmlString = getResponse(oAuthService, accessToken,
+                "teamdetails&version=3.2");
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element userElement = (Element) document.getElementsByTagName("User").item(0);
+        userId = Integer.parseInt(userElement.getElementsByTagName("UserID").item(0).getTextContent());
+        return userId;
+    }
     
 }
