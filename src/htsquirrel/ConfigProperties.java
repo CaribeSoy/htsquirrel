@@ -25,9 +25,12 @@ package htsquirrel;
 
 import static htsquirrel.FileManagement.*;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Properties;
+import org.scribe.model.Token;
 
 /**
  *
@@ -52,6 +55,21 @@ public class ConfigProperties {
             userIdProperty = 0;
         }
         return userIdProperty;
+    }
+    
+    // set all properties
+    public static void setProperties(int userId,
+            Token accessToken) throws IOException {
+        if (!(configFileExists())) {
+            createNewConfig();
+        }
+        Properties properties = new Properties();
+        OutputStream outputStream = new FileOutputStream(getConfigPath());
+        properties.setProperty("USER_ID", Integer.toString(userId));
+        properties.setProperty("ACCESS_TOKEN", accessToken.getToken());
+        properties.setProperty("ACCESS_SECRET", accessToken.getSecret());
+        properties.store(outputStream, null);
+        outputStream.close();
     }
     
 }

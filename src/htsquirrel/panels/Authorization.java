@@ -23,6 +23,7 @@
  */
 package htsquirrel.panels;
 
+import static htsquirrel.ConfigProperties.*;
 import static htsquirrel.OAuth.*;
 import static htsquirrel.Responses.*;
 import java.awt.Desktop;
@@ -275,6 +276,7 @@ public class Authorization extends javax.swing.JPanel {
         }
         try {
             int userId = getUserId(oAuthService, accessToken);
+            setProperties(userId, accessToken);
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
         } catch (SAXException ex) {
