@@ -52,7 +52,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelMain = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
-        authorization1 = new htsquirrel.panels.Authorization();
+        panelAuthorization = new htsquirrel.panels.Authorization();
         panelRight = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -132,7 +132,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelCenter.setMinimumSize(new java.awt.Dimension(900, 0));
         panelCenter.setPreferredSize(new java.awt.Dimension(900, 485));
         panelCenter.setLayout(new java.awt.CardLayout());
-        panelCenter.add(authorization1, "card2");
+        panelCenter.add(panelAuthorization, "card2");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -210,7 +210,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private htsquirrel.panels.Authorization authorization1;
+    private static htsquirrel.panels.Authorization panelAuthorization;
     private javax.swing.JPanel panelBase;
     private javax.swing.JPanel panelCenter;
     private javax.swing.JPanel panelLeft;
