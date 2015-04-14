@@ -52,6 +52,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelMain = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
+        panelBlank = new javax.swing.JPanel();
         panelAuthorization = new htsquirrel.panels.Authorization();
         panelRight = new javax.swing.JPanel();
 
@@ -132,6 +133,19 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelCenter.setMinimumSize(new java.awt.Dimension(900, 0));
         panelCenter.setPreferredSize(new java.awt.Dimension(900, 485));
         panelCenter.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout panelBlankLayout = new javax.swing.GroupLayout(panelBlank);
+        panelBlank.setLayout(panelBlankLayout);
+        panelBlankLayout.setHorizontalGroup(
+            panelBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+        panelBlankLayout.setVerticalGroup(
+            panelBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 485, Short.MAX_VALUE)
+        );
+
+        panelCenter.add(panelBlank, "card3");
         panelCenter.add(panelAuthorization, "card2");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -212,6 +226,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static htsquirrel.panels.Authorization panelAuthorization;
     private javax.swing.JPanel panelBase;
+    private static javax.swing.JPanel panelBlank;
     private javax.swing.JPanel panelCenter;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelLine;
