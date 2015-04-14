@@ -39,6 +39,7 @@ public class HTSquirrel extends javax.swing.JFrame {
      */
     public HTSquirrel() {
         initComponents();
+        int userId = 0;
         try {
             userId = getUserIdProperty();
         } catch (IOException ex) {
@@ -235,8 +236,6 @@ public class HTSquirrel extends javax.swing.JFrame {
             }
         });
     }
-
-    private static int userId;
     
     public static void hidePanels() {
         panelBlank.setVisible(false);
