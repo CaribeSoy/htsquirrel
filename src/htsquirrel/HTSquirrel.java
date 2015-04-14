@@ -23,6 +23,11 @@
  */
 package htsquirrel;
 
+import static htsquirrel.ConfigProperties.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -34,6 +39,14 @@ public class HTSquirrel extends javax.swing.JFrame {
      */
     public HTSquirrel() {
         initComponents();
+        try {
+            userId = getUserIdProperty();
+        } catch (IOException ex) {
+            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+        }
+        if (userId == 0) {
+            showAuthorization();
+        }
     }
 
     /**
@@ -223,6 +236,18 @@ public class HTSquirrel extends javax.swing.JFrame {
         });
     }
 
+    private static int userId;
+    
+    public static void hidePanels() {
+        panelBlank.setVisible(false);
+        panelAuthorization.setVisible(false);
+    }
+    
+    public static void showAuthorization() {
+        hidePanels();
+        panelAuthorization.setVisible(true);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static htsquirrel.panels.Authorization panelAuthorization;
     private javax.swing.JPanel panelBase;
