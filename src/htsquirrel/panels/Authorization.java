@@ -26,6 +26,7 @@ package htsquirrel.panels;
 import static htsquirrel.OAuth.*;
 import java.awt.Desktop;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -99,6 +100,11 @@ public class Authorization extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Open in browser");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -177,6 +183,19 @@ public class Authorization extends javax.swing.JPanel {
             Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
         }
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        String chppUrl = jTextField1.getText();
+        try {
+            Desktop.getDesktop().browse(new URL(chppUrl).toURI());
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+        } catch (IOException ex) {
+            Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+        }
+    }//GEN-LAST:event_jLabel5MouseClicked
 
     public void refreshAuthorization() {
         jLabel7.setVisible(false);
