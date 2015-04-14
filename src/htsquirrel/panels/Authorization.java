@@ -37,6 +37,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.scribe.model.Token;
+import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 
 /**
@@ -143,12 +144,22 @@ public class Authorization extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         jButton1.setText("Authorize");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(204, 51, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Unsuccessful authorization. Click me to try again.");
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -201,6 +212,11 @@ public class Authorization extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private static OAuthService oAuthService;
+    private static Token requestToken;
+    private static Verifier verifier;
+    private static Token accessToken;
+    
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         String chppUrl = "http://www.hattrick.org/goto.ashx" +
                 "?path=/Community/CHPP/ChppUserDescription.aspx";
@@ -247,10 +263,24 @@ public class Authorization extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        verifier = getVerifier(jTextField2.getText());  
+        try {
+            accessToken = oAuthService.getAccessToken(requestToken, verifier);
+        } catch (Exception ex) {
+            jLabel7.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        refreshAuthorization();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
     public void refreshAuthorization() {
         jLabel7.setVisible(false);
-        OAuthService oAuthService = getOAuthService();
-        Token requestToken = getRequestToken(oAuthService);
+        jTextField2.setText(null);
+        oAuthService = getOAuthService();
+        requestToken = getRequestToken(oAuthService);
         jTextField1.setText(oAuthService.getAuthorizationUrl(requestToken));
         jTextField1.selectAll();
     }
