@@ -245,6 +245,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     
     public static void showAuthorization() {
         hidePanels();
+        panelAuthorization.refreshAuthorization();
         panelAuthorization.setVisible(true);
     }
     

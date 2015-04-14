@@ -23,12 +23,15 @@
  */
 package htsquirrel.panels;
 
+import static htsquirrel.OAuth.*;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.scribe.model.Token;
+import org.scribe.oauth.OAuthService;
 
 /**
  *
@@ -175,6 +178,13 @@ public class Authorization extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    public void refreshAuthorization() {
+        jLabel7.setVisible(false);
+        OAuthService oAuthService = getOAuthService();
+        Token requestToken = getRequestToken(oAuthService);
+        jTextField1.setText(oAuthService.getAuthorizationUrl(requestToken));
+        jTextField1.selectAll();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -184,8 +194,8 @@ public class Authorization extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
+    private static javax.swing.JLabel jLabel7;
+    private static javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
