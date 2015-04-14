@@ -24,6 +24,7 @@
 package htsquirrel.panels;
 
 import static htsquirrel.OAuth.*;
+import static htsquirrel.Responses.*;
 import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -36,9 +37,11 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -269,6 +272,15 @@ public class Authorization extends javax.swing.JPanel {
             accessToken = oAuthService.getAccessToken(requestToken, verifier);
         } catch (Exception ex) {
             jLabel7.setVisible(true);
+        }
+        try {
+            int userId = getUserId(oAuthService, accessToken);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+        } catch (SAXException ex) {
+            Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+        } catch (IOException ex) {
+            Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
