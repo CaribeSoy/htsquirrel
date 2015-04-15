@@ -24,7 +24,11 @@
 package htsquirrel;
 
 import static htsquirrel.ConfigProperties.*;
+import static htsquirrel.DatabaseManagement.*;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,6 +51,17 @@ public class HTSquirrel extends javax.swing.JFrame {
         }
         if (userId == 0) {
             showAuthorization();
+        } else {
+            try {
+                Connection db = createDatabaseConnection();
+                ArrayList<Integer> teamIds = getTeamIds(db, userId);
+            } catch (IOException ex) {
+                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+            } catch (SQLException ex) {
+                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+            }
         }
     }
 
