@@ -103,6 +103,9 @@ public class Download extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void refreshDownload() {
+        jProgressBar1.setValue(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
