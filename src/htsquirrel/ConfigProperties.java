@@ -57,6 +57,20 @@ public class ConfigProperties {
         return userIdProperty;
     }
     
+    // get access token from config.properties
+    public static Token getAccessTokenProperty() throws IOException {
+        if (!(configFileExists())) {
+            createNewConfig();
+        }
+        Properties properties = new Properties();
+        InputStream inputStream = new FileInputStream(getConfigPath());
+        properties.load(inputStream);
+        String token = properties.getProperty("ACCESS_TOKEN", "0");
+        String secret = properties.getProperty("ACCESS_SECRET", "0");
+        Token accessToken = new Token(token, secret);
+        return accessToken;
+    }
+    
     // set all properties
     public static void setProperties(int userId,
             Token accessToken) throws IOException {
