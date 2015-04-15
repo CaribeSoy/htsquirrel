@@ -55,6 +55,9 @@ public class HTSquirrel extends javax.swing.JFrame {
             try {
                 Connection db = createDatabaseConnection();
                 ArrayList<Integer> teamIds = getTeamIds(db, userId);
+                if (teamIds.isEmpty()) {
+                    showDownload();
+                }
             } catch (IOException ex) {
                 Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
             } catch (ClassNotFoundException ex) {
@@ -83,6 +86,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelCenter = new javax.swing.JPanel();
         panelBlank = new javax.swing.JPanel();
         panelAuthorization = new htsquirrel.panels.Authorization();
+        panelDownload = new htsquirrel.panels.Download();
         panelRight = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -176,6 +180,7 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         panelCenter.add(panelBlank, "card3");
         panelCenter.add(panelAuthorization, "card2");
+        panelCenter.add(panelDownload, "card4");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -255,6 +260,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     public static void hidePanels() {
         panelBlank.setVisible(false);
         panelAuthorization.setVisible(false);
+        panelDownload.setVisible(false);
     }
     
     public static void showAuthorization() {
@@ -263,11 +269,17 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelAuthorization.setVisible(true);
     }
     
+    public static void showDownload() {
+        hidePanels();
+        panelDownload.setVisible(true);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static htsquirrel.panels.Authorization panelAuthorization;
     private javax.swing.JPanel panelBase;
     private static javax.swing.JPanel panelBlank;
     private javax.swing.JPanel panelCenter;
+    private static htsquirrel.panels.Download panelDownload;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelLine;
     private javax.swing.JPanel panelMain;
