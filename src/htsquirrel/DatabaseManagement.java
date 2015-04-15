@@ -24,6 +24,8 @@
 package htsquirrel;
 
 import static htsquirrel.FileManagement.*;
+import htsquirrel.game.Team;
+import htsquirrel.game.User;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -113,6 +115,42 @@ public class DatabaseManagement {
         }
         statement.close();
         return teamIds;
+    }
+    
+    public static void insertIntoTeams(Connection connection, User user,
+            Team team) throws SQLException {
+        if (!(tableExists(connection, "TEAMS"))) {
+            createTeamsTable(connection);
+        }
+        String sqlCode = "INSERT INTO TEAMS VALUES (" +
+                user.getUserId() + "," +
+                "'" + user.getLoginName() + "'," +
+                "'" + user.getSupporterTier() + "'," +
+                team.getTeamId() + "," +
+                "'" + team.getTeamName() + "'," +
+                "'" + team.getShortTeamName() + "'," +
+                "'" + team.getFoundedDate() + "'," +
+                team.isPrimaryClub() + "," +
+                team.getArenaId() + "," +
+                "'" + team.getArenaName() + "'," +
+                team.getLeagueId() + "," +
+                "'" + team.getLeagueName() + "'," +
+                team.getRegionId() + "," +
+                "'" + team.getRegionName() + "'," +
+                team.getCoachId() + "," +
+                team.getLeagueLevelUnitId() + "," +
+                "'" + team.getLeagueLevelUnitName() + "'," +
+                team.getLeagueLevel() + "," +
+                team.getFanclubId() + "," +
+                "'" + team.getFanclubName() + "'," +
+                team.getFanclubSize() + "," +
+                "'" + team.getLogoUri() + "'," +
+                "'" + team.getDressUri() + "'," +
+                "'" + team.getDressAlternateUri() + "'" +
+                ")";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
     }
 
 }
