@@ -272,11 +272,16 @@ public class Authorization extends javax.swing.JPanel {
         try {
             accessToken = oAuthService.getAccessToken(requestToken, verifier);
         } catch (Exception ex) {
+            jLabel7.setText("Unsuccessful authorization. Click me to try again.");
+            jLabel7.setForeground(new java.awt.Color(204, 51, 0));
             jLabel7.setVisible(true);
         }
         try {
             int userId = getUserId(oAuthService, accessToken);
             setProperties(userId, accessToken);
+            jLabel7.setText("Successful authorization.");
+            jLabel7.setForeground(new java.awt.Color(0, 153, 51));
+            jLabel7.setVisible(true);
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
         } catch (SAXException ex) {
