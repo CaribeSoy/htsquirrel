@@ -23,6 +23,17 @@
  */
 package htsquirrel.panels;
 
+import static htsquirrel.ConfigProperties.*;
+import static htsquirrel.DatabaseManagement.*;
+import static htsquirrel.OAuth.*;
+import static htsquirrel.Responses.*;
+import htsquirrel.game.*;
+import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.SwingWorker;
+import org.scribe.model.Token;
+import org.scribe.oauth.OAuthService;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -64,6 +75,11 @@ public class Download extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         jButton1.setText("Download");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -103,8 +119,38 @@ public class Download extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    class DownloadTeamDetails extends SwingWorker<Void, Void> {
+        
+        @Override
+        protected Void doInBackground() throws Exception {
+            OAuthService oAuthService = getOAuthService();
+            Token accessToken = getAccessTokenProperty();
+            ArrayList<Team> teams = getTeams(oAuthService, accessToken);
+            User user = getUser(oAuthService, accessToken);
+            Connection db = createDatabaseConnection();
+            for (Team team : teams) {
+                insertIntoTeams(db, user, team);
+            }
+            return null;
+        }
+        
+        @Override
+        public void done() {
+            jProgressBar1.setValue(100);
+            jButton1.setEnabled(true);
+        }
+        
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jButton1.setEnabled(false);
+        DownloadTeamDetails downloadTeamDetails = new DownloadTeamDetails();
+        downloadTeamDetails.execute();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public void refreshDownload() {
         jProgressBar1.setValue(0);
+        jButton1.setEnabled(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
