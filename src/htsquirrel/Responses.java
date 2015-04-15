@@ -26,6 +26,7 @@ package htsquirrel;
 import static htsquirrel.DownloadManagement.*;
 import static htsquirrel.OAuth.*;
 import htsquirrel.game.Team;
+import htsquirrel.game.User;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -97,6 +98,21 @@ public class Responses {
             teams.add(team);
         }
         return teams;
+    }
+    
+    public static User getUser(OAuthService oAuthService,
+            Token accessToken)
+            throws ParserConfigurationException, SAXException, IOException {
+        String xmlString = getResponse(oAuthService, accessToken,
+                "teamdetails&version=3.2");
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element userElement = (Element) document.getElementsByTagName("User").item(0);
+        int userId = Integer.parseInt(userElement.getElementsByTagName("UserID").item(0).getTextContent());
+        String loginName = userElement.getElementsByTagName("Loginname").item(0).getTextContent();
+        String supporterTier = userElement.getElementsByTagName("SupporterTier").item(0).getTextContent();
+        User user = new User(userId, loginName, supporterTier);
+        return user;
     }
     
 }
