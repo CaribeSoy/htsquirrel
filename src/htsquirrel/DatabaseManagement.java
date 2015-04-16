@@ -156,6 +156,21 @@ public class DatabaseManagement {
         return leagueId;
     }
     
+    // get last season
+    public static int getLastSeason(Connection connection, Team team)
+            throws SQLException {
+        int lastSeason = 1;
+        String sqlCode = "SELECT SEASON FROM MATCHES " +
+                "WHERE TEAM_ID = " + team.getTeamId();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            lastSeason = resultSet.getInt("LEAGUE_ID");
+        }
+        statement.close();
+        return lastSeason;
+    }
+    
     public static void deleteFromTeams(Connection connection, User user)
             throws SQLException {
         if (!(tableExists(connection, "TEAMS"))) {
