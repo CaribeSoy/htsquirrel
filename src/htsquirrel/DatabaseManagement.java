@@ -24,6 +24,7 @@
 package htsquirrel;
 
 import static htsquirrel.FileManagement.*;
+import htsquirrel.game.Match;
 import htsquirrel.game.Team;
 import htsquirrel.game.User;
 import java.io.IOException;
@@ -238,4 +239,30 @@ public class DatabaseManagement {
         statement.close();
     }
 
+    public static void insertIntoMatches(Connection connection, Match match)
+            throws SQLException {
+        if (!(tableExists(connection, "MATCHES"))) {
+            createMatchesTable(connection);
+        }
+        String sqlCode = "INSERT INTO MATCHES VALUES (" +
+                match.getMatchId() + "," +
+                match.getTeamId() + "," +
+                "'" + match.getTeamName() + "'," +
+                match.getOpponentTeamId() + "," +
+                "'" + match.getOpponentTeamName() + "'," +
+                "'" + match.getVenue() + "'," +
+                "'" + match.getMatchDate() + "'," +
+                match.getSeason() + "," +
+                match.getMatchType() + "," +
+                match.getMatchContextId() + "," +
+                match.getCupLevel() + "," +
+                match.getCupLevelIndex() + "," +
+                match.getGoalsFor() + "," +
+                match.getGoalsAgainst() +
+                ")";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
 }
