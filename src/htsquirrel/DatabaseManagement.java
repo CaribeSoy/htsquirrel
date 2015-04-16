@@ -99,6 +99,30 @@ public class DatabaseManagement {
         statement.close();
     }
     
+    // create matches table
+    public static void createMatchesTable(Connection connection)
+            throws SQLException {
+        String sqlCode = "CREATE TABLE MATCHES (" +
+                "MATCH_ID INT," +
+                "TEAM_ID INT," +
+                "TEAM_NAME VARCHAR(255)," +
+                "OPPONENT_TEAM_ID INT," +
+                "OPPONENT_TEAM_NAME VARCHAR(255)," +
+                "VENUE VARCHAR(255)," +
+                "MATCH_DATE TIMESTAMP," +
+                "SEASON INT," +
+                "MATCH_TYPE INT," +
+                "MATCH_CONTEXT_ID INT" +
+                "CUP_LEVEL INT," +
+                "CUP_LEVEL_INDEX INT," +
+                "GOALS_FOR INT," +
+                "GOALS_AGAINST INT" +
+                ")";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
     // get team ids
     public static ArrayList<Integer> getTeamIds(Connection connection,
             int userId) throws SQLException {
