@@ -33,6 +33,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -169,6 +170,24 @@ public class DatabaseManagement {
         }
         statement.close();
         return lastSeason;
+    }
+    
+    // get last match date
+    public static Timestamp getLastMatchDate(Connection connection, Team team)
+            throws SQLException {
+        Timestamp lastMatchDate = null;
+        String sqlCode = "SELECT MAX(MATCH_DATE) AS LAST_MATCH_DATE " +
+                "FROM MATCHES WHERE TEAM_ID = " + team.getTeamId();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            lastMatchDate = resultSet.getTimestamp("LAST_MATCH_DATE");
+        }
+        if (lastMatchDate == null) {
+            lastMatchDate = Timestamp.valueOf("1990-01-01 00:00:00.0");
+        }
+        statement.close();
+        return lastMatchDate;
     }
     
     public static void deleteFromTeams(Connection connection, User user)
