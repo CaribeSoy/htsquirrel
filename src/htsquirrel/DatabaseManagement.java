@@ -169,6 +169,9 @@ public class DatabaseManagement {
         while (resultSet.next()) {
             lastSeason = resultSet.getInt("LAST_SEASON");
         }
+        if (lastSeason == 0) {
+            lastSeason = 1;
+        }
         statement.close();
         return lastSeason;
     }
