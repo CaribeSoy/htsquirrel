@@ -25,6 +25,7 @@ package htsquirrel;
 
 import static htsquirrel.DownloadManagement.*;
 import static htsquirrel.OAuth.*;
+import htsquirrel.game.Match;
 import htsquirrel.game.Team;
 import htsquirrel.game.User;
 import java.io.IOException;
@@ -113,6 +114,67 @@ public class Responses {
         String supporterTier = userElement.getElementsByTagName("SupporterTier").item(0).getTextContent();
         User user = new User(userId, loginName, supporterTier);
         return user;
+    }
+    
+    public static ArrayList<Match> getMatches(OAuthService oAuthService,
+            Token accessToken, Team team, int season, Timestamp lastMatchDate)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Match> matches = new ArrayList<>();
+        String xmlString = getResponse(oAuthService, accessToken,
+                "matchesarchive&version=1.3&teamID=" + team.getTeamId() +
+                        "&season=" + season);
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element matchListElement = (Element) document.getElementsByTagName("MatchList").item(0);
+        NodeList matchNodes = matchListElement.getElementsByTagName("Match");
+        if (matchNodes.getLength() > 0) {
+            for (int matchCnt = 0; matchCnt < matchNodes.getLength(); matchCnt++) {
+                Element matchElement = (Element) matchNodes.item(matchCnt);
+                Timestamp matchDate = Timestamp.valueOf(matchElement.getElementsByTagName("MatchDate").item(0).getTextContent());
+                if (matchDate.after(team.getFoundedDate()) & matchDate.after(lastMatchDate)) {
+                    long matchId = Integer.parseInt(matchElement.getElementsByTagName("MatchID").item(0).getTextContent());
+                    int homeTeamId = Integer.parseInt(matchElement.getElementsByTagName("HomeTeamID").item(0).getTextContent());
+                    String homeTeamName = matchElement.getElementsByTagName("HomeTeamName").item(0).getTextContent();
+                    homeTeamName = homeTeamName.replace("\'", "\'\'"); // TODO check this
+                    int awayTeamId = Integer.parseInt(matchElement.getElementsByTagName("AwayTeamID").item(0).getTextContent());
+                    String awayTeamName = matchElement.getElementsByTagName("AwayTeamName").item(0).getTextContent();
+                    awayTeamName = awayTeamName.replace("\'", "\'\'"); // TODO check this
+                    int matchType = Integer.parseInt(matchElement.getElementsByTagName("MatchType").item(0).getTextContent());
+                    int matchContextId = Integer.parseInt(matchElement.getElementsByTagName("MatchContextId").item(0).getTextContent());
+                    int cupLevel = Integer.parseInt(matchElement.getElementsByTagName("CupLevel").item(0).getTextContent());
+                    int cupLevelIndex = Integer.parseInt(matchElement.getElementsByTagName("CupLevelIndex").item(0).getTextContent());
+                    int homeGoals = Integer.parseInt(matchElement.getElementsByTagName("HomeGoals").item(0).getTextContent());
+                    int awayGoals = Integer.parseInt(matchElement.getElementsByTagName("AwayGoals").item(0).getTextContent());
+                    String teamName;
+                    int opponentTeamId;
+                    String opponentTeamName;
+                    String venue;
+                    int goalsFor;
+                    int goalsAgainst;
+                    if (homeTeamId == team.getTeamId()) {
+                        teamName = homeTeamName;
+                        opponentTeamId = awayTeamId;
+                        opponentTeamName = awayTeamName;
+                        venue = "Home";
+                        goalsFor = homeGoals;
+                        goalsAgainst = awayGoals;
+                    } else {
+                        teamName = awayTeamName;
+                        opponentTeamId = homeTeamId;
+                        opponentTeamName = homeTeamName;
+                        venue = "Away";
+                        goalsFor = awayGoals;
+                        goalsAgainst = homeGoals;
+                    }
+                    Match match = new Match(matchId, team.getTeamId(),
+                            teamName, opponentTeamId, opponentTeamName, venue,
+                            matchDate, season, matchType, matchContextId,
+                            cupLevel, cupLevelIndex, goalsFor, goalsAgainst);
+                    matches.add(match);
+                }
+            }
+        }
+        return matches;
     }
     
 }
