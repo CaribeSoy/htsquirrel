@@ -31,7 +31,7 @@ import java.sql.Timestamp;
  */
 public class Match {
     
-    private int matchId;
+    private long matchId;
     private int teamId;
     private String teamName;
     private int opponentTeamId;
@@ -46,11 +46,11 @@ public class Match {
     private int goalsFor;
     private int goalsAgainst;
 
-    public int getMatchId() {
+    public long getMatchId() {
         return matchId;
     }
 
-    public void setMatchId(int matchId) {
+    public void setMatchId(long matchId) {
         this.matchId = matchId;
     }
 
@@ -158,7 +158,7 @@ public class Match {
         this.goalsAgainst = goalsAgainst;
     }
     
-    public Match(int matchId, int teamId, String teamName, int opponentTeamId,
+    public Match(long matchId, int teamId, String teamName, int opponentTeamId,
             String opponentTeamName, String venue, Timestamp matchDate,
             int season, int matchType, int matchContextId, int cupLevel,
             int cupLevelIndex, int goalsFor, int goalsAgainst) {

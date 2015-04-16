@@ -104,7 +104,7 @@ public class DatabaseManagement {
     public static void createMatchesTable(Connection connection)
             throws SQLException {
         String sqlCode = "CREATE TABLE MATCHES (" +
-                "MATCH_ID INT," +
+                "MATCH_ID BIGINT," +
                 "TEAM_ID INT," +
                 "TEAM_NAME VARCHAR(255)," +
                 "OPPONENT_TEAM_ID INT," +
