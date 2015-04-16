@@ -114,7 +114,7 @@ public class DatabaseManagement {
                 "MATCH_DATE TIMESTAMP," +
                 "SEASON INT," +
                 "MATCH_TYPE INT," +
-                "MATCH_CONTEXT_ID INT" +
+                "MATCH_CONTEXT_ID INT," +
                 "CUP_LEVEL INT," +
                 "CUP_LEVEL_INDEX INT," +
                 "GOALS_FOR INT," +
@@ -162,12 +162,12 @@ public class DatabaseManagement {
     public static int getLastSeason(Connection connection, Team team)
             throws SQLException {
         int lastSeason = 1;
-        String sqlCode = "SELECT SEASON FROM MATCHES " +
+        String sqlCode = "SELECT MAX(SEASON) AS LAST_SEASON FROM MATCHES " +
                 "WHERE TEAM_ID = " + team.getTeamId();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlCode);
         while (resultSet.next()) {
-            lastSeason = resultSet.getInt("LEAGUE_ID");
+            lastSeason = resultSet.getInt("LAST_SEASON");
         }
         statement.close();
         return lastSeason;
