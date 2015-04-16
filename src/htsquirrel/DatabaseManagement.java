@@ -141,6 +141,21 @@ public class DatabaseManagement {
         return teamIds;
     }
     
+    // get league id
+    public static int getLeagueId(Connection connection, Team team)
+            throws SQLException {
+        int leagueId = 1; // TODO check this - returns Sweden
+        String sqlCode = "SELECT LEAGUE_ID FROM TEAMS " +
+                "WHERE TEAM_ID = " + team.getTeamId();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            leagueId = resultSet.getInt("LEAGUE_ID");
+        }
+        statement.close();
+        return leagueId;
+    }
+    
     public static void deleteFromTeams(Connection connection, User user)
             throws SQLException {
         if (!(tableExists(connection, "TEAMS"))) {
