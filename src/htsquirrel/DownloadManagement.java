@@ -23,11 +23,15 @@
  */
 package htsquirrel;
 
+import static htsquirrel.OAuth.getResponse;
+import htsquirrel.game.Team;
 import java.io.IOException;
 import java.io.StringReader;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.scribe.model.Token;
+import org.scribe.oauth.OAuthService;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -45,6 +49,17 @@ public class DownloadManagement {
         InputSource inputSource = new InputSource(new StringReader(xmlString));
         Document document = dBuilder.parse(inputSource);
         return document;
+    }
+    
+    public static int getSeason(OAuthService oAuthService, Token accessToken,
+            Team team) throws ParserConfigurationException, SAXException,
+            IOException {
+        String xmlString = getResponse(oAuthService, accessToken,
+                "worlddetails&version=1.6&leagueID=" + team.getLeagueId());
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        int season = Integer.parseInt(document.getElementsByTagName("Season").item(0).getTextContent());
+        return season;
     }
     
 }
