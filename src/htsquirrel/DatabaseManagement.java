@@ -117,6 +117,18 @@ public class DatabaseManagement {
         return teamIds;
     }
     
+    public static void deleteFromTeams(Connection connection, User user)
+            throws SQLException {
+        if (!(tableExists(connection, "TEAMS"))) {
+            createTeamsTable(connection);
+        }
+        String sqlCode = "DELETE FROM TEAMS WHERE USER_ID = " +
+                user.getUserId();
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
     public static void insertIntoTeams(Connection connection, User user,
             Team team) throws SQLException {
         if (!(tableExists(connection, "TEAMS"))) {

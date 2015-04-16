@@ -128,6 +128,7 @@ public class Download extends javax.swing.JPanel {
             ArrayList<Team> teams = getTeams(oAuthService, accessToken);
             User user = getUser(oAuthService, accessToken);
             Connection db = createDatabaseConnection();
+            deleteFromTeams(db, user);
             for (Team team : teams) {
                 insertIntoTeams(db, user, team);
             }
