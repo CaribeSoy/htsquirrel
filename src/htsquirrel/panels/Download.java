@@ -25,10 +25,12 @@ package htsquirrel.panels;
 
 import static htsquirrel.ConfigProperties.*;
 import static htsquirrel.DatabaseManagement.*;
+import static htsquirrel.DownloadManagement.getSeason;
 import static htsquirrel.OAuth.*;
 import static htsquirrel.Responses.*;
 import htsquirrel.game.*;
 import java.sql.Connection;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.SwingWorker;
 import org.scribe.model.Token;
@@ -123,7 +125,7 @@ public class Download extends javax.swing.JPanel {
         
         @Override
         protected Void doInBackground() throws Exception {
-            OAuthService oAuthService = getOAuthService();
+            OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
             Token accessToken = getAccessTokenProperty();
             ArrayList<Team> teams = getTeams(oAuthService, accessToken);
             User user = getUser(oAuthService, accessToken);
@@ -132,6 +134,45 @@ public class Download extends javax.swing.JPanel {
             for (Team team : teams) {
                 insertIntoTeams(db, user, team);
             }
+            db.close();
+            return null;
+        }
+        
+        @Override
+        public void done() {
+            DownloadMatchesArchive downloadMatchesArchive = new DownloadMatchesArchive();
+            downloadMatchesArchive.execute();
+        }
+        
+    }
+    
+    class DownloadMatchesArchive extends SwingWorker<Void, Void> {
+        
+        @Override
+        protected Void doInBackground() throws Exception {
+            OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
+            Token accessToken = getAccessTokenProperty();
+            ArrayList<Team> teams = getTeams(oAuthService, accessToken);
+            User user = getUser(oAuthService, accessToken);
+            Connection db = createDatabaseConnection();
+            if (!(tableExists(db, "MATCHES"))) {
+                createMatchesTable(db);
+            }
+            for (Team team : teams) {
+                int currentSeason = getSeason(oAuthService, accessToken, team);
+                int lastSeason = getLastSeason(db, team);
+                Timestamp lastMatchDate = getLastMatchDate(db, team);
+                for (int seasonCnt = lastSeason; seasonCnt <= currentSeason; seasonCnt++) {
+                    // TODO update progress bar
+                    ArrayList<Match> matchesList = new ArrayList<>();
+                    matchesList = getMatches(oAuthService, accessToken, team,
+                            seasonCnt, lastMatchDate);
+                    for (Match match : matchesList) {
+                        insertIntoMatches(db, match);
+                    }
+                }
+            }
+            db.close();
             return null;
         }
         

@@ -55,6 +55,7 @@ public class HTSquirrel extends javax.swing.JFrame {
             try {
                 Connection db = createDatabaseConnection();
                 ArrayList<Integer> teamIds = getTeamIds(db, userId);
+                db.close();
                 if (teamIds.isEmpty()) {
                     showDownload();
                 }
