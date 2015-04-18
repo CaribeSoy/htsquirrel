@@ -25,6 +25,7 @@ package htsquirrel;
 
 import static htsquirrel.DownloadManagement.*;
 import static htsquirrel.OAuth.*;
+import htsquirrel.game.Cup;
 import htsquirrel.game.Match;
 import htsquirrel.game.Team;
 import htsquirrel.game.User;
@@ -175,6 +176,32 @@ public class Responses {
             }
         }
         return matches;
+    }
+    
+    public static ArrayList<Cup> getCups(OAuthService oAuthService,
+            Token accessToken, Team team)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Cup> cups = new ArrayList<>();
+        String xmlString = getResponse(oAuthService, accessToken,
+                "worlddetails&version=1.6&leagueID=" + team.getLeagueId());
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element cupsElement = (Element) document.getElementsByTagName("Cups").item(0);
+        NodeList cupNodes = cupsElement.getElementsByTagName("Cup");
+        if (cupNodes.getLength() > 0) {
+            for (int cupCnt = 0; cupCnt < cupNodes.getLength(); cupCnt++) {
+                Element cupElement = (Element) cupNodes.item(cupCnt);
+                int cupId = Integer.parseInt(cupElement.getElementsByTagName("CupID").item(0).getTextContent());
+                String cupName = cupElement.getElementsByTagName("CupName").item(0).getTextContent();
+                int cupLeagueLevel = Integer.parseInt(cupElement.getElementsByTagName("CupLeagueLevel").item(0).getTextContent());
+                int cupLevel = Integer.parseInt(cupElement.getElementsByTagName("CupLevel").item(0).getTextContent());
+                int cupLevelIndex = Integer.parseInt(cupElement.getElementsByTagName("CupLevelIndex").item(0).getTextContent());
+                Cup cup = new Cup(team.getTeamId(), cupId, cupName,
+                        cupLeagueLevel, cupLevel, cupLevelIndex);
+                cups.add(cup);
+            }
+        }
+        return cups;
     }
     
 }
