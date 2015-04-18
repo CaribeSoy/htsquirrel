@@ -24,7 +24,7 @@
 package htsquirrel.panels;
 
 import static htsquirrel.ConfigProperties.*;
-import static htsquirrel.DatabaseManagement.*;
+import static htsquirrel.database.DatabaseManagement.*;
 import static htsquirrel.DownloadManagement.getSeason;
 import static htsquirrel.OAuth.*;
 import static htsquirrel.Responses.*;

@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package htsquirrel;
+package htsquirrel.database;
 
 import static htsquirrel.FileManagement.*;
 import htsquirrel.game.Match;

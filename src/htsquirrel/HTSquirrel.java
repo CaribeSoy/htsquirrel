@@ -24,7 +24,7 @@
 package htsquirrel;
 
 import static htsquirrel.ConfigProperties.*;
-import static htsquirrel.DatabaseManagement.*;
+import static htsquirrel.database.DatabaseManagement.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
