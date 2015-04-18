@@ -133,6 +133,11 @@ public class Download extends javax.swing.JPanel {
             deleteFromTeams(db, user);
             for (Team team : teams) {
                 insertIntoTeams(db, user, team);
+                deleteFromCups(db, team);
+                ArrayList<Cup> cups = getCups(oAuthService, accessToken, team);
+                for (Cup cup : cups) {
+                    insertIntoCups(db, cup);
+                }
             }
             db.close();
             return null;

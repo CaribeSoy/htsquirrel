@@ -25,6 +25,7 @@ package htsquirrel.database;
 
 import static htsquirrel.FileManagement.*;
 import htsquirrel.HTSquirrel;
+import htsquirrel.game.Cup;
 import htsquirrel.game.Match;
 import htsquirrel.game.Team;
 import htsquirrel.game.User;
@@ -201,6 +202,15 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
+    
+    public static void deleteFromCups(Connection connection, Team team)
+            throws SQLException, IOException {
+        String sqlCode = "DELETE FROM CUPS WHERE TEAM_ID = " +
+                team.getTeamId();
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
 
     public static void insertIntoTeams(Connection connection, User user,
             Team team) throws SQLException, IOException {
@@ -251,6 +261,21 @@ public class DatabaseManagement {
         sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_LEVEL_INDEX\\b", String.valueOf(match.getCupLevelIndex()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_GOALS_FOR\\b", String.valueOf(match.getGoalsFor()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_GOALS_AGAINST\\b", String.valueOf(match.getGoalsAgainst()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoCups(Connection connection, Cup cup)
+            throws IOException, SQLException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_cups.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(cup.getTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_TYPE\\b", String.valueOf(cup.getMatchType()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_ID\\b", String.valueOf(cup.getCupId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_NAME\\b", cup.getCupName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_LEAGUE_LEVEL\\b", String.valueOf(cup.getCupLeagueLevel()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_LEVEL\\b", String.valueOf(cup.getCupLevel()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_LEVEL_INDEX\\b", String.valueOf(cup.getCupLevelIndex()));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
