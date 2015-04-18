@@ -89,33 +89,8 @@ public class DatabaseManagement {
     
     // create teams table
     public static void createTeamsTable(Connection connection)
-            throws SQLException {
-        String sqlCode = "CREATE TABLE TEAMS (" +
-                "USER_ID INT," +
-                "LOGIN_NAME VARCHAR(255)," +
-                "SUPPORTER_TIER VARCHAR(255)," +
-                "TEAM_ID INT," +
-                "TEAM_NAME VARCHAR(255)," +
-                "SHORT_TEAM_NAME VARCHAR(255)," +
-                "FOUNDED_DATE TIMESTAMP," +
-                "PRIMARY_CLUB BOOLEAN," +
-                "ARENA_ID INT," +
-                "ARENA_NAME VARCHAR(255)," +
-                "LEAGUE_ID INT," +
-                "LEAGUE_NAME VARCHAR(255)," +
-                "REGION_ID INT," +
-                "REGION_NAME VARCHAR(255)," +
-                "COACH_ID INT," +
-                "LEAGUE_LEVEL_UNIT_ID INT," +
-                "LEAGUE_LEVEL_UNIT_NAME VARCHAR(255)," +
-                "LEAGUE_LEVEL INT," +
-                "FANCLUB_ID INT," +
-                "FANCLUB_NAME VARCHAR(255)," +
-                "FANCLUB_SIZE INT," +
-                "LOGO_URI VARCHAR(255)," +
-                "DRESS_URI VARCHAR(255)," +
-                "DRESS_ALTERNATE_URI VARCHAR(255)" +
-                ")";
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_teams.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -123,23 +98,8 @@ public class DatabaseManagement {
     
     // create matches table
     public static void createMatchesTable(Connection connection)
-            throws SQLException {
-        String sqlCode = "CREATE TABLE MATCHES (" +
-                "MATCH_ID BIGINT," +
-                "TEAM_ID INT," +
-                "TEAM_NAME VARCHAR(255)," +
-                "OPPONENT_TEAM_ID INT," +
-                "OPPONENT_TEAM_NAME VARCHAR(255)," +
-                "VENUE VARCHAR(255)," +
-                "MATCH_DATE TIMESTAMP," +
-                "SEASON INT," +
-                "MATCH_TYPE INT," +
-                "MATCH_CONTEXT_ID INT," +
-                "CUP_LEVEL INT," +
-                "CUP_LEVEL_INDEX INT," +
-                "GOALS_FOR INT," +
-                "GOALS_AGAINST INT" +
-                ")";
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_matches.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -147,7 +107,7 @@ public class DatabaseManagement {
     
     // get team ids
     public static ArrayList<Integer> getTeamIds(Connection connection,
-            int userId) throws SQLException {
+            int userId) throws SQLException, IOException {
         if (!(tableExists(connection, "TEAMS"))) {
             createTeamsTable(connection);
         }
@@ -215,7 +175,7 @@ public class DatabaseManagement {
     }
     
     public static void deleteFromTeams(Connection connection, User user)
-            throws SQLException {
+            throws SQLException, IOException {
         if (!(tableExists(connection, "TEAMS"))) {
             createTeamsTable(connection);
         }
@@ -227,7 +187,7 @@ public class DatabaseManagement {
     }
     
     public static void insertIntoTeams(Connection connection, User user,
-            Team team) throws SQLException {
+            Team team) throws SQLException, IOException {
         if (!(tableExists(connection, "TEAMS"))) {
             createTeamsTable(connection);
         }
@@ -263,7 +223,7 @@ public class DatabaseManagement {
     }
 
     public static void insertIntoMatches(Connection connection, Match match)
-            throws SQLException {
+            throws SQLException, IOException {
         if (!(tableExists(connection, "MATCHES"))) {
             createMatchesTable(connection);
         }
