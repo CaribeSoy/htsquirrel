@@ -239,7 +239,6 @@ public class DatabaseManagement {
         sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_LEVEL_INDEX\\b", String.valueOf(match.getCupLevelIndex()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_GOALS_FOR\\b", String.valueOf(match.getGoalsFor()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_GOALS_AGAINST\\b", String.valueOf(match.getGoalsAgainst()));
-        System.out.println(sqlCode);
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
