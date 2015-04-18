@@ -47,7 +47,7 @@ import java.util.ArrayList;
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
  */
 public class DatabaseManagement {
-    
+
     // create database connection
     public static Connection createDatabaseConnection()
             throws IOException,ClassNotFoundException, SQLException {
@@ -57,7 +57,7 @@ public class DatabaseManagement {
         Connection connection = DriverManager.getConnection(dbUrl);
         return connection;
     }
-    
+
     // convert sql code from file to string
     public static String sqlToString(String sqlPath) throws IOException {
         URL sqlUrl = new URL(HTSquirrel.getClassPath() + sqlPath);
@@ -72,7 +72,7 @@ public class DatabaseManagement {
         }
         return stringBuilder.toString();
     }
-    
+
     // check if table exists
     public static boolean tableExists(Connection connection, String tableName)
             throws SQLException {
@@ -86,7 +86,7 @@ public class DatabaseManagement {
         }
         return tableExists;
     }
-    
+
     // create teams table
     public static void createTeamsTable(Connection connection)
             throws SQLException, IOException {
@@ -95,7 +95,7 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
-    
+
     // create matches table
     public static void createMatchesTable(Connection connection)
             throws SQLException, IOException {
@@ -104,7 +104,7 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
-    
+
     // get team ids
     public static ArrayList<Integer> getTeamIds(Connection connection,
             int userId) throws SQLException, IOException {
@@ -122,7 +122,7 @@ public class DatabaseManagement {
         statement.close();
         return teamIds;
     }
-    
+
     // get league id
     public static int getLeagueId(Connection connection, Team team)
             throws SQLException {
@@ -137,7 +137,7 @@ public class DatabaseManagement {
         statement.close();
         return leagueId;
     }
-    
+
     // get last season
     public static int getLastSeason(Connection connection, Team team)
             throws SQLException {
@@ -155,7 +155,7 @@ public class DatabaseManagement {
         statement.close();
         return lastSeason;
     }
-    
+
     // get last match date
     public static Timestamp getLastMatchDate(Connection connection, Team team)
             throws SQLException {
@@ -173,7 +173,7 @@ public class DatabaseManagement {
         statement.close();
         return lastMatchDate;
     }
-    
+
     public static void deleteFromTeams(Connection connection, User user)
             throws SQLException, IOException {
         if (!(tableExists(connection, "TEAMS"))) {
@@ -185,38 +185,37 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
-    
+
     public static void insertIntoTeams(Connection connection, User user,
             Team team) throws SQLException, IOException {
         if (!(tableExists(connection, "TEAMS"))) {
             createTeamsTable(connection);
         }
-        String sqlCode = "INSERT INTO TEAMS VALUES (" +
-                user.getUserId() + "," +
-                "'" + user.getLoginName() + "'," +
-                "'" + user.getSupporterTier() + "'," +
-                team.getTeamId() + "," +
-                "'" + team.getTeamName() + "'," +
-                "'" + team.getShortTeamName() + "'," +
-                "'" + team.getFoundedDate() + "'," +
-                team.isPrimaryClub() + "," +
-                team.getArenaId() + "," +
-                "'" + team.getArenaName() + "'," +
-                team.getLeagueId() + "," +
-                "'" + team.getLeagueName() + "'," +
-                team.getRegionId() + "," +
-                "'" + team.getRegionName() + "'," +
-                team.getCoachId() + "," +
-                team.getLeagueLevelUnitId() + "," +
-                "'" + team.getLeagueLevelUnitName() + "'," +
-                team.getLeagueLevel() + "," +
-                team.getFanclubId() + "," +
-                "'" + team.getFanclubName() + "'," +
-                team.getFanclubSize() + "," +
-                "'" + team.getLogoUri() + "'," +
-                "'" + team.getDressUri() + "'," +
-                "'" + team.getDressAlternateUri() + "'" +
-                ")";
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_teams.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_USER_ID\\b", String.valueOf(user.getUserId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LOGIN_NAME\\b", user.getLoginName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_SUPPORTER_TIER\\b", user.getSupporterTier());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_NAME\\b", team.getTeamName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_SHORT_TEAM_NAME\\b", team.getShortTeamName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_FOUNDED_DATE\\b", String.valueOf(team.getFoundedDate()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_PRIMARY_CLUB\\b", String.valueOf(team.isPrimaryClub()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_ARENA_ID\\b", String.valueOf(team.getArenaId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_ARENA_NAME\\b", team.getArenaName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_ID\\b", String.valueOf(team.getLeagueId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_NAME\\b", team.getLeagueName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_REGION_ID\\b", String.valueOf(team.getRegionId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_REGION_NAME\\b", team.getRegionName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_COACH_ID\\b", String.valueOf(team.getCoachId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL_UNIT_ID\\b", String.valueOf(team.getLeagueLevelUnitId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL_UNIT_NAME\\b", team.getLeagueLevelUnitName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL\\b", String.valueOf(team.getLeagueLevel()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_FANCLUB_ID\\b", String.valueOf(team.getFanclubId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_FANCLUB_NAME\\b", team.getFanclubName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_FANCLUB_SIZE\\b", String.valueOf(team.getFanclubSize()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LOGO_URI\\b", team.getLogoUri());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_DRESS_URI\\b", team.getDressUri());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_DRESS_ALTERNATE_URI\\b", team.getDressAlternateUri());
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -227,25 +226,25 @@ public class DatabaseManagement {
         if (!(tableExists(connection, "MATCHES"))) {
             createMatchesTable(connection);
         }
-        String sqlCode = "INSERT INTO MATCHES VALUES (" +
-                match.getMatchId() + "," +
-                match.getTeamId() + "," +
-                "'" + match.getTeamName() + "'," +
-                match.getOpponentTeamId() + "," +
-                "'" + match.getOpponentTeamName() + "'," +
-                "'" + match.getVenue() + "'," +
-                "'" + match.getMatchDate() + "'," +
-                match.getSeason() + "," +
-                match.getMatchType() + "," +
-                match.getMatchContextId() + "," +
-                match.getCupLevel() + "," +
-                match.getCupLevelIndex() + "," +
-                match.getGoalsFor() + "," +
-                match.getGoalsAgainst() +
-                ")";
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_matches.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(match.getMatchId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(match.getTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_NAME\\b", match.getTeamName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_TEAM_ID\\b", String.valueOf(match.getOpponentTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_TEAM_NAME\\b", match.getOpponentTeamName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_VENUE\\b", match.getVenue());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_DATE\\b", String.valueOf(match.getMatchDate()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_SEASON\\b", String.valueOf(match.getSeason()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_TYPE\\b", String.valueOf(match.getMatchType()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_CONTEXT_ID\\b", String.valueOf(match.getMatchContextId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_LEVEL\\b", String.valueOf(match.getCupLevel()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_LEVEL_INDEX\\b", String.valueOf(match.getCupLevelIndex()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_GOALS_FOR\\b", String.valueOf(match.getGoalsFor()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_GOALS_AGAINST\\b", String.valueOf(match.getGoalsAgainst()));
+        System.out.println(sqlCode);
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
     }
-    
+
 }
