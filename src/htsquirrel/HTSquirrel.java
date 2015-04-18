@@ -43,6 +43,7 @@ public class HTSquirrel extends javax.swing.JFrame {
      */
     public HTSquirrel() {
         initComponents();
+        classPath = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
         int userId = 0;
         try {
             userId = getUserIdProperty();
@@ -256,6 +257,12 @@ public class HTSquirrel extends javax.swing.JFrame {
                 new HTSquirrel().setVisible(true);
             }
         });
+    }
+    
+    public static String classPath;
+
+    public static String getClassPath() {
+        return classPath;
     }
     
     public static void hidePanels() {

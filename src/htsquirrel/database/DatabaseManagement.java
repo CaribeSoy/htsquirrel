@@ -24,10 +24,15 @@
 package htsquirrel.database;
 
 import static htsquirrel.FileManagement.*;
+import htsquirrel.HTSquirrel;
 import htsquirrel.game.Match;
 import htsquirrel.game.Team;
 import htsquirrel.game.User;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -51,6 +56,21 @@ public class DatabaseManagement {
         Class.forName("org.h2.Driver");
         Connection connection = DriverManager.getConnection(dbUrl);
         return connection;
+    }
+    
+    // convert sql code from file to string
+    public static String sqlToString(String sqlPath) throws IOException {
+        URL sqlUrl = new URL(HTSquirrel.getClassPath() + sqlPath);
+        InputStream inputStream = sqlUrl.openStream();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line = bufferedReader.readLine();
+        while (line != null) {
+            stringBuilder.append(line);
+            stringBuilder.append(" ");
+            line = bufferedReader.readLine();
+        }
+        return stringBuilder.toString();
     }
     
     // check if table exists
