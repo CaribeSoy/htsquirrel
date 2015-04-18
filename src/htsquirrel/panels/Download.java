@@ -155,9 +155,6 @@ public class Download extends javax.swing.JPanel {
             ArrayList<Team> teams = getTeams(oAuthService, accessToken);
             User user = getUser(oAuthService, accessToken);
             Connection db = createDatabaseConnection();
-            if (!(tableExists(db, "MATCHES"))) {
-                createMatchesTable(db);
-            }
             for (Team team : teams) {
                 int currentSeason = getSeason(oAuthService, accessToken, team);
                 int lastSeason = getLastSeason(db, team);

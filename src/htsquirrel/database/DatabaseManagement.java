@@ -87,8 +87,18 @@ public class DatabaseManagement {
         return tableExists;
     }
 
+    public static void checkTablesExist(Connection connection)
+            throws SQLException, IOException {
+        if (!(tableExists(connection, "TEAMS"))) {
+            createTeamsTable(connection);
+        }
+        if (!(tableExists(connection, "MATCHES"))) {
+            createMatchesTable(connection);
+        }
+    }
+
     // create teams table
-    public static void createTeamsTable(Connection connection)
+    private static void createTeamsTable(Connection connection)
             throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/create_table_teams.sql");
         Statement statement = connection.createStatement();
@@ -97,7 +107,7 @@ public class DatabaseManagement {
     }
 
     // create matches table
-    public static void createMatchesTable(Connection connection)
+    private static void createMatchesTable(Connection connection)
             throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/create_table_matches.sql");
         Statement statement = connection.createStatement();
@@ -108,9 +118,6 @@ public class DatabaseManagement {
     // get team ids
     public static ArrayList<Integer> getTeamIds(Connection connection,
             int userId) throws SQLException, IOException {
-        if (!(tableExists(connection, "TEAMS"))) {
-            createTeamsTable(connection);
-        }
         ArrayList<Integer> teamIds = new ArrayList<>();
         String sqlCode = "SELECT TEAM_ID FROM TEAMS " +
                 "WHERE USER_ID = " + userId;
@@ -176,9 +183,6 @@ public class DatabaseManagement {
 
     public static void deleteFromTeams(Connection connection, User user)
             throws SQLException, IOException {
-        if (!(tableExists(connection, "TEAMS"))) {
-            createTeamsTable(connection);
-        }
         String sqlCode = "DELETE FROM TEAMS WHERE USER_ID = " +
                 user.getUserId();
         Statement statement = connection.createStatement();
@@ -188,9 +192,6 @@ public class DatabaseManagement {
 
     public static void insertIntoTeams(Connection connection, User user,
             Team team) throws SQLException, IOException {
-        if (!(tableExists(connection, "TEAMS"))) {
-            createTeamsTable(connection);
-        }
         String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_teams.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_USER_ID\\b", String.valueOf(user.getUserId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_LOGIN_NAME\\b", user.getLoginName());
@@ -223,9 +224,6 @@ public class DatabaseManagement {
 
     public static void insertIntoMatches(Connection connection, Match match)
             throws SQLException, IOException {
-        if (!(tableExists(connection, "MATCHES"))) {
-            createMatchesTable(connection);
-        }
         String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_matches.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(match.getMatchId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(match.getTeamId()));
