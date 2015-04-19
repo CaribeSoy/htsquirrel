@@ -138,10 +138,8 @@ public class Responses {
                     long matchId = Integer.parseInt(matchElement.getElementsByTagName("MatchID").item(0).getTextContent());
                     int homeTeamId = Integer.parseInt(matchElement.getElementsByTagName("HomeTeamID").item(0).getTextContent());
                     String homeTeamName = matchElement.getElementsByTagName("HomeTeamName").item(0).getTextContent();
-                    homeTeamName = homeTeamName.replace("\'", "\'\'"); // TODO check this
                     int awayTeamId = Integer.parseInt(matchElement.getElementsByTagName("AwayTeamID").item(0).getTextContent());
                     String awayTeamName = matchElement.getElementsByTagName("AwayTeamName").item(0).getTextContent();
-                    awayTeamName = awayTeamName.replace("\'", "\'\'"); // TODO check this
                     int matchType = Integer.parseInt(matchElement.getElementsByTagName("MatchType").item(0).getTextContent());
                     int matchContextId = Integer.parseInt(matchElement.getElementsByTagName("MatchContextId").item(0).getTextContent());
                     int cupLevel = Integer.parseInt(matchElement.getElementsByTagName("CupLevel").item(0).getTextContent());

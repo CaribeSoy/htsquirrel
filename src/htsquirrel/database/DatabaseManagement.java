@@ -207,7 +207,7 @@ public class DatabaseManagement {
         statement.close();
         return lastMatchDate;
     }
-    
+
     // get missing matches
     public static ArrayList<Match> getMissingMatches(Connection connection,
             Team team) throws IOException, SQLException {
@@ -249,7 +249,7 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
-    
+
     public static void deleteFromCups(Connection connection, Team team)
             throws SQLException, IOException {
         String sqlCode = "DELETE FROM CUPS WHERE TEAM_ID = " +
@@ -263,29 +263,29 @@ public class DatabaseManagement {
             Team team) throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_teams.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_USER_ID\\b", String.valueOf(user.getUserId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_LOGIN_NAME\\b", user.getLoginName());
-        sqlCode = sqlCode.replaceAll("\\bVALUE_SUPPORTER_TIER\\b", user.getSupporterTier());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LOGIN_NAME\\b", user.getLoginName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_SUPPORTER_TIER\\b", user.getSupporterTier().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_NAME\\b", team.getTeamName());
-        sqlCode = sqlCode.replaceAll("\\bVALUE_SHORT_TEAM_NAME\\b", team.getShortTeamName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_NAME\\b", team.getTeamName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_SHORT_TEAM_NAME\\b", team.getShortTeamName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_FOUNDED_DATE\\b", String.valueOf(team.getFoundedDate()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_PRIMARY_CLUB\\b", String.valueOf(team.isPrimaryClub()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_ARENA_ID\\b", String.valueOf(team.getArenaId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_ARENA_NAME\\b", team.getArenaName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_ARENA_NAME\\b", team.getArenaName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_ID\\b", String.valueOf(team.getLeagueId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_NAME\\b", team.getLeagueName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_NAME\\b", team.getLeagueName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_REGION_ID\\b", String.valueOf(team.getRegionId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_REGION_NAME\\b", team.getRegionName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_REGION_NAME\\b", team.getRegionName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_COACH_ID\\b", String.valueOf(team.getCoachId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL_UNIT_ID\\b", String.valueOf(team.getLeagueLevelUnitId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL_UNIT_NAME\\b", team.getLeagueLevelUnitName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL_UNIT_NAME\\b", team.getLeagueLevelUnitName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL\\b", String.valueOf(team.getLeagueLevel()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_FANCLUB_ID\\b", String.valueOf(team.getFanclubId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_FANCLUB_NAME\\b", team.getFanclubName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_FANCLUB_NAME\\b", team.getFanclubName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_FANCLUB_SIZE\\b", String.valueOf(team.getFanclubSize()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_LOGO_URI\\b", team.getLogoUri());
-        sqlCode = sqlCode.replaceAll("\\bVALUE_DRESS_URI\\b", team.getDressUri());
-        sqlCode = sqlCode.replaceAll("\\bVALUE_DRESS_ALTERNATE_URI\\b", team.getDressAlternateUri());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LOGO_URI\\b", team.getLogoUri().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_DRESS_URI\\b", team.getDressUri().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_DRESS_ALTERNATE_URI\\b", team.getDressAlternateUri().replaceAll("'", "''"));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -296,9 +296,9 @@ public class DatabaseManagement {
         String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_matches.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(match.getMatchId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(match.getTeamId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_NAME\\b", match.getTeamName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_NAME\\b", match.getTeamName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_TEAM_ID\\b", String.valueOf(match.getOpponentTeamId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_TEAM_NAME\\b", match.getOpponentTeamName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_TEAM_NAME\\b", match.getOpponentTeamName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_VENUE\\b", match.getVenue());
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_DATE\\b", String.valueOf(match.getMatchDate()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_SEASON\\b", String.valueOf(match.getSeason()));
@@ -312,14 +312,14 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
-    
+
     public static void insertIntoCups(Connection connection, Cup cup)
             throws IOException, SQLException {
         String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_cups.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(cup.getTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_TYPE\\b", String.valueOf(cup.getMatchType()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_ID\\b", String.valueOf(cup.getCupId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_NAME\\b", cup.getCupName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_NAME\\b", cup.getCupName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_LEAGUE_LEVEL\\b", String.valueOf(cup.getCupLeagueLevel()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_LEVEL\\b", String.valueOf(cup.getCupLevel()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_LEVEL_INDEX\\b", String.valueOf(cup.getCupLevelIndex()));
@@ -327,15 +327,15 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
-    
+
     public static void insertIntoMatchDetails(Connection connection,
             MatchDetails matchDetails) throws IOException, SQLException {
         String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_match_details.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(matchDetails.getMatchId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(matchDetails.getTeamId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_NAME\\b", matchDetails.getTeamName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_NAME\\b", matchDetails.getTeamName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_TEAM_ID\\b", String.valueOf(matchDetails.getOpponentTeamId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_TEAM_NAME\\b", matchDetails.getOpponentTeamName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_TEAM_NAME\\b", matchDetails.getOpponentTeamName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_GOALS_FOR\\b", String.valueOf(matchDetails.getGoalsFor()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_GOALS_AGAINST\\b", String.valueOf(matchDetails.getGoalsAgainst()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_TYPE\\b", String.valueOf(matchDetails.getMatchType()));
@@ -347,15 +347,15 @@ public class DatabaseManagement {
         sqlCode = sqlCode.replaceAll("\\bVALUE_FINISHED_DATE\\b", String.valueOf(matchDetails.getFinishedDate()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_VENUE\\b", matchDetails.getVenue());
         sqlCode = sqlCode.replaceAll("\\bVALUE_ARENA_ID\\b", String.valueOf(matchDetails.getArenaId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_ARENA_NAME\\b", matchDetails.getArenaName());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_ARENA_NAME\\b", matchDetails.getArenaName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_SOLD_TOTAL\\b", String.valueOf(matchDetails.getSoldTotal()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_SOLD_TERRACES\\b", String.valueOf(matchDetails.getSoldTerraces()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_SOLD_BASIC\\b", String.valueOf(matchDetails.getSoldBasic()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_SOLD_ROOF\\b", String.valueOf(matchDetails.getSoldRoof()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_SOLD_VIP\\b", String.valueOf(matchDetails.getSoldVip()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_WEATHER_ID\\b", String.valueOf(matchDetails.getWeatherId()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_DRESS_URI\\b", matchDetails.getDressUri());
-        sqlCode = sqlCode.replaceAll("\\bVALUE_FORMATION\\b", matchDetails.getFormation());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_DRESS_URI\\b", matchDetails.getDressUri().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_FORMATION\\b", matchDetails.getFormation().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TACTIC_TYPE\\b", String.valueOf(matchDetails.getTacticType()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TACTIC_SKILL\\b", String.valueOf(matchDetails.getTacticSkill()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ATTITUDE\\b", String.valueOf(matchDetails.getTeamAttitude()));
@@ -370,8 +370,8 @@ public class DatabaseManagement {
         sqlCode = sqlCode.replaceAll("\\bVALUE_RATING_ISPA\\b", String.valueOf(matchDetails.getRatingISPA()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_POSSESSION_1\\b", String.valueOf(matchDetails.getPossession1()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_POSSESSION_2\\b", String.valueOf(matchDetails.getPossession2()));
-        sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_DRESS_URI\\b", matchDetails.getOpponentDressUri());
-        sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_FORMATION\\b", matchDetails.getOpponentFormation());
+        sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_DRESS_URI\\b", matchDetails.getOpponentDressUri().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_FORMATION\\b", matchDetails.getOpponentFormation().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_TACTIC_TYPE\\b", String.valueOf(matchDetails.getOpponentTacticType()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_TACTIC_SKILL\\b", String.valueOf(matchDetails.getOpponentTacticSkill()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_RATING_M\\b", String.valueOf(matchDetails.getOpponentRatingM()));
