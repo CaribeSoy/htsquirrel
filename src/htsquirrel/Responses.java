@@ -232,10 +232,10 @@ public class Responses {
         int arenaId = Integer.parseInt(matchElement.getElementsByTagName("ArenaID").item(0).getTextContent());
         String arenaName = matchElement.getElementsByTagName("ArenaName").item(0).getTextContent();
         int soldTotal = Integer.parseInt(matchElement.getElementsByTagName("SoldTotal").item(0).getTextContent());
-        int soldTerraces = Integer.parseInt(matchElement.getElementsByTagName("SoldTerraces").item(0).getTextContent());
-        int soldBasic = Integer.parseInt(matchElement.getElementsByTagName("SoldBasic").item(0).getTextContent());
-        int soldRoof = Integer.parseInt(matchElement.getElementsByTagName("SoldRoof").item(0).getTextContent());
-        int soldVip = Integer.parseInt(matchElement.getElementsByTagName("SoldVIP").item(0).getTextContent());
+        int soldTerraces = 0;
+        int soldBasic = 0;
+        int soldRoof = 0;
+        int soldVip = 0;
         int weatherId = Integer.parseInt(matchElement.getElementsByTagName("WeatherID").item(0).getTextContent());
         String dressUri;
         String formation;
@@ -270,6 +270,10 @@ public class Responses {
         int opponentPossession2;
         int homeTeamId = Integer.parseInt(matchElement.getElementsByTagName("HomeTeamID").item(0).getTextContent());
         if (homeTeamId == match.getTeamId()) {
+            soldTerraces = Integer.parseInt(matchElement.getElementsByTagName("SoldTerraces").item(0).getTextContent());
+            soldBasic = Integer.parseInt(matchElement.getElementsByTagName("SoldBasic").item(0).getTextContent());
+            soldRoof = Integer.parseInt(matchElement.getElementsByTagName("SoldRoof").item(0).getTextContent());
+            soldVip = Integer.parseInt(matchElement.getElementsByTagName("SoldVIP").item(0).getTextContent());
             Element homeTeamElement = (Element) matchElement.getElementsByTagName("HomeTeam").item(0);
             dressUri = homeTeamElement.getElementsByTagName("DressURI").item(0).getTextContent();
             formation = homeTeamElement.getElementsByTagName("Formation").item(0).getTextContent();
