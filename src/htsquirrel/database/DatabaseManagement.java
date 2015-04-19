@@ -88,6 +88,7 @@ public class DatabaseManagement {
         return tableExists;
     }
 
+    // create missing tables
     public static void checkTablesExist(Connection connection)
             throws SQLException, IOException {
         if (!(tableExists(connection, "TEAMS"))) {
@@ -95,6 +96,9 @@ public class DatabaseManagement {
         }
         if (!(tableExists(connection, "MATCHES"))) {
             createMatchesTable(connection);
+        }
+        if (!(tableExists(connection, "MATCH_DETAILS"))) {
+            createMatchDetailsTable(connection);
         }
         if (!(tableExists(connection, "CUPS"))) {
             createCupsTable(connection);
@@ -114,6 +118,15 @@ public class DatabaseManagement {
     private static void createMatchesTable(Connection connection)
             throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/create_table_matches.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+
+    // create match details table
+    private static void createMatchDetailsTable(Connection connection)
+            throws IOException, SQLException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_match_details.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
