@@ -206,6 +206,39 @@ public class DatabaseManagement {
         statement.close();
         return lastMatchDate;
     }
+    
+    // get missing matches
+    public static ArrayList<Match> getMissingMatches(Connection connection,
+            Team team) throws IOException, SQLException {
+        ArrayList<Match> matches = new ArrayList<>();
+        String sqlCode = sqlToString("htsquirrel/database/sql/select_missing_matches.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            long matchId = resultSet.getLong("MATCH_ID");
+            int teamId = resultSet.getInt("TEAM_ID");
+            String teamName = resultSet.getString("TEAM_NAME");
+            int opponentTeamId = resultSet.getInt("OPPONENT_TEAM_ID");
+            String opponentTeamName = resultSet.getString("OPPONENT_TEAM_NAME");
+            String venue = resultSet.getString("VENUE");
+            Timestamp matchDate = resultSet.getTimestamp("MATCH_DATE");
+            int season = resultSet.getInt("SEASON");
+            int matchType = resultSet.getInt("MATCH_TYPE");
+            int matchContextId = resultSet.getInt("MATCH_CONTEXT_ID");
+            int cupLevel = resultSet.getInt("CUP_LEVEL");
+            int cupLevelIndex = resultSet.getInt("CUP_LEVEL_INDEX");
+            int goalsFor = resultSet.getInt("GOALS_FOR");
+            int goalsAgainst = resultSet.getInt("GOALS_AGAINST");
+            Match match = new Match(matchId, teamId, teamName, opponentTeamId,
+                    opponentTeamName, venue, matchDate, season, matchType,
+                    matchContextId, cupLevel, cupLevelIndex, goalsFor,
+                    goalsAgainst);
+            matches.add(match);
+        }
+        statement.close();
+        return matches;
+    }
 
     public static void deleteFromTeams(Connection connection, User user)
             throws SQLException, IOException {
