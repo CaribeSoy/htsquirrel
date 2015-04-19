@@ -180,6 +180,36 @@ public class Download extends javax.swing.JPanel {
         
         @Override
         public void done() {
+            DownloadMatchDetails downloadMatchDetails = new DownloadMatchDetails();
+            downloadMatchDetails.execute();
+        }
+        
+    }
+    
+    class DownloadMatchDetails extends SwingWorker<Void, Void> {
+        
+        @Override
+        protected Void doInBackground() throws Exception {
+            OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
+            Token accessToken = getAccessTokenProperty();
+            ArrayList<Team> teams = getTeams(oAuthService, accessToken);
+            User user = getUser(oAuthService, accessToken);
+            Connection db = createDatabaseConnection();
+            for (Team team : teams) {
+                ArrayList<Match> matches = new ArrayList<>();
+                matches = getMissingMatches(db, team);
+                for (Match match : matches) {
+                    MatchDetails matchDetails = getMatchDetails(oAuthService,
+                            accessToken, match);
+                    insertIntoMatchDetails(db, matchDetails);
+                }
+            }
+            db.close();
+            return null;
+        }
+        
+        @Override
+        public void done() {
             jProgressBar1.setValue(100);
             jButton1.setEnabled(true);
         }
