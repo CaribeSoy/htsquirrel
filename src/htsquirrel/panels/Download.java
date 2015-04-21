@@ -160,12 +160,14 @@ public class Download extends javax.swing.JPanel {
             ArrayList<Team> teams = getTeams(oAuthService, accessToken);
             User user = getUser(oAuthService, accessToken);
             Connection db = createDatabaseConnection();
+            int teamCnt = 0;
             for (Team team : teams) {
+                teamCnt++;
                 int currentSeason = getSeason(oAuthService, accessToken, team);
                 int lastSeason = getLastSeason(db, team);
                 Timestamp lastMatchDate = getLastMatchDate(db, team);
                 for (int seasonCnt = lastSeason; seasonCnt <= currentSeason; seasonCnt++) {
-                    // TODO update progress bar
+                    jProgressBar1.setValue((int) 10 * (teamCnt - 1) + 20 * ((seasonCnt - lastSeason + 1) / ((currentSeason - lastSeason + 1) * teams.size())));
                     ArrayList<Match> matchesList = new ArrayList<>();
                     matchesList = getMatches(oAuthService, accessToken, team,
                             seasonCnt, lastMatchDate);
@@ -195,10 +197,15 @@ public class Download extends javax.swing.JPanel {
             ArrayList<Team> teams = getTeams(oAuthService, accessToken);
             User user = getUser(oAuthService, accessToken);
             Connection db = createDatabaseConnection();
+            int teamCnt = 0;
             for (Team team : teams) {
+                teamCnt++;
                 ArrayList<Match> matches = new ArrayList<>();
                 matches = getMissingMatches(db, team);
+                int matchCnt = 0;
                 for (Match match : matches) {
+                    matchCnt++;
+                    jProgressBar1.setValue((int) 20 + 40 * (teamCnt - 1) + 80 * matchCnt / (matches.size() * teams.size()));
                     MatchDetails matchDetails = getMatchDetails(oAuthService,
                             accessToken, match);
                     insertIntoMatchDetails(db, matchDetails);
