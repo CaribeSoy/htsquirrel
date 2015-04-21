@@ -75,6 +75,12 @@ public class MatchType extends javax.swing.JPanel {
         panelHattrickMasters = new javax.swing.JPanel();
         cbHattrickMasters = new javax.swing.JCheckBox();
         panelFriendlies = new javax.swing.JPanel();
+        cbAllFriendlies = new javax.swing.JCheckBox();
+        jPanel1 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -340,15 +346,73 @@ public class MatchType extends javax.swing.JPanel {
 
         panelBottom.add(panelCompetitions, "card2");
 
+        panelFriendlies.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        cbAllFriendlies.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbAllFriendlies.setText("All friendlies");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Friendlies", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
+
+        jCheckBox1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        jCheckBox1.setText("Friendly (normal rules)");
+
+        jCheckBox2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        jCheckBox2.setText("Friendly (cup rules)");
+
+        jCheckBox3.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        jCheckBox3.setText("International friendly (normal rules)");
+
+        jCheckBox4.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        jCheckBox4.setText("International friendly (cup rules)");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jCheckBox2)
+                    .addComponent(jCheckBox3)
+                    .addComponent(jCheckBox4))
+                .addContainerGap(167, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panelFriendliesLayout = new javax.swing.GroupLayout(panelFriendlies);
         panelFriendlies.setLayout(panelFriendliesLayout);
         panelFriendliesLayout.setHorizontalGroup(
             panelFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(panelFriendliesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFriendliesLayout.createSequentialGroup()
+                        .addComponent(cbAllFriendlies)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelFriendliesLayout.setVerticalGroup(
             panelFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
+            .addGroup(panelFriendliesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbAllFriendlies)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(418, Short.MAX_VALUE))
         );
 
         panelBottom.add(panelFriendlies, "card3");
@@ -365,6 +429,7 @@ public class MatchType extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cbAllCompetitions;
+    private javax.swing.JCheckBox cbAllFriendlies;
     private javax.swing.JCheckBox cbDivisionalConsolation;
     private javax.swing.JCheckBox cbDivisionalCup;
     private javax.swing.JCheckBox cbDivisionalEmerald;
@@ -381,6 +446,11 @@ public class MatchType extends javax.swing.JPanel {
     private javax.swing.JCheckBox cbNationalRuby;
     private javax.swing.JCheckBox cbNationalSapphire;
     private javax.swing.JCheckBox cbQualification;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelCompetitions;
     private javax.swing.JLabel labelDivisional;
