@@ -51,10 +51,34 @@ public class MatchType extends javax.swing.JPanel {
         labelFriendlies = new javax.swing.JLabel();
         panelBottom = new javax.swing.JPanel();
         panelCompetitions = new javax.swing.JPanel();
+        cbAllCompetitions = new javax.swing.JCheckBox();
+        panelLeague = new javax.swing.JPanel();
+        cbLeague = new javax.swing.JCheckBox();
+        cbQualification = new javax.swing.JCheckBox();
+        panelNationalCup = new javax.swing.JPanel();
+        cbNationalCup = new javax.swing.JCheckBox();
+        cbNationalEmerald = new javax.swing.JCheckBox();
+        cbNationalRuby = new javax.swing.JCheckBox();
+        cbNationalSapphire = new javax.swing.JCheckBox();
+        cbNationalConsolation = new javax.swing.JCheckBox();
+        panelDivisionalCup = new javax.swing.JPanel();
+        cbDivisionalCup = new javax.swing.JCheckBox();
+        cbDivisionalEmerald = new javax.swing.JCheckBox();
+        cbDivisionalRuby = new javax.swing.JCheckBox();
+        cbDivisionalSapphire = new javax.swing.JCheckBox();
+        cbDivisionalConsolation = new javax.swing.JCheckBox();
+        jSeparator1 = new javax.swing.JSeparator();
+        labelDivisional = new javax.swing.JLabel();
+        cbLevel7 = new javax.swing.JCheckBox();
+        cbLevel8 = new javax.swing.JCheckBox();
+        cbLevel9 = new javax.swing.JCheckBox();
+        panelHattrickMasters = new javax.swing.JPanel();
+        cbHattrickMasters = new javax.swing.JCheckBox();
         panelFriendlies = new javax.swing.JPanel();
 
         setLayout(new java.awt.GridBagLayout());
 
+        panelTop.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panelTop.setMaximumSize(new java.awt.Dimension(32767, 30));
         panelTop.setMinimumSize(new java.awt.Dimension(100, 30));
         panelTop.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -81,15 +105,237 @@ public class MatchType extends javax.swing.JPanel {
 
         panelBottom.setLayout(new java.awt.CardLayout());
 
+        panelCompetitions.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        cbAllCompetitions.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbAllCompetitions.setSelected(true);
+        cbAllCompetitions.setText("All competitions");
+
+        panelLeague.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "League", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
+
+        cbLeague.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbLeague.setSelected(true);
+        cbLeague.setText("League");
+
+        cbQualification.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbQualification.setSelected(true);
+        cbQualification.setText("Qualification");
+
+        javax.swing.GroupLayout panelLeagueLayout = new javax.swing.GroupLayout(panelLeague);
+        panelLeague.setLayout(panelLeagueLayout);
+        panelLeagueLayout.setHorizontalGroup(
+            panelLeagueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLeagueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelLeagueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbLeague)
+                    .addComponent(cbQualification))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelLeagueLayout.setVerticalGroup(
+            panelLeagueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLeagueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbLeague)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbQualification)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panelNationalCup.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "National Cup", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
+
+        cbNationalCup.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbNationalCup.setSelected(true);
+        cbNationalCup.setText("National Cup");
+
+        cbNationalEmerald.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbNationalEmerald.setSelected(true);
+        cbNationalEmerald.setText("Emerald Challenger Cup");
+
+        cbNationalRuby.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbNationalRuby.setSelected(true);
+        cbNationalRuby.setText("Ruby Challenger Cup");
+
+        cbNationalSapphire.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbNationalSapphire.setSelected(true);
+        cbNationalSapphire.setText("Sapphire Challenger Cup");
+
+        cbNationalConsolation.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbNationalConsolation.setSelected(true);
+        cbNationalConsolation.setText("Consolation Cup");
+
+        javax.swing.GroupLayout panelNationalCupLayout = new javax.swing.GroupLayout(panelNationalCup);
+        panelNationalCup.setLayout(panelNationalCupLayout);
+        panelNationalCupLayout.setHorizontalGroup(
+            panelNationalCupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNationalCupLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelNationalCupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbNationalCup)
+                    .addComponent(cbNationalEmerald)
+                    .addComponent(cbNationalRuby)
+                    .addComponent(cbNationalSapphire)
+                    .addComponent(cbNationalConsolation))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelNationalCupLayout.setVerticalGroup(
+            panelNationalCupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNationalCupLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbNationalCup)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbNationalEmerald)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbNationalRuby)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbNationalSapphire)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbNationalConsolation)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panelDivisionalCup.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Divisional Cup", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
+
+        cbDivisionalCup.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbDivisionalCup.setSelected(true);
+        cbDivisionalCup.setText("Divisional Cup");
+
+        cbDivisionalEmerald.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbDivisionalEmerald.setSelected(true);
+        cbDivisionalEmerald.setText("Emerald Challenger Cup");
+
+        cbDivisionalRuby.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbDivisionalRuby.setSelected(true);
+        cbDivisionalRuby.setText("Ruby Challenger Cup");
+
+        cbDivisionalSapphire.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbDivisionalSapphire.setSelected(true);
+        cbDivisionalSapphire.setText("Sapphire Challenger Cup");
+
+        cbDivisionalConsolation.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbDivisionalConsolation.setSelected(true);
+        cbDivisionalConsolation.setText("Consolation Cup");
+
+        jSeparator1.setMinimumSize(new java.awt.Dimension(50, 1));
+        jSeparator1.setPreferredSize(new java.awt.Dimension(50, 1));
+
+        labelDivisional.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelDivisional.setText("Divisional Cup levels:");
+
+        cbLevel7.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbLevel7.setSelected(true);
+        cbLevel7.setText("7");
+
+        cbLevel8.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbLevel8.setSelected(true);
+        cbLevel8.setText("8");
+
+        cbLevel9.setSelected(true);
+        cbLevel9.setText("9");
+
+        javax.swing.GroupLayout panelDivisionalCupLayout = new javax.swing.GroupLayout(panelDivisionalCup);
+        panelDivisionalCup.setLayout(panelDivisionalCupLayout);
+        panelDivisionalCupLayout.setHorizontalGroup(
+            panelDivisionalCupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDivisionalCupLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelDivisionalCupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelDivisionalCupLayout.createSequentialGroup()
+                        .addGroup(panelDivisionalCupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbDivisionalCup)
+                            .addComponent(cbDivisionalEmerald)
+                            .addComponent(cbDivisionalRuby)
+                            .addComponent(cbDivisionalSapphire)
+                            .addComponent(cbDivisionalConsolation)
+                            .addGroup(panelDivisionalCupLayout.createSequentialGroup()
+                                .addComponent(labelDivisional)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbLevel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbLevel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbLevel9)))
+                        .addGap(0, 119, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panelDivisionalCupLayout.setVerticalGroup(
+            panelDivisionalCupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDivisionalCupLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbDivisionalCup)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbDivisionalEmerald)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbDivisionalRuby)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbDivisionalSapphire)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbDivisionalConsolation)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelDivisionalCupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbLevel7)
+                    .addComponent(labelDivisional)
+                    .addComponent(cbLevel8)
+                    .addComponent(cbLevel9))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panelHattrickMasters.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Hattrick Masters", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
+
+        cbHattrickMasters.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbHattrickMasters.setSelected(true);
+        cbHattrickMasters.setText("Hattrick Masters");
+
+        javax.swing.GroupLayout panelHattrickMastersLayout = new javax.swing.GroupLayout(panelHattrickMasters);
+        panelHattrickMasters.setLayout(panelHattrickMastersLayout);
+        panelHattrickMastersLayout.setHorizontalGroup(
+            panelHattrickMastersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHattrickMastersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbHattrickMasters)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelHattrickMastersLayout.setVerticalGroup(
+            panelHattrickMastersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHattrickMastersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbHattrickMasters)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panelCompetitionsLayout = new javax.swing.GroupLayout(panelCompetitions);
         panelCompetitions.setLayout(panelCompetitionsLayout);
         panelCompetitionsLayout.setHorizontalGroup(
             panelCompetitionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(panelCompetitionsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCompetitionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelLeague, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelNationalCup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelDivisionalCup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelCompetitionsLayout.createSequentialGroup()
+                        .addComponent(cbAllCompetitions)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(panelHattrickMasters, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelCompetitionsLayout.setVerticalGroup(
             panelCompetitionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addGroup(panelCompetitionsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbAllCompetitions)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelLeague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelNationalCup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelDivisionalCup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelHattrickMasters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelBottom.add(panelCompetitions, "card2");
@@ -102,7 +348,7 @@ public class MatchType extends javax.swing.JPanel {
         );
         panelFriendliesLayout.setVerticalGroup(
             panelFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addGap(0, 607, Short.MAX_VALUE)
         );
 
         panelBottom.add(panelFriendlies, "card3");
@@ -118,11 +364,34 @@ public class MatchType extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox cbAllCompetitions;
+    private javax.swing.JCheckBox cbDivisionalConsolation;
+    private javax.swing.JCheckBox cbDivisionalCup;
+    private javax.swing.JCheckBox cbDivisionalEmerald;
+    private javax.swing.JCheckBox cbDivisionalRuby;
+    private javax.swing.JCheckBox cbDivisionalSapphire;
+    private javax.swing.JCheckBox cbHattrickMasters;
+    private javax.swing.JCheckBox cbLeague;
+    private javax.swing.JCheckBox cbLevel7;
+    private javax.swing.JCheckBox cbLevel8;
+    private javax.swing.JCheckBox cbLevel9;
+    private javax.swing.JCheckBox cbNationalConsolation;
+    private javax.swing.JCheckBox cbNationalCup;
+    private javax.swing.JCheckBox cbNationalEmerald;
+    private javax.swing.JCheckBox cbNationalRuby;
+    private javax.swing.JCheckBox cbNationalSapphire;
+    private javax.swing.JCheckBox cbQualification;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelCompetitions;
+    private javax.swing.JLabel labelDivisional;
     private javax.swing.JLabel labelFriendlies;
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCompetitions;
+    private javax.swing.JPanel panelDivisionalCup;
     private javax.swing.JPanel panelFriendlies;
+    private javax.swing.JPanel panelHattrickMasters;
+    private javax.swing.JPanel panelLeague;
+    private javax.swing.JPanel panelNationalCup;
     private javax.swing.JPanel panelTop;
     // End of variables declaration//GEN-END:variables
 }
