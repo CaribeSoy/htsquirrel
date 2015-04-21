@@ -44,20 +44,85 @@ public class MatchType extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        panelTop = new javax.swing.JPanel();
+        labelCompetitions = new javax.swing.JLabel();
+        labelFriendlies = new javax.swing.JLabel();
+        panelBottom = new javax.swing.JPanel();
+        panelCompetitions = new javax.swing.JPanel();
+        panelFriendlies = new javax.swing.JPanel();
+
+        setLayout(new java.awt.GridBagLayout());
+
+        panelTop.setMaximumSize(new java.awt.Dimension(32767, 30));
+        panelTop.setMinimumSize(new java.awt.Dimension(100, 30));
+        panelTop.setPreferredSize(new java.awt.Dimension(100, 30));
+        panelTop.setLayout(new java.awt.GridLayout(1, 2));
+
+        labelCompetitions.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelCompetitions.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCompetitions.setText("Competitions");
+        labelCompetitions.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelTop.add(labelCompetitions);
+
+        labelFriendlies.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelFriendlies.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelFriendlies.setText("Friendlies");
+        labelFriendlies.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        panelTop.add(labelFriendlies);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        add(panelTop, gridBagConstraints);
+
+        panelBottom.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout panelCompetitionsLayout = new javax.swing.GroupLayout(panelCompetitions);
+        panelCompetitions.setLayout(panelCompetitionsLayout);
+        panelCompetitionsLayout.setHorizontalGroup(
+            panelCompetitionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        panelCompetitionsLayout.setVerticalGroup(
+            panelCompetitionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 270, Short.MAX_VALUE)
         );
+
+        panelBottom.add(panelCompetitions, "card2");
+
+        javax.swing.GroupLayout panelFriendliesLayout = new javax.swing.GroupLayout(panelFriendlies);
+        panelFriendlies.setLayout(panelFriendliesLayout);
+        panelFriendliesLayout.setHorizontalGroup(
+            panelFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+        );
+        panelFriendliesLayout.setVerticalGroup(
+            panelFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 270, Short.MAX_VALUE)
+        );
+
+        panelBottom.add(panelFriendlies, "card3");
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        add(panelBottom, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel labelCompetitions;
+    private javax.swing.JLabel labelFriendlies;
+    private javax.swing.JPanel panelBottom;
+    private javax.swing.JPanel panelCompetitions;
+    private javax.swing.JPanel panelFriendlies;
+    private javax.swing.JPanel panelTop;
     // End of variables declaration//GEN-END:variables
 }
