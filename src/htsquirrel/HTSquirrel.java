@@ -84,6 +84,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelBase = new javax.swing.JPanel();
         panelTop = new javax.swing.JPanel();
         panelLine = new javax.swing.JPanel();
+        panelScroll = new javax.swing.JScrollPane();
         panelMain = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
@@ -211,13 +212,15 @@ public class HTSquirrel extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         panelMain.add(panelRight, gridBagConstraints);
 
+        panelScroll.setViewportView(panelMain);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelBase.add(panelMain, gridBagConstraints);
+        panelBase.add(panelScroll, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -294,6 +297,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private javax.swing.JPanel panelLine;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelRight;
+    private javax.swing.JScrollPane panelScroll;
     private javax.swing.JPanel panelTop;
     // End of variables declaration//GEN-END:variables
 }
