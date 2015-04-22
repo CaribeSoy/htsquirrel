@@ -49,6 +49,7 @@ public class MatchType extends javax.swing.JPanel {
         panelTop = new javax.swing.JPanel();
         labelCompetitions = new javax.swing.JLabel();
         labelFriendlies = new javax.swing.JLabel();
+        panelScroll = new javax.swing.JScrollPane();
         panelBottom = new javax.swing.JPanel();
         panelCompetitions = new javax.swing.JPanel();
         cbAllCompetitions = new javax.swing.JCheckBox();
@@ -82,6 +83,9 @@ public class MatchType extends javax.swing.JPanel {
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
 
+        setMaximumSize(new java.awt.Dimension(400, 2147483647));
+        setMinimumSize(new java.awt.Dimension(400, 50));
+        setPreferredSize(new java.awt.Dimension(400, 640));
         setLayout(new java.awt.GridBagLayout());
 
         panelTop.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -109,6 +113,9 @@ public class MatchType extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         add(panelTop, gridBagConstraints);
 
+        panelScroll.setPreferredSize(new java.awt.Dimension(400, 610));
+
+        panelBottom.setPreferredSize(new java.awt.Dimension(400, 607));
         panelBottom.setLayout(new java.awt.CardLayout());
 
         panelCompetitions.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -177,11 +184,11 @@ public class MatchType extends javax.swing.JPanel {
             .addGroup(panelNationalCupLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelNationalCupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbNationalConsolation)
                     .addComponent(cbNationalCup)
                     .addComponent(cbNationalEmerald)
                     .addComponent(cbNationalRuby)
-                    .addComponent(cbNationalSapphire)
-                    .addComponent(cbNationalConsolation))
+                    .addComponent(cbNationalSapphire))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelNationalCupLayout.setVerticalGroup(
@@ -262,7 +269,7 @@ public class MatchType extends javax.swing.JPanel {
                                 .addComponent(cbLevel8)
                                 .addGap(18, 18, 18)
                                 .addComponent(cbLevel9)))
-                        .addGap(0, 119, Short.MAX_VALUE)))
+                        .addGap(0, 69, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelDivisionalCupLayout.setVerticalGroup(
@@ -376,7 +383,7 @@ public class MatchType extends javax.swing.JPanel {
                     .addComponent(jCheckBox2)
                     .addComponent(jCheckBox3)
                     .addComponent(jCheckBox4))
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,13 +424,15 @@ public class MatchType extends javax.swing.JPanel {
 
         panelBottom.add(panelFriendlies, "card3");
 
+        panelScroll.setViewportView(panelBottom);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        add(panelBottom, gridBagConstraints);
+        add(panelScroll, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -462,6 +471,7 @@ public class MatchType extends javax.swing.JPanel {
     private javax.swing.JPanel panelHattrickMasters;
     private javax.swing.JPanel panelLeague;
     private javax.swing.JPanel panelNationalCup;
+    private javax.swing.JScrollPane panelScroll;
     private javax.swing.JPanel panelTop;
     // End of variables declaration//GEN-END:variables
 }
