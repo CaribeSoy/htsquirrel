@@ -51,7 +51,7 @@ public class MatchType extends javax.swing.JPanel {
         labelFriendlies = new javax.swing.JLabel();
         panelScroll = new javax.swing.JScrollPane();
         panelBottom = new javax.swing.JPanel();
-        panelCompetitions = new javax.swing.JPanel();
+        panelAllCompetitions = new javax.swing.JPanel();
         cbAllCompetitions = new javax.swing.JCheckBox();
         panelLeague = new javax.swing.JPanel();
         cbLeague = new javax.swing.JCheckBox();
@@ -75,13 +75,13 @@ public class MatchType extends javax.swing.JPanel {
         cbLevel9 = new javax.swing.JCheckBox();
         panelHattrickMasters = new javax.swing.JPanel();
         cbHattrickMasters = new javax.swing.JCheckBox();
-        panelFriendlies = new javax.swing.JPanel();
+        panelAllFriendlies = new javax.swing.JPanel();
         cbAllFriendlies = new javax.swing.JCheckBox();
-        jPanel1 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        panelFriendlies = new javax.swing.JPanel();
+        cbFriendlyNormal = new javax.swing.JCheckBox();
+        cbFriendlyCup = new javax.swing.JCheckBox();
+        cbIntFriendlyNormal = new javax.swing.JCheckBox();
+        cbIntFriendlyCup = new javax.swing.JCheckBox();
 
         setMaximumSize(new java.awt.Dimension(400, 2147483647));
         setMinimumSize(new java.awt.Dimension(400, 50));
@@ -97,13 +97,25 @@ public class MatchType extends javax.swing.JPanel {
         labelCompetitions.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         labelCompetitions.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelCompetitions.setText("Competitions");
-        labelCompetitions.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        labelCompetitions.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        labelCompetitions.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelCompetitions.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelCompetitionsMouseClicked(evt);
+            }
+        });
         panelTop.add(labelCompetitions);
 
         labelFriendlies.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         labelFriendlies.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFriendlies.setText("Friendlies");
-        labelFriendlies.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        labelFriendlies.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        labelFriendlies.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelFriendlies.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelFriendliesMouseClicked(evt);
+            }
+        });
         panelTop.add(labelFriendlies);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -118,21 +130,36 @@ public class MatchType extends javax.swing.JPanel {
         panelBottom.setPreferredSize(new java.awt.Dimension(400, 607));
         panelBottom.setLayout(new java.awt.CardLayout());
 
-        panelCompetitions.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelAllCompetitions.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         cbAllCompetitions.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbAllCompetitions.setSelected(true);
         cbAllCompetitions.setText("All competitions");
+        cbAllCompetitions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAllCompetitionsActionPerformed(evt);
+            }
+        });
 
         panelLeague.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "League", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
 
         cbLeague.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbLeague.setSelected(true);
         cbLeague.setText("League");
+        cbLeague.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLeagueActionPerformed(evt);
+            }
+        });
 
         cbQualification.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbQualification.setSelected(true);
         cbQualification.setText("Qualification");
+        cbQualification.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbQualificationActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLeagueLayout = new javax.swing.GroupLayout(panelLeague);
         panelLeague.setLayout(panelLeagueLayout);
@@ -160,22 +187,47 @@ public class MatchType extends javax.swing.JPanel {
         cbNationalCup.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbNationalCup.setSelected(true);
         cbNationalCup.setText("National Cup");
+        cbNationalCup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbNationalCupActionPerformed(evt);
+            }
+        });
 
         cbNationalEmerald.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbNationalEmerald.setSelected(true);
         cbNationalEmerald.setText("Emerald Challenger Cup");
+        cbNationalEmerald.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbNationalEmeraldActionPerformed(evt);
+            }
+        });
 
         cbNationalRuby.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbNationalRuby.setSelected(true);
         cbNationalRuby.setText("Ruby Challenger Cup");
+        cbNationalRuby.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbNationalRubyActionPerformed(evt);
+            }
+        });
 
         cbNationalSapphire.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbNationalSapphire.setSelected(true);
         cbNationalSapphire.setText("Sapphire Challenger Cup");
+        cbNationalSapphire.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbNationalSapphireActionPerformed(evt);
+            }
+        });
 
         cbNationalConsolation.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbNationalConsolation.setSelected(true);
         cbNationalConsolation.setText("Consolation Cup");
+        cbNationalConsolation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbNationalConsolationActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelNationalCupLayout = new javax.swing.GroupLayout(panelNationalCup);
         panelNationalCup.setLayout(panelNationalCupLayout);
@@ -212,22 +264,47 @@ public class MatchType extends javax.swing.JPanel {
         cbDivisionalCup.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbDivisionalCup.setSelected(true);
         cbDivisionalCup.setText("Divisional Cup");
+        cbDivisionalCup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDivisionalCupActionPerformed(evt);
+            }
+        });
 
         cbDivisionalEmerald.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbDivisionalEmerald.setSelected(true);
         cbDivisionalEmerald.setText("Emerald Challenger Cup");
+        cbDivisionalEmerald.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDivisionalEmeraldActionPerformed(evt);
+            }
+        });
 
         cbDivisionalRuby.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbDivisionalRuby.setSelected(true);
         cbDivisionalRuby.setText("Ruby Challenger Cup");
+        cbDivisionalRuby.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDivisionalRubyActionPerformed(evt);
+            }
+        });
 
         cbDivisionalSapphire.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbDivisionalSapphire.setSelected(true);
         cbDivisionalSapphire.setText("Sapphire Challenger Cup");
+        cbDivisionalSapphire.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDivisionalSapphireActionPerformed(evt);
+            }
+        });
 
         cbDivisionalConsolation.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbDivisionalConsolation.setSelected(true);
         cbDivisionalConsolation.setText("Consolation Cup");
+        cbDivisionalConsolation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDivisionalConsolationActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setMinimumSize(new java.awt.Dimension(50, 1));
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 1));
@@ -238,13 +315,28 @@ public class MatchType extends javax.swing.JPanel {
         cbLevel7.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbLevel7.setSelected(true);
         cbLevel7.setText("7");
+        cbLevel7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLevel7ActionPerformed(evt);
+            }
+        });
 
         cbLevel8.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbLevel8.setSelected(true);
         cbLevel8.setText("8");
+        cbLevel8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLevel8ActionPerformed(evt);
+            }
+        });
 
         cbLevel9.setSelected(true);
         cbLevel9.setText("9");
+        cbLevel9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLevel9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelDivisionalCupLayout = new javax.swing.GroupLayout(panelDivisionalCup);
         panelDivisionalCup.setLayout(panelDivisionalCupLayout);
@@ -301,6 +393,11 @@ public class MatchType extends javax.swing.JPanel {
         cbHattrickMasters.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbHattrickMasters.setSelected(true);
         cbHattrickMasters.setText("Hattrick Masters");
+        cbHattrickMasters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbHattrickMastersActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelHattrickMastersLayout = new javax.swing.GroupLayout(panelHattrickMasters);
         panelHattrickMasters.setLayout(panelHattrickMastersLayout);
@@ -319,25 +416,25 @@ public class MatchType extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout panelCompetitionsLayout = new javax.swing.GroupLayout(panelCompetitions);
-        panelCompetitions.setLayout(panelCompetitionsLayout);
-        panelCompetitionsLayout.setHorizontalGroup(
-            panelCompetitionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCompetitionsLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelAllCompetitionsLayout = new javax.swing.GroupLayout(panelAllCompetitions);
+        panelAllCompetitions.setLayout(panelAllCompetitionsLayout);
+        panelAllCompetitionsLayout.setHorizontalGroup(
+            panelAllCompetitionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAllCompetitionsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelCompetitionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelAllCompetitionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelLeague, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelNationalCup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDivisionalCup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelCompetitionsLayout.createSequentialGroup()
+                    .addGroup(panelAllCompetitionsLayout.createSequentialGroup()
                         .addComponent(cbAllCompetitions)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(panelHattrickMasters, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        panelCompetitionsLayout.setVerticalGroup(
-            panelCompetitionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCompetitionsLayout.createSequentialGroup()
+        panelAllCompetitionsLayout.setVerticalGroup(
+            panelAllCompetitionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAllCompetitionsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cbAllCompetitions)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -351,53 +448,51 @@ public class MatchType extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelBottom.add(panelCompetitions, "card2");
+        panelBottom.add(panelAllCompetitions, "card2");
 
-        panelFriendlies.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelAllFriendlies.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         cbAllFriendlies.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cbAllFriendlies.setText("All friendlies");
+        cbAllFriendlies.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAllFriendliesActionPerformed(evt);
+            }
+        });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Friendlies", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
+        panelFriendlies.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Friendlies", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
 
-        jCheckBox1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox1.setText("Friendly (normal rules)");
+        cbFriendlyNormal.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbFriendlyNormal.setText("Friendly (normal rules)");
+        cbFriendlyNormal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFriendlyNormalActionPerformed(evt);
+            }
+        });
 
-        jCheckBox2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox2.setText("Friendly (cup rules)");
+        cbFriendlyCup.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbFriendlyCup.setText("Friendly (cup rules)");
+        cbFriendlyCup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFriendlyCupActionPerformed(evt);
+            }
+        });
 
-        jCheckBox3.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox3.setText("International friendly (normal rules)");
+        cbIntFriendlyNormal.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbIntFriendlyNormal.setText("International friendly (normal rules)");
+        cbIntFriendlyNormal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbIntFriendlyNormalActionPerformed(evt);
+            }
+        });
 
-        jCheckBox4.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox4.setText("International friendly (cup rules)");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox4))
-                .addContainerGap(117, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        cbIntFriendlyCup.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbIntFriendlyCup.setText("International friendly (cup rules)");
+        cbIntFriendlyCup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbIntFriendlyCupActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelFriendliesLayout = new javax.swing.GroupLayout(panelFriendlies);
         panelFriendlies.setLayout(panelFriendliesLayout);
@@ -406,23 +501,50 @@ public class MatchType extends javax.swing.JPanel {
             .addGroup(panelFriendliesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelFriendliesLayout.createSequentialGroup()
-                        .addComponent(cbAllFriendlies)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(cbFriendlyNormal)
+                    .addComponent(cbFriendlyCup)
+                    .addComponent(cbIntFriendlyNormal)
+                    .addComponent(cbIntFriendlyCup))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         panelFriendliesLayout.setVerticalGroup(
             panelFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFriendliesLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(cbFriendlyNormal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbFriendlyCup)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbIntFriendlyNormal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbIntFriendlyCup)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panelAllFriendliesLayout = new javax.swing.GroupLayout(panelAllFriendlies);
+        panelAllFriendlies.setLayout(panelAllFriendliesLayout);
+        panelAllFriendliesLayout.setHorizontalGroup(
+            panelAllFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAllFriendliesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAllFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAllFriendliesLayout.createSequentialGroup()
+                        .addComponent(cbAllFriendlies)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(panelFriendlies, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panelAllFriendliesLayout.setVerticalGroup(
+            panelAllFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAllFriendliesLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(cbAllFriendlies)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelFriendlies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(418, Short.MAX_VALUE))
         );
 
-        panelBottom.add(panelFriendlies, "card3");
+        panelBottom.add(panelAllFriendlies, "card3");
 
         panelScroll.setViewportView(panelBottom);
 
@@ -435,7 +557,270 @@ public class MatchType extends javax.swing.JPanel {
         add(panelScroll, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void labelCompetitionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCompetitionsMouseClicked
+        labelCompetitions.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        labelFriendlies.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelAllCompetitions.setVisible(true);
+        panelAllFriendlies.setVisible(false);
+    }//GEN-LAST:event_labelCompetitionsMouseClicked
 
+    private void labelFriendliesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelFriendliesMouseClicked
+        labelCompetitions.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        labelFriendlies.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        panelAllCompetitions.setVisible(false);
+        panelAllFriendlies.setVisible(true);
+    }//GEN-LAST:event_labelFriendliesMouseClicked
+
+    private void cbAllCompetitionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAllCompetitionsActionPerformed
+        if (cbAllCompetitions.isSelected()) {
+            cbLeague.setSelected(true);
+            cbQualification.setSelected(true);
+            cbNationalCup.setSelected(true);
+            cbNationalEmerald.setSelected(true);
+            cbNationalRuby.setSelected(true);
+            cbNationalSapphire.setSelected(true);
+            cbNationalConsolation.setSelected(true);
+            cbDivisionalCup.setSelected(true);
+            cbDivisionalEmerald.setSelected(true);
+            cbDivisionalRuby.setSelected(true);
+            cbDivisionalSapphire.setSelected(true);
+            cbDivisionalConsolation.setSelected(true);
+            cbLevel7.setSelected(true);
+            cbLevel8.setSelected(true);
+            cbLevel9.setSelected(true);
+            cbHattrickMasters.setSelected(true);
+        } else {
+            cbLeague.setSelected(false);
+            cbQualification.setSelected(false);
+            cbNationalCup.setSelected(false);
+            cbNationalEmerald.setSelected(false);
+            cbNationalRuby.setSelected(false);
+            cbNationalSapphire.setSelected(false);
+            cbNationalConsolation.setSelected(false);
+            cbDivisionalCup.setSelected(false);
+            cbDivisionalEmerald.setSelected(false);
+            cbDivisionalRuby.setSelected(false);
+            cbDivisionalSapphire.setSelected(false);
+            cbDivisionalConsolation.setSelected(false);
+            cbLevel7.setSelected(false);
+            cbLevel8.setSelected(false);
+            cbLevel9.setSelected(false);
+            cbHattrickMasters.setSelected(false);
+        }
+    }//GEN-LAST:event_cbAllCompetitionsActionPerformed
+
+    private void cbLeagueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLeagueActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbLeagueActionPerformed
+
+    private void cbQualificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbQualificationActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbQualificationActionPerformed
+
+    private void cbNationalCupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNationalCupActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbNationalCupActionPerformed
+
+    private void cbNationalEmeraldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNationalEmeraldActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbNationalEmeraldActionPerformed
+
+    private void cbNationalRubyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNationalRubyActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbNationalRubyActionPerformed
+
+    private void cbNationalSapphireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNationalSapphireActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbNationalSapphireActionPerformed
+
+    private void cbNationalConsolationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNationalConsolationActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbNationalConsolationActionPerformed
+
+    private void cbDivisionalCupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDivisionalCupActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbDivisionalCupActionPerformed
+
+    private void cbDivisionalEmeraldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDivisionalEmeraldActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbDivisionalEmeraldActionPerformed
+
+    private void cbDivisionalRubyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDivisionalRubyActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbDivisionalRubyActionPerformed
+
+    private void cbDivisionalSapphireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDivisionalSapphireActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbDivisionalSapphireActionPerformed
+
+    private void cbDivisionalConsolationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDivisionalConsolationActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbDivisionalConsolationActionPerformed
+
+    private void cbLevel7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLevel7ActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbLevel7ActionPerformed
+
+    private void cbLevel8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLevel8ActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbLevel8ActionPerformed
+
+    private void cbLevel9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLevel9ActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbLevel9ActionPerformed
+
+    private void cbHattrickMastersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHattrickMastersActionPerformed
+        if (allCompetitionsSelected()) {
+            cbAllCompetitions.setSelected(true);
+        } else {
+            cbAllCompetitions.setSelected(false);
+        }
+    }//GEN-LAST:event_cbHattrickMastersActionPerformed
+
+    private void cbAllFriendliesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAllFriendliesActionPerformed
+        if (cbAllFriendlies.isSelected()) {
+            cbFriendlyNormal.setSelected(true);
+            cbFriendlyCup.setSelected(true);
+            cbIntFriendlyNormal.setSelected(true);
+            cbIntFriendlyCup.setSelected(true);
+        } else {
+            cbFriendlyNormal.setSelected(false);
+            cbFriendlyCup.setSelected(false);
+            cbIntFriendlyNormal.setSelected(false);
+            cbIntFriendlyCup.setSelected(false);
+        }
+    }//GEN-LAST:event_cbAllFriendliesActionPerformed
+
+    private void cbFriendlyNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFriendlyNormalActionPerformed
+        if (allFriendliesSelected()) {
+            cbAllFriendlies.setSelected(true);
+        } else {
+            cbAllFriendlies.setSelected(false);
+        }
+    }//GEN-LAST:event_cbFriendlyNormalActionPerformed
+
+    private void cbFriendlyCupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFriendlyCupActionPerformed
+        if (allFriendliesSelected()) {
+            cbAllFriendlies.setSelected(true);
+        } else {
+            cbAllFriendlies.setSelected(false);
+        }
+    }//GEN-LAST:event_cbFriendlyCupActionPerformed
+
+    private void cbIntFriendlyNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIntFriendlyNormalActionPerformed
+        if (allFriendliesSelected()) {
+            cbAllFriendlies.setSelected(true);
+        } else {
+            cbAllFriendlies.setSelected(false);
+        }
+    }//GEN-LAST:event_cbIntFriendlyNormalActionPerformed
+
+    private void cbIntFriendlyCupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIntFriendlyCupActionPerformed
+        if (allFriendliesSelected()) {
+            cbAllFriendlies.setSelected(true);
+        } else {
+            cbAllFriendlies.setSelected(false);
+        }
+    }//GEN-LAST:event_cbIntFriendlyCupActionPerformed
+
+    private boolean allCompetitionsSelected() {
+        boolean result;
+        if (cbLeague.isSelected() &&
+            cbQualification.isSelected() &&
+            cbNationalCup.isSelected() &&
+            cbNationalEmerald.isSelected() &&
+            cbNationalRuby.isSelected() &&
+            cbNationalSapphire.isSelected() &&
+            cbNationalConsolation.isSelected() &&
+            cbDivisionalCup.isSelected() &&
+            cbDivisionalEmerald.isSelected() &&
+            cbDivisionalRuby.isSelected() &&
+            cbDivisionalSapphire.isSelected() &&
+            cbDivisionalConsolation.isSelected() &&
+            cbLevel7.isSelected() &&
+            cbLevel8.isSelected() &&
+            cbLevel9.isSelected() &&
+            cbHattrickMasters.isSelected()) {
+            result = true;
+        } else {
+            result = false;
+        }
+        return result;
+    }
+
+    private boolean allFriendliesSelected() {
+        boolean result;
+        if (cbFriendlyNormal.isSelected() &&
+            cbFriendlyCup.isSelected() &&
+            cbIntFriendlyNormal.isSelected() &&
+            cbIntFriendlyCup.isSelected()) {
+            result = true;
+        } else {
+            result = false;
+        }
+        return result;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cbAllCompetitions;
     private javax.swing.JCheckBox cbAllFriendlies;
@@ -444,7 +829,11 @@ public class MatchType extends javax.swing.JPanel {
     private javax.swing.JCheckBox cbDivisionalEmerald;
     private javax.swing.JCheckBox cbDivisionalRuby;
     private javax.swing.JCheckBox cbDivisionalSapphire;
+    private javax.swing.JCheckBox cbFriendlyCup;
+    private javax.swing.JCheckBox cbFriendlyNormal;
     private javax.swing.JCheckBox cbHattrickMasters;
+    private javax.swing.JCheckBox cbIntFriendlyCup;
+    private javax.swing.JCheckBox cbIntFriendlyNormal;
     private javax.swing.JCheckBox cbLeague;
     private javax.swing.JCheckBox cbLevel7;
     private javax.swing.JCheckBox cbLevel8;
@@ -455,17 +844,13 @@ public class MatchType extends javax.swing.JPanel {
     private javax.swing.JCheckBox cbNationalRuby;
     private javax.swing.JCheckBox cbNationalSapphire;
     private javax.swing.JCheckBox cbQualification;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelCompetitions;
     private javax.swing.JLabel labelDivisional;
     private javax.swing.JLabel labelFriendlies;
+    private javax.swing.JPanel panelAllCompetitions;
+    private javax.swing.JPanel panelAllFriendlies;
     private javax.swing.JPanel panelBottom;
-    private javax.swing.JPanel panelCompetitions;
     private javax.swing.JPanel panelDivisionalCup;
     private javax.swing.JPanel panelFriendlies;
     private javax.swing.JPanel panelHattrickMasters;
