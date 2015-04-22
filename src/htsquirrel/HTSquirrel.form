@@ -193,7 +193,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="htsquirrel.panels.Download" name="panelDownload">
+                    <Component class="gui.pages.Download" name="panelDownload">
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
                       </AuxValues>
