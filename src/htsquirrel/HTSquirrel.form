@@ -183,7 +183,7 @@
                         </DimensionLayout>
                       </Layout>
                     </Container>
-                    <Component class="gui.pages.Authorization" name="panelAuthorization">
+                    <Component class="htsquirrel.gui.pages.Authorization" name="panelAuthorization">
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
                       </AuxValues>
@@ -193,7 +193,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="gui.pages.Download" name="panelDownload">
+                    <Component class="htsquirrel.gui.pages.Download" name="panelDownload">
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
                       </AuxValues>

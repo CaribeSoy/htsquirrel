@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package gui.pages;
+package htsquirrel.gui.pages;
 
 import static htsquirrel.ConfigProperties.*;
 import static htsquirrel.database.DatabaseManagement.*;

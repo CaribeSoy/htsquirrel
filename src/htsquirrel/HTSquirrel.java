@@ -89,8 +89,8 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeft = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
         panelBlank = new javax.swing.JPanel();
-        panelAuthorization = new gui.pages.Authorization();
-        panelDownload = new gui.pages.Download();
+        panelAuthorization = new htsquirrel.gui.pages.Authorization();
+        panelDownload = new htsquirrel.gui.pages.Download();
         panelRight = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -288,11 +288,11 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static gui.pages.Authorization panelAuthorization;
+    private static htsquirrel.gui.pages.Authorization panelAuthorization;
     private javax.swing.JPanel panelBase;
     private static javax.swing.JPanel panelBlank;
     private javax.swing.JPanel panelCenter;
-    private static gui.pages.Download panelDownload;
+    private static htsquirrel.gui.pages.Download panelDownload;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelLine;
     private javax.swing.JPanel panelMain;
