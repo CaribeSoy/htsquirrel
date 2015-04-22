@@ -43,32 +43,32 @@ public class HTSquirrel extends javax.swing.JFrame {
      */
     public HTSquirrel() {
         initComponents();
-        classPath = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
-        int userId = 0;
-        try {
-            userId = getUserIdProperty();
-        } catch (IOException ex) {
-            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
-        }
-        if (userId == 0) {
-            showAuthorization();
-        } else {
-            try {
-                Connection db = createDatabaseConnection();
-                checkTablesExist(db);
-                ArrayList<Integer> teamIds = getTeamIds(db, userId);
-                db.close();
-                if (teamIds.isEmpty()) {
-                    showDownload();
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
-            } catch (SQLException ex) {
-                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
-            }
-        }
+//        classPath = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
+//        int userId = 0;
+//        try {
+//            userId = getUserIdProperty();
+//        } catch (IOException ex) {
+//            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+//        }
+//        if (userId == 0) {
+//            showAuthorization();
+//        } else {
+//            try {
+//                Connection db = createDatabaseConnection();
+//                checkTablesExist(db);
+//                ArrayList<Integer> teamIds = getTeamIds(db, userId);
+//                db.close();
+//                if (teamIds.isEmpty()) {
+//                    showDownload();
+//                }
+//            } catch (IOException ex) {
+//                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+//            } catch (ClassNotFoundException ex) {
+//                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+//            } catch (SQLException ex) {
+//                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+//            }
+//        }
     }
 
     /**
@@ -81,157 +81,99 @@ public class HTSquirrel extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        panelBase = new javax.swing.JPanel();
         panelTop = new javax.swing.JPanel();
-        panelLine = new javax.swing.JPanel();
-        panelScroll = new javax.swing.JScrollPane();
-        panelMain = new javax.swing.JPanel();
+        panelBottom = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
-        panelCenter = new javax.swing.JPanel();
-        panelBlank = new javax.swing.JPanel();
-        panelAuthorization = new htsquirrel.gui.pages.Authorization();
-        panelDownload = new htsquirrel.gui.pages.Download();
         panelRight = new javax.swing.JPanel();
+        panelCenter = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HT Squirrel");
-        setMinimumSize(new java.awt.Dimension(960, 540));
         setName("frameHTSquirrel"); // NOI18N
-
-        panelBase.setLayout(new java.awt.GridBagLayout());
+        setPreferredSize(new java.awt.Dimension(1000, 750));
 
         panelTop.setBackground(new java.awt.Color(51, 51, 51));
         panelTop.setMaximumSize(new java.awt.Dimension(32767, 50));
         panelTop.setMinimumSize(new java.awt.Dimension(100, 50));
+        panelTop.setPreferredSize(new java.awt.Dimension(1000, 50));
 
         javax.swing.GroupLayout panelTopLayout = new javax.swing.GroupLayout(panelTop);
         panelTop.setLayout(panelTopLayout);
         panelTopLayout.setHorizontalGroup(
             panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 960, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         panelTopLayout.setVerticalGroup(
             panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        panelBase.add(panelTop, gridBagConstraints);
+        getContentPane().add(panelTop, java.awt.BorderLayout.PAGE_START);
 
-        panelLine.setBackground(new java.awt.Color(204, 102, 0));
-        panelLine.setMaximumSize(new java.awt.Dimension(32767, 5));
-        panelLine.setMinimumSize(new java.awt.Dimension(100, 5));
-        panelLine.setPreferredSize(new java.awt.Dimension(960, 5));
+        panelBottom.setBackground(new java.awt.Color(51, 51, 51));
+        panelBottom.setMaximumSize(new java.awt.Dimension(32767, 5));
+        panelBottom.setMinimumSize(new java.awt.Dimension(100, 5));
+        panelBottom.setPreferredSize(new java.awt.Dimension(1000, 5));
 
-        javax.swing.GroupLayout panelLineLayout = new javax.swing.GroupLayout(panelLine);
-        panelLine.setLayout(panelLineLayout);
-        panelLineLayout.setHorizontalGroup(
-            panelLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 960, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelBottomLayout = new javax.swing.GroupLayout(panelBottom);
+        panelBottom.setLayout(panelBottomLayout);
+        panelBottomLayout.setHorizontalGroup(
+            panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
-        panelLineLayout.setVerticalGroup(
-            panelLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelBottomLayout.setVerticalGroup(
+            panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        panelBase.add(panelLine, gridBagConstraints);
+        getContentPane().add(panelBottom, java.awt.BorderLayout.PAGE_END);
 
-        panelMain.setLayout(new java.awt.GridBagLayout());
+        panelLeft.setMaximumSize(new java.awt.Dimension(400, 32767));
+        panelLeft.setMinimumSize(new java.awt.Dimension(400, 100));
 
         javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
         panelLeft.setLayout(panelLeftLayout);
         panelLeftLayout.setHorizontalGroup(
             panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         panelLeftLayout.setVerticalGroup(
             panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 695, Short.MAX_VALUE)
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        panelMain.add(panelLeft, gridBagConstraints);
+        getContentPane().add(panelLeft, java.awt.BorderLayout.LINE_START);
 
-        panelCenter.setMaximumSize(new java.awt.Dimension(900, 32767));
-        panelCenter.setMinimumSize(new java.awt.Dimension(900, 0));
-        panelCenter.setPreferredSize(new java.awt.Dimension(900, 485));
-        panelCenter.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout panelBlankLayout = new javax.swing.GroupLayout(panelBlank);
-        panelBlank.setLayout(panelBlankLayout);
-        panelBlankLayout.setHorizontalGroup(
-            panelBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-        );
-        panelBlankLayout.setVerticalGroup(
-            panelBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
-        );
-
-        panelCenter.add(panelBlank, "card3");
-        panelCenter.add(panelAuthorization, "card2");
-        panelCenter.add(panelDownload, "card4");
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weighty = 1.0;
-        panelMain.add(panelCenter, gridBagConstraints);
+        panelRight.setBackground(new java.awt.Color(204, 102, 0));
+        panelRight.setMaximumSize(new java.awt.Dimension(5, 32767));
+        panelRight.setMinimumSize(new java.awt.Dimension(5, 100));
+        panelRight.setPreferredSize(new java.awt.Dimension(5, 695));
 
         javax.swing.GroupLayout panelRightLayout = new javax.swing.GroupLayout(panelRight);
         panelRight.setLayout(panelRightLayout);
         panelRightLayout.setHorizontalGroup(
             panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 5, Short.MAX_VALUE)
         );
         panelRightLayout.setVerticalGroup(
             panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 695, Short.MAX_VALUE)
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        panelMain.add(panelRight, gridBagConstraints);
+        getContentPane().add(panelRight, java.awt.BorderLayout.LINE_END);
 
-        panelScroll.setViewportView(panelMain);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        panelBase.add(panelScroll, gridBagConstraints);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelCenterLayout = new javax.swing.GroupLayout(panelCenter);
+        panelCenter.setLayout(panelCenterLayout);
+        panelCenterLayout.setHorizontalGroup(
+            panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        panelCenterLayout.setVerticalGroup(
+            panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 695, Short.MAX_VALUE)
         );
+
+        getContentPane().add(panelCenter, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
@@ -269,35 +211,29 @@ public class HTSquirrel extends javax.swing.JFrame {
         return classPath;
     }
     
-    public static void hidePanels() {
-        panelBlank.setVisible(false);
-        panelAuthorization.setVisible(false);
-        panelDownload.setVisible(false);
-    }
-    
-    public static void showAuthorization() {
-        hidePanels();
-        panelAuthorization.refreshAuthorization();
-        panelAuthorization.setVisible(true);
-    }
-    
-    public static void showDownload() {
-        hidePanels();
-        panelDownload.refreshDownload();
-        panelDownload.setVisible(true);
-    }
+//    public static void hidePanels() {
+//        panelBlank.setVisible(false);
+//        panelAuthorization.setVisible(false);
+//        panelDownload.setVisible(false);
+//    }
+//    
+//    public static void showAuthorization() {
+//        hidePanels();
+//        panelAuthorization.refreshAuthorization();
+//        panelAuthorization.setVisible(true);
+//    }
+//    
+//    public static void showDownload() {
+//        hidePanels();
+//        panelDownload.refreshDownload();
+//        panelDownload.setVisible(true);
+//    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static htsquirrel.gui.pages.Authorization panelAuthorization;
-    private javax.swing.JPanel panelBase;
-    private static javax.swing.JPanel panelBlank;
+    private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
-    private static htsquirrel.gui.pages.Download panelDownload;
     private javax.swing.JPanel panelLeft;
-    private javax.swing.JPanel panelLine;
-    private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelRight;
-    private javax.swing.JScrollPane panelScroll;
     private javax.swing.JPanel panelTop;
     // End of variables declaration//GEN-END:variables
 }
