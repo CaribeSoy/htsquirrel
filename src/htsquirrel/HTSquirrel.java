@@ -89,7 +89,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeft = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
         panelBlank = new javax.swing.JPanel();
-        panelAuthorization = new htsquirrel.panels.Authorization();
+        panelAuthorization = new gui.pages.Authorization();
         panelDownload = new gui.pages.Download();
         panelRight = new javax.swing.JPanel();
 
@@ -288,7 +288,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static htsquirrel.panels.Authorization panelAuthorization;
+    private static gui.pages.Authorization panelAuthorization;
     private javax.swing.JPanel panelBase;
     private static javax.swing.JPanel panelBlank;
     private javax.swing.JPanel panelCenter;

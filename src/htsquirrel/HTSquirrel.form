@@ -183,7 +183,7 @@
                         </DimensionLayout>
                       </Layout>
                     </Container>
-                    <Component class="htsquirrel.panels.Authorization" name="panelAuthorization">
+                    <Component class="gui.pages.Authorization" name="panelAuthorization">
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
                       </AuxValues>
