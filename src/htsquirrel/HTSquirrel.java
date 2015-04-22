@@ -79,16 +79,18 @@ public class HTSquirrel extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         panelTop = new javax.swing.JPanel();
         panelBottom = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
+        blankFilter1 = new htsquirrel.gui.filters.BlankFilter();
         panelRight = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
+        authorization1 = new htsquirrel.gui.pages.Authorization();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HT Squirrel");
+        setMinimumSize(new java.awt.Dimension(1000, 750));
         setName("frameHTSquirrel"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1000, 750));
 
@@ -128,19 +130,10 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         getContentPane().add(panelBottom, java.awt.BorderLayout.PAGE_END);
 
-        panelLeft.setMaximumSize(new java.awt.Dimension(400, 32767));
-        panelLeft.setMinimumSize(new java.awt.Dimension(400, 100));
-
-        javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
-        panelLeft.setLayout(panelLeftLayout);
-        panelLeftLayout.setHorizontalGroup(
-            panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        panelLeftLayout.setVerticalGroup(
-            panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
-        );
+        panelLeft.setMaximumSize(new java.awt.Dimension(410, 32767));
+        panelLeft.setMinimumSize(new java.awt.Dimension(410, 100));
+        panelLeft.setLayout(new java.awt.CardLayout());
+        panelLeft.add(blankFilter1, "card2");
 
         getContentPane().add(panelLeft, java.awt.BorderLayout.LINE_START);
 
@@ -162,16 +155,8 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         getContentPane().add(panelRight, java.awt.BorderLayout.LINE_END);
 
-        javax.swing.GroupLayout panelCenterLayout = new javax.swing.GroupLayout(panelCenter);
-        panelCenter.setLayout(panelCenterLayout);
-        panelCenterLayout.setHorizontalGroup(
-            panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
-        );
-        panelCenterLayout.setVerticalGroup(
-            panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
-        );
+        panelCenter.setLayout(new java.awt.CardLayout());
+        panelCenter.add(authorization1, "card2");
 
         getContentPane().add(panelCenter, java.awt.BorderLayout.CENTER);
 
@@ -230,6 +215,8 @@ public class HTSquirrel extends javax.swing.JFrame {
 //    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private htsquirrel.gui.pages.Authorization authorization1;
+    private htsquirrel.gui.filters.BlankFilter blankFilter1;
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
     private javax.swing.JPanel panelLeft;
