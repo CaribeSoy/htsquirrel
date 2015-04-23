@@ -43,32 +43,32 @@ public class HTSquirrel extends javax.swing.JFrame {
      */
     public HTSquirrel() {
         initComponents();
-//        classPath = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
-//        int userId = 0;
-//        try {
-//            userId = getUserIdProperty();
-//        } catch (IOException ex) {
-//            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
-//        }
-//        if (userId == 0) {
-//            showAuthorization();
-//        } else {
-//            try {
-//                Connection db = createDatabaseConnection();
-//                checkTablesExist(db);
-//                ArrayList<Integer> teamIds = getTeamIds(db, userId);
-//                db.close();
-//                if (teamIds.isEmpty()) {
-//                    showDownload();
-//                }
-//            } catch (IOException ex) {
-//                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
-//            } catch (ClassNotFoundException ex) {
-//                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
-//            } catch (SQLException ex) {
-//                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
-//            }
-//        }
+        classPath = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
+        int userId = 0;
+        try {
+            userId = getUserIdProperty();
+        } catch (IOException ex) {
+            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+        }
+        if (userId == 0) {
+            showAuthorization();
+        } else {
+            try {
+                Connection db = createDatabaseConnection();
+                checkTablesExist(db);
+                ArrayList<Integer> teamIds = getTeamIds(db, userId);
+                db.close();
+                if (teamIds.isEmpty()) {
+                    showDownload();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+            } catch (SQLException ex) {
+                Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+            }
+        }
     }
 
     /**
@@ -86,7 +86,9 @@ public class HTSquirrel extends javax.swing.JFrame {
         blankFilter1 = new htsquirrel.gui.filters.BlankFilter();
         panelRight = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
-        authorization1 = new htsquirrel.gui.pages.Authorization();
+        panelBlank = new htsquirrel.gui.pages.BlankPage();
+        panelDownload = new htsquirrel.gui.pages.Download();
+        panelAuthorization = new htsquirrel.gui.pages.Authorization();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HT Squirrel");
@@ -156,7 +158,21 @@ public class HTSquirrel extends javax.swing.JFrame {
         getContentPane().add(panelRight, java.awt.BorderLayout.LINE_END);
 
         panelCenter.setLayout(new java.awt.CardLayout());
-        panelCenter.add(authorization1, "card2");
+
+        javax.swing.GroupLayout panelBlankLayout = new javax.swing.GroupLayout(panelBlank);
+        panelBlank.setLayout(panelBlankLayout);
+        panelBlankLayout.setHorizontalGroup(
+            panelBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+        panelBlankLayout.setVerticalGroup(
+            panelBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 695, Short.MAX_VALUE)
+        );
+
+        panelCenter.add(panelBlank, "card4");
+        panelCenter.add(panelDownload, "card3");
+        panelCenter.add(panelAuthorization, "card2");
 
         getContentPane().add(panelCenter, java.awt.BorderLayout.CENTER);
 
@@ -196,29 +212,31 @@ public class HTSquirrel extends javax.swing.JFrame {
         return classPath;
     }
     
-//    public static void hidePanels() {
-//        panelBlank.setVisible(false);
-//        panelAuthorization.setVisible(false);
-//        panelDownload.setVisible(false);
-//    }
-//    
-//    public static void showAuthorization() {
-//        hidePanels();
-//        panelAuthorization.refreshAuthorization();
-//        panelAuthorization.setVisible(true);
-//    }
-//    
-//    public static void showDownload() {
-//        hidePanels();
-//        panelDownload.refreshDownload();
-//        panelDownload.setVisible(true);
-//    }
+    public static void hidePanels() {
+        panelBlank.setVisible(false);
+        panelAuthorization.setVisible(false);
+        panelDownload.setVisible(false);
+    }
+    
+    public static void showAuthorization() {
+        hidePanels();
+        panelAuthorization.refreshAuthorization();
+        panelAuthorization.setVisible(true);
+    }
+    
+    public static void showDownload() {
+        hidePanels();
+        panelDownload.refreshDownload();
+        panelDownload.setVisible(true);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private htsquirrel.gui.pages.Authorization authorization1;
     private htsquirrel.gui.filters.BlankFilter blankFilter1;
+    private static htsquirrel.gui.pages.Authorization panelAuthorization;
+    private static htsquirrel.gui.pages.BlankPage panelBlank;
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
+    private static htsquirrel.gui.pages.Download panelDownload;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPanel panelTop;
