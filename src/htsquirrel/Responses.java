@@ -204,11 +204,8 @@ public class Responses {
         return cups;
     }
 
-    public static MatchDetails getMatchDetails(OAuthService oAuthService,
-            Token accessToken, Match match)
+    public static MatchDetails getMatchDetails(String xmlString, Match match)
             throws ParserConfigurationException, SAXException, IOException {
-        String xmlString = getResponse(oAuthService, accessToken,
-                "matchdetails&version=2.7&matchEvents=true&matchID=" + match.getMatchId());
         Document document = xmlStringToDoc(xmlString);
         document.getDocumentElement().normalize();
         Element matchElement = (Element) document.getElementsByTagName("Match").item(0);

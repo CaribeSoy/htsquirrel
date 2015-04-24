@@ -212,8 +212,11 @@ public class Download extends javax.swing.JPanel {
                 for (Match match : matches) {
                     matchCnt++;
                     jProgressBar1.setValue((int) 20 + 40 * (teamCnt - 1) + 80 * matchCnt / (matches.size() * teams.size()));
-                    MatchDetails matchDetails = getMatchDetails(oAuthService,
-                            accessToken, match);
+                    String xmlString = getResponse(oAuthService, accessToken,
+                            "matchdetails&version=2.7&matchEvents=true&matchID="
+                                    + match.getMatchId());
+                    MatchDetails matchDetails = getMatchDetails(xmlString,
+                            match);
                     insertIntoMatchDetails(db, matchDetails);
                 }
             }
