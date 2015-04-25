@@ -60,37 +60,41 @@ public class Download extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        labelTitle = new javax.swing.JLabel();
+        labelInfo = new javax.swing.JLabel();
+        labelProgress = new javax.swing.JLabel();
+        progressBar = new javax.swing.JProgressBar();
+        labelStatus = new javax.swing.JLabel();
+        buttonDownload = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(555, 211));
         setLayout(new java.awt.CardLayout());
 
         jScrollPane1.setBorder(null);
 
-        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 102, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Download");
+        labelTitle.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        labelTitle.setForeground(new java.awt.Color(204, 102, 0));
+        labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitle.setText("Download");
 
-        jLabel2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Press the button to download your Hattrick data.");
+        labelInfo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelInfo.setText("Press the button to download your Hattrick data.");
 
-        jButton1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jButton1.setText("Download");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        labelProgress.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelProgress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelProgress.setText("Progress:");
+
+        labelStatus.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelStatus.setText(" ");
+
+        buttonDownload.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        buttonDownload.setText("Download");
+        buttonDownload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonDownloadActionPerformed(evt);
             }
         });
-
-        jLabel3.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Progress:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,27 +103,30 @@ public class Download extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                    .addComponent(labelStatus)
+                    .addComponent(buttonDownload, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelProgress)
+                    .addComponent(labelInfo)
+                    .addComponent(labelTitle))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addComponent(labelTitle)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(labelInfo)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(labelProgress)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelStatus)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(buttonDownload)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -134,6 +141,8 @@ public class Download extends javax.swing.JPanel {
             OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
             Token accessToken = getAccessTokenProperty();
             // teams table
+            labelStatus.setForeground(new java.awt.Color(187, 187, 187));
+            labelStatus.setText("Downloading teams...");
             String teamDetailsXml = getResponse(oAuthService, accessToken,
                     "teamdetails&version=3.2");
             User user = getUser(teamDetailsXml);
@@ -152,6 +161,7 @@ public class Download extends javax.swing.JPanel {
                     insertIntoCups(db, cup);
                 }
                 // transfers table
+                labelStatus.setText("Downloading transfers...");
                 deleteFromTransfers(db, team);
                 String transfersXml = getResponse(oAuthService, accessToken,
                         "transfersteam&version=1.2&teamID="
@@ -189,6 +199,7 @@ public class Download extends javax.swing.JPanel {
             OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
             Token accessToken = getAccessTokenProperty();
             // matches table
+            labelStatus.setText("Downloading match list...");
             String teamDetailsXml = getResponse(oAuthService, accessToken,
                 "teamdetails&version=3.2");
             ArrayList<Team> teams = getTeams(teamDetailsXml);
@@ -200,7 +211,7 @@ public class Download extends javax.swing.JPanel {
                 int lastSeason = getLastSeason(db, team);
                 Timestamp lastMatchDate = getLastMatchDate(db, team);
                 for (int seasonCnt = lastSeason; seasonCnt <= currentSeason; seasonCnt++) {
-                    jProgressBar1.setValue((int) 10 * (teamCnt - 1) + 20 * ((seasonCnt - lastSeason + 1) / ((currentSeason - lastSeason + 1) * teams.size())));
+                    progressBar.setValue((int) 10 * (teamCnt - 1) + 20 * (seasonCnt - lastSeason + 1) / ((currentSeason - lastSeason + 1) * teams.size()));
                     ArrayList<Match> matchesList = new ArrayList<>();
                     matchesList = getMatches(oAuthService, accessToken, team,
                             seasonCnt, lastMatchDate);
@@ -275,6 +286,7 @@ public class Download extends javax.swing.JPanel {
             OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
             Token accessToken = getAccessTokenProperty();
             // match details table
+            labelStatus.setText("Downloading match details...");
             String teamDetails = getResponse(oAuthService, accessToken,
                 "teamdetails&version=3.2");
             ArrayList<Team> teams = getTeams(teamDetails);
@@ -287,7 +299,7 @@ public class Download extends javax.swing.JPanel {
                 int matchCnt = 0;
                 for (Match match : matches) {
                     matchCnt++;
-                    jProgressBar1.setValue((int) 20 + 40 * (teamCnt - 1) + 80 * matchCnt / (matches.size() * teams.size()));
+                    progressBar.setValue((int) 20 + 40 * (teamCnt - 1) + 80 * matchCnt / (matches.size() * teams.size()));
                     String matchDetailsXml = getResponse(oAuthService,
                             accessToken,
                             "matchdetails&version=2.7&matchEvents=true&matchID="
@@ -326,30 +338,34 @@ public class Download extends javax.swing.JPanel {
         
         @Override
         public void done() {
-            jProgressBar1.setValue(100);
-            jButton1.setEnabled(true);
+            progressBar.setValue(100);
+            buttonDownload.setEnabled(true);
+            labelStatus.setForeground(new java.awt.Color(0, 153, 51));
+            labelStatus.setText("Download completed");
         }
         
     }
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jButton1.setEnabled(false);
+    private void buttonDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDownloadActionPerformed
+        buttonDownload.setEnabled(false);
         DownloadBasicInfo downloadBasicInfo = new DownloadBasicInfo();
         downloadBasicInfo.execute();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonDownloadActionPerformed
 
     public void refreshDownload() {
-        jProgressBar1.setValue(0);
-        jButton1.setEnabled(true);
+        labelStatus.setText(" ");
+        progressBar.setValue(0);
+        buttonDownload.setEnabled(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton buttonDownload;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelInfo;
+    private javax.swing.JLabel labelProgress;
+    private javax.swing.JLabel labelStatus;
+    private javax.swing.JLabel labelTitle;
+    private javax.swing.JProgressBar progressBar;
     // End of variables declaration//GEN-END:variables
 }
