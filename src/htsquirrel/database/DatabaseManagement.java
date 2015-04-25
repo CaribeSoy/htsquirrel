@@ -359,6 +359,34 @@ public class DatabaseManagement {
         }
         return seasons;
     }
+    
+    // get first season
+    public static int getMinSeason(Connection connection, Team team)
+            throws IOException, SQLException {
+        int season = 0;
+        String sqlCode = sqlToString("htsquirrel/database/sql/select_first_season.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            season = resultSet.getInt("SEASON");
+        }
+        return season;
+    }
+    
+    // get last season
+    public static int getMaxSeason(Connection connection, Team team)
+            throws IOException, SQLException {
+        int season = 0;
+        String sqlCode = sqlToString("htsquirrel/database/sql/select_last_season.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            season = resultSet.getInt("SEASON");
+        }
+        return season;
+    }
 
     public static void deleteFromTeams(Connection connection, User user)
             throws SQLException, IOException {

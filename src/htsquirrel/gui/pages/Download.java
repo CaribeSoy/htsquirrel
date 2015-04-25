@@ -216,6 +216,8 @@ public class Download extends javax.swing.JPanel {
                 int seasons = getNumberOfSeasons(db, team);
                 ArrayList<Integer> missingSeasons = new ArrayList<>();
                 missingSeasons = getMissingSeasons(db, team);
+                int firstSeason = getMinSeason(db, team);
+                int lastSeason = getMaxSeason(db, team);
             }
             db.close();
             return null;
