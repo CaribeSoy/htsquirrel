@@ -127,20 +127,26 @@ public class Download extends javax.swing.JPanel {
         add(jScrollPane1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    class DownloadTeamDetails extends SwingWorker<Void, Void> {
+    class DownloadBasicInfo extends SwingWorker<Void, Void> {
         
         @Override
         protected Void doInBackground() throws Exception {
             OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
             Token accessToken = getAccessTokenProperty();
-            ArrayList<Team> teams = getTeams(oAuthService, accessToken);
-            User user = getUser(oAuthService, accessToken);
+            // teams table
+            String teamDetailsXml = getResponse(oAuthService, accessToken,
+                    "teamdetails&version=3.2");
+            User user = getUser(teamDetailsXml);
+            ArrayList<Team> teams = getTeams(teamDetailsXml);
             Connection db = createDatabaseConnection();
             deleteFromTeams(db, user);
             for (Team team : teams) {
                 insertIntoTeams(db, user, team);
                 deleteFromCups(db, team);
-                ArrayList<Cup> cups = getCups(oAuthService, accessToken, team);
+                String worldDetailsXml = getResponse(oAuthService, accessToken,
+                        "worlddetails&version=1.6&leagueID="
+                                + team.getLeagueId());
+                ArrayList<Cup> cups = getCups(worldDetailsXml, team);
                 for (Cup cup : cups) {
                     insertIntoCups(db, cup);
                 }
@@ -163,8 +169,10 @@ public class Download extends javax.swing.JPanel {
         protected Void doInBackground() throws Exception {
             OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
             Token accessToken = getAccessTokenProperty();
-            ArrayList<Team> teams = getTeams(oAuthService, accessToken);
-            User user = getUser(oAuthService, accessToken);
+            // matches table
+            String teamDetailsXml = getResponse(oAuthService, accessToken,
+                "teamdetails&version=3.2");
+            ArrayList<Team> teams = getTeams(teamDetailsXml);
             Connection db = createDatabaseConnection();
             int teamCnt = 0;
             for (Team team : teams) {
@@ -200,8 +208,10 @@ public class Download extends javax.swing.JPanel {
         protected Void doInBackground() throws Exception {
             OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
             Token accessToken = getAccessTokenProperty();
-            ArrayList<Team> teams = getTeams(oAuthService, accessToken);
-            User user = getUser(oAuthService, accessToken);
+            // match details table
+            String teamDetails = getResponse(oAuthService, accessToken,
+                "teamdetails&version=3.2");
+            ArrayList<Team> teams = getTeams(teamDetails);
             Connection db = createDatabaseConnection();
             int teamCnt = 0;
             for (Team team : teams) {
@@ -212,29 +222,33 @@ public class Download extends javax.swing.JPanel {
                 for (Match match : matches) {
                     matchCnt++;
                     jProgressBar1.setValue((int) 20 + 40 * (teamCnt - 1) + 80 * matchCnt / (matches.size() * teams.size()));
-                    String xmlString = getResponse(oAuthService, accessToken,
+                    String matchDetailsXml = getResponse(oAuthService,
+                            accessToken,
                             "matchdetails&version=2.7&matchEvents=true&matchID="
                                     + match.getMatchId());
-                    MatchDetails matchDetails = getMatchDetails(xmlString,
+                    MatchDetails matchDetails = getMatchDetails(matchDetailsXml,
                             match);
                     insertIntoMatchDetails(db, matchDetails);
-                    ArrayList<Referee> referees = getReferees(xmlString, match);
+                    ArrayList<Referee> referees = getReferees(matchDetailsXml,
+                            match);
                     for (Referee referee : referees) {
                         insertIntoReferees(db, referee);
                     }
-                    ArrayList<Goal> goals = getGoals(xmlString, match);
+                    ArrayList<Goal> goals = getGoals(matchDetailsXml, match);
                     for (Goal goal : goals) {
                         insertIntoGoals(db, goal);
                     }
-                    ArrayList<Booking> bookings = getBookings(xmlString, match);
+                    ArrayList<Booking> bookings = getBookings(matchDetailsXml,
+                            match);
                     for (Booking booking : bookings) {
                         insertIntoBookings(db, booking);
                     }
-                    ArrayList<Injury> injuries = getInjuries(xmlString, match);
+                    ArrayList<Injury> injuries = getInjuries(matchDetailsXml,
+                            match);
                     for (Injury injury : injuries) {
                         insertIntoInjuries(db, injury);
                     }
-                    ArrayList<Event> events = getEvents(xmlString, match);
+                    ArrayList<Event> events = getEvents(matchDetailsXml, match);
                     for (Event event : events) {
                         insertIntoEvents(db, event);
                     }
@@ -254,8 +268,8 @@ public class Download extends javax.swing.JPanel {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jButton1.setEnabled(false);
-        DownloadTeamDetails downloadTeamDetails = new DownloadTeamDetails();
-        downloadTeamDetails.execute();
+        DownloadBasicInfo downloadBasicInfo = new DownloadBasicInfo();
+        downloadBasicInfo.execute();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void refreshDownload() {

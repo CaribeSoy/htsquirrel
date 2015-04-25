@@ -66,12 +66,9 @@ public class Responses {
         return userId;
     }
 
-    public static ArrayList<Team> getTeams(OAuthService oAuthService,
-            Token accessToken)
+    public static ArrayList<Team> getTeams(String xmlString)
             throws ParserConfigurationException, SAXException, IOException {
         ArrayList<Team> teams = new ArrayList<>();
-        String xmlString = getResponse(oAuthService, accessToken,
-                "teamdetails&version=3.2");
         Document document = xmlStringToDoc(xmlString);
         document.getDocumentElement().normalize();
         Element teamsElement = (Element) document.getElementsByTagName("Teams").item(0);
@@ -109,11 +106,8 @@ public class Responses {
         return teams;
     }
 
-    public static User getUser(OAuthService oAuthService,
-            Token accessToken)
+    public static User getUser(String xmlString)
             throws ParserConfigurationException, SAXException, IOException {
-        String xmlString = getResponse(oAuthService, accessToken,
-                "teamdetails&version=3.2");
         Document document = xmlStringToDoc(xmlString);
         document.getDocumentElement().normalize();
         Element userElement = (Element) document.getElementsByTagName("User").item(0);
@@ -183,12 +177,9 @@ public class Responses {
         return matches;
     }
 
-    public static ArrayList<Cup> getCups(OAuthService oAuthService,
-            Token accessToken, Team team)
+    public static ArrayList<Cup> getCups(String xmlString, Team team)
             throws ParserConfigurationException, SAXException, IOException {
         ArrayList<Cup> cups = new ArrayList<>();
-        String xmlString = getResponse(oAuthService, accessToken,
-                "worlddetails&version=1.6&leagueID=" + team.getLeagueId());
         Document document = xmlStringToDoc(xmlString);
         document.getDocumentElement().normalize();
         Element cupsElement = (Element) document.getElementsByTagName("Cups").item(0);
