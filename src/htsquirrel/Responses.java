@@ -25,6 +25,7 @@ package htsquirrel;
 
 import static htsquirrel.DownloadManagement.*;
 import static htsquirrel.OAuth.*;
+import htsquirrel.game.Booking;
 import htsquirrel.game.Cup;
 import htsquirrel.game.Goal;
 import htsquirrel.game.Match;
@@ -428,6 +429,31 @@ public class Responses {
             }
         }
         return goals;
+    }
+    
+    public static ArrayList<Booking> getBookings(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Booking> bookings = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element bookingsElement = (Element) document.getElementsByTagName("Bookings").item(0);
+        NodeList bookingNodes = bookingsElement.getElementsByTagName("Booking");
+        if (bookingNodes.getLength() > 0) {
+            for (int bookingCnt = 0; bookingCnt < bookingNodes.getLength(); bookingCnt++) {
+                Element bookingElement = (Element) bookingNodes.item(bookingCnt);
+                Booking booking = new Booking();
+                booking.setMatchId(match.getMatchId());
+                booking.setTeamId(match.getTeamId());
+                booking.setBookingIndex(Integer.parseInt(bookingElement.getAttribute("Index")));
+                booking.setBookingPlayerId(Integer.parseInt(bookingElement.getElementsByTagName("BookingPlayerID").item(0).getTextContent()));
+                booking.setBookingPlayerName(bookingElement.getElementsByTagName("BookingPlayerName").item(0).getTextContent());
+                booking.setBookingTeamId(Integer.parseInt(bookingElement.getElementsByTagName("BookingTeamID").item(0).getTextContent()));
+                booking.setBookingType(Integer.parseInt(bookingElement.getElementsByTagName("BookingType").item(0).getTextContent()));
+                booking.setBookingMinute(Integer.parseInt(bookingElement.getElementsByTagName("BookingMinute").item(0).getTextContent()));
+                bookings.add(booking);
+            }
+        }
+        return bookings;
     }
 
 }

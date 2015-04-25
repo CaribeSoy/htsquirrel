@@ -25,6 +25,7 @@ package htsquirrel.database;
 
 import static htsquirrel.FileManagement.*;
 import htsquirrel.HTSquirrel;
+import htsquirrel.game.Booking;
 import htsquirrel.game.Cup;
 import htsquirrel.game.Goal;
 import htsquirrel.game.Match;
@@ -112,6 +113,9 @@ public class DatabaseManagement {
         if (!(tableExists(connection, "GOALS"))) {
             createGoalsTable(connection);
         }
+        if (!(tableExists(connection, "BOOKINGS"))) {
+            createBookingsTable(connection);
+        }
     }
 
     // create teams table
@@ -163,6 +167,15 @@ public class DatabaseManagement {
     private static void createGoalsTable(Connection connection)
             throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/create_table_goals.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    // create bookings table
+    private static void createBookingsTable(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_bookings.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -445,6 +458,22 @@ public class DatabaseManagement {
         sqlCode = sqlCode.replaceAll("\\bVALUE_GOAL_GOALS_FOR\\b", String.valueOf(goal.getGoalGoalsFor()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_GOAL_GOALS_AGAINST\\b", String.valueOf(goal.getGoalGoalsAgainst()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_GOAL_MINUTE\\b", String.valueOf(goal.getGoalMinute()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoBookings(Connection connection, Booking booking)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_bookings.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(booking.getMatchId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(booking.getTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_BOOKING_INDEX\\b", String.valueOf(booking.getBookingIndex()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_BOOKING_PLAYER_ID\\b", String.valueOf(booking.getBookingPlayerId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_BOOKING_PLAYER_NAME\\b", booking.getBookingPlayerName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_BOOKING_TEAM_ID\\b", String.valueOf(booking.getBookingTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_BOOKING_TYPE\\b", String.valueOf(booking.getBookingType()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_BOOKING_MINUTE\\b", String.valueOf(booking.getBookingMinute()));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

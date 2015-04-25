@@ -226,6 +226,10 @@ public class Download extends javax.swing.JPanel {
                     for (Goal goal : goals) {
                         insertIntoGoals(db, goal);
                     }
+                    ArrayList<Booking> bookings = getBookings(xmlString, match);
+                    for (Booking booking : bookings) {
+                        insertIntoBookings(db, booking);
+                    }
                 }
             }
             db.close();
