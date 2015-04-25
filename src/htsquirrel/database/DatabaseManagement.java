@@ -28,6 +28,7 @@ import htsquirrel.HTSquirrel;
 import htsquirrel.game.Booking;
 import htsquirrel.game.Cup;
 import htsquirrel.game.Goal;
+import htsquirrel.game.Injury;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
@@ -116,6 +117,9 @@ public class DatabaseManagement {
         if (!(tableExists(connection, "BOOKINGS"))) {
             createBookingsTable(connection);
         }
+        if (!(tableExists(connection, "INJURIES"))) {
+            createInjuriesTable(connection);
+        }
     }
 
     // create teams table
@@ -176,6 +180,15 @@ public class DatabaseManagement {
     private static void createBookingsTable(Connection connection)
             throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/create_table_bookings.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    // create injuries table
+    private static void createInjuriesTable(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_injuries.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -474,6 +487,22 @@ public class DatabaseManagement {
         sqlCode = sqlCode.replaceAll("\\bVALUE_BOOKING_TEAM_ID\\b", String.valueOf(booking.getBookingTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_BOOKING_TYPE\\b", String.valueOf(booking.getBookingType()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_BOOKING_MINUTE\\b", String.valueOf(booking.getBookingMinute()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoInjuries(Connection connection, Injury injury)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_injuries.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(injury.getMatchId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(injury.getTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_INJURY_INDEX\\b", String.valueOf(injury.getInjuryIndex()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_INJURY_PLAYER_ID\\b", String.valueOf(injury.getInjuryPlayerId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_INJURY_PLAYER_NAME\\b", injury.getInjuryPlayerName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_INJURY_TEAM_ID\\b", String.valueOf(injury.getInjuryTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_INJURY_TYPE\\b", String.valueOf(injury.getInjuryType()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_INJURY_MINUTE\\b", String.valueOf(injury.getInjuryMinute()));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

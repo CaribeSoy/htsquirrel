@@ -28,6 +28,7 @@ import static htsquirrel.OAuth.*;
 import htsquirrel.game.Booking;
 import htsquirrel.game.Cup;
 import htsquirrel.game.Goal;
+import htsquirrel.game.Injury;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
@@ -454,6 +455,31 @@ public class Responses {
             }
         }
         return bookings;
+    }
+    
+    public static ArrayList<Injury> getInjuries(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Injury> injuries = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element injuriesElement = (Element) document.getElementsByTagName("Injuries").item(0);
+        NodeList injuryNodes = injuriesElement.getElementsByTagName("Injury");
+        if (injuryNodes.getLength() > 0) {
+            for (int injuryCnt = 0; injuryCnt < injuryNodes.getLength(); injuryCnt++) {
+                Element injuryElement = (Element) injuryNodes.item(injuryCnt);
+                Injury injury = new Injury();
+                injury.setMatchId(match.getMatchId());
+                injury.setTeamId(match.getTeamId());
+                injury.setInjuryIndex(Integer.parseInt(injuryElement.getAttribute("Index")));
+                injury.setInjuryPlayerId(Integer.parseInt(injuryElement.getElementsByTagName("InjuryPlayerID").item(0).getTextContent()));
+                injury.setInjuryPlayerName(injuryElement.getElementsByTagName("InjuryPlayerName").item(0).getTextContent());
+                injury.setInjuryTeamId(Integer.parseInt(injuryElement.getElementsByTagName("InjuryTeamID").item(0).getTextContent()));
+                injury.setInjuryType(Integer.parseInt(injuryElement.getElementsByTagName("InjuryType").item(0).getTextContent()));
+                injury.setInjuryMinute(Integer.parseInt(injuryElement.getElementsByTagName("InjuryMinute").item(0).getTextContent()));
+                injuries.add(injury);
+            }
+        }
+        return injuries;
     }
 
 }

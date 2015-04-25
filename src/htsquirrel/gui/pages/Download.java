@@ -230,6 +230,10 @@ public class Download extends javax.swing.JPanel {
                     for (Booking booking : bookings) {
                         insertIntoBookings(db, booking);
                     }
+                    ArrayList<Injury> injuries = getInjuries(xmlString, match);
+                    for (Injury injury : injuries) {
+                        insertIntoInjuries(db, injury);
+                    }
                 }
             }
             db.close();
