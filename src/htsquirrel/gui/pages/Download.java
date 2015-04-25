@@ -222,6 +222,10 @@ public class Download extends javax.swing.JPanel {
                     for (Referee referee : referees) {
                         insertIntoReferees(db, referee);
                     }
+                    ArrayList<Goal> goals = getGoals(xmlString, match);
+                    for (Goal goal : goals) {
+                        insertIntoGoals(db, goal);
+                    }
                 }
             }
             db.close();

@@ -26,6 +26,7 @@ package htsquirrel;
 import static htsquirrel.DownloadManagement.*;
 import static htsquirrel.OAuth.*;
 import htsquirrel.game.Cup;
+import htsquirrel.game.Goal;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
@@ -396,6 +397,37 @@ public class Responses {
         referees.add(referee1);
         referees.add(referee2);
         return referees;
+    }
+    
+    public static ArrayList<Goal> getGoals(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Goal> goals = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element goalsElement = (Element) document.getElementsByTagName("Scorers").item(0);
+        NodeList goalNodes = goalsElement.getElementsByTagName("Goal");
+        if (goalNodes.getLength() > 0) {
+            for (int goalCnt = 0; goalCnt < goalNodes.getLength(); goalCnt++) {
+                Element goalElement = (Element) goalNodes.item(goalCnt);
+                Goal goal = new Goal();
+                goal.setMatchId(match.getMatchId());
+                goal.setTeamId(match.getTeamId());
+                goal.setGoalIndex(Integer.parseInt(goalElement.getAttribute("Index")));
+                goal.setGoalPlayerId(Integer.parseInt(goalElement.getElementsByTagName("ScorerPlayerID").item(0).getTextContent()));
+                goal.setGoalPlayerName(goalElement.getElementsByTagName("ScorerPlayerName").item(0).getTextContent());
+                goal.setGoalTeamId(Integer.parseInt(goalElement.getElementsByTagName("ScorerTeamID").item(0).getTextContent()));
+                if (match.getVenue() == "home") {
+                    goal.setGoalGoalsFor(Integer.parseInt(goalElement.getElementsByTagName("ScorerHomeGoals").item(0).getTextContent()));
+                    goal.setGoalGoalsAgainst(Integer.parseInt(goalElement.getElementsByTagName("ScorerAwayGoals").item(0).getTextContent()));
+                } else {
+                    goal.setGoalGoalsFor(Integer.parseInt(goalElement.getElementsByTagName("ScorerAwayGoals").item(0).getTextContent()));
+                    goal.setGoalGoalsAgainst(Integer.parseInt(goalElement.getElementsByTagName("ScorerHomeGoals").item(0).getTextContent()));
+                }
+                goal.setGoalMinute(Integer.parseInt(goalElement.getElementsByTagName("ScorerMinute").item(0).getTextContent()));
+                goals.add(goal);
+            }
+        }
+        return goals;
     }
 
 }

@@ -26,6 +26,7 @@ package htsquirrel.database;
 import static htsquirrel.FileManagement.*;
 import htsquirrel.HTSquirrel;
 import htsquirrel.game.Cup;
+import htsquirrel.game.Goal;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
@@ -108,6 +109,9 @@ public class DatabaseManagement {
         if (!(tableExists(connection, "REFEREES"))) {
             createRefereesTable(connection);
         }
+        if (!(tableExists(connection, "GOALS"))) {
+            createGoalsTable(connection);
+        }
     }
 
     // create teams table
@@ -150,6 +154,15 @@ public class DatabaseManagement {
     private static void createRefereesTable(Connection connection)
             throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/create_table_referees.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    //create goals table
+    private static void createGoalsTable(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_goals.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -415,6 +428,23 @@ public class DatabaseManagement {
         sqlCode = sqlCode.replaceAll("\\bVALUE_REFEREE_COUNTRY_NAME\\b", referee.getRefereeCountryName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_REFEREE_TEAM_ID\\b", String.valueOf(referee.getRefereeTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_REFEREE_TEAM_NAME\\b", referee.getRefereeTeamName().replaceAll("'", "''"));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoGoals(Connection connection, Goal goal)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_goals.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(goal.getMatchId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(goal.getTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_GOAL_INDEX\\b", String.valueOf(goal.getGoalIndex()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_GOAL_PLAYER_ID\\b", String.valueOf(goal.getGoalPlayerId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_GOAL_PLAYER_NAME\\b", goal.getGoalPlayerName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_GOAL_TEAM_ID\\b", String.valueOf(goal.getGoalTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_GOAL_GOALS_FOR\\b", String.valueOf(goal.getGoalGoalsFor()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_GOAL_GOALS_AGAINST\\b", String.valueOf(goal.getGoalGoalsAgainst()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_GOAL_MINUTE\\b", String.valueOf(goal.getGoalMinute()));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
