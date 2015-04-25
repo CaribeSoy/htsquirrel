@@ -357,6 +357,14 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
+    
+    public static void deleteFromLeagueIds(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = "DELETE FROM LEAGUE_IDS";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
 
     public static void insertIntoTeams(Connection connection, User user,
             Team team) throws SQLException, IOException {
