@@ -225,6 +225,29 @@ public class Download extends javax.swing.JPanel {
                     updateSeason(db, team, firstSeason, firstLeagueId);
                     updateSeason(db, team, lastSeason, lastLeagueId);
                 }
+                if (missingSeasons.size() == 1) {
+                    if (seasons > 1) {
+                        if (missingSeasons.get(0) == firstSeason) {
+                            int firstLeagueId = getLeagueIdFromSeason(oAuthService,
+                                    accessToken, team, firstSeason);
+                            updateSeason(db, team, firstSeason, firstLeagueId);
+                        } else {
+                            int lastLeagueId = getSeason(oAuthService,
+                                    accessToken, team);
+                            updateSeason(db, team, lastSeason, lastLeagueId);
+                        }
+                    } else {
+                        int firstLeagueId = getLeagueIdFromSeason(oAuthService,
+                            accessToken, team, firstSeason);
+                        if (firstLeagueId == 0) {
+                            int lastLeagueId = getSeason(oAuthService,
+                                    accessToken, team);
+                            updateSeason(db, team, lastSeason, lastLeagueId);
+                        } else {
+                            updateSeason(db, team, firstSeason, firstLeagueId);
+                        }
+                    }
+                }
             }
             db.close();
             return null;
