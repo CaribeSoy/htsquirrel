@@ -218,6 +218,13 @@ public class Download extends javax.swing.JPanel {
                 missingSeasons = getMissingSeasons(db, team);
                 int firstSeason = getMinSeason(db, team);
                 int lastSeason = getMaxSeason(db, team);
+                if (missingSeasons.size() == 2) {
+                    int firstLeagueId = getLeagueIdFromSeason(oAuthService,
+                            accessToken, team, firstSeason);
+                    int lastLeagueId = getSeason(oAuthService, accessToken, team);
+                    updateSeason(db, team, firstSeason, firstLeagueId);
+                    updateSeason(db, team, lastSeason, lastLeagueId);
+                }
             }
             db.close();
             return null;

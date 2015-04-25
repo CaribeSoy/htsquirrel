@@ -387,6 +387,20 @@ public class DatabaseManagement {
         }
         return season;
     }
+    
+    // update season
+    public static void updateSeason(Connection connection, Team team,
+            int season, int leagueId) throws IOException, SQLException {
+        String sqlCode = "UPDATE LEAGUE_IDS SET MATCH_CONTEXT_ID = "
+                + leagueId
+                + " WHERE TEAM_ID = "
+                + team.getTeamId()
+                + " AND SEASON = "
+                + season;
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
 
     public static void deleteFromTeams(Connection connection, User user)
             throws SQLException, IOException {
