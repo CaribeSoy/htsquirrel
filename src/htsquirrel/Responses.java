@@ -28,6 +28,7 @@ import static htsquirrel.OAuth.*;
 import htsquirrel.game.Cup;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
+import htsquirrel.game.Referee;
 import htsquirrel.game.Team;
 import htsquirrel.game.User;
 import java.io.IOException;
@@ -351,6 +352,50 @@ public class Responses {
                 opponentRatingCA, opponentRatingLA, opponentRatingISPD,
                 opponentRatingISPA, opponentPossession1, opponentPossession2);
         return matchDetails;
+    }
+    
+    public static ArrayList<Referee> getReferees(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Referee> referees = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element r0Element = (Element) document.getElementsByTagName("Referee").item(0);
+        Element r1Element = (Element) document.getElementsByTagName("RefereeAssistant1").item(0);
+        Element r2Element = (Element) document.getElementsByTagName("RefereeAssistant2").item(0);
+        Referee referee0 = new Referee();
+        Referee referee1 = new Referee();
+        Referee referee2 = new Referee();
+        referee0.setMatchId(match.getMatchId());
+        referee0.setTeamId(match.getTeamId());
+        referee0.setRefereeRole(0);
+        referee0.setRefereeId(Integer.parseInt(r0Element.getElementsByTagName("RefereeId").item(0).getTextContent()));
+        referee0.setRefereeName(r0Element.getElementsByTagName("RefereeName").item(0).getTextContent());
+        referee0.setRefereeCountryId(Integer.parseInt(r0Element.getElementsByTagName("RefereeCountryId").item(0).getTextContent()));
+        referee0.setRefereeCountryName(r0Element.getElementsByTagName("RefereeCountryName").item(0).getTextContent());
+        referee0.setRefereeTeamId(Integer.parseInt(r0Element.getElementsByTagName("RefereeTeamId").item(0).getTextContent()));
+        referee0.setRefereeTeamName(r0Element.getElementsByTagName("RefereeTeamname").item(0).getTextContent());
+        referee1.setMatchId(match.getMatchId());
+        referee1.setTeamId(match.getTeamId());
+        referee1.setRefereeRole(1);
+        referee1.setRefereeId(Integer.parseInt(r1Element.getElementsByTagName("RefereeId").item(0).getTextContent()));
+        referee1.setRefereeName(r1Element.getElementsByTagName("RefereeName").item(0).getTextContent());
+        referee1.setRefereeCountryId(Integer.parseInt(r1Element.getElementsByTagName("RefereeCountryId").item(0).getTextContent()));
+        referee1.setRefereeCountryName(r1Element.getElementsByTagName("RefereeCountryName").item(0).getTextContent());
+        referee1.setRefereeTeamId(Integer.parseInt(r1Element.getElementsByTagName("RefereeTeamId").item(0).getTextContent()));
+        referee1.setRefereeTeamName(r1Element.getElementsByTagName("RefereeTeamname").item(0).getTextContent());
+        referee2.setMatchId(match.getMatchId());
+        referee2.setTeamId(match.getTeamId());
+        referee2.setRefereeRole(2);
+        referee2.setRefereeId(Integer.parseInt(r2Element.getElementsByTagName("RefereeId").item(0).getTextContent()));
+        referee2.setRefereeName(r2Element.getElementsByTagName("RefereeName").item(0).getTextContent());
+        referee2.setRefereeCountryId(Integer.parseInt(r2Element.getElementsByTagName("RefereeCountryId").item(0).getTextContent()));
+        referee2.setRefereeCountryName(r2Element.getElementsByTagName("RefereeCountryName").item(0).getTextContent());
+        referee2.setRefereeTeamId(Integer.parseInt(r2Element.getElementsByTagName("RefereeTeamId").item(0).getTextContent()));
+        referee2.setRefereeTeamName(r2Element.getElementsByTagName("RefereeTeamname").item(0).getTextContent());
+        referees.add(referee0);
+        referees.add(referee1);
+        referees.add(referee2);
+        return referees;
     }
 
 }

@@ -28,6 +28,7 @@ import htsquirrel.HTSquirrel;
 import htsquirrel.game.Cup;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
+import htsquirrel.game.Referee;
 import htsquirrel.game.Team;
 import htsquirrel.game.User;
 import java.io.BufferedReader;
@@ -104,6 +105,9 @@ public class DatabaseManagement {
         if (!(tableExists(connection, "CUPS"))) {
             createCupsTable(connection);
         }
+        if (!(tableExists(connection, "REFEREES"))) {
+            createRefereesTable(connection);
+        }
     }
 
     // create teams table
@@ -137,6 +141,15 @@ public class DatabaseManagement {
     private static void createCupsTable(Connection connection)
             throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/create_table_cups.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    // create referees table
+    private static void createRefereesTable(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_referees.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -385,6 +398,23 @@ public class DatabaseManagement {
         sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_RATING_ISPA\\b", String.valueOf(matchDetails.getOpponentRatingISPA()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_POSSESSION_1\\b", String.valueOf(matchDetails.getOpponentPossession1()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_OPPONENT_POSSESSION_2\\b", String.valueOf(matchDetails.getOpponentPossession2()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoReferees(Connection connection,
+            Referee referee) throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_referees.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(referee.getMatchId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(referee.getTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_REFEREE_ROLE\\b", String.valueOf(referee.getRefereeRole()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_REFEREE_ID\\b", String.valueOf(referee.getRefereeId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_REFEREE_NAME\\b", referee.getRefereeName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_REFEREE_COUNTRY_ID\\b", String.valueOf(referee.getRefereeCountryId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_REFEREE_COUNTRY_NAME\\b", referee.getRefereeCountryName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_REFEREE_TEAM_ID\\b", String.valueOf(referee.getRefereeTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_REFEREE_TEAM_NAME\\b", referee.getRefereeTeamName().replaceAll("'", "''"));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

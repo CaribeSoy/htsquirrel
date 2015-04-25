@@ -218,6 +218,10 @@ public class Download extends javax.swing.JPanel {
                     MatchDetails matchDetails = getMatchDetails(xmlString,
                             match);
                     insertIntoMatchDetails(db, matchDetails);
+                    ArrayList<Referee> referees = getReferees(xmlString, match);
+                    for (Referee referee : referees) {
+                        insertIntoReferees(db, referee);
+                    }
                 }
             }
             db.close();

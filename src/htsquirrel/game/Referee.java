@@ -115,18 +115,7 @@ public class Referee {
         this.refereeTeamName = refereeTeamName;
     }
 
-    public Referee(long matchId, int teamId, int refereeRole, int refereeId,
-            String refereeName, int refereeCountryId, String refereeCountryName,
-            int refereeTeamId, String refereeTeamName) {
-        this.matchId = matchId;
-        this.teamId = teamId;
-        this.refereeRole = refereeRole;
-        this.refereeId = refereeId;
-        this.refereeName = refereeName;
-        this.refereeCountryId = refereeCountryId;
-        this.refereeCountryName = refereeCountryName;
-        this.refereeTeamId = refereeTeamId;
-        this.refereeTeamName = refereeTeamName;
+    public Referee() {
     }
     
 }
