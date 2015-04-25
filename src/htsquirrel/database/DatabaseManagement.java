@@ -344,6 +344,21 @@ public class DatabaseManagement {
         }
         return seasons;
     }
+    
+    // get missing seasons
+    public static ArrayList<Integer> getMissingSeasons(Connection connection,
+            Team team) throws IOException, SQLException {
+        ArrayList<Integer> seasons = new ArrayList<>();
+        String sqlCode = sqlToString("htsquirrel/database/sql/select_missing_seasons.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            int season = resultSet.getInt("SEASON");
+            seasons.add(season);
+        }
+        return seasons;
+    }
 
     public static void deleteFromTeams(Connection connection, User user)
             throws SQLException, IOException {

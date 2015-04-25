@@ -214,6 +214,8 @@ public class Download extends javax.swing.JPanel {
             insertIntoLeagueIds(db);
             for (Team team : teams) {
                 int seasons = getNumberOfSeasons(db, team);
+                ArrayList<Integer> missingSeasons = new ArrayList<>();
+                missingSeasons = getMissingSeasons(db, team);
             }
             db.close();
             return null;
