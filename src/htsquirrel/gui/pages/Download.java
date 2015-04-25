@@ -209,8 +209,12 @@ public class Download extends javax.swing.JPanel {
                     }
                 }
             }
+            // league ids table
             deleteFromLeagueIds(db);
             insertIntoLeagueIds(db);
+            for (Team team : teams) {
+                int seasons = getNumberOfSeasons(db, team);
+            }
             db.close();
             return null;
         }

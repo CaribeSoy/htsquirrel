@@ -330,6 +330,20 @@ public class DatabaseManagement {
         statement.close();
         return matches;
     }
+    
+    // get number of seasons
+    public static int getNumberOfSeasons(Connection connection, Team team)
+            throws IOException, SQLException {
+        int seasons = 0;
+        String sqlCode = sqlToString("htsquirrel/database/sql/select_number_of_seasons.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            seasons = resultSet.getInt("SEASONS");
+        }
+        return seasons;
+    }
 
     public static void deleteFromTeams(Connection connection, User user)
             throws SQLException, IOException {
