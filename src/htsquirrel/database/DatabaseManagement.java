@@ -335,6 +335,15 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
+    
+    public static void deleteFromTransfers(Connection connection, Team team)
+            throws SQLException, IOException {
+        String sqlCode = "DELETE FROM TRANSFERS WHERE TEAM_ID = " +
+                team.getTeamId();
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
 
     public static void insertIntoTeams(Connection connection, User user,
             Team team) throws SQLException, IOException {
