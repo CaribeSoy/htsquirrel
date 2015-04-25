@@ -30,6 +30,7 @@ import htsquirrel.game.Cup;
 import htsquirrel.game.Event;
 import htsquirrel.game.Goal;
 import htsquirrel.game.Injury;
+import htsquirrel.game.League;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
@@ -560,6 +561,23 @@ public class Responses {
             }
         }
         return leagueId;
+    }
+    
+    public static League getLeague(OAuthService oAuthService, Token accessToken,
+            int leagueLevelUnitId)
+            throws ParserConfigurationException, SAXException, IOException {
+        League league = new League();
+        String xmlString = getResponse(oAuthService, accessToken,
+                "leaguedetails&version=1.4&leagueLevelUnitID="
+                        + leagueLevelUnitId);
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        league.setLeagueLevelUnitId(leagueLevelUnitId);
+        Element leagueLevelElement = (Element) document.getElementsByTagName("LeagueLevel").item(0);
+        Element leagueLevelUnitNameElement = (Element) document.getElementsByTagName("LeagueLevelUnitName").item(0);
+        league.setLeagueLevel(Integer.parseInt(leagueLevelElement.getTextContent()));
+        league.setLeagueLevelUnitName(leagueLevelUnitNameElement.getTextContent());
+        return league;
     }
 
 }

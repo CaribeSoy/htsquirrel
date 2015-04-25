@@ -30,6 +30,7 @@ import htsquirrel.game.Cup;
 import htsquirrel.game.Event;
 import htsquirrel.game.Goal;
 import htsquirrel.game.Injury;
+import htsquirrel.game.League;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
@@ -462,6 +463,14 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
+    
+    public static void deleteFromLeagueNames(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = "DELETE FROM LEAGUE_NAMES";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
 
     public static void insertIntoTeams(Connection connection, User user,
             Team team) throws SQLException, IOException {
@@ -701,6 +710,17 @@ public class DatabaseManagement {
     public static void insertIntoLeagueIds(Connection connection)
             throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_league_ids.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoLeagueNames(Connection connection, League league)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_league_names.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL_UNIT_ID\\b", String.valueOf(league.getLeagueLevelUnitId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL\\b", String.valueOf(league.getLeagueLevel()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL_UNIT_NAME\\b", league.getLeagueLevelUnitName().replaceAll("'", "''"));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

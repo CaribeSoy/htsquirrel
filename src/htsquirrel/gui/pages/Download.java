@@ -248,8 +248,14 @@ public class Download extends javax.swing.JPanel {
                 }
             }
             // league names table
+            deleteFromLeagueNames(db);
             ArrayList<Integer> leagueIds = new ArrayList<>();
             leagueIds = getLeagueIds(db);
+            for (int leagueId : leagueIds) {
+                League league = new League();
+                league = getLeague(oAuthService, accessToken, leagueId);
+                insertIntoLeagueNames(db, league);
+            }
             db.close();
             return null;
         }
