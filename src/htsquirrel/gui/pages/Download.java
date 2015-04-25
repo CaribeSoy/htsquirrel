@@ -210,6 +210,7 @@ public class Download extends javax.swing.JPanel {
                 }
             }
             deleteFromLeagueIds(db);
+            insertIntoLeagueIds(db);
             db.close();
             return null;
         }
