@@ -247,6 +247,9 @@ public class Download extends javax.swing.JPanel {
                     }
                 }
             }
+            // league names table
+            ArrayList<Integer> leagueIds = new ArrayList<>();
+            leagueIds = getLeagueIds(db);
             db.close();
             return null;
         }

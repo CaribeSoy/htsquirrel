@@ -400,6 +400,20 @@ public class DatabaseManagement {
         return season;
     }
     
+    // get league ids
+    public static ArrayList<Integer> getLeagueIds(Connection connection)
+            throws IOException, SQLException {
+        ArrayList<Integer> leagueIds = new ArrayList<>();
+        String sqlCode = sqlToString("htsquirrel/database/sql/select_league_ids.sql");
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            int leagueId = resultSet.getInt("MATCH_CONTEXT_ID");
+            leagueIds.add(leagueId);
+        }
+        return leagueIds;
+    }
+    
     // update season
     public static void updateSeason(Connection connection, Team team,
             int season, int leagueId) throws IOException, SQLException {
