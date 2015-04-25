@@ -27,6 +27,7 @@ import static htsquirrel.FileManagement.*;
 import htsquirrel.HTSquirrel;
 import htsquirrel.game.Booking;
 import htsquirrel.game.Cup;
+import htsquirrel.game.Event;
 import htsquirrel.game.Goal;
 import htsquirrel.game.Injury;
 import htsquirrel.game.Match;
@@ -120,6 +121,9 @@ public class DatabaseManagement {
         if (!(tableExists(connection, "INJURIES"))) {
             createInjuriesTable(connection);
         }
+        if (!(tableExists(connection, "EVENTS"))) {
+            createEventsTable(connection);
+        }
     }
 
     // create teams table
@@ -189,6 +193,15 @@ public class DatabaseManagement {
     private static void createInjuriesTable(Connection connection)
             throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/create_table_injuries.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    // create events table
+    private static void createEventsTable(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_events.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -503,6 +516,24 @@ public class DatabaseManagement {
         sqlCode = sqlCode.replaceAll("\\bVALUE_INJURY_TEAM_ID\\b", String.valueOf(injury.getInjuryTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_INJURY_TYPE\\b", String.valueOf(injury.getInjuryType()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_INJURY_MINUTE\\b", String.valueOf(injury.getInjuryMinute()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoEvents(Connection connection, Event event)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_events.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(event.getMatchId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(event.getTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_INDEX\\b", String.valueOf(event.getEventIndex()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_MINUTE\\b", String.valueOf(event.getEventMinute()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_TYPE\\b", String.valueOf(event.getEventType()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_VARIATION\\b", String.valueOf(event.getEventVariation()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_SUBJECT_TEAM_ID\\b", String.valueOf(event.getEventSubjectTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_SUBJECT_PLAYER_ID\\b", String.valueOf(event.getEventSubjectPlayerId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_OBJECT_PLAYER_ID\\b", String.valueOf(event.getEventObjectPlayerId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_TEXT\\b", event.getEventText().replaceAll("'", "''"));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

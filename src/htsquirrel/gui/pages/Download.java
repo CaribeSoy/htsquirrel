@@ -234,6 +234,10 @@ public class Download extends javax.swing.JPanel {
                     for (Injury injury : injuries) {
                         insertIntoInjuries(db, injury);
                     }
+                    ArrayList<Event> events = getEvents(xmlString, match);
+                    for (Event event : events) {
+                        insertIntoEvents(db, event);
+                    }
                 }
             }
             db.close();

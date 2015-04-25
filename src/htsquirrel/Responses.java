@@ -27,6 +27,7 @@ import static htsquirrel.DownloadManagement.*;
 import static htsquirrel.OAuth.*;
 import htsquirrel.game.Booking;
 import htsquirrel.game.Cup;
+import htsquirrel.game.Event;
 import htsquirrel.game.Goal;
 import htsquirrel.game.Injury;
 import htsquirrel.game.Match;
@@ -480,6 +481,33 @@ public class Responses {
             }
         }
         return injuries;
+    }
+    
+    public static ArrayList<Event> getEvents(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Event> events = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element eventsElement = (Element) document.getElementsByTagName("EventList").item(0);
+        NodeList eventNodes = eventsElement.getElementsByTagName("Event");
+        if (eventNodes.getLength() > 0) {
+            for (int eventCnt = 0; eventCnt < eventNodes.getLength(); eventCnt++) {
+                Element eventElement = (Element) eventNodes.item(eventCnt);
+                Event event = new Event();
+                event.setMatchId(match.getMatchId());
+                event.setTeamId(match.getTeamId());
+                event.setEventIndex(Integer.parseInt(eventElement.getAttribute("Index")));
+                event.setEventMinute(Integer.parseInt(eventElement.getElementsByTagName("Minute").item(0).getTextContent()));
+                event.setEventType(Integer.parseInt(eventElement.getElementsByTagName("EventTypeID").item(0).getTextContent()));
+                event.setEventVariation(Integer.parseInt(eventElement.getElementsByTagName("EventVariation").item(0).getTextContent()));
+                event.setEventSubjectTeamId(Integer.parseInt(eventElement.getElementsByTagName("SubjectTeamID").item(0).getTextContent()));
+                event.setEventSubjectPlayerId(Integer.parseInt(eventElement.getElementsByTagName("SubjectPlayerID").item(0).getTextContent()));
+                event.setEventObjectPlayerId(Integer.parseInt(eventElement.getElementsByTagName("ObjectPlayerID").item(0).getTextContent()));
+                event.setEventText(eventElement.getElementsByTagName("EventText").item(0).getTextContent());
+                events.add(event);
+            }
+        }
+        return events;
     }
 
 }
