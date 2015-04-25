@@ -142,6 +142,7 @@ public class Download extends javax.swing.JPanel {
             deleteFromTeams(db, user);
             for (Team team : teams) {
                 insertIntoTeams(db, user, team);
+                // cups table
                 deleteFromCups(db, team);
                 String worldDetailsXml = getResponse(oAuthService, accessToken,
                         "worlddetails&version=1.6&leagueID="
@@ -150,6 +151,12 @@ public class Download extends javax.swing.JPanel {
                 for (Cup cup : cups) {
                     insertIntoCups(db, cup);
                 }
+                // transfers table
+                deleteFromTransfers(db, team);
+                String transfersXml = getResponse(oAuthService, accessToken,
+                        "transfersteam&version=1.2&teamID="
+                                + team.getTeamId());
+                int transferPages = getTransferPages(transfersXml);
             }
             db.close();
             return null;

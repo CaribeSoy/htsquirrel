@@ -500,5 +500,15 @@ public class Responses {
         }
         return events;
     }
+    
+    public static int getTransferPages(String xmlString)
+            throws ParserConfigurationException, SAXException, IOException {
+        int transferPages = 0;
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element transfersElement = (Element) document.getElementsByTagName("Transfers").item(0);
+        transferPages = Integer.parseInt(transfersElement.getElementsByTagName("Pages").item(0).getTextContent());
+        return transferPages;
+    }
 
 }
