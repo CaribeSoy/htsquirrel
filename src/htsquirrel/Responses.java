@@ -539,5 +539,27 @@ public class Responses {
         }
         return transfers;
     }
+    
+    public static int getLeagueIdFromSeason(OAuthService oAuthService,
+            Token accessToken, Team team, int season)
+            throws ParserConfigurationException, SAXException, IOException {
+        int leagueId = 0;
+        String xmlString = getResponse(oAuthService, accessToken,
+                "matchesarchive&version=1.3&teamID=" + team.getTeamId() +
+                        "&season=" + season);
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element matchListElement = (Element) document.getElementsByTagName("MatchList").item(0);
+        NodeList matchNodes = matchListElement.getElementsByTagName("Match");
+        for (int matchCnt = 0; matchCnt < matchNodes.getLength(); matchCnt++) {
+            Element matchElement = (Element) matchNodes.item(matchCnt);
+            int matchType = Integer.parseInt(matchElement.getElementsByTagName("MatchType").item(0).getTextContent());
+            int matchContextId = Integer.parseInt(matchElement.getElementsByTagName("MatchContextId").item(0).getTextContent());
+            if (matchType == 1) {
+                leagueId = matchContextId;
+            }
+        }
+        return leagueId;
+    }
 
 }
