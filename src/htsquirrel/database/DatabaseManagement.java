@@ -124,6 +124,9 @@ public class DatabaseManagement {
         if (!(tableExists(connection, "EVENTS"))) {
             createEventsTable(connection);
         }
+        if (!(tableExists(connection, "TRANSFERS"))) {
+            createTransfersTable(connection);
+        }
     }
 
     // create teams table
@@ -202,6 +205,15 @@ public class DatabaseManagement {
     private static void createEventsTable(Connection connection)
             throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/create_table_events.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    // create transfers table
+    private static void createTransfersTable(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_transfers.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
