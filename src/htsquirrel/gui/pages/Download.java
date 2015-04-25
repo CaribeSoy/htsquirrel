@@ -157,6 +157,18 @@ public class Download extends javax.swing.JPanel {
                         "transfersteam&version=1.2&teamID="
                                 + team.getTeamId());
                 int transferPages = getTransferPages(transfersXml);
+                for (int pageCnt = 1; pageCnt <= transferPages; pageCnt++) {
+                    String transfersPageXml = getResponse(oAuthService,
+                            accessToken,
+                            "transfersteam&version=1.2&teamID="
+                                    + team.getTeamId()
+                                    + "&pageIndex=" + pageCnt);
+                    ArrayList<Transfer> transfers = new ArrayList<>();
+                    transfers = getTransfers(transfersPageXml, team);
+                    for (Transfer transfer : transfers) {
+                        insertIntoTransfers(db, transfer);
+                    }
+                }
             }
             db.close();
             return null;

@@ -34,6 +34,7 @@ import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
 import htsquirrel.game.Team;
+import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -555,6 +556,26 @@ public class DatabaseManagement {
         sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_SUBJECT_PLAYER_ID\\b", String.valueOf(event.getEventSubjectPlayerId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_OBJECT_PLAYER_ID\\b", String.valueOf(event.getEventObjectPlayerId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_TEXT\\b", event.getEventText().replaceAll("'", "''"));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoTransfers(Connection connection, Transfer transfer)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_transfers.sql");
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(transfer.getTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TRANSFER_ID\\b", String.valueOf(transfer.getTransferId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_DEADLINE\\b", String.valueOf(transfer.getDeadline()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_PLAYER_ID\\b", String.valueOf(transfer.getPlayerId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_PLAYER_NAME\\b", transfer.getPlayerName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TSI\\b", String.valueOf(transfer.getTsi()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_TRANSFER_TYPE\\b", transfer.getTransferType().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_BUYER_TEAM_ID\\b", String.valueOf(transfer.getBuyerTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_BUYER_TEAM_NAME\\b", transfer.getBuyerTeamName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_SELLER_TEAM_ID\\b", String.valueOf(transfer.getSellerTeamId()));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_SELLER_TEAM_NAME\\b", transfer.getSellerTeamName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("\\bVALUE_PRICE\\b", String.valueOf(transfer.getPrice()));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

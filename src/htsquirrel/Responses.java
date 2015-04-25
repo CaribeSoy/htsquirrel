@@ -34,10 +34,10 @@ import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
 import htsquirrel.game.Team;
+import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
 import org.scribe.model.Token;
@@ -509,6 +509,35 @@ public class Responses {
         Element transfersElement = (Element) document.getElementsByTagName("Transfers").item(0);
         transferPages = Integer.parseInt(transfersElement.getElementsByTagName("Pages").item(0).getTextContent());
         return transferPages;
+    }
+    
+    public static ArrayList<Transfer> getTransfers(String xmlString, Team team)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Transfer> transfers = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element transfersElement = (Element) document.getElementsByTagName("Transfers").item(0);
+        NodeList transferNodes = transfersElement.getElementsByTagName("Transfer");
+        if (transferNodes.getLength() > 0) {
+            for (int transferCnt = 0; transferCnt < transferNodes.getLength(); transferCnt++) {
+                Element transferElement = (Element) transferNodes.item(transferCnt);
+                Transfer transfer = new Transfer();
+                transfer.setTeamId(team.getTeamId());
+                transfer.setTransferId(Integer.parseInt(transferElement.getElementsByTagName("TransferID").item(0).getTextContent()));
+                transfer.setDeadline(Timestamp.valueOf(transferElement.getElementsByTagName("Deadline").item(0).getTextContent()));
+                transfer.setPlayerId(Integer.parseInt(transferElement.getElementsByTagName("PlayerID").item(0).getTextContent()));
+                transfer.setPlayerName(transferElement.getElementsByTagName("PlayerName").item(0).getTextContent());
+                transfer.setTsi(Integer.parseInt(transferElement.getElementsByTagName("TSI").item(0).getTextContent()));
+                transfer.setTransferType(transferElement.getElementsByTagName("TransferType").item(0).getTextContent());
+                transfer.setBuyerTeamId(Integer.parseInt(transferElement.getElementsByTagName("BuyerTeamID").item(0).getTextContent()));
+                transfer.setBuyerTeamName(transferElement.getElementsByTagName("BuyerTeamName").item(0).getTextContent());
+                transfer.setSellerTeamId(Integer.parseInt(transferElement.getElementsByTagName("SellerTeamID").item(0).getTextContent()));
+                transfer.setSellerTeamName(transferElement.getElementsByTagName("SellerTeamName").item(0).getTextContent());
+                transfer.setPrice(Integer.parseInt(transferElement.getElementsByTagName("Price").item(0).getTextContent()));
+                transfers.add(transfer);
+            }
+        }
+        return transfers;
     }
 
 }
