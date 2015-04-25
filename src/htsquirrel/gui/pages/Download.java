@@ -221,7 +221,7 @@ public class Download extends javax.swing.JPanel {
                 if (missingSeasons.size() == 2) {
                     int firstLeagueId = getLeagueIdFromSeason(oAuthService,
                             accessToken, team, firstSeason);
-                    int lastLeagueId = getSeason(oAuthService, accessToken, team);
+                    int lastLeagueId = team.getLeagueLevelUnitId();
                     updateSeason(db, team, firstSeason, firstLeagueId);
                     updateSeason(db, team, lastSeason, lastLeagueId);
                 }
@@ -232,16 +232,14 @@ public class Download extends javax.swing.JPanel {
                                     accessToken, team, firstSeason);
                             updateSeason(db, team, firstSeason, firstLeagueId);
                         } else {
-                            int lastLeagueId = getSeason(oAuthService,
-                                    accessToken, team);
+                            int lastLeagueId = team.getLeagueLevelUnitId();
                             updateSeason(db, team, lastSeason, lastLeagueId);
                         }
                     } else {
                         int firstLeagueId = getLeagueIdFromSeason(oAuthService,
                             accessToken, team, firstSeason);
                         if (firstLeagueId == 0) {
-                            int lastLeagueId = getSeason(oAuthService,
-                                    accessToken, team);
+                            int lastLeagueId = team.getLeagueLevelUnitId();
                             updateSeason(db, team, lastSeason, lastLeagueId);
                         } else {
                             updateSeason(db, team, firstSeason, firstLeagueId);
