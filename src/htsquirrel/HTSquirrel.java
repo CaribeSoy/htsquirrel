@@ -353,6 +353,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     
     public static void showDownload() {
         hidePanels();
+        blankFilter.setVisible(true);
         panelDownload.refreshDownload();
         panelDownload.setVisible(true);
     }
