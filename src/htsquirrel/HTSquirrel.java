@@ -202,6 +202,11 @@ public class HTSquirrel extends javax.swing.JFrame {
         labelRecords.setForeground(new java.awt.Color(60, 63, 65));
         labelRecords.setText("RECORDS");
         labelRecords.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelRecords.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelRecordsMouseClicked(evt);
+            }
+        });
 
         labelDownload.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelDownload.setForeground(new java.awt.Color(60, 63, 65));
@@ -331,6 +336,10 @@ public class HTSquirrel extends javax.swing.JFrame {
         showHome();
     }//GEN-LAST:event_labelHomeMouseClicked
 
+    private void labelRecordsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRecordsMouseClicked
+        showRecords();
+    }//GEN-LAST:event_labelRecordsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -394,6 +403,12 @@ public class HTSquirrel extends javax.swing.JFrame {
         hidePanels();
         panelHome.setVisible(true);
         homeFilter.setVisible(true);
+    }
+    
+    public static void showRecords() {
+        hidePanels();
+        recordsFilter.setVisible(true);
+        panelBlank.setVisible(true);
     }
     
     public static void showAuthorization() {
