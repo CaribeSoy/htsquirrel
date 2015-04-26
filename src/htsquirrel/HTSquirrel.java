@@ -45,6 +45,7 @@ public class HTSquirrel extends javax.swing.JFrame {
      */
     public HTSquirrel() {
         initComponents();
+        labelSwitchTeam.setVisible(false);
         classPath = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
         int userId = 0;
         try {
@@ -64,6 +65,10 @@ public class HTSquirrel extends javax.swing.JFrame {
                     showDownload();
                 } else {
                     currentTeam = teams.get(0);
+                    labelTeamName.setText(currentTeam.getTeamName());
+                    if (teams.size() > 1) {
+                        labelSwitchTeam.setVisible(true);
+                    }
                 }
             } catch (IOException ex) {
                 Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
@@ -88,6 +93,8 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelTopTop = new javax.swing.JPanel();
         panelTopBottom = new javax.swing.JPanel();
         panelTopLeft = new javax.swing.JPanel();
+        labelTeamName = new javax.swing.JLabel();
+        labelSwitchTeam = new javax.swing.JLabel();
         panelTopRight = new javax.swing.JPanel();
         panelTopCenter = new javax.swing.JPanel();
         labelHome = new javax.swing.JLabel();
@@ -157,15 +164,38 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelTopLeft.setMinimumSize(new java.awt.Dimension(420, 100));
         panelTopLeft.setPreferredSize(new java.awt.Dimension(420, 48));
 
+        labelTeamName.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelTeamName.setForeground(new java.awt.Color(204, 102, 0));
+        labelTeamName.setText(" ");
+
+        labelSwitchTeam.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelSwitchTeam.setText("switch team");
+        labelSwitchTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelSwitchTeam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelSwitchTeamMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelTopLeftLayout = new javax.swing.GroupLayout(panelTopLeft);
         panelTopLeft.setLayout(panelTopLeftLayout);
         panelTopLeftLayout.setHorizontalGroup(
             panelTopLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGroup(panelTopLeftLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelTopLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTeamName)
+                    .addComponent(labelSwitchTeam))
+                .addContainerGap(339, Short.MAX_VALUE))
         );
         panelTopLeftLayout.setVerticalGroup(
             panelTopLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelTopLeftLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelTeamName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelSwitchTeam)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         panelTop.add(panelTopLeft, java.awt.BorderLayout.LINE_START);
@@ -369,6 +399,16 @@ public class HTSquirrel extends javax.swing.JFrame {
         showSettings();
     }//GEN-LAST:event_labelSettingsMouseClicked
 
+    private void labelSwitchTeamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSwitchTeamMouseClicked
+        if (currentTeam.getTeamId() == teams.get(0).getTeamId()) {
+            currentTeam = teams.get(1);
+        } else {
+            currentTeam = teams.get(0);
+        }
+        labelTeamName.setText(currentTeam.getTeamName());
+        showHome();
+    }//GEN-LAST:event_labelSwitchTeamMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -483,6 +523,8 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static javax.swing.JLabel labelHome;
     private static javax.swing.JLabel labelRecords;
     private static javax.swing.JLabel labelSettings;
+    private javax.swing.JLabel labelSwitchTeam;
+    private javax.swing.JLabel labelTeamName;
     private static htsquirrel.gui.filters.MatchFilter matchFilter;
     private static htsquirrel.gui.pages.Authorization panelAuthorization;
     private static htsquirrel.gui.pages.BlankPage panelBlank;
