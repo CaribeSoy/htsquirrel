@@ -267,6 +267,9 @@ public class Download extends javax.swing.JPanel {
                 league = getLeague(oAuthService, accessToken, leagueId);
                 insertIntoLeagueNames(db, league);
             }
+            // leagues table
+            deleteFromLeagues(db);
+            insertIntoLeagues(db);
             db.close();
             return null;
         }

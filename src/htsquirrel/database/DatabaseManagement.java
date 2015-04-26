@@ -509,6 +509,14 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
+    
+    public static void deleteFromLeagues(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = "DELETE FROM LEAGUES";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
 
     public static void insertIntoTeams(Connection connection, User user,
             Team team) throws SQLException, IOException {
@@ -759,6 +767,14 @@ public class DatabaseManagement {
         sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL_UNIT_ID\\b", String.valueOf(league.getLeagueLevelUnitId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL\\b", String.valueOf(league.getLeagueLevel()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL_UNIT_NAME\\b", league.getLeagueLevelUnitName().replaceAll("'", "''"));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoLeagues(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_leagues.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
