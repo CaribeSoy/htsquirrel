@@ -91,6 +91,7 @@ public class RecordsTeam extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void labelTotalTeamScoreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelTotalTeamScoreMouseClicked
+        htsquirrel.Records.setMode("total_team_score");
         htsquirrel.gui.pages.RecordsType1.setTitle("Total team score");
         htsquirrel.gui.pages.RecordsType1.hideLabels();
         String text;
