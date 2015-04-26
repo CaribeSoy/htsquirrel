@@ -83,6 +83,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelTop = new javax.swing.JPanel();
         panelBottom = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
+        matchFilter1 = new htsquirrel.gui.filters.MatchFilter();
         blankFilter1 = new htsquirrel.gui.filters.BlankFilter();
         panelRight = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
@@ -132,9 +133,11 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         getContentPane().add(panelBottom, java.awt.BorderLayout.PAGE_END);
 
-        panelLeft.setMaximumSize(new java.awt.Dimension(410, 32767));
-        panelLeft.setMinimumSize(new java.awt.Dimension(410, 100));
+        panelLeft.setMaximumSize(new java.awt.Dimension(420, 32767));
+        panelLeft.setMinimumSize(new java.awt.Dimension(420, 100));
+        panelLeft.setPreferredSize(new java.awt.Dimension(420, 740));
         panelLeft.setLayout(new java.awt.CardLayout());
+        panelLeft.add(matchFilter1, "card3");
         panelLeft.add(blankFilter1, "card2");
 
         getContentPane().add(panelLeft, java.awt.BorderLayout.LINE_START);
@@ -163,7 +166,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelBlank.setLayout(panelBlankLayout);
         panelBlankLayout.setHorizontalGroup(
             panelBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
         panelBlankLayout.setVerticalGroup(
             panelBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,6 +235,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private htsquirrel.gui.filters.BlankFilter blankFilter1;
+    private htsquirrel.gui.filters.MatchFilter matchFilter1;
     private static htsquirrel.gui.pages.Authorization panelAuthorization;
     private static htsquirrel.gui.pages.BlankPage panelBlank;
     private javax.swing.JPanel panelBottom;
