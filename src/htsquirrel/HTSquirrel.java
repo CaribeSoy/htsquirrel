@@ -26,6 +26,7 @@ package htsquirrel;
 import static htsquirrel.ConfigProperties.*;
 import static htsquirrel.database.DatabaseManagement.*;
 import htsquirrel.game.Team;
+import java.awt.Component;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -407,22 +408,21 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
     
     public static void hidePanels() {
-        panelBlank.setVisible(false);
-        panelHome.setVisible(false);
-        panelDownload.setVisible(false);
-        panelSettings.setVisible(false);
-        panelAuthorization.setVisible(false);
-        blankFilter.setVisible(false);
-        homeFilter.setVisible(false);
-        recordsFilter.setVisible(false);
-        matchFilter.setVisible(false);
+        Component[] panels = panelCenter.getComponents();
+        for (Component panel : panels) {
+            panel.setVisible(false);
+        }
+        Component[] filters = panelLeft.getComponents();
+        for (Component filter : filters) {
+            filter.setVisible(false);
+        }
     }
     
     public static void hideLabels() {
-        labelHome.setVisible(false);
-        labelRecords.setVisible(false);
-        labelDownload.setVisible(false);
-        labelSettings.setVisible(false);
+        Component[] labels = panelTopCenter.getComponents();
+        for (Component label : labels) {
+            label.setVisible(false);
+        }
     }
     
     public static void showLabels() {
@@ -464,7 +464,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         blankFilter.setVisible(true);
         panelSettings.setVisible(false);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static htsquirrel.gui.filters.BlankFilter blankFilter;
     private static htsquirrel.gui.filters.HomeFilter homeFilter;
@@ -476,15 +476,15 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static htsquirrel.gui.pages.Authorization panelAuthorization;
     private static htsquirrel.gui.pages.BlankPage panelBlank;
     private javax.swing.JPanel panelBottom;
-    private javax.swing.JPanel panelCenter;
+    private static javax.swing.JPanel panelCenter;
     private static htsquirrel.gui.pages.Download panelDownload;
     private static htsquirrel.gui.pages.Home panelHome;
-    private javax.swing.JPanel panelLeft;
+    private static javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private static htsquirrel.gui.pages.Settings panelSettings;
     private javax.swing.JPanel panelTop;
     private javax.swing.JPanel panelTopBottom;
-    private javax.swing.JPanel panelTopCenter;
+    private static javax.swing.JPanel panelTopCenter;
     private javax.swing.JPanel panelTopLeft;
     private javax.swing.JPanel panelTopRight;
     private javax.swing.JPanel panelTopTop;
