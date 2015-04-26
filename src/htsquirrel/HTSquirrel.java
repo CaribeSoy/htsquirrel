@@ -101,6 +101,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelRight = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
         panelBlank = new htsquirrel.gui.pages.BlankPage();
+        panelHome = new htsquirrel.gui.pages.Home();
         panelDownload = new htsquirrel.gui.pages.Download();
         panelAuthorization = new htsquirrel.gui.pages.Authorization();
 
@@ -297,6 +298,19 @@ public class HTSquirrel extends javax.swing.JFrame {
         );
 
         panelCenter.add(panelBlank, "card4");
+
+        javax.swing.GroupLayout panelHomeLayout = new javax.swing.GroupLayout(panelHome);
+        panelHome.setLayout(panelHomeLayout);
+        panelHomeLayout.setHorizontalGroup(
+            panelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 575, Short.MAX_VALUE)
+        );
+        panelHomeLayout.setVerticalGroup(
+            panelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 695, Short.MAX_VALUE)
+        );
+
+        panelCenter.add(panelHome, "card5");
         panelCenter.add(panelDownload, "card3");
         panelCenter.add(panelAuthorization, "card2");
 
@@ -391,6 +405,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
     private static htsquirrel.gui.pages.Download panelDownload;
+    private htsquirrel.gui.pages.Home panelHome;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPanel panelTop;
