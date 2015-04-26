@@ -56,9 +56,9 @@ public class MatchFilter extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         panelBottom = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        buttonReset = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        buttonCalculate = new javax.swing.JButton();
         panelCenter = new javax.swing.JPanel();
         matchType1 = new htsquirrel.gui.filters.MatchType();
 
@@ -88,23 +88,23 @@ public class MatchFilter extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jButton1.setText("Reset");
-        jButton1.setMaximumSize(new java.awt.Dimension(90, 31));
-        jButton1.setMinimumSize(new java.awt.Dimension(90, 31));
-        jButton1.setPreferredSize(new java.awt.Dimension(90, 31));
-        jPanel1.add(jButton1, new java.awt.GridBagConstraints());
+        buttonReset.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        buttonReset.setText("Reset");
+        buttonReset.setMaximumSize(new java.awt.Dimension(90, 31));
+        buttonReset.setMinimumSize(new java.awt.Dimension(90, 31));
+        buttonReset.setPreferredSize(new java.awt.Dimension(90, 31));
+        jPanel1.add(buttonReset, new java.awt.GridBagConstraints());
 
         panelBottom.add(jPanel1);
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jButton2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jButton2.setText("Calculate");
-        jButton2.setMaximumSize(new java.awt.Dimension(90, 31));
-        jButton2.setMinimumSize(new java.awt.Dimension(90, 31));
-        jButton2.setPreferredSize(new java.awt.Dimension(90, 31));
-        jPanel2.add(jButton2, new java.awt.GridBagConstraints());
+        buttonCalculate.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        buttonCalculate.setText("Calculate");
+        buttonCalculate.setMaximumSize(new java.awt.Dimension(90, 31));
+        buttonCalculate.setMinimumSize(new java.awt.Dimension(90, 31));
+        buttonCalculate.setPreferredSize(new java.awt.Dimension(90, 31));
+        jPanel2.add(buttonCalculate, new java.awt.GridBagConstraints());
 
         panelBottom.add(jPanel2);
 
@@ -118,8 +118,8 @@ public class MatchFilter extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton buttonCalculate;
+    private javax.swing.JButton buttonReset;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
