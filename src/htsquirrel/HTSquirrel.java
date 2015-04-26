@@ -81,6 +81,15 @@ public class HTSquirrel extends javax.swing.JFrame {
     private void initComponents() {
 
         panelTop = new javax.swing.JPanel();
+        panelTopTop = new javax.swing.JPanel();
+        panelTopBottom = new javax.swing.JPanel();
+        panelTopLeft = new javax.swing.JPanel();
+        panelTopRight = new javax.swing.JPanel();
+        panelTopCenter = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         panelBottom = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
         matchFilter1 = new htsquirrel.gui.filters.MatchFilter();
@@ -101,17 +110,126 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelTop.setMaximumSize(new java.awt.Dimension(32767, 50));
         panelTop.setMinimumSize(new java.awt.Dimension(100, 50));
         panelTop.setPreferredSize(new java.awt.Dimension(1000, 50));
+        panelTop.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout panelTopLayout = new javax.swing.GroupLayout(panelTop);
-        panelTop.setLayout(panelTopLayout);
-        panelTopLayout.setHorizontalGroup(
-            panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelTopTop.setBackground(new java.awt.Color(51, 51, 51));
+        panelTopTop.setPreferredSize(new java.awt.Dimension(1000, 1));
+
+        javax.swing.GroupLayout panelTopTopLayout = new javax.swing.GroupLayout(panelTopTop);
+        panelTopTop.setLayout(panelTopTopLayout);
+        panelTopTopLayout.setHorizontalGroup(
+            panelTopTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1000, Short.MAX_VALUE)
         );
-        panelTopLayout.setVerticalGroup(
-            panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+        panelTopTopLayout.setVerticalGroup(
+            panelTopTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
         );
+
+        panelTop.add(panelTopTop, java.awt.BorderLayout.PAGE_START);
+
+        panelTopBottom.setBackground(new java.awt.Color(204, 102, 0));
+        panelTopBottom.setPreferredSize(new java.awt.Dimension(1000, 1));
+
+        javax.swing.GroupLayout panelTopBottomLayout = new javax.swing.GroupLayout(panelTopBottom);
+        panelTopBottom.setLayout(panelTopBottomLayout);
+        panelTopBottomLayout.setHorizontalGroup(
+            panelTopBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        panelTopBottomLayout.setVerticalGroup(
+            panelTopBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        panelTop.add(panelTopBottom, java.awt.BorderLayout.PAGE_END);
+
+        panelTopLeft.setBackground(new java.awt.Color(51, 51, 51));
+        panelTopLeft.setMaximumSize(new java.awt.Dimension(420, 32767));
+        panelTopLeft.setMinimumSize(new java.awt.Dimension(420, 100));
+        panelTopLeft.setPreferredSize(new java.awt.Dimension(420, 48));
+
+        javax.swing.GroupLayout panelTopLeftLayout = new javax.swing.GroupLayout(panelTopLeft);
+        panelTopLeft.setLayout(panelTopLeftLayout);
+        panelTopLeftLayout.setHorizontalGroup(
+            panelTopLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 420, Short.MAX_VALUE)
+        );
+        panelTopLeftLayout.setVerticalGroup(
+            panelTopLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        panelTop.add(panelTopLeft, java.awt.BorderLayout.LINE_START);
+
+        panelTopRight.setBackground(new java.awt.Color(51, 51, 51));
+        panelTopRight.setMaximumSize(new java.awt.Dimension(5, 32767));
+        panelTopRight.setMinimumSize(new java.awt.Dimension(5, 100));
+        panelTopRight.setPreferredSize(new java.awt.Dimension(5, 48));
+
+        javax.swing.GroupLayout panelTopRightLayout = new javax.swing.GroupLayout(panelTopRight);
+        panelTopRight.setLayout(panelTopRightLayout);
+        panelTopRightLayout.setHorizontalGroup(
+            panelTopRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+        panelTopRightLayout.setVerticalGroup(
+            panelTopRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        panelTop.add(panelTopRight, java.awt.BorderLayout.LINE_END);
+
+        panelTopCenter.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(60, 63, 65));
+        jLabel1.setText("HOME");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel2.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(60, 63, 65));
+        jLabel2.setText("RECORDS");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel3.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(60, 63, 65));
+        jLabel3.setText("DOWNLOAD");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel4.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(60, 63, 65));
+        jLabel4.setText("MENU");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout panelTopCenterLayout = new javax.swing.GroupLayout(panelTopCenter);
+        panelTopCenter.setLayout(panelTopCenterLayout);
+        panelTopCenterLayout.setHorizontalGroup(
+            panelTopCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTopCenterLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addContainerGap(161, Short.MAX_VALUE))
+        );
+        panelTopCenterLayout.setVerticalGroup(
+            panelTopCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTopCenterLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(panelTopCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        panelTop.add(panelTopCenter, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(panelTop, java.awt.BorderLayout.PAGE_START);
 
@@ -235,6 +353,10 @@ public class HTSquirrel extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private htsquirrel.gui.filters.BlankFilter blankFilter1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private htsquirrel.gui.filters.MatchFilter matchFilter1;
     private static htsquirrel.gui.pages.Authorization panelAuthorization;
     private static htsquirrel.gui.pages.BlankPage panelBlank;
@@ -244,5 +366,10 @@ public class HTSquirrel extends javax.swing.JFrame {
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPanel panelTop;
+    private javax.swing.JPanel panelTopBottom;
+    private javax.swing.JPanel panelTopCenter;
+    private javax.swing.JPanel panelTopLeft;
+    private javax.swing.JPanel panelTopRight;
+    private javax.swing.JPanel panelTopTop;
     // End of variables declaration//GEN-END:variables
 }
