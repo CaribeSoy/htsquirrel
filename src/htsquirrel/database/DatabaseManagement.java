@@ -246,18 +246,44 @@ public class DatabaseManagement {
     }
 
     // get team ids
-    public static ArrayList<Integer> getTeamIds(Connection connection,
+    public static ArrayList<Team> getTeams(Connection connection,
             int userId) throws SQLException, IOException {
-        ArrayList<Integer> teamIds = new ArrayList<>();
-        String sqlCode = "SELECT TEAM_ID FROM TEAMS " +
+        ArrayList<Team> teams = new ArrayList<>();
+        String sqlCode = "SELECT * FROM TEAMS " +
                 "WHERE USER_ID = " + userId;
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlCode);
         while (resultSet.next()) {
-            teamIds.add(resultSet.getInt("TEAM_ID"));
+            int teamId = resultSet.getInt("TEAM_ID");
+            String teamName = resultSet.getString("TEAM_NAME");
+            String shortTeamName = resultSet.getString("SHORT_TEAM_NAME");
+            Timestamp foundedDate = resultSet.getTimestamp("FOUNDED_DATE");
+            boolean primaryClub = resultSet.getBoolean("PRIMARY_CLUB");
+            int arenaId = resultSet.getInt("ARENA_ID");
+            String arenaName = resultSet.getString("ARENA_NAME");
+            int leagueId = resultSet.getInt("LEAGUE_ID");
+            String leagueName = resultSet.getString("LEAGUE_NAME");
+            int regionId = resultSet.getInt("REGION_ID");
+            String regionName = resultSet.getString("REGION_NAME");
+            int coachId = resultSet.getInt("COACH_ID");
+            int leagueLevelUnitId = resultSet.getInt("LEAGUE_LEVEL_UNIT_ID");
+            String leagueLevelUnitName = resultSet.getString("LEAGUE_LEVEL_UNIT_NAME");
+            int leagueLevel = resultSet.getInt("LEAGUE_LEVEL");
+            int fanclubId = resultSet.getInt("FANCLUB_ID");
+            String fanclubName = resultSet.getString("FANCLUB_NAME");
+            int fanclubSize = resultSet.getInt("FANCLUB_SIZE");
+            String logoUri = resultSet.getString("LOGO_URI");
+            String dressUri = resultSet.getString("DRESS_URI");
+            String dressAlternateUri = resultSet.getString("DRESS_ALTERNATE_URI");
+            Team team = new Team(teamId, teamName, shortTeamName, foundedDate,
+                    primaryClub, arenaId, arenaName, leagueId, leagueName,
+                    regionId, regionName, coachId, leagueLevelUnitId,
+                    leagueLevelUnitName, leagueLevel, fanclubId, fanclubName,
+                    fanclubSize, logoUri,dressUri, dressAlternateUri);
+            teams.add(team);
         }
         statement.close();
-        return teamIds;
+        return teams;
     }
 
     // get league id
