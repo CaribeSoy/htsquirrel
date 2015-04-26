@@ -192,6 +192,11 @@ public class HTSquirrel extends javax.swing.JFrame {
         labelHome.setForeground(new java.awt.Color(60, 63, 65));
         labelHome.setText("HOME");
         labelHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelHomeMouseClicked(evt);
+            }
+        });
 
         labelRecords.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelRecords.setForeground(new java.awt.Color(60, 63, 65));
@@ -322,6 +327,10 @@ public class HTSquirrel extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void labelHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelHomeMouseClicked
+        showHome();
+    }//GEN-LAST:event_labelHomeMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -358,10 +367,12 @@ public class HTSquirrel extends javax.swing.JFrame {
     
     public static void hidePanels() {
         panelBlank.setVisible(false);
+        panelHome.setVisible(false);
         panelAuthorization.setVisible(false);
         panelDownload.setVisible(false);
         blankFilter.setVisible(false);
         homeFilter.setVisible(false);
+        recordsFilter.setVisible(false);
         matchFilter.setVisible(false);
     }
     
@@ -377,6 +388,12 @@ public class HTSquirrel extends javax.swing.JFrame {
         labelRecords.setVisible(true);
         labelDownload.setVisible(true);
         labelSettings.setVisible(true);
+    }
+    
+    public static void showHome () {
+        hidePanels();
+        panelHome.setVisible(true);
+        homeFilter.setVisible(true);
     }
     
     public static void showAuthorization() {
@@ -407,7 +424,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
     private static htsquirrel.gui.pages.Download panelDownload;
-    private htsquirrel.gui.pages.Home panelHome;
+    private static htsquirrel.gui.pages.Home panelHome;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPanel panelTop;
@@ -416,6 +433,6 @@ public class HTSquirrel extends javax.swing.JFrame {
     private javax.swing.JPanel panelTopLeft;
     private javax.swing.JPanel panelTopRight;
     private javax.swing.JPanel panelTopTop;
-    private htsquirrel.gui.filters.RecordsFilter recordsFilter;
+    private static htsquirrel.gui.filters.RecordsFilter recordsFilter;
     // End of variables declaration//GEN-END:variables
 }
