@@ -191,7 +191,6 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelTopCenter.setBackground(new java.awt.Color(51, 51, 51));
 
         labelHome.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        labelHome.setForeground(new java.awt.Color(60, 63, 65));
         labelHome.setText("HOME");
         labelHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -201,7 +200,6 @@ public class HTSquirrel extends javax.swing.JFrame {
         });
 
         labelRecords.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        labelRecords.setForeground(new java.awt.Color(60, 63, 65));
         labelRecords.setText("RECORDS");
         labelRecords.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelRecords.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,7 +209,6 @@ public class HTSquirrel extends javax.swing.JFrame {
         });
 
         labelDownload.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        labelDownload.setForeground(new java.awt.Color(60, 63, 65));
         labelDownload.setText("DOWNLOAD");
         labelDownload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelDownload.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -221,7 +218,6 @@ public class HTSquirrel extends javax.swing.JFrame {
         });
 
         labelSettings.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        labelSettings.setForeground(new java.awt.Color(60, 63, 65));
         labelSettings.setText("SETTINGS");
         labelSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -432,16 +428,27 @@ public class HTSquirrel extends javax.swing.JFrame {
         }
     }
     
+    public static void darkenLabels() {
+        Component[] labels = panelTopCenter.getComponents();
+        for (Component label : labels) {
+            label.setForeground(new java.awt.Color(187, 187, 187));
+        }
+    }
+    
     public static void showHome () {
         hidePanels();
         panelHome.setVisible(true);
         homeFilter.setVisible(true);
+        darkenLabels();
+        labelHome.setForeground(new java.awt.Color(204, 102, 0));
     }
     
     public static void showRecords() {
         hidePanels();
         recordsFilter.setVisible(true);
         panelBlank.setVisible(true);
+        darkenLabels();
+        labelRecords.setForeground(new java.awt.Color(204, 102, 0));
     }
     
     public static void showAuthorization() {
@@ -457,12 +464,16 @@ public class HTSquirrel extends javax.swing.JFrame {
         blankFilter.setVisible(true);
         panelDownload.refreshDownload();
         panelDownload.setVisible(true);
+        darkenLabels();
+        labelDownload.setForeground(new java.awt.Color(204, 102, 0));
     }
     
     public static void showSettings() {
         hidePanels();
         blankFilter.setVisible(true);
         panelSettings.setVisible(false);
+        darkenLabels();
+        labelSettings.setForeground(new java.awt.Color(204, 102, 0));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
