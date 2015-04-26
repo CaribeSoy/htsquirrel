@@ -529,6 +529,14 @@ public class DatabaseManagement {
         statement.execute(sqlCode);
         statement.close();
     }
+    
+    public static void deleteFromMatchesExtended(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = "DELETE FROM MATCHES_EXTENDED";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
 
     public static void insertIntoTeams(Connection connection, User user,
             Team team) throws SQLException, IOException {
@@ -787,6 +795,14 @@ public class DatabaseManagement {
     public static void insertIntoLeagues(Connection connection)
             throws SQLException, IOException {
         String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_leagues.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoMatchesExtended(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_matches_extended.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

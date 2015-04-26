@@ -335,6 +335,9 @@ public class Download extends javax.swing.JPanel {
                     }
                 }
             }
+            // matches extended table
+            deleteFromMatchesExtended(db);
+            insertIntoMatchesExtended(db);
             db.close();
             return null;
         }
