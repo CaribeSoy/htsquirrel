@@ -104,6 +104,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelBlank = new htsquirrel.gui.pages.BlankPage();
         panelHome = new htsquirrel.gui.pages.Home();
         panelDownload = new htsquirrel.gui.pages.Download();
+        panelSettings = new htsquirrel.gui.pages.Settings();
         panelAuthorization = new htsquirrel.gui.pages.Authorization();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -329,6 +330,19 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         panelCenter.add(panelHome, "card5");
         panelCenter.add(panelDownload, "card3");
+
+        javax.swing.GroupLayout panelSettingsLayout = new javax.swing.GroupLayout(panelSettings);
+        panelSettings.setLayout(panelSettingsLayout);
+        panelSettingsLayout.setHorizontalGroup(
+            panelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 575, Short.MAX_VALUE)
+        );
+        panelSettingsLayout.setVerticalGroup(
+            panelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 695, Short.MAX_VALUE)
+        );
+
+        panelCenter.add(panelSettings, "card6");
         panelCenter.add(panelAuthorization, "card2");
 
         getContentPane().add(panelCenter, java.awt.BorderLayout.CENTER);
@@ -386,8 +400,9 @@ public class HTSquirrel extends javax.swing.JFrame {
     public static void hidePanels() {
         panelBlank.setVisible(false);
         panelHome.setVisible(false);
-        panelAuthorization.setVisible(false);
         panelDownload.setVisible(false);
+        panelSettings.setVisible(false);
+        panelAuthorization.setVisible(false);
         blankFilter.setVisible(false);
         homeFilter.setVisible(false);
         recordsFilter.setVisible(false);
@@ -451,6 +466,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static htsquirrel.gui.pages.Home panelHome;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
+    private static htsquirrel.gui.pages.Settings panelSettings;
     private javax.swing.JPanel panelTop;
     private javax.swing.JPanel panelTopBottom;
     private javax.swing.JPanel panelTopCenter;
