@@ -212,6 +212,11 @@ public class HTSquirrel extends javax.swing.JFrame {
         labelDownload.setForeground(new java.awt.Color(60, 63, 65));
         labelDownload.setText("DOWNLOAD");
         labelDownload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelDownload.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelDownloadMouseClicked(evt);
+            }
+        });
 
         labelSettings.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelSettings.setForeground(new java.awt.Color(60, 63, 65));
@@ -339,6 +344,10 @@ public class HTSquirrel extends javax.swing.JFrame {
     private void labelRecordsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRecordsMouseClicked
         showRecords();
     }//GEN-LAST:event_labelRecordsMouseClicked
+
+    private void labelDownloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDownloadMouseClicked
+        showDownload();
+    }//GEN-LAST:event_labelDownloadMouseClicked
 
     /**
      * @param args the command line arguments
