@@ -25,6 +25,7 @@ package htsquirrel;
 
 import static htsquirrel.ConfigProperties.*;
 import static htsquirrel.database.DatabaseManagement.*;
+import htsquirrel.game.Team;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -56,10 +57,12 @@ public class HTSquirrel extends javax.swing.JFrame {
             try {
                 Connection db = createDatabaseConnection();
                 checkTablesExist(db);
-                ArrayList<Integer> teamIds = getTeamIds(db, userId);
+                teams = getTeams(db, userId);
                 db.close();
-                if (teamIds.isEmpty()) {
+                if (teams.isEmpty()) {
                     showDownload();
+                } else {
+                    currentTeam = teams.get(0);
                 }
             } catch (IOException ex) {
                 Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
@@ -330,6 +333,8 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
     
     public static String classPath;
+    public static ArrayList<Team> teams;
+    public static Team currentTeam;
 
     public static String getClassPath() {
         return classPath;
