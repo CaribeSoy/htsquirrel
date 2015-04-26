@@ -339,10 +339,14 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelBlank.setVisible(false);
         panelAuthorization.setVisible(false);
         panelDownload.setVisible(false);
+        blankFilter.setVisible(false);
+        homeFilter.setVisible(false);
+        matchFilter.setVisible(false);
     }
     
     public static void showAuthorization() {
         hidePanels();
+        blankFilter.setVisible(true);
         panelAuthorization.refreshAuthorization();
         panelAuthorization.setVisible(true);
     }
