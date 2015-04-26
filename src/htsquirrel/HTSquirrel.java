@@ -115,6 +115,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelSettings = new htsquirrel.gui.pages.Settings();
         panelAuthorization = new htsquirrel.gui.pages.Authorization();
         panelRecordsTeam = new htsquirrel.gui.pages.RecordsTeam();
+        panelRecordsType1 = new htsquirrel.gui.pages.RecordsType1();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HT Squirrel");
@@ -378,6 +379,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelCenter.add(panelSettings, "card6");
         panelCenter.add(panelAuthorization, "card2");
         panelCenter.add(panelRecordsTeam, "card7");
+        panelCenter.add(panelRecordsType1, "card8");
 
         getContentPane().add(panelCenter, java.awt.BorderLayout.CENTER);
 
@@ -523,6 +525,12 @@ public class HTSquirrel extends javax.swing.JFrame {
         recordsFilter.setVisible(true);
         panelRecordsTeam.setVisible(true);
     }
+    
+    public static void showRecordsType1() {
+        hidePanels();
+        matchFilter.setVisible(true);
+        panelRecordsType1.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static htsquirrel.gui.filters.BlankFilter blankFilter;
@@ -542,6 +550,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static htsquirrel.gui.pages.Home panelHome;
     private static javax.swing.JPanel panelLeft;
     private static htsquirrel.gui.pages.RecordsTeam panelRecordsTeam;
+    private static htsquirrel.gui.pages.RecordsType1 panelRecordsType1;
     private javax.swing.JPanel panelRight;
     private static htsquirrel.gui.pages.Settings panelSettings;
     private javax.swing.JPanel panelTop;

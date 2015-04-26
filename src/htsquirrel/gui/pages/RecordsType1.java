@@ -23,18 +23,16 @@
  */
 package htsquirrel.gui.pages;
 
-import static htsquirrel.HTSquirrel.showRecordsType1;
-
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
  */
-public class RecordsTeam extends javax.swing.JPanel {
+public class RecordsType1 extends javax.swing.JPanel {
 
     /**
-     * Creates new form RecordsTeam
+     * Creates new form RecordsType1
      */
-    public RecordsTeam() {
+    public RecordsType1() {
         initComponents();
     }
 
@@ -49,60 +47,68 @@ public class RecordsTeam extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
-        labelTotalTeamScore = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
+        label2 = new javax.swing.JLabel();
 
-        setLayout(new java.awt.CardLayout());
+        jPanel1.setLayout(new java.awt.CardLayout());
 
         labelTitle.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(204, 102, 0));
-        labelTitle.setText("Team records");
+        labelTitle.setText("Title");
 
-        labelTotalTeamScore.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        labelTotalTeamScore.setText("Total team score");
-        labelTotalTeamScore.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        labelTotalTeamScore.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelTotalTeamScoreMouseClicked(evt);
-            }
-        });
+        label1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        label1.setText("Text");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        label2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        label2.setText("Text");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTotalTeamScore)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label2)
+                    .addComponent(label1)
                     .addComponent(labelTitle))
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(labelTitle)
                 .addGap(18, 18, 18)
-                .addComponent(labelTotalTeamScore)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addComponent(label1)
+                .addGap(18, 18, 18)
+                .addComponent(label2)
+                .addGap(0, 162, Short.MAX_VALUE))
         );
-
-        add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void labelTotalTeamScoreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelTotalTeamScoreMouseClicked
-        htsquirrel.gui.pages.RecordsType1.setTitle("Total team score");
-        htsquirrel.gui.pages.RecordsType1.hideLabels();
-        String text;
-        text = "Hi, Boss! Here's our team total score.";
-        htsquirrel.gui.pages.RecordsType1.showLabel1(text);
-        showRecordsType1();
-    }//GEN-LAST:event_labelTotalTeamScoreMouseClicked
-
+    public static void setTitle(String title) {
+        labelTitle.setText(title);
+    }
+    
+    public static void hideLabels() {
+        label1.setVisible(false);
+        label2.setVisible(false);
+    }
+    
+    public static void showLabel1(String text) {
+        label1.setText(text);
+        label1.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelTitle;
-    private javax.swing.JLabel labelTotalTeamScore;
+    private static javax.swing.JLabel label1;
+    private static javax.swing.JLabel label2;
+    private static javax.swing.JLabel labelTitle;
     // End of variables declaration//GEN-END:variables
 }
