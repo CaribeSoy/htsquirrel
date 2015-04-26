@@ -426,10 +426,10 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
     
     public static void showLabels() {
-        labelHome.setVisible(true);
-        labelRecords.setVisible(true);
-        labelDownload.setVisible(true);
-        labelSettings.setVisible(true);
+        Component[] labels = panelTopCenter.getComponents();
+        for (Component label : labels) {
+            label.setVisible(true);
+        }
     }
     
     public static void showHome () {
