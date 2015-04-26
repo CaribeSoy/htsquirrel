@@ -356,6 +356,13 @@ public class HTSquirrel extends javax.swing.JFrame {
         labelSettings.setVisible(false);
     }
     
+    public static void showLabels() {
+        labelHome.setVisible(true);
+        labelRecords.setVisible(true);
+        labelDownload.setVisible(true);
+        labelSettings.setVisible(true);
+    }
+    
     public static void showAuthorization() {
         hidePanels();
         hideLabels();

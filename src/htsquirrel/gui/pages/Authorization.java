@@ -24,6 +24,7 @@
 package htsquirrel.gui.pages;
 
 import static htsquirrel.ConfigProperties.*;
+import static htsquirrel.HTSquirrel.showLabels;
 import static htsquirrel.OAuth.*;
 import static htsquirrel.Responses.*;
 import java.awt.Desktop;
@@ -285,6 +286,7 @@ public class Authorization extends javax.swing.JPanel {
             jLabel7.setText("Successful authorization.");
             jLabel7.setForeground(new java.awt.Color(0, 153, 51));
             jLabel7.setVisible(true);
+            showLabels();
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
         } catch (SAXException ex) {
