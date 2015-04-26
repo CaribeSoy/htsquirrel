@@ -26,6 +26,7 @@ package htsquirrel;
 import static htsquirrel.ConfigProperties.*;
 import static htsquirrel.database.DatabaseManagement.*;
 import htsquirrel.game.Team;
+import htsquirrel.gui.filters.MatchFilter;
 import java.awt.Component;
 import java.io.IOException;
 import java.sql.Connection;
@@ -445,6 +446,10 @@ public class HTSquirrel extends javax.swing.JFrame {
 
     public static String getClassPath() {
         return classPath;
+    }
+
+    public static MatchFilter getMatchFilter() {
+        return matchFilter;
     }
     
     public static void hidePanels() {

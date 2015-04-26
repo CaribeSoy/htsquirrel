@@ -23,6 +23,8 @@
  */
 package htsquirrel.gui.filters;
 
+import javax.swing.JCheckBox;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -782,6 +784,86 @@ public class MatchType extends javax.swing.JPanel {
             cbAllFriendlies.setSelected(false);
         }
     }//GEN-LAST:event_cbIntFriendlyCupActionPerformed
+
+    public JCheckBox getCbDivisionalConsolation() {
+        return cbDivisionalConsolation;
+    }
+
+    public JCheckBox getCbDivisionalCup() {
+        return cbDivisionalCup;
+    }
+
+    public JCheckBox getCbDivisionalEmerald() {
+        return cbDivisionalEmerald;
+    }
+
+    public JCheckBox getCbDivisionalRuby() {
+        return cbDivisionalRuby;
+    }
+
+    public JCheckBox getCbDivisionalSapphire() {
+        return cbDivisionalSapphire;
+    }
+
+    public JCheckBox getCbFriendlyCup() {
+        return cbFriendlyCup;
+    }
+
+    public JCheckBox getCbFriendlyNormal() {
+        return cbFriendlyNormal;
+    }
+
+    public JCheckBox getCbHattrickMasters() {
+        return cbHattrickMasters;
+    }
+
+    public JCheckBox getCbIntFriendlyCup() {
+        return cbIntFriendlyCup;
+    }
+
+    public JCheckBox getCbIntFriendlyNormal() {
+        return cbIntFriendlyNormal;
+    }
+
+    public JCheckBox getCbLeague() {
+        return cbLeague;
+    }
+
+    public JCheckBox getCbLevel7() {
+        return cbLevel7;
+    }
+
+    public JCheckBox getCbLevel8() {
+        return cbLevel8;
+    }
+
+    public JCheckBox getCbLevel9() {
+        return cbLevel9;
+    }
+
+    public JCheckBox getCbNationalConsolation() {
+        return cbNationalConsolation;
+    }
+
+    public JCheckBox getCbNationalCup() {
+        return cbNationalCup;
+    }
+
+    public JCheckBox getCbNationalEmerald() {
+        return cbNationalEmerald;
+    }
+
+    public JCheckBox getCbNationalRuby() {
+        return cbNationalRuby;
+    }
+
+    public JCheckBox getCbNationalSapphire() {
+        return cbNationalSapphire;
+    }
+
+    public JCheckBox getCbQualification() {
+        return cbQualification;
+    }
 
     private boolean allCompetitionsSelected() {
         boolean result;

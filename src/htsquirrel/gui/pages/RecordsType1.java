@@ -104,6 +104,11 @@ public class RecordsType1 extends javax.swing.JPanel {
         label1.setText(text);
         label1.setVisible(true);
     }
+    
+    public static void showLabel2(String text) {
+        label2.setText(text);
+        label2.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

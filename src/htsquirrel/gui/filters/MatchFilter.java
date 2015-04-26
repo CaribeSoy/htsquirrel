@@ -23,6 +23,14 @@
  */
 package htsquirrel.gui.filters;
 
+import static htsquirrel.Records.*;
+import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -60,7 +68,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         buttonCalculate = new javax.swing.JButton();
         panelCenter = new javax.swing.JPanel();
-        matchType1 = new htsquirrel.gui.filters.MatchType();
+        matchType = new htsquirrel.gui.filters.MatchType();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -104,6 +112,11 @@ public class MatchFilter extends javax.swing.JPanel {
         buttonCalculate.setMaximumSize(new java.awt.Dimension(90, 31));
         buttonCalculate.setMinimumSize(new java.awt.Dimension(90, 31));
         buttonCalculate.setPreferredSize(new java.awt.Dimension(90, 31));
+        buttonCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCalculateActionPerformed(evt);
+            }
+        });
         jPanel2.add(buttonCalculate, new java.awt.GridBagConstraints());
 
         panelBottom.add(jPanel2);
@@ -111,11 +124,28 @@ public class MatchFilter extends javax.swing.JPanel {
         add(panelBottom, java.awt.BorderLayout.PAGE_END);
 
         panelCenter.setLayout(new java.awt.CardLayout());
-        panelCenter.add(matchType1, "card2");
+        panelCenter.add(matchType, "card2");
 
         add(panelCenter, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCalculateActionPerformed
+        try {
+            Connection db = createDatabaseConnection();
+            showTotalTeamScore(db);
+            db.close();
+        } catch (IOException ex) {
+            Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buttonCalculateActionPerformed
+
+    public MatchType getMatchType() {
+        return matchType;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCalculate;
@@ -130,7 +160,7 @@ public class MatchFilter extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private htsquirrel.gui.filters.MatchType matchType1;
+    private htsquirrel.gui.filters.MatchType matchType;
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
     private javax.swing.JPanel panelTop;
