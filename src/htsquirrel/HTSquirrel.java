@@ -97,6 +97,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeft = new javax.swing.JPanel();
         blankFilter = new htsquirrel.gui.filters.BlankFilter();
         homeFilter = new htsquirrel.gui.filters.HomeFilter();
+        recordsFilter = new htsquirrel.gui.filters.RecordsFilter();
         matchFilter = new htsquirrel.gui.filters.MatchFilter();
         panelRight = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
@@ -262,6 +263,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeft.setLayout(new java.awt.CardLayout());
         panelLeft.add(blankFilter, "card2");
         panelLeft.add(homeFilter, "card4");
+        panelLeft.add(recordsFilter, "card5");
         panelLeft.add(matchFilter, "card3");
 
         getContentPane().add(panelLeft, java.awt.BorderLayout.LINE_START);
@@ -414,5 +416,6 @@ public class HTSquirrel extends javax.swing.JFrame {
     private javax.swing.JPanel panelTopLeft;
     private javax.swing.JPanel panelTopRight;
     private javax.swing.JPanel panelTopTop;
+    private htsquirrel.gui.filters.RecordsFilter recordsFilter;
     // End of variables declaration//GEN-END:variables
 }
