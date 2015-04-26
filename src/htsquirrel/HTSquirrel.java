@@ -92,8 +92,9 @@ public class HTSquirrel extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         panelBottom = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
-        matchFilter1 = new htsquirrel.gui.filters.MatchFilter();
-        blankFilter1 = new htsquirrel.gui.filters.BlankFilter();
+        blankFilter = new htsquirrel.gui.filters.BlankFilter();
+        homeFilter = new htsquirrel.gui.filters.HomeFilter();
+        matchFilter = new htsquirrel.gui.filters.MatchFilter();
         panelRight = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
         panelBlank = new htsquirrel.gui.pages.BlankPage();
@@ -255,8 +256,9 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeft.setMinimumSize(new java.awt.Dimension(420, 100));
         panelLeft.setPreferredSize(new java.awt.Dimension(420, 740));
         panelLeft.setLayout(new java.awt.CardLayout());
-        panelLeft.add(matchFilter1, "card3");
-        panelLeft.add(blankFilter1, "card2");
+        panelLeft.add(blankFilter, "card2");
+        panelLeft.add(homeFilter, "card4");
+        panelLeft.add(matchFilter, "card3");
 
         getContentPane().add(panelLeft, java.awt.BorderLayout.LINE_START);
 
@@ -352,12 +354,13 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private htsquirrel.gui.filters.BlankFilter blankFilter1;
+    private static htsquirrel.gui.filters.BlankFilter blankFilter;
+    private static htsquirrel.gui.filters.HomeFilter homeFilter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private htsquirrel.gui.filters.MatchFilter matchFilter1;
+    private static htsquirrel.gui.filters.MatchFilter matchFilter;
     private static htsquirrel.gui.pages.Authorization panelAuthorization;
     private static htsquirrel.gui.pages.BlankPage panelBlank;
     private javax.swing.JPanel panelBottom;
