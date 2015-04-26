@@ -223,6 +223,11 @@ public class HTSquirrel extends javax.swing.JFrame {
         labelSettings.setForeground(new java.awt.Color(60, 63, 65));
         labelSettings.setText("SETTINGS");
         labelSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelSettingsMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelTopCenterLayout = new javax.swing.GroupLayout(panelTopCenter);
         panelTopCenter.setLayout(panelTopCenterLayout);
@@ -363,6 +368,10 @@ public class HTSquirrel extends javax.swing.JFrame {
         showDownload();
     }//GEN-LAST:event_labelDownloadMouseClicked
 
+    private void labelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSettingsMouseClicked
+        showSettings();
+    }//GEN-LAST:event_labelSettingsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -448,6 +457,12 @@ public class HTSquirrel extends javax.swing.JFrame {
         blankFilter.setVisible(true);
         panelDownload.refreshDownload();
         panelDownload.setVisible(true);
+    }
+    
+    public static void showSettings() {
+        hidePanels();
+        blankFilter.setVisible(true);
+        panelSettings.setVisible(false);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
