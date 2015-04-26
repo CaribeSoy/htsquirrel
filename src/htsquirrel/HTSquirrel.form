@@ -197,7 +197,7 @@
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="labelHome" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="labelName" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelRecords" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="labelDownload" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -212,7 +212,7 @@
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelHome" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelRecords" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelDownload" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelSettings" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -239,7 +239,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelName">
+            <Component class="javax.swing.JLabel" name="labelRecords">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="DejaVu Sans" size="18" style="0"/>

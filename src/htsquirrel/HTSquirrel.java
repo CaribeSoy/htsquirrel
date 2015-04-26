@@ -90,7 +90,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelTopRight = new javax.swing.JPanel();
         panelTopCenter = new javax.swing.JPanel();
         labelHome = new javax.swing.JLabel();
-        labelName = new javax.swing.JLabel();
+        labelRecords = new javax.swing.JLabel();
         labelDownload = new javax.swing.JLabel();
         labelSettings = new javax.swing.JLabel();
         panelBottom = new javax.swing.JPanel();
@@ -191,10 +191,10 @@ public class HTSquirrel extends javax.swing.JFrame {
         labelHome.setText("HOME");
         labelHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        labelName.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        labelName.setForeground(new java.awt.Color(60, 63, 65));
-        labelName.setText("RECORDS");
-        labelName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelRecords.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        labelRecords.setForeground(new java.awt.Color(60, 63, 65));
+        labelRecords.setText("RECORDS");
+        labelRecords.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         labelDownload.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelDownload.setForeground(new java.awt.Color(60, 63, 65));
@@ -214,7 +214,7 @@ public class HTSquirrel extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(labelHome)
                 .addGap(18, 18, 18)
-                .addComponent(labelName)
+                .addComponent(labelRecords)
                 .addGap(18, 18, 18)
                 .addComponent(labelDownload)
                 .addGap(18, 18, 18)
@@ -227,7 +227,7 @@ public class HTSquirrel extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(panelTopCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelHome)
-                    .addComponent(labelName)
+                    .addComponent(labelRecords)
                     .addComponent(labelDownload)
                     .addComponent(labelSettings))
                 .addContainerGap(12, Short.MAX_VALUE))
@@ -349,8 +349,16 @@ public class HTSquirrel extends javax.swing.JFrame {
         matchFilter.setVisible(false);
     }
     
+    public static void hideLabels() {
+        labelHome.setVisible(false);
+        labelRecords.setVisible(false);
+        labelDownload.setVisible(false);
+        labelSettings.setVisible(false);
+    }
+    
     public static void showAuthorization() {
         hidePanels();
+        hideLabels();
         blankFilter.setVisible(true);
         panelAuthorization.refreshAuthorization();
         panelAuthorization.setVisible(true);
@@ -368,7 +376,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static htsquirrel.gui.filters.HomeFilter homeFilter;
     private static javax.swing.JLabel labelDownload;
     private static javax.swing.JLabel labelHome;
-    private static javax.swing.JLabel labelName;
+    private static javax.swing.JLabel labelRecords;
     private static javax.swing.JLabel labelSettings;
     private static htsquirrel.gui.filters.MatchFilter matchFilter;
     private static htsquirrel.gui.pages.Authorization panelAuthorization;
