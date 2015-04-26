@@ -88,14 +88,22 @@ public class MatchFilter extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setText("jButton1");
+        jButton1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        jButton1.setText("Reset");
+        jButton1.setMaximumSize(new java.awt.Dimension(90, 31));
+        jButton1.setMinimumSize(new java.awt.Dimension(90, 31));
+        jButton1.setPreferredSize(new java.awt.Dimension(90, 31));
         jPanel1.add(jButton1, new java.awt.GridBagConstraints());
 
         panelBottom.add(jPanel1);
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jButton2.setText("jButton2");
+        jButton2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        jButton2.setText("Calculate");
+        jButton2.setMaximumSize(new java.awt.Dimension(90, 31));
+        jButton2.setMinimumSize(new java.awt.Dimension(90, 31));
+        jButton2.setPreferredSize(new java.awt.Dimension(90, 31));
         jPanel2.add(jButton2, new java.awt.GridBagConstraints());
 
         panelBottom.add(jPanel2);
