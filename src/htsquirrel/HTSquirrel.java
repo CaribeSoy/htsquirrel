@@ -89,10 +89,10 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelTopLeft = new javax.swing.JPanel();
         panelTopRight = new javax.swing.JPanel();
         panelTopCenter = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        labelHome = new javax.swing.JLabel();
+        labelName = new javax.swing.JLabel();
+        labelDownload = new javax.swing.JLabel();
+        labelSettings = new javax.swing.JLabel();
         panelBottom = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
         blankFilter = new htsquirrel.gui.filters.BlankFilter();
@@ -186,25 +186,25 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         panelTopCenter.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(60, 63, 65));
-        jLabel1.setText("HOME");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelHome.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        labelHome.setForeground(new java.awt.Color(60, 63, 65));
+        labelHome.setText("HOME");
+        labelHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel2.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(60, 63, 65));
-        jLabel2.setText("RECORDS");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelName.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        labelName.setForeground(new java.awt.Color(60, 63, 65));
+        labelName.setText("RECORDS");
+        labelName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel3.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(60, 63, 65));
-        jLabel3.setText("DOWNLOAD");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelDownload.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        labelDownload.setForeground(new java.awt.Color(60, 63, 65));
+        labelDownload.setText("DOWNLOAD");
+        labelDownload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel4.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(60, 63, 65));
-        jLabel4.setText("MENU");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelSettings.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        labelSettings.setForeground(new java.awt.Color(60, 63, 65));
+        labelSettings.setText("SETTINGS");
+        labelSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout panelTopCenterLayout = new javax.swing.GroupLayout(panelTopCenter);
         panelTopCenter.setLayout(panelTopCenterLayout);
@@ -212,24 +212,24 @@ public class HTSquirrel extends javax.swing.JFrame {
             panelTopCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTopCenterLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addComponent(labelHome)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(labelName)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(labelDownload)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addComponent(labelSettings)
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         panelTopCenterLayout.setVerticalGroup(
             panelTopCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTopCenterLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(panelTopCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(labelHome)
+                    .addComponent(labelName)
+                    .addComponent(labelDownload)
+                    .addComponent(labelSettings))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -366,10 +366,10 @@ public class HTSquirrel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static htsquirrel.gui.filters.BlankFilter blankFilter;
     private static htsquirrel.gui.filters.HomeFilter homeFilter;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private static javax.swing.JLabel labelDownload;
+    private static javax.swing.JLabel labelHome;
+    private static javax.swing.JLabel labelName;
+    private static javax.swing.JLabel labelSettings;
     private static htsquirrel.gui.filters.MatchFilter matchFilter;
     private static htsquirrel.gui.pages.Authorization panelAuthorization;
     private static htsquirrel.gui.pages.BlankPage panelBlank;
