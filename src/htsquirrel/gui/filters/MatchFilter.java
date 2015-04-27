@@ -28,7 +28,9 @@ import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
 import java.awt.Component;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -205,6 +207,72 @@ public class MatchFilter extends javax.swing.JPanel {
 
     public MatchType getMatchType() {
         return matchType;
+    }
+    
+    public Period getPeriod() {
+        return period;
+    }
+    
+    public static void resetFilters() {
+        htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getRbSeason().setSelected(true);
+        htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getRbLeagueLevel().setSelected(true);
+        htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbSeasonFrom().removeAllItems();
+        htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbSeasonTo().removeAllItems();
+        htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbLeagueFrom().removeAllItems();
+        htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbLeagueTo().removeAllItems();
+        htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbLeague().removeAllItems();
+        try {
+            Connection db = createDatabaseConnection();
+            // season from and to
+            String sqlCode = "SELECT SEASON FROM LEAGUES WHERE TEAM_ID = "
+                    + htsquirrel.HTSquirrel.currentTeam.getTeamId();
+            Statement statement1 = db.createStatement();
+            ResultSet resultSet1 = statement1.executeQuery(sqlCode);
+            while (resultSet1.next()) {
+                int season = resultSet1.getInt("SEASON");
+                htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbSeasonFrom().addItem(season);
+                htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbSeasonTo().addItem(season);
+            }
+            htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbSeasonTo().setSelectedIndex(htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbSeasonTo().getItemCount() - 1);
+            // specific league
+            sqlCode = "SELECT LEAGUE_LEVEL_UNIT_NAME FROM (SELECT DISTINCT LEAGUE_LEVEL_UNIT_ID, LEAGUE_LEVEL_UNIT_NAME FROM LEAGUES  WHERE TEAM_ID = "
+                    + htsquirrel.HTSquirrel.currentTeam.getTeamId() + " ORDER BY LEAGUE_LEVEL_UNIT_ID)";
+            Statement statement2 = db.createStatement();
+            ResultSet resultSet2 = statement2.executeQuery(sqlCode);
+            while (resultSet2.next()) {
+                String league = resultSet2.getString("LEAGUE_LEVEL_UNIT_NAME");
+                htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbLeague().addItem(league);
+            }
+            // league level from and to
+            sqlCode = "SELECT DISTINCT LEAGUE_LEVEL FROM LEAGUES WHERE TEAM_ID = "
+                    + htsquirrel.HTSquirrel.currentTeam.getTeamId() + " ORDER BY LEAGUE_LEVEL";
+            Statement statement3 = db.createStatement();
+            ResultSet resultSet3 = statement3.executeQuery(sqlCode);
+            while (resultSet3.next()) {
+                int level = resultSet3.getInt("LEAGUE_LEVEL");
+                htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbLeagueFrom().addItem(level);
+                htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbLeagueTo().addItem(level);
+            }
+            htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbLeagueTo().setSelectedIndex(htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbLeagueTo().getItemCount() - 1);
+            // date from and to
+            sqlCode = "SELECT TO_CHAR(MIN(MATCH_DATE), 'YYYY-MM-DD') AS FIRST_DATE,  TO_CHAR(MAX(MATCH_DATE) + 1, 'YYYY-MM-DD') AS LAST_DATE FROM MATCHES WHERE TEAM_ID = "
+                    + htsquirrel.HTSquirrel.currentTeam.getTeamId();
+            Statement statement4 = db.createStatement();
+            ResultSet resultSet4 = statement4.executeQuery(sqlCode);
+            while (resultSet4.next()) {
+                String firstDate = resultSet4.getString("FIRST_DATE");
+                String lastDate = resultSet4.getString("LAST_DATE");
+                htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getTfDateFrom().setText(firstDate);
+                htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getTfDateTo().setText(lastDate);
+            }
+            db.close();
+        } catch (IOException ex) {
+            Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void hideFilters() {

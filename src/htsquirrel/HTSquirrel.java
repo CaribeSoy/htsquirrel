@@ -27,6 +27,7 @@ import static htsquirrel.ConfigProperties.*;
 import static htsquirrel.database.DatabaseManagement.*;
 import htsquirrel.game.Team;
 import htsquirrel.gui.filters.MatchFilter;
+import static htsquirrel.gui.filters.MatchFilter.resetFilters;
 import java.awt.Component;
 import java.io.IOException;
 import java.sql.Connection;
@@ -67,6 +68,7 @@ public class HTSquirrel extends javax.swing.JFrame {
                 } else {
                     currentTeam = teams.get(0);
                     showTeamName();
+                    resetFilters();
                 }
             } catch (IOException ex) {
                 Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
@@ -494,6 +496,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         homeFilter.setVisible(true);
         darkenLabels();
         labelHome.setForeground(new java.awt.Color(204, 102, 0));
+        resetFilters(); // TODO make sure home cannot be shown without currentTeam set
     }
     
     public static void showRecords() {
