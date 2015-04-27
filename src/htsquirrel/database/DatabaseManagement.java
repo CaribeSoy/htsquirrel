@@ -25,6 +25,7 @@ package htsquirrel.database;
 
 import static htsquirrel.FileManagement.*;
 import htsquirrel.HTSquirrel;
+import htsquirrel.ReadSql;
 import htsquirrel.game.Booking;
 import htsquirrel.game.Cup;
 import htsquirrel.game.Event;
@@ -65,21 +66,6 @@ public class DatabaseManagement {
         Class.forName("org.h2.Driver");
         Connection connection = DriverManager.getConnection(dbUrl);
         return connection;
-    }
-
-    // convert sql code from file to string
-    public static String sqlToString(String sqlPath) throws IOException {
-        URL sqlUrl = new URL(HTSquirrel.getClassPath() + sqlPath);
-        InputStream inputStream = sqlUrl.openStream();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuilder stringBuilder = new StringBuilder();
-        String line = bufferedReader.readLine();
-        while (line != null) {
-            stringBuilder.append(line);
-            stringBuilder.append(" ");
-            line = bufferedReader.readLine();
-        }
-        return stringBuilder.toString();
     }
 
     // check if table exists
@@ -146,7 +132,8 @@ public class DatabaseManagement {
     // create teams table
     private static void createTeamsTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_teams.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_teams.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -155,7 +142,8 @@ public class DatabaseManagement {
     // create matches table
     private static void createMatchesTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_matches.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_matches.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -164,7 +152,8 @@ public class DatabaseManagement {
     // create match details table
     private static void createMatchDetailsTable(Connection connection)
             throws IOException, SQLException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_match_details.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_match_details.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -173,7 +162,8 @@ public class DatabaseManagement {
     // create cups table
     private static void createCupsTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_cups.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_cups.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -182,7 +172,8 @@ public class DatabaseManagement {
     // create referees table
     private static void createRefereesTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_referees.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_referees.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -191,7 +182,8 @@ public class DatabaseManagement {
     //create goals table
     private static void createGoalsTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_goals.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_goals.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -200,7 +192,8 @@ public class DatabaseManagement {
     // create bookings table
     private static void createBookingsTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_bookings.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_bookings.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -209,7 +202,8 @@ public class DatabaseManagement {
     // create injuries table
     private static void createInjuriesTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_injuries.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_injuries.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -218,7 +212,8 @@ public class DatabaseManagement {
     // create events table
     private static void createEventsTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_events.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_events.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -227,7 +222,8 @@ public class DatabaseManagement {
     // create transfers table
     private static void createTransfersTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_transfers.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_transfers.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -236,7 +232,8 @@ public class DatabaseManagement {
     // create league ids table
     private static void createLeagueIdsTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_league_ids.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_league_ids.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -245,7 +242,8 @@ public class DatabaseManagement {
     // create league names table
     private static void createLeagueNamesTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_league_names.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_league_names.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -254,7 +252,8 @@ public class DatabaseManagement {
     // create leagues table
     private static void createLeaguesTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_leagues.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_leagues.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -263,7 +262,8 @@ public class DatabaseManagement {
     // create matches extended table
     private static void createMatchesExtendedTable(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/create_table_matches_extended.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create_table_matches_extended.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -365,7 +365,8 @@ public class DatabaseManagement {
     public static ArrayList<Match> getMissingMatches(Connection connection,
             Team team) throws IOException, SQLException {
         ArrayList<Match> matches = new ArrayList<>();
-        String sqlCode = sqlToString("htsquirrel/database/sql/select_missing_matches.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/select_missing_matches.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlCode);
@@ -398,7 +399,8 @@ public class DatabaseManagement {
     public static int getNumberOfSeasons(Connection connection, Team team)
             throws IOException, SQLException {
         int seasons = 0;
-        String sqlCode = sqlToString("htsquirrel/database/sql/select_number_of_seasons.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/select_number_of_seasons.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlCode);
@@ -412,7 +414,8 @@ public class DatabaseManagement {
     public static ArrayList<Integer> getMissingSeasons(Connection connection,
             Team team) throws IOException, SQLException {
         ArrayList<Integer> seasons = new ArrayList<>();
-        String sqlCode = sqlToString("htsquirrel/database/sql/select_missing_seasons.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/select_missing_seasons.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlCode);
@@ -427,7 +430,8 @@ public class DatabaseManagement {
     public static int getMinSeason(Connection connection, Team team)
             throws IOException, SQLException {
         int season = 0;
-        String sqlCode = sqlToString("htsquirrel/database/sql/select_first_season.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/select_first_season.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlCode);
@@ -441,7 +445,8 @@ public class DatabaseManagement {
     public static int getMaxSeason(Connection connection, Team team)
             throws IOException, SQLException {
         int season = 0;
-        String sqlCode = sqlToString("htsquirrel/database/sql/select_last_season.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/select_last_season.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(team.getTeamId()));
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlCode);
@@ -455,7 +460,8 @@ public class DatabaseManagement {
     public static ArrayList<Integer> getLeagueIds(Connection connection)
             throws IOException, SQLException {
         ArrayList<Integer> leagueIds = new ArrayList<>();
-        String sqlCode = sqlToString("htsquirrel/database/sql/select_league_ids.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/select_league_ids.sql");
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlCode);
         while (resultSet.next()) {
@@ -540,7 +546,8 @@ public class DatabaseManagement {
 
     public static void insertIntoTeams(Connection connection, User user,
             Team team) throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_teams.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_teams.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_USER_ID\\b", String.valueOf(user.getUserId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_LOGIN_NAME\\b", user.getLoginName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("\\bVALUE_SUPPORTER_TIER\\b", user.getSupporterTier().replaceAll("'", "''"));
@@ -572,7 +579,8 @@ public class DatabaseManagement {
 
     public static void insertIntoMatches(Connection connection, Match match)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_matches.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_matches.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(match.getMatchId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(match.getTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_NAME\\b", match.getTeamName().replaceAll("'", "''"));
@@ -594,7 +602,8 @@ public class DatabaseManagement {
 
     public static void insertIntoCups(Connection connection, Cup cup)
             throws IOException, SQLException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_cups.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_cups.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(cup.getTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_TYPE\\b", String.valueOf(cup.getMatchType()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_CUP_ID\\b", String.valueOf(cup.getCupId()));
@@ -609,7 +618,8 @@ public class DatabaseManagement {
 
     public static void insertIntoMatchDetails(Connection connection,
             MatchDetails matchDetails) throws IOException, SQLException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_match_details.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_match_details.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(matchDetails.getMatchId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(matchDetails.getTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_NAME\\b", matchDetails.getTeamName().replaceAll("'", "''"));
@@ -671,7 +681,8 @@ public class DatabaseManagement {
     
     public static void insertIntoReferees(Connection connection,
             Referee referee) throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_referees.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_referees.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(referee.getMatchId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(referee.getTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_REFEREE_ROLE\\b", String.valueOf(referee.getRefereeRole()));
@@ -688,7 +699,8 @@ public class DatabaseManagement {
     
     public static void insertIntoGoals(Connection connection, Goal goal)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_goals.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_goals.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(goal.getMatchId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(goal.getTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_GOAL_INDEX\\b", String.valueOf(goal.getGoalIndex()));
@@ -705,7 +717,8 @@ public class DatabaseManagement {
     
     public static void insertIntoBookings(Connection connection, Booking booking)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_bookings.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_bookings.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(booking.getMatchId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(booking.getTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_BOOKING_INDEX\\b", String.valueOf(booking.getBookingIndex()));
@@ -721,7 +734,8 @@ public class DatabaseManagement {
     
     public static void insertIntoInjuries(Connection connection, Injury injury)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_injuries.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_injuries.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(injury.getMatchId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(injury.getTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_INJURY_INDEX\\b", String.valueOf(injury.getInjuryIndex()));
@@ -737,7 +751,8 @@ public class DatabaseManagement {
     
     public static void insertIntoEvents(Connection connection, Event event)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_events.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_events.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_MATCH_ID\\b", String.valueOf(event.getMatchId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(event.getTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_EVENT_INDEX\\b", String.valueOf(event.getEventIndex()));
@@ -755,7 +770,8 @@ public class DatabaseManagement {
     
     public static void insertIntoTransfers(Connection connection, Transfer transfer)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_transfers.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_transfers.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_TEAM_ID\\b", String.valueOf(transfer.getTeamId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_TRANSFER_ID\\b", String.valueOf(transfer.getTransferId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_DEADLINE\\b", String.valueOf(transfer.getDeadline()));
@@ -775,7 +791,8 @@ public class DatabaseManagement {
     
     public static void insertIntoLeagueIds(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_league_ids.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_league_ids.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -783,7 +800,8 @@ public class DatabaseManagement {
     
     public static void insertIntoLeagueNames(Connection connection, League league)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_league_names.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_league_names.sql");
         sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL_UNIT_ID\\b", String.valueOf(league.getLeagueLevelUnitId()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL\\b", String.valueOf(league.getLeagueLevel()));
         sqlCode = sqlCode.replaceAll("\\bVALUE_LEAGUE_LEVEL_UNIT_NAME\\b", league.getLeagueLevelUnitName().replaceAll("'", "''"));
@@ -794,7 +812,8 @@ public class DatabaseManagement {
     
     public static void insertIntoLeagues(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_leagues.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_leagues.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
@@ -802,7 +821,8 @@ public class DatabaseManagement {
     
     public static void insertIntoMatchesExtended(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/insert_into_matches_extended.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert_into_matches_extended.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

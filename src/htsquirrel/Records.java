@@ -23,15 +23,11 @@
  */
 package htsquirrel;
 
-import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
-import static htsquirrel.database.DatabaseManagement.sqlToString;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -61,7 +57,8 @@ public class Records {
     
     public static String matchFilterToSql()
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/match_filter.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/match_filter.sql");
         sqlCode = sqlCode.replaceAll("\\bV_TEAM_ID\\b", String.valueOf(htsquirrel.HTSquirrel.currentTeam.getTeamId()));
         sqlCode = sqlCode.replaceAll("\\bV_MATCH_TYPE_L\\b", String.valueOf(mapBoolean(htsquirrel.HTSquirrel.getMatchFilter().getMatchType().getCbLeague().isSelected(), 1, 999)));
         sqlCode = sqlCode.replaceAll("\\bV_MATCH_TYPE_Q\\b", String.valueOf(mapBoolean(htsquirrel.HTSquirrel.getMatchFilter().getMatchType().getCbQualification().isSelected(), 2, 999)));
@@ -91,7 +88,8 @@ public class Records {
     
     public static void showTotalTeamScore(Connection connection)
             throws SQLException, IOException {
-        String sqlCode = sqlToString("htsquirrel/database/sql/total_team_score.sql");
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/total_team_score.sql");
         sqlCode = sqlCode + " " + matchFilterToSql();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlCode);
