@@ -26,6 +26,8 @@ package htsquirrel.gui.pages;
 import static htsquirrel.ConfigProperties.*;
 import static htsquirrel.database.DatabaseManagement.*;
 import static htsquirrel.DownloadManagement.getSeason;
+import static htsquirrel.HTSquirrel.showTeamName;
+import static htsquirrel.HTSquirrel.teams;
 import static htsquirrel.OAuth.*;
 import static htsquirrel.Responses.*;
 import htsquirrel.game.*;
@@ -338,6 +340,14 @@ public class Download extends javax.swing.JPanel {
             // matches extended table
             deleteFromMatchesExtended(db);
             insertIntoMatchesExtended(db);
+            if (htsquirrel.HTSquirrel.teams.isEmpty()) {
+                String teamDetailsXml = getResponse(oAuthService, accessToken,
+                    "teamdetails&version=3.2");
+                User user = getUser(teamDetailsXml);
+                htsquirrel.HTSquirrel.teams = getTeams(db, user.getUserId());
+                htsquirrel.HTSquirrel.currentTeam = teams.get(0);
+                showTeamName();
+            }
             db.close();
             return null;
         }
