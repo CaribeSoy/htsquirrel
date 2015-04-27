@@ -71,6 +71,7 @@ public class MatchFilter extends javax.swing.JPanel {
         buttonCalculate = new javax.swing.JButton();
         panelCenter = new javax.swing.JPanel();
         matchType = new htsquirrel.gui.filters.MatchType();
+        period1 = new htsquirrel.gui.filters.Period();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -146,6 +147,7 @@ public class MatchFilter extends javax.swing.JPanel {
 
         panelCenter.setLayout(new java.awt.CardLayout());
         panelCenter.add(matchType, "card2");
+        panelCenter.add(period1, "card3");
 
         add(panelCenter, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -187,5 +189,6 @@ public class MatchFilter extends javax.swing.JPanel {
     private javax.swing.JPanel panelTop;
     private javax.swing.JPanel panelTopBlank;
     private javax.swing.JPanel panelTopMenu;
+    private htsquirrel.gui.filters.Period period1;
     // End of variables declaration//GEN-END:variables
 }
