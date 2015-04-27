@@ -24,9 +24,13 @@
 package htsquirrel.gui.pages;
 
 import static htsquirrel.ConfigProperties.*;
+import static htsquirrel.HTSquirrel.currentTeam;
 import static htsquirrel.HTSquirrel.showLabels;
+import static htsquirrel.HTSquirrel.showTeamName;
+import static htsquirrel.HTSquirrel.teams;
 import static htsquirrel.OAuth.*;
 import static htsquirrel.Responses.*;
+import static htsquirrel.database.DatabaseManagement.*;
 import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -37,6 +41,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
@@ -287,11 +293,23 @@ public class Authorization extends javax.swing.JPanel {
             jLabel7.setForeground(new java.awt.Color(0, 153, 51));
             jLabel7.setVisible(true);
             showLabels();
+            Connection db = createDatabaseConnection();
+            checkTablesExist(db);
+            htsquirrel.HTSquirrel.teams = getTeams(db, userId);
+            db.close();
+            if (!(htsquirrel.HTSquirrel.teams.isEmpty())) {
+                htsquirrel.HTSquirrel.currentTeam = teams.get(0);
+                showTeamName();
+            }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
         } catch (SAXException ex) {
             Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
         } catch (IOException ex) {
+            Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
+        } catch (SQLException ex) {
             Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
         }
     }//GEN-LAST:event_jButton1ActionPerformed

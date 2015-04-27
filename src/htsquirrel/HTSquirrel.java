@@ -66,10 +66,7 @@ public class HTSquirrel extends javax.swing.JFrame {
                     showDownload();
                 } else {
                     currentTeam = teams.get(0);
-                    labelTeamName.setText(currentTeam.getTeamName());
-                    if (teams.size() > 1) {
-                        labelSwitchTeam.setVisible(true);
-                    }
+                    showTeamName();
                 }
             } catch (IOException ex) {
                 Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex); // TODO add error message
@@ -484,6 +481,13 @@ public class HTSquirrel extends javax.swing.JFrame {
         }
     }
     
+    public static void showTeamName() {
+        labelTeamName.setText(currentTeam.getTeamName());
+        if (teams.size() > 1) {
+            labelSwitchTeam.setVisible(true);
+        }
+    }
+    
     public static void showHome () {
         hidePanels();
         panelHome.setVisible(true);
@@ -544,8 +548,8 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static javax.swing.JLabel labelHome;
     private static javax.swing.JLabel labelRecords;
     private static javax.swing.JLabel labelSettings;
-    private javax.swing.JLabel labelSwitchTeam;
-    private javax.swing.JLabel labelTeamName;
+    private static javax.swing.JLabel labelSwitchTeam;
+    private static javax.swing.JLabel labelTeamName;
     private static htsquirrel.gui.filters.MatchFilter matchFilter;
     private static htsquirrel.gui.pages.Authorization panelAuthorization;
     private static htsquirrel.gui.pages.BlankPage panelBlank;
