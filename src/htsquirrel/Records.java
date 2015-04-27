@@ -83,6 +83,35 @@ public class Records {
         sqlCode = sqlCode.replaceAll("\\bV_CUP_LEVEL_INDEX_DR\\b", String.valueOf(mapBoolean(htsquirrel.HTSquirrel.getMatchFilter().getMatchType().getCbDivisionalRuby().isSelected(), 2, 999)));
         sqlCode = sqlCode.replaceAll("\\bV_CUP_LEVEL_INDEX_DS\\b", String.valueOf(mapBoolean(htsquirrel.HTSquirrel.getMatchFilter().getMatchType().getCbDivisionalSapphire().isSelected(), 3, 999)));
         sqlCode = sqlCode.replaceAll("\\bV_CUP_LEVEL_DC\\b", String.valueOf(mapBoolean(htsquirrel.HTSquirrel.getMatchFilter().getMatchType().getCbDivisionalConsolation().isSelected(), 3, 999)));
+        String seasonFrom = "0";
+        String seasonTo = "999";
+        if (htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getRbSeason().isSelected()) {
+            seasonFrom = htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbSeasonFrom().getSelectedItem().toString();
+            seasonTo = htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbSeasonTo().getSelectedItem().toString();
+        }
+        String dateFrom = "1990-01-01";
+        String dateTo = "2100-01-01";
+        if (htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getRbDate().isSelected()) {
+            dateFrom = htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getTfDateFrom().getText();
+            dateTo = htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getTfDateTo().getText();
+        }
+        String leagueFrom = "0";
+        String leagueTo = "999";
+        if (htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getRbLeagueLevel().isSelected()) {
+            leagueFrom = htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbLeagueFrom().getSelectedItem().toString();
+            leagueTo = htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbLeagueTo().getSelectedItem().toString();
+        }
+        String league = "%";
+        if (htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getRbLeague().isSelected()) {
+            league = htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getCbLeague().getSelectedItem().toString();
+        }
+        sqlCode = sqlCode.replaceAll("\\bV_SEASON_FROM\\b", seasonFrom);
+        sqlCode = sqlCode.replaceAll("\\bV_SEASON_TO\\b", seasonTo);
+        sqlCode = sqlCode.replaceAll("\\bV_MATCH_DATE_FROM\\b", dateFrom);
+        sqlCode = sqlCode.replaceAll("\\bV_MATCH_DATE_TO\\b", dateTo);
+        sqlCode = sqlCode.replaceAll("\\bV_LEAGUE_LEVEL_FROM\\b", leagueFrom);
+        sqlCode = sqlCode.replaceAll("\\bV_LEAGUE_LEVEL_TO\\b", leagueTo);
+        sqlCode = sqlCode.replaceAll("\\bV_LEAGUE_LEVEL_UNIT_NAME\\b", league);
         return sqlCode;
     }
     
