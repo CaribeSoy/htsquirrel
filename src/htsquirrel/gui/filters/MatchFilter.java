@@ -25,6 +25,7 @@ package htsquirrel.gui.filters;
 
 import static htsquirrel.Records.*;
 import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
+import java.awt.Component;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -56,8 +57,8 @@ public class MatchFilter extends javax.swing.JPanel {
         panelTop = new javax.swing.JPanel();
         panelTopBlank = new javax.swing.JPanel();
         panelTopMenu = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        labelMatchType = new javax.swing.JLabel();
+        labelPeriod = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -71,7 +72,7 @@ public class MatchFilter extends javax.swing.JPanel {
         buttonCalculate = new javax.swing.JButton();
         panelCenter = new javax.swing.JPanel();
         matchType = new htsquirrel.gui.filters.MatchType();
-        period1 = new htsquirrel.gui.filters.Period();
+        period = new htsquirrel.gui.filters.Period();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -95,16 +96,40 @@ public class MatchFilter extends javax.swing.JPanel {
 
         panelTopMenu.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_on.png"))); // NOI18N
-        panelTopMenu.add(jLabel1);
+        labelMatchType.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_on.png"))); // NOI18N
+        labelMatchType.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelMatchType.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelMatchTypeMouseClicked(evt);
+            }
+        });
+        panelTopMenu.add(labelMatchType);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png"))); // NOI18N
-        panelTopMenu.add(jLabel2);
+        labelPeriod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png"))); // NOI18N
+        labelPeriod.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelPeriod.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelPeriodMouseClicked(evt);
+            }
+        });
+        panelTopMenu.add(labelPeriod);
+
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelTopMenu.add(jLabel3);
+
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelTopMenu.add(jLabel4);
+
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelTopMenu.add(jLabel5);
+
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelTopMenu.add(jLabel6);
+
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelTopMenu.add(jLabel7);
+
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelTopMenu.add(jLabel8);
 
         panelTop.add(panelTopMenu);
@@ -147,7 +172,7 @@ public class MatchFilter extends javax.swing.JPanel {
 
         panelCenter.setLayout(new java.awt.CardLayout());
         panelCenter.add(matchType, "card2");
-        panelCenter.add(period1, "card3");
+        panelCenter.add(period, "card3");
 
         add(panelCenter, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -166,15 +191,34 @@ public class MatchFilter extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_buttonCalculateActionPerformed
 
+    private void labelMatchTypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMatchTypeMouseClicked
+        hideFilters();
+        matchType.setVisible(true);
+        labelMatchType.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_on.png")));
+    }//GEN-LAST:event_labelMatchTypeMouseClicked
+
+    private void labelPeriodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPeriodMouseClicked
+        hideFilters();
+        period.setVisible(true);
+                labelPeriod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_on.png")));
+    }//GEN-LAST:event_labelPeriodMouseClicked
+
     public MatchType getMatchType() {
         return matchType;
     }
 
+    public void hideFilters() {
+        Component[] filters = panelCenter.getComponents();
+        for (Component filter : filters) {
+            filter.setVisible(false);
+        }
+        labelMatchType.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png")));
+        labelPeriod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png")));
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCalculate;
     private javax.swing.JButton buttonReset;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -183,12 +227,14 @@ public class MatchFilter extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelMatchType;
+    private javax.swing.JLabel labelPeriod;
     private htsquirrel.gui.filters.MatchType matchType;
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
     private javax.swing.JPanel panelTop;
     private javax.swing.JPanel panelTopBlank;
     private javax.swing.JPanel panelTopMenu;
-    private htsquirrel.gui.filters.Period period1;
+    private htsquirrel.gui.filters.Period period;
     // End of variables declaration//GEN-END:variables
 }
