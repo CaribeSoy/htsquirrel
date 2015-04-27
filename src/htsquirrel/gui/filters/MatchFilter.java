@@ -54,6 +54,8 @@ public class MatchFilter extends javax.swing.JPanel {
     private void initComponents() {
 
         panelTop = new javax.swing.JPanel();
+        panelTopBlank = new javax.swing.JPanel();
+        panelTopMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -72,20 +74,39 @@ public class MatchFilter extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        panelTop.setMaximumSize(new java.awt.Dimension(32767, 50));
-        panelTop.setMinimumSize(new java.awt.Dimension(100, 50));
-        panelTop.setPreferredSize(new java.awt.Dimension(400, 50));
-        panelTop.setLayout(new java.awt.GridLayout(1, 0));
+        panelTop.setMaximumSize(new java.awt.Dimension(32767, 100));
+        panelTop.setMinimumSize(new java.awt.Dimension(100, 100));
+        panelTop.setPreferredSize(new java.awt.Dimension(400, 100));
+        panelTop.setLayout(new java.awt.GridLayout(2, 1));
+
+        javax.swing.GroupLayout panelTopBlankLayout = new javax.swing.GroupLayout(panelTopBlank);
+        panelTopBlank.setLayout(panelTopBlankLayout);
+        panelTopBlankLayout.setHorizontalGroup(
+            panelTopBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        panelTopBlankLayout.setVerticalGroup(
+            panelTopBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        panelTop.add(panelTopBlank);
+
+        panelTopMenu.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_on.png"))); // NOI18N
-        panelTop.add(jLabel1);
-        panelTop.add(jLabel2);
-        panelTop.add(jLabel3);
-        panelTop.add(jLabel4);
-        panelTop.add(jLabel5);
-        panelTop.add(jLabel6);
-        panelTop.add(jLabel7);
-        panelTop.add(jLabel8);
+        panelTopMenu.add(jLabel1);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png"))); // NOI18N
+        panelTopMenu.add(jLabel2);
+        panelTopMenu.add(jLabel3);
+        panelTopMenu.add(jLabel4);
+        panelTopMenu.add(jLabel5);
+        panelTopMenu.add(jLabel6);
+        panelTopMenu.add(jLabel7);
+        panelTopMenu.add(jLabel8);
+
+        panelTop.add(panelTopMenu);
 
         add(panelTop, java.awt.BorderLayout.PAGE_START);
 
@@ -164,5 +185,7 @@ public class MatchFilter extends javax.swing.JPanel {
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
     private javax.swing.JPanel panelTop;
+    private javax.swing.JPanel panelTopBlank;
+    private javax.swing.JPanel panelTopMenu;
     // End of variables declaration//GEN-END:variables
 }
