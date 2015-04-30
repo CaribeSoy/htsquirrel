@@ -116,6 +116,7 @@ public class MatchFilter extends javax.swing.JPanel {
         });
         panelTopMenu.add(labelPeriod);
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png"))); // NOI18N
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelTopMenu.add(jLabel3);
 
