@@ -45,18 +45,136 @@ public class HTSquirrel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelTop = new javax.swing.JPanel();
+        panelHorizontalLine = new javax.swing.JPanel();
+        panelBottom = new javax.swing.JPanel();
+        panelLeft = new javax.swing.JPanel();
+        panelRight = new javax.swing.JPanel();
+        panelCenter = new javax.swing.JPanel();
+        panelHorizontalSpace = new javax.swing.JPanel();
+        panelVerticalLine = new javax.swing.JPanel();
+        panelPage = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelTop.setBackground(new java.awt.Color(51, 51, 51));
+        panelTop.setMaximumSize(new java.awt.Dimension(32767, 52));
+        panelTop.setMinimumSize(new java.awt.Dimension(100, 52));
+        panelTop.setPreferredSize(new java.awt.Dimension(1000, 52));
+        panelTop.setLayout(new java.awt.BorderLayout());
+
+        panelHorizontalLine.setBackground(new java.awt.Color(204, 102, 0));
+        panelHorizontalLine.setMaximumSize(new java.awt.Dimension(32767, 2));
+        panelHorizontalLine.setMinimumSize(new java.awt.Dimension(100, 2));
+        panelHorizontalLine.setPreferredSize(new java.awt.Dimension(1000, 2));
+
+        javax.swing.GroupLayout panelHorizontalLineLayout = new javax.swing.GroupLayout(panelHorizontalLine);
+        panelHorizontalLine.setLayout(panelHorizontalLineLayout);
+        panelHorizontalLineLayout.setHorizontalGroup(
+            panelHorizontalLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        panelHorizontalLineLayout.setVerticalGroup(
+            panelHorizontalLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+
+        panelTop.add(panelHorizontalLine, java.awt.BorderLayout.PAGE_END);
+
+        getContentPane().add(panelTop, java.awt.BorderLayout.PAGE_START);
+
+        panelBottom.setBackground(new java.awt.Color(51, 51, 51));
+        panelBottom.setMaximumSize(new java.awt.Dimension(32767, 5));
+        panelBottom.setMinimumSize(new java.awt.Dimension(100, 5));
+        panelBottom.setPreferredSize(new java.awt.Dimension(1000, 5));
+
+        javax.swing.GroupLayout panelBottomLayout = new javax.swing.GroupLayout(panelBottom);
+        panelBottom.setLayout(panelBottomLayout);
+        panelBottomLayout.setHorizontalGroup(
+            panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        panelBottomLayout.setVerticalGroup(
+            panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(panelBottom, java.awt.BorderLayout.PAGE_END);
+
+        panelLeft.setBackground(new java.awt.Color(102, 102, 102));
+        panelLeft.setMaximumSize(new java.awt.Dimension(400, 32767));
+        panelLeft.setMinimumSize(new java.awt.Dimension(400, 100));
+
+        javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
+        panelLeft.setLayout(panelLeftLayout);
+        panelLeftLayout.setHorizontalGroup(
+            panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        panelLeftLayout.setVerticalGroup(
+            panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 693, Short.MAX_VALUE)
         );
+
+        getContentPane().add(panelLeft, java.awt.BorderLayout.LINE_START);
+
+        panelRight.setMaximumSize(new java.awt.Dimension(5, 32767));
+        panelRight.setMinimumSize(new java.awt.Dimension(5, 100));
+        panelRight.setPreferredSize(new java.awt.Dimension(5, 694));
+
+        javax.swing.GroupLayout panelRightLayout = new javax.swing.GroupLayout(panelRight);
+        panelRight.setLayout(panelRightLayout);
+        panelRightLayout.setHorizontalGroup(
+            panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+        panelRightLayout.setVerticalGroup(
+            panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 693, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(panelRight, java.awt.BorderLayout.LINE_END);
+
+        panelCenter.setLayout(new java.awt.BorderLayout());
+
+        panelHorizontalSpace.setMaximumSize(new java.awt.Dimension(50, 32767));
+        panelHorizontalSpace.setMinimumSize(new java.awt.Dimension(50, 100));
+        panelHorizontalSpace.setPreferredSize(new java.awt.Dimension(50, 693));
+        panelHorizontalSpace.setLayout(new java.awt.BorderLayout());
+
+        panelVerticalLine.setMaximumSize(new java.awt.Dimension(1, 32767));
+        panelVerticalLine.setMinimumSize(new java.awt.Dimension(1, 100));
+        panelVerticalLine.setPreferredSize(new java.awt.Dimension(1, 693));
+
+        javax.swing.GroupLayout panelVerticalLineLayout = new javax.swing.GroupLayout(panelVerticalLine);
+        panelVerticalLine.setLayout(panelVerticalLineLayout);
+        panelVerticalLineLayout.setHorizontalGroup(
+            panelVerticalLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+        panelVerticalLineLayout.setVerticalGroup(
+            panelVerticalLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 693, Short.MAX_VALUE)
+        );
+
+        panelHorizontalSpace.add(panelVerticalLine, java.awt.BorderLayout.LINE_START);
+
+        panelCenter.add(panelHorizontalSpace, java.awt.BorderLayout.LINE_START);
+
+        javax.swing.GroupLayout panelPageLayout = new javax.swing.GroupLayout(panelPage);
+        panelPage.setLayout(panelPageLayout);
+        panelPageLayout.setHorizontalGroup(
+            panelPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelPageLayout.setVerticalGroup(
+            panelPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 693, Short.MAX_VALUE)
+        );
+
+        panelCenter.add(panelPage, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(panelCenter, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -97,5 +215,14 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel panelBottom;
+    private javax.swing.JPanel panelCenter;
+    private javax.swing.JPanel panelHorizontalLine;
+    private javax.swing.JPanel panelHorizontalSpace;
+    private javax.swing.JPanel panelLeft;
+    private javax.swing.JPanel panelPage;
+    private javax.swing.JPanel panelRight;
+    private javax.swing.JPanel panelTop;
+    private javax.swing.JPanel panelVerticalLine;
     // End of variables declaration//GEN-END:variables
 }
