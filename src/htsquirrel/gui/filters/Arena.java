@@ -46,377 +46,377 @@ public class Arena extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel3 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
-        jLabel5 = new javax.swing.JLabel();
-        jSpinner3 = new javax.swing.JSpinner();
-        jLabel6 = new javax.swing.JLabel();
-        jSpinner4 = new javax.swing.JSpinner();
+        panelAll = new javax.swing.JPanel();
+        panelVenue = new javax.swing.JPanel();
+        cbHome = new javax.swing.JCheckBox();
+        cbAway = new javax.swing.JCheckBox();
+        panelSpectators = new javax.swing.JPanel();
+        cbTotal = new javax.swing.JCheckBox();
+        labelTotalFrom = new javax.swing.JLabel();
+        sTotalFrom = new javax.swing.JSpinner();
+        labelTotalTo = new javax.swing.JLabel();
+        sTotalTo = new javax.swing.JSpinner();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jSpinner5 = new javax.swing.JSpinner();
-        jLabel9 = new javax.swing.JLabel();
-        jSpinner6 = new javax.swing.JSpinner();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jSpinner7 = new javax.swing.JSpinner();
-        jLabel12 = new javax.swing.JLabel();
-        jSpinner8 = new javax.swing.JSpinner();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jSpinner9 = new javax.swing.JSpinner();
-        jLabel15 = new javax.swing.JLabel();
-        jSpinner10 = new javax.swing.JSpinner();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        cbByType = new javax.swing.JCheckBox();
+        labelTerraces = new javax.swing.JLabel();
+        labelTerracesFrom = new javax.swing.JLabel();
+        sTerracesFrom = new javax.swing.JSpinner();
+        labelTerracesTo = new javax.swing.JLabel();
+        sTerracesTo = new javax.swing.JSpinner();
+        labelBasic = new javax.swing.JLabel();
+        labelBasicFrom = new javax.swing.JLabel();
+        sBasicFrom = new javax.swing.JSpinner();
+        labelBasicTo = new javax.swing.JLabel();
+        sBasicTo = new javax.swing.JSpinner();
+        labelRoof = new javax.swing.JLabel();
+        labelRoofFrom = new javax.swing.JLabel();
+        sRoofFrom = new javax.swing.JSpinner();
+        labelRoofTo = new javax.swing.JLabel();
+        sRoofTo = new javax.swing.JSpinner();
+        labelVip = new javax.swing.JLabel();
+        labelVipFrom = new javax.swing.JLabel();
+        sVipFrom = new javax.swing.JSpinner();
+        labelVipTo = new javax.swing.JLabel();
+        sVipTo = new javax.swing.JSpinner();
+        panelWeather = new javax.swing.JPanel();
+        cbSunny = new javax.swing.JCheckBox();
+        cbPartiallyCloudy = new javax.swing.JCheckBox();
+        cbCloudy = new javax.swing.JCheckBox();
+        cbRainy = new javax.swing.JCheckBox();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setLayout(new java.awt.CardLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Venue", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
+        panelVenue.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Venue", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
 
-        jCheckBox7.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox7.setSelected(true);
-        jCheckBox7.setText("Home");
+        cbHome.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbHome.setSelected(true);
+        cbHome.setText("Home");
 
-        jCheckBox8.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox8.setSelected(true);
-        jCheckBox8.setText("Away");
+        cbAway.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbAway.setSelected(true);
+        cbAway.setText("Away");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelVenueLayout = new javax.swing.GroupLayout(panelVenue);
+        panelVenue.setLayout(panelVenueLayout);
+        panelVenueLayout.setHorizontalGroup(
+            panelVenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelVenueLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox7)
-                    .addComponent(jCheckBox8))
+                .addGroup(panelVenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbHome)
+                    .addComponent(cbAway))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        panelVenueLayout.setVerticalGroup(
+            panelVenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelVenueLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCheckBox7)
+                .addComponent(cbHome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox8))
+                .addComponent(cbAway))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Spectators", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
+        panelSpectators.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Spectators", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel2.setText("From:");
+        cbTotal.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbTotal.setSelected(true);
+        cbTotal.setText("Total");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        labelTotalFrom.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelTotalFrom.setText("From:");
 
-        jLabel3.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel3.setText("To:");
+        sTotalFrom.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        labelTotalTo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelTotalTo.setText("To:");
 
-        jLabel5.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel5.setText("From:");
-
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
-
-        jLabel6.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel6.setText("To:");
-
-        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        sTotalTo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
         jSeparator1.setMaximumSize(new java.awt.Dimension(32767, 1));
         jSeparator1.setMinimumSize(new java.awt.Dimension(50, 1));
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 1));
 
-        jLabel7.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
-        jLabel7.setText("Basic");
+        cbByType.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbByType.setText("By type");
 
-        jLabel8.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel8.setText("From:");
+        labelTerraces.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        labelTerraces.setText("Terraces");
 
-        jSpinner5.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        labelTerracesFrom.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelTerracesFrom.setText("From:");
 
-        jLabel9.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel9.setText("To:");
+        sTerracesFrom.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jSpinner6.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        labelTerracesTo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelTerracesTo.setText("To:");
 
-        jLabel10.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
-        jLabel10.setText("Roof");
+        sTerracesTo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jLabel11.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel11.setText("From:");
+        labelBasic.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        labelBasic.setText("Basic");
 
-        jSpinner7.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        labelBasicFrom.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelBasicFrom.setText("From:");
 
-        jLabel12.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel12.setText("To:");
+        sBasicFrom.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jSpinner8.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        labelBasicTo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelBasicTo.setText("To:");
 
-        jLabel13.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
-        jLabel13.setText("VIP");
+        sBasicTo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jLabel14.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel14.setText("From:");
+        labelRoof.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        labelRoof.setText("Roof");
 
-        jSpinner9.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        labelRoofFrom.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelRoofFrom.setText("From:");
 
-        jLabel15.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jLabel15.setText("To:");
+        sRoofFrom.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jSpinner10.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        labelRoofTo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelRoofTo.setText("To:");
 
-        jCheckBox5.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox5.setSelected(true);
-        jCheckBox5.setText("Total");
+        sRoofTo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jCheckBox6.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox6.setText("By type");
+        labelVip.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        labelVip.setText("VIP");
 
-        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
-        jLabel1.setText("Terraces");
+        labelVipFrom.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelVipFrom.setText("From:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        sVipFrom.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+
+        labelVipTo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        labelVipTo.setText("To:");
+
+        sVipTo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+
+        javax.swing.GroupLayout panelSpectatorsLayout = new javax.swing.GroupLayout(panelSpectators);
+        panelSpectators.setLayout(panelSpectatorsLayout);
+        panelSpectatorsLayout.setHorizontalGroup(
+            panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSpectatorsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                    .addGroup(panelSpectatorsLayout.createSequentialGroup()
+                        .addGroup(panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelSpectatorsLayout.createSequentialGroup()
+                                .addComponent(labelTotalFrom)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sTotalFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
+                                .addComponent(labelTotalTo)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel10)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
+                                .addComponent(sTotalTo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelBasic)
+                            .addComponent(labelRoof)
+                            .addGroup(panelSpectatorsLayout.createSequentialGroup()
+                                .addGroup(panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSpectatorsLayout.createSequentialGroup()
+                                        .addComponent(labelVipFrom)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jSpinner9))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
+                                        .addComponent(sVipFrom))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSpectatorsLayout.createSequentialGroup()
+                                        .addComponent(labelRoofFrom)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jSpinner7))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
+                                        .addComponent(sRoofFrom))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSpectatorsLayout.createSequentialGroup()
+                                        .addComponent(labelBasicFrom)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jSpinner5))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
+                                        .addComponent(sBasicFrom))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSpectatorsLayout.createSequentialGroup()
+                                        .addComponent(labelTerracesFrom)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(sTerracesFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
+                                .addGroup(panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelSpectatorsLayout.createSequentialGroup()
+                                        .addComponent(labelTerracesTo)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
+                                        .addComponent(sTerracesTo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelSpectatorsLayout.createSequentialGroup()
+                                        .addComponent(labelBasicTo)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jSpinner6))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
+                                        .addComponent(sBasicTo))
+                                    .addGroup(panelSpectatorsLayout.createSequentialGroup()
+                                        .addComponent(labelRoofTo)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jSpinner8))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel15)
+                                        .addComponent(sRoofTo))
+                                    .addGroup(panelSpectatorsLayout.createSequentialGroup()
+                                        .addComponent(labelVipTo)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jSpinner10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jCheckBox5)
-                            .addComponent(jLabel13)
-                            .addComponent(jCheckBox6)
-                            .addComponent(jLabel1))
+                                        .addComponent(sVipTo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbTotal)
+                            .addComponent(labelVip)
+                            .addComponent(cbByType)
+                            .addComponent(labelTerraces))
                         .addGap(0, 92, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelSpectatorsLayout.setVerticalGroup(
+            panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSpectatorsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCheckBox5)
+                .addComponent(cbTotal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTotalFrom)
+                    .addComponent(sTotalFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTotalTo)
+                    .addComponent(sTotalTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox6)
+                .addComponent(cbByType)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(labelTerraces)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTerracesFrom)
+                    .addComponent(sTerracesFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTerracesTo)
+                    .addComponent(sTerracesTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(labelBasic)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jSpinner6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelBasicFrom)
+                    .addComponent(sBasicFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelBasicTo)
+                    .addComponent(sBasicTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
+                .addComponent(labelRoof)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jSpinner7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
-                    .addComponent(jSpinner8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelRoofFrom)
+                    .addComponent(sRoofFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelRoofTo)
+                    .addComponent(sRoofTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
+                .addComponent(labelVip)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jSpinner9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(jSpinner10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelVipFrom)
+                    .addComponent(sVipFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelVipTo)
+                    .addComponent(sVipTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Weather", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
+        panelWeather.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Weather", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 12))); // NOI18N
 
-        jCheckBox1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Sunny");
+        cbSunny.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbSunny.setSelected(true);
+        cbSunny.setText("Sunny");
 
-        jCheckBox2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox2.setSelected(true);
-        jCheckBox2.setText("Partially cloudy");
+        cbPartiallyCloudy.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbPartiallyCloudy.setSelected(true);
+        cbPartiallyCloudy.setText("Partially cloudy");
 
-        jCheckBox3.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox3.setSelected(true);
-        jCheckBox3.setText("Cloudy");
+        cbCloudy.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbCloudy.setSelected(true);
+        cbCloudy.setText("Cloudy");
 
-        jCheckBox4.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        jCheckBox4.setSelected(true);
-        jCheckBox4.setText("Rainy");
+        cbRainy.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        cbRainy.setSelected(true);
+        cbRainy.setText("Rainy");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelWeatherLayout = new javax.swing.GroupLayout(panelWeather);
+        panelWeather.setLayout(panelWeatherLayout);
+        panelWeatherLayout.setHorizontalGroup(
+            panelWeatherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelWeatherLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox4))
+                .addGroup(panelWeatherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbSunny)
+                    .addComponent(cbPartiallyCloudy)
+                    .addComponent(cbCloudy)
+                    .addComponent(cbRainy))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        panelWeatherLayout.setVerticalGroup(
+            panelWeatherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelWeatherLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCheckBox1)
+                .addComponent(cbSunny)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2)
+                .addComponent(cbPartiallyCloudy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
+                .addComponent(cbCloudy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4))
+                .addComponent(cbRainy))
         );
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelAllLayout = new javax.swing.GroupLayout(panelAll);
+        panelAll.setLayout(panelAllLayout);
+        panelAllLayout.setHorizontalGroup(
+            panelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAllLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelVenue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelSpectators, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelWeather, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        panelAllLayout.setVerticalGroup(
+            panelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAllLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelVenue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelSpectators, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelWeather, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setViewportView(jPanel4);
+        jScrollPane1.setViewportView(panelAll);
 
         add(jScrollPane1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JCheckBox cbAway;
+    private javax.swing.JCheckBox cbByType;
+    private javax.swing.JCheckBox cbCloudy;
+    private javax.swing.JCheckBox cbHome;
+    private javax.swing.JCheckBox cbPartiallyCloudy;
+    private javax.swing.JCheckBox cbRainy;
+    private javax.swing.JCheckBox cbSunny;
+    private javax.swing.JCheckBox cbTotal;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner10;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JSpinner jSpinner5;
-    private javax.swing.JSpinner jSpinner6;
-    private javax.swing.JSpinner jSpinner7;
-    private javax.swing.JSpinner jSpinner8;
-    private javax.swing.JSpinner jSpinner9;
+    private javax.swing.JLabel labelBasic;
+    private javax.swing.JLabel labelBasicFrom;
+    private javax.swing.JLabel labelBasicTo;
+    private javax.swing.JLabel labelRoof;
+    private javax.swing.JLabel labelRoofFrom;
+    private javax.swing.JLabel labelRoofTo;
+    private javax.swing.JLabel labelTerraces;
+    private javax.swing.JLabel labelTerracesFrom;
+    private javax.swing.JLabel labelTerracesTo;
+    private javax.swing.JLabel labelTotalFrom;
+    private javax.swing.JLabel labelTotalTo;
+    private javax.swing.JLabel labelVip;
+    private javax.swing.JLabel labelVipFrom;
+    private javax.swing.JLabel labelVipTo;
+    private javax.swing.JPanel panelAll;
+    private javax.swing.JPanel panelSpectators;
+    private javax.swing.JPanel panelVenue;
+    private javax.swing.JPanel panelWeather;
+    private javax.swing.JSpinner sBasicFrom;
+    private javax.swing.JSpinner sBasicTo;
+    private javax.swing.JSpinner sRoofFrom;
+    private javax.swing.JSpinner sRoofTo;
+    private javax.swing.JSpinner sTerracesFrom;
+    private javax.swing.JSpinner sTerracesTo;
+    private javax.swing.JSpinner sTotalFrom;
+    private javax.swing.JSpinner sTotalTo;
+    private javax.swing.JSpinner sVipFrom;
+    private javax.swing.JSpinner sVipTo;
     // End of variables declaration//GEN-END:variables
 }
