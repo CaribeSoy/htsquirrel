@@ -62,7 +62,7 @@ public class MatchFilter extends javax.swing.JPanel {
         labelMatchType = new javax.swing.JLabel();
         labelPeriod = new javax.swing.JLabel();
         labelArena = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        labelFormation = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -126,8 +126,9 @@ public class MatchFilter extends javax.swing.JPanel {
         });
         panelTopMenu.add(labelArena);
 
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelTopMenu.add(jLabel4);
+        labelFormation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/formation_off.png"))); // NOI18N
+        labelFormation.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelTopMenu.add(labelFormation);
 
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelTopMenu.add(jLabel5);
@@ -342,7 +343,6 @@ public class MatchFilter extends javax.swing.JPanel {
     private htsquirrel.gui.filters.Arena arena;
     private javax.swing.JButton buttonCalculate;
     private javax.swing.JButton buttonReset;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -350,6 +350,7 @@ public class MatchFilter extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelArena;
+    private javax.swing.JLabel labelFormation;
     private javax.swing.JLabel labelMatchType;
     private javax.swing.JLabel labelPeriod;
     private htsquirrel.gui.filters.MatchType matchType;
