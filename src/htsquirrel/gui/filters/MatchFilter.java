@@ -283,6 +283,41 @@ public class MatchFilter extends javax.swing.JPanel {
                 htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getTfDateFrom().setText(firstDate);
                 htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getTfDateTo().setText(lastDate);
             }
+            // arena
+            htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbHome().setSelected(true);
+            htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbAway().setSelected(true);
+            htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbTotal().setSelected(true);
+            htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbByType().setSelected(false);
+            htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbRainy().setSelected(true);
+            htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbCloudy().setSelected(true);
+            htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbPartiallyCloudy().setSelected(true);
+            htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbSunny().setSelected(true);
+            sqlCode = "SELECT MAX(SOLD_TOTAL), MAX(SOLD_TERRACES), MAX(SOLD_BASIC), MAX(SOLD_ROOF), MAX(SOLD_VIP) FROM MATCHES_EXTENDED WHERE TEAM_ID = "
+                    + htsquirrel.HTSquirrel.currentTeam.getTeamId();
+            Statement statement5 = db.createStatement();
+            ResultSet resultSet5 = statement5.executeQuery(sqlCode);
+            while (resultSet5.next()) {
+                double maxTotal = resultSet5.getDouble(1);
+                double maxTerraces = resultSet5.getDouble(2);
+                double maxBasic = resultSet5.getDouble(3);
+                double maxRoof = resultSet5.getDouble(4);
+                double maxVip = resultSet5.getDouble(5);
+                maxTotal = Math.ceil(maxTotal / 1000) * 1000;
+                maxTerraces = Math.ceil(maxTerraces / 1000) * 1000;
+                maxBasic = Math.ceil(maxBasic / 1000) * 1000;
+                maxRoof = Math.ceil(maxRoof / 1000) * 1000;
+                maxVip = Math.ceil(maxVip / 1000) * 1000;
+                htsquirrel.HTSquirrel.getMatchFilter().getArena().getsTotalFrom().setValue(0);
+                htsquirrel.HTSquirrel.getMatchFilter().getArena().getsTotalTo().setValue(maxTotal);
+                htsquirrel.HTSquirrel.getMatchFilter().getArena().getsTerracesFrom().setValue(0);
+                htsquirrel.HTSquirrel.getMatchFilter().getArena().getsTerracesTo().setValue(maxTerraces);
+                htsquirrel.HTSquirrel.getMatchFilter().getArena().getsBasicFrom().setValue(0);
+                htsquirrel.HTSquirrel.getMatchFilter().getArena().getsBasicTo().setValue(maxBasic);
+                htsquirrel.HTSquirrel.getMatchFilter().getArena().getsRoofFrom().setValue(0);
+                htsquirrel.HTSquirrel.getMatchFilter().getArena().getsRoofTo().setValue(maxRoof);
+                htsquirrel.HTSquirrel.getMatchFilter().getArena().getsVipFrom().setValue(0);
+                htsquirrel.HTSquirrel.getMatchFilter().getArena().getsVipTo().setValue(maxVip);
+            }
             db.close();
         } catch (IOException ex) {
             Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
