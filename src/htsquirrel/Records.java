@@ -112,6 +112,44 @@ public class Records {
         sqlCode = sqlCode.replaceAll("\\bV_LEAGUE_LEVEL_FROM\\b", leagueFrom);
         sqlCode = sqlCode.replaceAll("\\bV_LEAGUE_LEVEL_TO\\b", leagueTo);
         sqlCode = sqlCode.replaceAll("\\bV_LEAGUE_LEVEL_UNIT_NAME\\b", league);
+        String venue = "('999'";
+        if (htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbHome().isSelected()) {
+            venue = venue + ", 'Home'";
+        }
+        if (htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbAway().isSelected()) {
+            venue = venue + ", 'Away'";
+        }
+        venue = venue + ")";
+        sqlCode = sqlCode.replaceAll("\\bV_VENUE\\b", venue);
+        if (htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbTotal().isSelected()) {
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_TOTAL_FROM\\b", String.valueOf(htsquirrel.HTSquirrel.getMatchFilter().getArena().getsTotalFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_TOTAL_TO\\b", String.valueOf(htsquirrel.HTSquirrel.getMatchFilter().getArena().getsTotalTo().getValue()));
+        } else {
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_TOTAL_FROM\\b", "0");
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_TOTAL_TO\\b", "999999");
+        }
+        if (htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbByType().isSelected()) {
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_TERRACES_FROM\\b", String.valueOf(htsquirrel.HTSquirrel.getMatchFilter().getArena().getsTerracesFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_TERRACES_TO\\b", String.valueOf(htsquirrel.HTSquirrel.getMatchFilter().getArena().getsTerracesTo().getValue()));
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_BASIC_FROM\\b", String.valueOf(htsquirrel.HTSquirrel.getMatchFilter().getArena().getsBasicFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_BASIC_TO\\b", String.valueOf(htsquirrel.HTSquirrel.getMatchFilter().getArena().getsBasicTo().getValue()));
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_ROOF_FROM\\b", String.valueOf(htsquirrel.HTSquirrel.getMatchFilter().getArena().getsRoofFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_ROOF_TO\\b", String.valueOf(htsquirrel.HTSquirrel.getMatchFilter().getArena().getsRoofTo().getValue()));
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_VIP_FROM\\b", String.valueOf(htsquirrel.HTSquirrel.getMatchFilter().getArena().getsVipFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("\\bV_SOLD_VIP_TO\\b", String.valueOf(htsquirrel.HTSquirrel.getMatchFilter().getArena().getsVipTo().getValue()));
+        } else {
+            sqlCode = sqlCode.replaceAll("AND SOLD_TERRACES BETWEEN V_SOLD_TERRACES_FROM AND V_SOLD_TERRACES_TO", "");
+            sqlCode = sqlCode.replaceAll("AND SOLD_BASIC BETWEEN V_SOLD_BASIC_FROM AND V_SOLD_BASIC_TO", "");
+            sqlCode = sqlCode.replaceAll("AND SOLD_ROOF BETWEEN V_SOLD_ROOF_FROM AND V_SOLD_ROOF_TO", "");
+            sqlCode = sqlCode.replaceAll("AND SOLD_VIP BETWEEN V_SOLD_VIP_FROM AND V_SOLD_VIP_TO", "");
+        }
+        String weather = "(999";
+        if (htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbRainy().isSelected()) weather = weather + ", 0";
+        if (htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbCloudy().isSelected()) weather = weather + ", 1";
+        if (htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbPartiallyCloudy().isSelected()) weather = weather + ", 2";
+        if (htsquirrel.HTSquirrel.getMatchFilter().getArena().getCbSunny().isSelected()) weather = weather + ", 3";
+        weather = weather + ")";
+        sqlCode = sqlCode.replaceAll("\\bV_WEATHER_ID\\b", weather);
         return sqlCode;
     }
     

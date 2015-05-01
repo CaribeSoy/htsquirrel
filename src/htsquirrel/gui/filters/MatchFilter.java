@@ -226,6 +226,10 @@ public class MatchFilter extends javax.swing.JPanel {
     public Period getPeriod() {
         return period;
     }
+
+    public Arena getArena() {
+        return arena;
+    }
     
     public static void resetFilters() {
         htsquirrel.HTSquirrel.getMatchFilter().getPeriod().getRbSeason().setSelected(true);

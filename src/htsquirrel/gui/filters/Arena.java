@@ -23,6 +23,9 @@
  */
 package htsquirrel.gui.filters;
 
+import javax.swing.JCheckBox;
+import javax.swing.JSpinner;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -377,6 +380,78 @@ public class Arena extends javax.swing.JPanel {
 
         add(jScrollPane1, "card2");
     }// </editor-fold>//GEN-END:initComponents
+
+    public JCheckBox getCbAway() {
+        return cbAway;
+    }
+
+    public JCheckBox getCbByType() {
+        return cbByType;
+    }
+
+    public JCheckBox getCbCloudy() {
+        return cbCloudy;
+    }
+
+    public JCheckBox getCbHome() {
+        return cbHome;
+    }
+
+    public JCheckBox getCbPartiallyCloudy() {
+        return cbPartiallyCloudy;
+    }
+
+    public JCheckBox getCbRainy() {
+        return cbRainy;
+    }
+
+    public JCheckBox getCbSunny() {
+        return cbSunny;
+    }
+
+    public JCheckBox getCbTotal() {
+        return cbTotal;
+    }
+
+    public JSpinner getsBasicFrom() {
+        return sBasicFrom;
+    }
+
+    public JSpinner getsBasicTo() {
+        return sBasicTo;
+    }
+
+    public JSpinner getsRoofFrom() {
+        return sRoofFrom;
+    }
+
+    public JSpinner getsRoofTo() {
+        return sRoofTo;
+    }
+
+    public JSpinner getsTerracesFrom() {
+        return sTerracesFrom;
+    }
+
+    public JSpinner getsTerracesTo() {
+        return sTerracesTo;
+    }
+
+    public JSpinner getsTotalFrom() {
+        return sTotalFrom;
+    }
+
+    public JSpinner getsTotalTo() {
+        return sTotalTo;
+    }
+
+    public JSpinner getsVipFrom() {
+        return sVipFrom;
+    }
+
+    public JSpinner getsVipTo() {
+        return sVipTo;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
