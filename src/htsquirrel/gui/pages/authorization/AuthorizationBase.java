@@ -298,6 +298,7 @@ public class AuthorizationBase extends javax.swing.JPanel {
         requestToken = getRequestToken(oAuthService);
         textField1.setText(oAuthService.getAuthorizationUrl(requestToken));
         textField1.selectAll();
+        textField1.requestFocus();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

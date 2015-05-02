@@ -57,6 +57,8 @@ public class HTSquirrel extends javax.swing.JFrame {
             applyTheme();
             if ("".equals(getLanguage())) {
                 showLanguage();
+            } else {
+                
             }
         } catch (IOException ex) {
             Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
@@ -410,8 +412,8 @@ public class HTSquirrel extends javax.swing.JFrame {
     
     public static void showAuthorization() {
         hideBigPages();
-        pageAuthorization.getAuthorizationBase1().refreshAuthorization();
         pageAuthorization.setVisible(true);
+        pageAuthorization.getAuthorizationBase1().refreshAuthorization();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

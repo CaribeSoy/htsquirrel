@@ -24,6 +24,7 @@
 package htsquirrel.gui.pages.language;
 
 import static htsquirrel.HTSquirrel.setLanguage;
+import static htsquirrel.HTSquirrel.showAuthorization;
 import static htsquirrel.utilities.ConfigProperties.saveConfigProperties;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -104,6 +105,7 @@ public class LanguageBase extends javax.swing.JPanel {
         setLanguage(comboBoxLanguage.getSelectedItem().toString());
         try {
             saveConfigProperties();
+            showAuthorization();
         } catch (IOException ex) {
             Logger.getLogger(LanguageBase.class.getName()).log(Level.SEVERE, null, ex);
         }
