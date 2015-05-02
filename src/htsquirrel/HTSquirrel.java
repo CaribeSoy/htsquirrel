@@ -23,14 +23,18 @@
  */
 package htsquirrel;
 
+import static htsquirrel.utilities.ConfigProperties.getAccessTokenProperty;
 import static htsquirrel.utilities.ConfigProperties.getLanguageProperty;
 import static htsquirrel.utilities.ConfigProperties.getThemeProperty;
+import static htsquirrel.utilities.ConfigProperties.getUserIdProperty;
 import static htsquirrel.utilities.ConfigProperties.saveConfigProperties;
+import java.awt.Component;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
+import org.scribe.model.Token;
 
 /**
  *
@@ -43,11 +47,17 @@ public class HTSquirrel extends javax.swing.JFrame {
      */
     public HTSquirrel() {
         initComponents();
+        hideBigPages();
         try {
             setTheme(getThemeProperty());
             setLanguage(getLanguageProperty());
+            setAccessToken(getAccessTokenProperty());
+            setUserId(getUserIdProperty());
             saveConfigProperties();
             applyTheme();
+            if ("".equals(getLanguage())) {
+                showLanguage();
+            }
         } catch (IOException ex) {
             Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,7 +88,8 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelMain = new javax.swing.JPanel();
         panelHorizontalSeparator = new javax.swing.JPanel();
         panelBigPage = new javax.swing.JPanel();
-        language1 = new htsquirrel.gui.pages.language.Language();
+        pageLanguage = new htsquirrel.gui.pages.language.Language();
+        pageAuthorization = new htsquirrel.gui.pages.authorization.Authorization();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -276,7 +287,8 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelMain.add(panelHorizontalSeparator, java.awt.BorderLayout.PAGE_START);
 
         panelBigPage.setLayout(new java.awt.CardLayout());
-        panelBigPage.add(language1, "card2");
+        panelBigPage.add(pageLanguage, "card2");
+        panelBigPage.add(pageAuthorization, "card3");
 
         panelMain.add(panelBigPage, java.awt.BorderLayout.CENTER);
 
@@ -325,6 +337,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static String theme;
     private static String language;
     private static int userId;
+    private static Token accessToken;
 
     public static String getTheme() {
         return theme;
@@ -349,13 +362,21 @@ public class HTSquirrel extends javax.swing.JFrame {
     public static void setUserId(int userId) {
         HTSquirrel.userId = userId;
     }
+
+    public static Token getAccessToken() {
+        return accessToken;
+    }
+
+    public static void setAccessToken(Token accessToken) {
+        HTSquirrel.accessToken = accessToken;
+    }
     
     public static void applyTheme() {
         ColorUIResource colorWhite = new ColorUIResource(new java.awt.Color(242, 242, 242));
         ColorUIResource colorGreyLight = new ColorUIResource(new java.awt.Color(128, 128, 128));
         ColorUIResource colorGreyDark = new ColorUIResource(new java.awt.Color(77, 77, 77));
-        ColorUIResource colorBlack = new ColorUIResource(new java.awt.Color(26, 26, 26));
-        ColorUIResource colorOrange = new ColorUIResource(new java.awt.Color(204, 102, 0));
+        ColorUIResource colorBlack = new ColorUIResource(new java.awt.Color(0, 0, 0));
+        ColorUIResource colorOrange = new ColorUIResource(new java.awt.Color(255, 102, 0));
         if ("Light".equals(getTheme())) {
             UIManager.put("nimbusBase", colorGreyLight);
             UIManager.put("control", colorWhite);
@@ -375,9 +396,28 @@ public class HTSquirrel extends javax.swing.JFrame {
         }
     }
     
+    public static void hideBigPages() {
+        Component[] pages = panelBigPage.getComponents();
+        for (Component page : pages) {
+            page.setVisible(false);
+        }
+    }
+    
+    public static void showLanguage() {
+        hideBigPages();
+        pageLanguage.setVisible(true);
+    }
+    
+    public static void showAuthorization() {
+        hideBigPages();
+        pageAuthorization.getAuthorizationBase1().refreshAuthorization();
+        pageAuthorization.setVisible(true);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private htsquirrel.gui.pages.language.Language language1;
-    private javax.swing.JPanel panelBigPage;
+    private static htsquirrel.gui.pages.authorization.Authorization pageAuthorization;
+    private static htsquirrel.gui.pages.language.Language pageLanguage;
+    private static javax.swing.JPanel panelBigPage;
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
     private javax.swing.JPanel panelHorizontalLine;
