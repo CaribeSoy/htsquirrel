@@ -24,6 +24,8 @@
 package htsquirrel;
 
 import static htsquirrel.utilities.ConfigProperties.getLanguageProperty;
+import static htsquirrel.utilities.ConfigProperties.getThemeProperty;
+import static htsquirrel.utilities.ConfigProperties.saveConfigProperties;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,14 +43,11 @@ public class HTSquirrel extends javax.swing.JFrame {
      */
     public HTSquirrel() {
         initComponents();
-        ColorUIResource colorGrey = new ColorUIResource(new java.awt.Color(102, 102, 102));
-        ColorUIResource colorOrange = new ColorUIResource(new java.awt.Color(204, 102, 0));
-        UIManager.put("nimbusBase", colorGrey);
-        UIManager.put("nimbusFocus", colorOrange);
-        UIManager.put("nimbusSelectionBackground", colorOrange);
-        UIManager.put("nimbusOrange", colorOrange);
         try {
+            setTheme(getThemeProperty());
             setLanguage(getLanguageProperty());
+            saveConfigProperties();
+            applyTheme();
         } catch (IOException ex) {
             Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -127,12 +126,10 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         getContentPane().add(panelBottom, java.awt.BorderLayout.PAGE_END);
 
-        panelLeft.setBackground(new java.awt.Color(102, 102, 102));
         panelLeft.setMaximumSize(new java.awt.Dimension(400, 32767));
         panelLeft.setMinimumSize(new java.awt.Dimension(400, 100));
         panelLeft.setLayout(new java.awt.BorderLayout());
 
-        panelLeftTop.setBackground(new java.awt.Color(102, 102, 102));
         panelLeftTop.setMaximumSize(new java.awt.Dimension(32767, 50));
         panelLeftTop.setMinimumSize(new java.awt.Dimension(100, 50));
         panelLeftTop.setPreferredSize(new java.awt.Dimension(400, 50));
@@ -150,7 +147,6 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         panelLeft.add(panelLeftTop, java.awt.BorderLayout.PAGE_START);
 
-        panelLeftBottom.setBackground(new java.awt.Color(102, 102, 102));
         panelLeftBottom.setMaximumSize(new java.awt.Dimension(32767, 5));
         panelLeftBottom.setMinimumSize(new java.awt.Dimension(100, 5));
         panelLeftBottom.setPreferredSize(new java.awt.Dimension(400, 5));
@@ -168,7 +164,6 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         panelLeft.add(panelLeftBottom, java.awt.BorderLayout.PAGE_END);
 
-        panelLeftLeft.setBackground(new java.awt.Color(102, 102, 102));
         panelLeftLeft.setMaximumSize(new java.awt.Dimension(5, 32767));
         panelLeftLeft.setMinimumSize(new java.awt.Dimension(5, 100));
         panelLeftLeft.setPreferredSize(new java.awt.Dimension(5, 638));
@@ -186,7 +181,6 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         panelLeft.add(panelLeftLeft, java.awt.BorderLayout.LINE_START);
 
-        panelLeftRight.setBackground(new java.awt.Color(102, 102, 102));
         panelLeftRight.setMaximumSize(new java.awt.Dimension(5, 32767));
         panelLeftRight.setMinimumSize(new java.awt.Dimension(5, 100));
         panelLeftRight.setPreferredSize(new java.awt.Dimension(5, 638));
@@ -203,8 +197,6 @@ public class HTSquirrel extends javax.swing.JFrame {
         );
 
         panelLeft.add(panelLeftRight, java.awt.BorderLayout.LINE_END);
-
-        panelSmallPage.setBackground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout panelSmallPageLayout = new javax.swing.GroupLayout(panelSmallPage);
         panelSmallPage.setLayout(panelSmallPageLayout);
@@ -330,7 +322,16 @@ public class HTSquirrel extends javax.swing.JFrame {
         });
     }
 
+    private static String theme;
     private static String language;
+
+    public static String getTheme() {
+        return theme;
+    }
+
+    public static void setTheme(String theme) {
+        HTSquirrel.theme = theme;
+    }
 
     public static String getLanguage() {
         return language;
@@ -338,6 +339,31 @@ public class HTSquirrel extends javax.swing.JFrame {
 
     public static void setLanguage(String language) {
         HTSquirrel.language = language;
+    }
+    
+    public static void applyTheme() {
+        ColorUIResource colorWhite = new ColorUIResource(new java.awt.Color(242, 242, 242));
+        ColorUIResource colorGreyLight = new ColorUIResource(new java.awt.Color(128, 128, 128));
+        ColorUIResource colorGreyDark = new ColorUIResource(new java.awt.Color(77, 77, 77));
+        ColorUIResource colorBlack = new ColorUIResource(new java.awt.Color(26, 26, 26));
+        ColorUIResource colorOrange = new ColorUIResource(new java.awt.Color(204, 102, 0));
+        if ("Light".equals(getTheme())) {
+            UIManager.put("nimbusBase", colorGreyLight);
+            UIManager.put("control", colorWhite);
+            UIManager.put("text", colorBlack);
+            UIManager.put("nimbusFocus", colorOrange);
+            UIManager.put("nimbusSelectionBackground", colorOrange);
+            UIManager.put("nimbusLightBackground", colorWhite);
+            UIManager.put("nimbusOrange", colorOrange);
+        } else {
+            UIManager.put("nimbusBase", colorBlack);
+            UIManager.put("control", colorGreyDark);
+            UIManager.put("text", colorWhite);
+            UIManager.put("nimbusFocus", colorOrange);
+            UIManager.put("nimbusSelectionBackground", colorOrange);
+            UIManager.put("nimbusLightBackground", colorGreyDark);
+            UIManager.put("nimbusOrange", colorOrange);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

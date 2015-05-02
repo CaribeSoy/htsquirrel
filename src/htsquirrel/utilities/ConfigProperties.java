@@ -24,6 +24,7 @@
 package htsquirrel.utilities;
 
 import static htsquirrel.HTSquirrel.getLanguage;
+import static htsquirrel.HTSquirrel.getTheme;
 import static htsquirrel.utilities.FileManagement.configFileExists;
 import static htsquirrel.utilities.FileManagement.createConfigFile;
 import static htsquirrel.utilities.FileManagement.getConfigPath;
@@ -55,12 +56,28 @@ public class ConfigProperties {
         return language;
     }
     
+    public static String getThemeProperty()throws IOException {
+        String theme = "Dark";
+        if (!(configFileExists())) {
+            createConfigFile();
+        }
+        Properties properties = new Properties();
+        InputStream inputStream = new FileInputStream(getConfigPath());
+        properties.load(inputStream);
+        theme = properties.getProperty("THEME", "");
+        if (!(themeExists(theme))) {
+            theme = "Dark";
+        }
+        return theme;
+    }
+    
     public static void saveConfigProperties() throws IOException {
         if (!(configFileExists())) {
             createConfigFile();
         }
         Properties properties = new Properties();
         OutputStream outputStream = new FileOutputStream(getConfigPath());
+        properties.setProperty("THEME", getTheme());
         properties.setProperty("LANGUAGE", getLanguage());
         properties.store(outputStream, null);
         outputStream.close();
@@ -70,6 +87,15 @@ public class ConfigProperties {
         boolean result = false;
         if ("English".equals(language)
             || "Srpski".equals(language)) {
+            result = true;
+        }
+        return result;
+    }
+    
+    private static boolean themeExists(String theme) {
+        boolean result = false;
+        if ("Dark".equals(theme)
+            || "Light".equals(theme)) {
             result = true;
         }
         return result;
