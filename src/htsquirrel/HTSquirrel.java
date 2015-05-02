@@ -25,6 +25,8 @@ package htsquirrel;
 
 import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
 import static htsquirrel.database.DatabaseManagement.ensureTablesExist;
+import static htsquirrel.database.GetInfo.getTeamsFromDb;
+import htsquirrel.game.Team;
 import static htsquirrel.utilities.ConfigProperties.getAccessTokenProperty;
 import static htsquirrel.utilities.ConfigProperties.getLanguageProperty;
 import static htsquirrel.utilities.ConfigProperties.getThemeProperty;
@@ -34,6 +36,7 @@ import java.awt.Component;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -67,6 +70,7 @@ public class HTSquirrel extends javax.swing.JFrame {
                 } else {
                     Connection db = createDatabaseConnection();
                     ensureTablesExist(db);
+                    teams = getTeamsFromDb(db, getUserId());
                     db.close();
                 }
             }
@@ -354,6 +358,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static String language;
     private static int userId;
     private static Token accessToken;
+    private static ArrayList<Team> teams;
 
     public static String getTheme() {
         return theme;
