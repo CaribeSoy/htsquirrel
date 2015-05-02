@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
+import org.scribe.model.Token;
 
 /**
  *
@@ -71,6 +72,19 @@ public class ConfigProperties {
             theme = "Dark";
         }
         return theme;
+    }
+    
+    public static Token getAccessTokenProperty() throws IOException {
+        if (!(configFileExists())) {
+            createConfigFile();
+        }
+        Properties properties = new Properties();
+        InputStream inputStream = new FileInputStream(getConfigPath());
+        properties.load(inputStream);
+        String token = properties.getProperty("ACCESS_TOKEN", "");
+        String secret = properties.getProperty("ACCESS_SECRET", "");
+        Token accessToken = new Token(token, secret);
+        return accessToken;
     }
     
     public static void saveConfigProperties() throws IOException {
