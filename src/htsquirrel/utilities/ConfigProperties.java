@@ -25,6 +25,7 @@ package htsquirrel.utilities;
 
 import static htsquirrel.HTSquirrel.getLanguage;
 import static htsquirrel.HTSquirrel.getTheme;
+import static htsquirrel.HTSquirrel.getUserId;
 import static htsquirrel.utilities.FileManagement.configFileExists;
 import static htsquirrel.utilities.FileManagement.createConfigFile;
 import static htsquirrel.utilities.FileManagement.getConfigPath;
@@ -79,6 +80,7 @@ public class ConfigProperties {
         OutputStream outputStream = new FileOutputStream(getConfigPath());
         properties.setProperty("THEME", getTheme());
         properties.setProperty("LANGUAGE", getLanguage());
+        properties.setProperty("USER_ID", String.valueOf(getUserId()));
         properties.store(outputStream, null);
         outputStream.close();
     }
