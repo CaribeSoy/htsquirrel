@@ -58,7 +58,9 @@ public class HTSquirrel extends javax.swing.JFrame {
             if ("".equals(getLanguage())) {
                 showLanguage();
             } else {
-                
+                if (getUserId() == 0) {
+                    showAuthorization();
+                }
             }
         } catch (IOException ex) {
             Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
