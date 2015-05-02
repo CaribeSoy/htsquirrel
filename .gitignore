@@ -3,3 +3,4 @@
 /lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar
 /lib/scribe-1.3.7.jar
 /nbproject/private/
+/src/htsquirrel/oauth/OAuthKeys.java
