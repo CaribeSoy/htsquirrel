@@ -23,12 +23,15 @@
  */
 package htsquirrel.utilities;
 
+import static htsquirrel.HTSquirrel.getLanguage;
 import static htsquirrel.utilities.FileManagement.configFileExists;
 import static htsquirrel.utilities.FileManagement.createConfigFile;
 import static htsquirrel.utilities.FileManagement.getConfigPath;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Properties;
 
 /**
@@ -50,6 +53,17 @@ public class ConfigProperties {
             language = "";
         }
         return language;
+    }
+    
+    public static void saveConfigProperties() throws IOException {
+        if (!(configFileExists())) {
+            createConfigFile();
+        }
+        Properties properties = new Properties();
+        OutputStream outputStream = new FileOutputStream(getConfigPath());
+        properties.setProperty("LANGUAGE", getLanguage());
+        properties.store(outputStream, null);
+        outputStream.close();
     }
     
     private static boolean languageExists(String language) {

@@ -24,6 +24,10 @@
 package htsquirrel.gui.pages.language;
 
 import static htsquirrel.HTSquirrel.setLanguage;
+import static htsquirrel.utilities.ConfigProperties.saveConfigProperties;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -98,8 +102,12 @@ public class LanguageBase extends javax.swing.JPanel {
 
     private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
         setLanguage(comboBoxLanguage.getSelectedItem().toString());
+        try {
+            saveConfigProperties();
+        } catch (IOException ex) {
+            Logger.getLogger(LanguageBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonOkActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonOk;
