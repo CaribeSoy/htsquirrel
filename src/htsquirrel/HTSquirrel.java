@@ -23,6 +23,11 @@
  */
 package htsquirrel;
 
+import static htsquirrel.utilities.ConfigProperties.getLanguageProperty;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -34,6 +39,11 @@ public class HTSquirrel extends javax.swing.JFrame {
      */
     public HTSquirrel() {
         initComponents();
+        try {
+            setLanguage(getLanguageProperty());
+        } catch (IOException ex) {
+            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -319,6 +329,16 @@ public class HTSquirrel extends javax.swing.JFrame {
         });
     }
 
+    private static String language;
+
+    public static String getLanguage() {
+        return language;
+    }
+
+    public static void setLanguage(String language) {
+        HTSquirrel.language = language;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel panelBigPage;
     private javax.swing.JPanel panelBottom;
