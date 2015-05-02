@@ -324,6 +324,7 @@ public class HTSquirrel extends javax.swing.JFrame {
 
     private static String theme;
     private static String language;
+    private static int userId;
 
     public static String getTheme() {
         return theme;
@@ -339,6 +340,14 @@ public class HTSquirrel extends javax.swing.JFrame {
 
     public static void setLanguage(String language) {
         HTSquirrel.language = language;
+    }
+
+    public static int getUserId() {
+        return userId;
+    }
+
+    public static void setUserId(int userId) {
+        HTSquirrel.userId = userId;
     }
     
     public static void applyTheme() {
