@@ -27,6 +27,8 @@ import static htsquirrel.utilities.ConfigProperties.getLanguageProperty;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 
 /**
  *
@@ -39,6 +41,12 @@ public class HTSquirrel extends javax.swing.JFrame {
      */
     public HTSquirrel() {
         initComponents();
+        ColorUIResource colorGrey = new ColorUIResource(new java.awt.Color(102, 102, 102));
+        ColorUIResource colorOrange = new ColorUIResource(new java.awt.Color(204, 102, 0));
+        UIManager.put("nimbusBase", colorGrey);
+        UIManager.put("nimbusFocus", colorOrange);
+        UIManager.put("nimbusSelectionBackground", colorOrange);
+        UIManager.put("nimbusOrange", colorOrange);
         try {
             setLanguage(getLanguageProperty());
         } catch (IOException ex) {
