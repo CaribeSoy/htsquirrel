@@ -44,6 +44,14 @@ public class FileManagement {
         return getHtsPath() + "/config.properties";
     }
     
+    private static String getDatabasePath() {
+        return getHtsPath() + "/htsquirrel.h2.db";
+    }
+    
+    public static String getDatabasePathShort() {
+        return getHtsPath() + "/htsquirrel";
+    }
+    
     private static boolean htsFileExists() {
         boolean result = false;
         File htsPath = new File(getHtsPath());
@@ -80,6 +88,15 @@ public class FileManagement {
         return result;
     }
     
+    private static boolean databaseDirExists() {
+        boolean result = false;
+        File databasePath = new File(getDatabasePath());
+        if (databasePath.exists() & databasePath.isDirectory()) {
+            result = true;
+        }
+        return result;
+    }
+    
     public static void createConfigFile() throws IOException {
         if (htsFileExists()) {
             File htsPath = new File(getHtsPath());
@@ -99,6 +116,13 @@ public class FileManagement {
         }
         File configPath = new File(getConfigPath());
         configPath.createNewFile();
+    }
+    
+    public static void deleteDatabaseDir() {
+        if (databaseDirExists()) {
+            File databasePath = new File(getDatabasePath());
+            deleteDir(databasePath);
+        }
     }
     
     private static void deleteDir(File directory) {

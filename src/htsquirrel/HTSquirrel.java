@@ -23,6 +23,8 @@
  */
 package htsquirrel;
 
+import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
+import static htsquirrel.database.DatabaseManagement.ensureTablesExist;
 import static htsquirrel.utilities.ConfigProperties.getAccessTokenProperty;
 import static htsquirrel.utilities.ConfigProperties.getLanguageProperty;
 import static htsquirrel.utilities.ConfigProperties.getThemeProperty;
@@ -30,6 +32,8 @@ import static htsquirrel.utilities.ConfigProperties.getUserIdProperty;
 import static htsquirrel.utilities.ConfigProperties.saveConfigProperties;
 import java.awt.Component;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -60,9 +64,17 @@ public class HTSquirrel extends javax.swing.JFrame {
             } else {
                 if (getUserId() == 0) {
                     showAuthorization();
+                } else {
+                    Connection db = createDatabaseConnection();
+                    ensureTablesExist(db);
+                    db.close();
                 }
             }
         } catch (IOException ex) {
+            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
