@@ -23,6 +23,7 @@
  */
 package htsquirrel.utilities;
 
+import static htsquirrel.HTSquirrel.getAccessToken;
 import static htsquirrel.HTSquirrel.getLanguage;
 import static htsquirrel.HTSquirrel.getTheme;
 import static htsquirrel.HTSquirrel.getUserId;
@@ -81,6 +82,8 @@ public class ConfigProperties {
         properties.setProperty("THEME", getTheme());
         properties.setProperty("LANGUAGE", getLanguage());
         properties.setProperty("USER_ID", String.valueOf(getUserId()));
+        properties.setProperty("ACCESS_TOKEN", getAccessToken().getToken());
+        properties.setProperty("ACCESS_SECRET", getAccessToken().getSecret());
         properties.store(outputStream, null);
         outputStream.close();
     }
