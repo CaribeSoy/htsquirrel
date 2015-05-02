@@ -71,6 +71,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelMain = new javax.swing.JPanel();
         panelHorizontalSeparator = new javax.swing.JPanel();
         panelBigPage = new javax.swing.JPanel();
+        language1 = new htsquirrel.gui.pages.language.Language();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -274,16 +275,8 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         panelMain.add(panelHorizontalSeparator, java.awt.BorderLayout.PAGE_START);
 
-        javax.swing.GroupLayout panelBigPageLayout = new javax.swing.GroupLayout(panelBigPage);
-        panelBigPage.setLayout(panelBigPageLayout);
-        panelBigPageLayout.setHorizontalGroup(
-            panelBigPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 545, Short.MAX_VALUE)
-        );
-        panelBigPageLayout.setVerticalGroup(
-            panelBigPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 643, Short.MAX_VALUE)
-        );
+        panelBigPage.setLayout(new java.awt.CardLayout());
+        panelBigPage.add(language1, "card2");
 
         panelMain.add(panelBigPage, java.awt.BorderLayout.CENTER);
 
@@ -340,6 +333,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private htsquirrel.gui.pages.language.Language language1;
     private javax.swing.JPanel panelBigPage;
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
