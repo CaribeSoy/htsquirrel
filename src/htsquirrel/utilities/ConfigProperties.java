@@ -74,6 +74,24 @@ public class ConfigProperties {
         return theme;
     }
     
+    public static int getUserIdProperty()throws IOException {
+        String userIdString;
+        int userId;
+        if (!(configFileExists())) {
+            createConfigFile();
+        }
+        Properties properties = new Properties();
+        InputStream inputStream = new FileInputStream(getConfigPath());
+        properties.load(inputStream);
+        userIdString = properties.getProperty("USER_ID", "0");
+        try {
+            userId = Integer.parseInt(userIdString);
+        } catch (NumberFormatException ex) {
+            userId = 0;
+        }
+        return userId;
+    }
+    
     public static Token getAccessTokenProperty() throws IOException {
         if (!(configFileExists())) {
             createConfigFile();
