@@ -23,6 +23,16 @@
  */
 package htsquirrel.gui.menu;
 
+import static htsquirrel.HTSquirrel.getCurrentTeam;
+import static htsquirrel.HTSquirrel.getLanguage;
+import static htsquirrel.HTSquirrel.getTeams;
+import htsquirrel.translations.Translations;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -66,8 +76,10 @@ public class Menu extends javax.swing.JPanel {
         labelTeamName.setForeground(new java.awt.Color(255, 102, 0));
         labelTeamName.setText(" ");
 
+        labelSwitchTeam.setFont(new java.awt.Font("DejaVu Sans", 2, 12)); // NOI18N
         labelSwitchTeam.setForeground(new java.awt.Color(128, 128, 128));
         labelSwitchTeam.setText("switch team");
+        labelSwitchTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
         panelLeft.setLayout(panelLeftLayout);
@@ -115,18 +127,22 @@ public class Menu extends javax.swing.JPanel {
         labelTeam.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelTeam.setForeground(new java.awt.Color(128, 128, 128));
         labelTeam.setText("TEAM");
+        labelTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         labelRecords.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelRecords.setForeground(new java.awt.Color(128, 128, 128));
         labelRecords.setText("RECORDS");
+        labelRecords.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         labelDownload.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelDownload.setForeground(new java.awt.Color(128, 128, 128));
         labelDownload.setText("DOWNLOAD");
+        labelDownload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         labelSettings.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelSettings.setForeground(new java.awt.Color(128, 128, 128));
         labelSettings.setText("SETTINGS");
+        labelSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout panelCenterLayout = new javax.swing.GroupLayout(panelCenter);
         panelCenter.setLayout(panelCenterLayout);
@@ -158,6 +174,53 @@ public class Menu extends javax.swing.JPanel {
         add(panelCenter, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    public JLabel getLabelDownload() {
+        return labelDownload;
+    }
+
+    public JLabel getLabelRecords() {
+        return labelRecords;
+    }
+
+    public JLabel getLabelSettings() {
+        return labelSettings;
+    }
+
+    public JLabel getLabelSwitchTeam() {
+        return labelSwitchTeam;
+    }
+
+    public JLabel getLabelTeam() {
+        return labelTeam;
+    }
+
+    public JLabel getLabelTeamName() {
+        return labelTeamName;
+    }
+
+    public void refreshMenu() {
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            labelSwitchTeam.setText(properties.getProperty("menu_switch_team"));
+            labelTeam.setText(properties.getProperty("menu_team"));
+            labelRecords.setText(properties.getProperty("menu_records"));
+            labelDownload.setText(properties.getProperty("menu_download"));
+            labelSettings.setText(properties.getProperty("menu_settings"));
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        labelTeam.setForeground(new java.awt.Color(128, 128, 128));
+        labelRecords.setForeground(new java.awt.Color(128, 128, 128));
+        labelDownload.setForeground(new java.awt.Color(128, 128, 128));
+        labelSettings.setForeground(new java.awt.Color(128, 128, 128));
+        getLabelTeamName().setText(getCurrentTeam().getTeamName());
+        if (getTeams().size() > 1) {
+            getLabelSwitchTeam().setVisible(true);
+        }
+        this.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel labelDownload;

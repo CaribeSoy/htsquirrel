@@ -54,6 +54,7 @@ public class HTSquirrel extends javax.swing.JFrame {
      */
     public HTSquirrel() {
         initComponents();
+        menu.setVisible(false);
         hideBigPages();
         try {
             setTheme(getThemeProperty());
@@ -70,9 +71,13 @@ public class HTSquirrel extends javax.swing.JFrame {
                 } else {
                     Connection db = createDatabaseConnection();
                     ensureTablesExist(db);
-                    teams = getTeamsFromDb(db, getUserId());
+                    setTeams(getTeamsFromDb(db, getUserId()));
                     if (teams.isEmpty()) {
                         showDownload();
+                    } else {
+                        System.out.println("ok");
+                        setCurrentTeam(getTeams().get(0));
+                        menu.refreshMenu();
                     }
                     db.close();
                 }
@@ -97,6 +102,7 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         panelTop = new javax.swing.JPanel();
         panelHorizontalLine = new javax.swing.JPanel();
+        menu = new htsquirrel.gui.menu.Menu();
         panelBottom = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
         panelLeftTop = new javax.swing.JPanel();
@@ -140,6 +146,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         );
 
         panelTop.add(panelHorizontalLine, java.awt.BorderLayout.PAGE_END);
+        panelTop.add(menu, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(panelTop, java.awt.BorderLayout.PAGE_START);
 
@@ -364,6 +371,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static int userId;
     private static Token accessToken;
     private static ArrayList<Team> teams;
+    private static Team currentTeam;
 
     public static String getTheme() {
         return theme;
@@ -395,6 +403,22 @@ public class HTSquirrel extends javax.swing.JFrame {
 
     public static void setAccessToken(Token accessToken) {
         HTSquirrel.accessToken = accessToken;
+    }
+
+    public static ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+    public static void setTeams(ArrayList<Team> teams) {
+        HTSquirrel.teams = teams;
+    }
+
+    public static Team getCurrentTeam() {
+        return currentTeam;
+    }
+
+    public static void setCurrentTeam(Team currentTeam) {
+        HTSquirrel.currentTeam = currentTeam;
     }
     
     public static void applyTheme() {
@@ -447,6 +471,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static htsquirrel.gui.menu.Menu menu;
     private static htsquirrel.gui.pages.authorization.Authorization pageAuthorization;
     private static htsquirrel.gui.pages.download.Download pageDownload;
     private static htsquirrel.gui.pages.language.Language pageLanguage;

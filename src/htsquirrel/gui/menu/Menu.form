@@ -78,10 +78,16 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelSwitchTeam">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="DejaVu Sans" size="12" style="2"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="80" red="80" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="switch team"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -173,6 +179,9 @@
               <Color blue="80" green="80" red="80" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="TEAM"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelRecords">
@@ -184,6 +193,9 @@
               <Color blue="80" green="80" red="80" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="RECORDS"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelDownload">
@@ -195,6 +207,9 @@
               <Color blue="80" green="80" red="80" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="DOWNLOAD"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelSettings">
@@ -206,6 +221,9 @@
               <Color blue="80" green="80" red="80" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SETTINGS"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
