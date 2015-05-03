@@ -28,6 +28,7 @@ import static htsquirrel.HTSquirrel.getLanguage;
 import static htsquirrel.HTSquirrel.getRed;
 import static htsquirrel.HTSquirrel.setAccessToken;
 import static htsquirrel.HTSquirrel.setUserId;
+import static htsquirrel.HTSquirrel.showDownload;
 import static htsquirrel.oauth.OAuth.getOAuthService;
 import static htsquirrel.oauth.OAuth.getRequestToken;
 import static htsquirrel.oauth.OAuth.getVerifier;
@@ -139,6 +140,12 @@ public class AuthorizationBase extends javax.swing.JPanel {
         textField2.setComponentPopupMenu(popupMenuPaste);
 
         labelInfo.setText("Info");
+        labelInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelInfoMouseClicked(evt);
+            }
+        });
 
         buttonAuthorize.setText("Authorize");
         buttonAuthorize.addActionListener(new java.awt.event.ActionListener() {
@@ -197,6 +204,7 @@ public class AuthorizationBase extends javax.swing.JPanel {
     private static Token requestToken;
     private static Verifier verifier;
     private static Token accessToken;
+    private static boolean success;
     
     private void labelLink1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelLink1MouseClicked
         String chppUrl = "http://www.hattrick.org/goto.ashx?path=/Community/CHPP/ChppUserDescription.aspx";
@@ -259,6 +267,7 @@ public class AuthorizationBase extends javax.swing.JPanel {
             labelInfo.setText(properties.getProperty("authorization_info_failure"));
             labelInfo.setForeground(getRed());
             labelInfo.setVisible(true);
+            success = false;
         }
         try {
             int userId = getUserIdFromHt(oAuthService, accessToken);
@@ -267,6 +276,7 @@ public class AuthorizationBase extends javax.swing.JPanel {
             labelInfo.setText(properties.getProperty("authorization_info_success"));
             labelInfo.setForeground(getGreen());
             labelInfo.setVisible(true);
+            success = true;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(AuthorizationBase.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
@@ -276,7 +286,16 @@ public class AuthorizationBase extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_buttonAuthorizeActionPerformed
 
+    private void labelInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelInfoMouseClicked
+        if (!(success)) {
+            refreshAuthorization();
+        } else {
+            showDownload();
+        }
+    }//GEN-LAST:event_labelInfoMouseClicked
+
     public void refreshAuthorization() {
+        success = false;
         Translations translations = new Translations();
         Properties properties = null;
         try {

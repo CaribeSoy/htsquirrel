@@ -57,6 +57,17 @@ public class HTSquirrel extends javax.swing.JFrame {
         initComponents();
         menu.setVisible(false);
         menu.getLabelSwitchTeam().setVisible(false);
+        try {
+            Connection db0 = createDatabaseConnection();
+            ensureTablesExist(db0);
+            db0.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         hideBigPages();
         try {
             setTheme(getThemeProperty());
