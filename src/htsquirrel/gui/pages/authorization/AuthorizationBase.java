@@ -104,7 +104,6 @@ public class AuthorizationBase extends javax.swing.JPanel {
         });
         popupMenuPaste.add(menuItemPaste);
 
-        labelTitle.setBackground(new java.awt.Color(212, 85, 0));
         labelTitle.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(255, 102, 0));
         labelTitle.setText("Authorize HT Squirrel");

@@ -119,7 +119,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelTop.setPreferredSize(new java.awt.Dimension(1000, 52));
         panelTop.setLayout(new java.awt.BorderLayout());
 
-        panelHorizontalLine.setBackground(new java.awt.Color(204, 102, 0));
+        panelHorizontalLine.setBackground(new java.awt.Color(255, 102, 0));
         panelHorizontalLine.setMaximumSize(new java.awt.Dimension(32767, 2));
         panelHorizontalLine.setMinimumSize(new java.awt.Dimension(100, 2));
         panelHorizontalLine.setPreferredSize(new java.awt.Dimension(1000, 2));

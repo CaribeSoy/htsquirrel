@@ -58,7 +58,7 @@ public class LanguageBase extends javax.swing.JPanel {
         buttonOk = new javax.swing.JButton();
 
         labelLanguage.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        labelLanguage.setForeground(new java.awt.Color(204, 102, 0));
+        labelLanguage.setForeground(new java.awt.Color(255, 102, 0));
         labelLanguage.setText("Select language");
 
         labelText1.setText("Select HT Squirrel language. You can change it later under Settings.");
