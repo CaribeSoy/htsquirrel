@@ -32,6 +32,7 @@ import static htsquirrel.utilities.ConfigProperties.getLanguageProperty;
 import static htsquirrel.utilities.ConfigProperties.getThemeProperty;
 import static htsquirrel.utilities.ConfigProperties.getUserIdProperty;
 import static htsquirrel.utilities.ConfigProperties.saveConfigProperties;
+import java.awt.Color;
 import java.awt.Component;
 import java.io.IOException;
 import java.sql.Connection;
@@ -469,6 +470,41 @@ public class HTSquirrel extends javax.swing.JFrame {
         hideBigPages();
         pageDownload.setVisible(true);
         pageDownload.getDownloadBase1().refreshDownload();
+    }
+    
+    public static Color getWhite() {
+        Color color = new java.awt.Color(242, 242, 242);
+        return color;
+    }
+    
+    public static Color getGreyLight() {
+        Color color = new java.awt.Color(128, 128, 128);
+        return color;
+    }
+    
+    public static Color getGreyDark() {
+        Color color = new java.awt.Color(77, 77, 77);
+        return color;
+    }
+    
+    public static Color getBlack() {
+        Color color = new java.awt.Color(0, 0, 0);
+        return color;
+    }
+    
+    public static Color getOrange() {
+        Color color = new java.awt.Color(255, 102, 0);
+        return color;
+    }
+    
+    public static Color getRed() {
+        Color color = new java.awt.Color(255, 0, 102);
+        return color;
+    }
+    
+    public static Color getGreen() {
+        Color color = new java.awt.Color(0, 170, 68);
+        return color;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

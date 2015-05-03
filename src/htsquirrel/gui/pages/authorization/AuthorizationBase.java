@@ -23,7 +23,9 @@
  */
 package htsquirrel.gui.pages.authorization;
 
+import static htsquirrel.HTSquirrel.getGreen;
 import static htsquirrel.HTSquirrel.getLanguage;
+import static htsquirrel.HTSquirrel.getRed;
 import static htsquirrel.HTSquirrel.setAccessToken;
 import static htsquirrel.HTSquirrel.setUserId;
 import static htsquirrel.oauth.OAuth.getOAuthService;
@@ -255,7 +257,7 @@ public class AuthorizationBase extends javax.swing.JPanel {
             setAccessToken(accessToken);
         } catch (Exception ex) {
             labelInfo.setText(properties.getProperty("authorization_info_failure"));
-            labelInfo.setForeground(new java.awt.Color(212, 0, 85));
+            labelInfo.setForeground(getRed());
             labelInfo.setVisible(true);
         }
         try {
@@ -263,7 +265,7 @@ public class AuthorizationBase extends javax.swing.JPanel {
             setUserId(userId);
             saveConfigProperties();
             labelInfo.setText(properties.getProperty("authorization_info_success"));
-            labelInfo.setForeground(new java.awt.Color(68, 170, 0));
+            labelInfo.setForeground(getGreen());
             labelInfo.setVisible(true);
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(AuthorizationBase.class.getName()).log(Level.SEVERE, null, ex);
