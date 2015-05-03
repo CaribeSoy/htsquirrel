@@ -23,8 +23,17 @@
  */
 package htsquirrel.gui.pages.download;
 
+import static htsquirrel.HTSquirrel.getGreen;
+import static htsquirrel.HTSquirrel.getGreyLight;
 import static htsquirrel.HTSquirrel.getLanguage;
+import static htsquirrel.HTSquirrel.getMenu;
+import static htsquirrel.HTSquirrel.getOrange;
+import static htsquirrel.HTSquirrel.getTeams;
+import static htsquirrel.HTSquirrel.getUserId;
+import static htsquirrel.HTSquirrel.setCurrentTeam;
+import static htsquirrel.HTSquirrel.setTeams;
 import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
+import static htsquirrel.database.DatabaseManagement.ensureTablesExist;
 import static htsquirrel.database.DeleteFrom.deleteFromCups;
 import static htsquirrel.database.DeleteFrom.deleteFromLeagueIds;
 import static htsquirrel.database.DeleteFrom.deleteFromLeagueNames;
@@ -40,6 +49,7 @@ import static htsquirrel.database.GetInfo.getMinSeasonFromDb;
 import static htsquirrel.database.GetInfo.getMissingMatchesFromDb;
 import static htsquirrel.database.GetInfo.getMissingSeasonsFromDb;
 import static htsquirrel.database.GetInfo.getNumberOfSeasonsFromDb;
+import static htsquirrel.database.GetInfo.getTeamsFromDb;
 import static htsquirrel.database.InsertInto.insertIntoBookings;
 import static htsquirrel.database.InsertInto.insertIntoCups;
 import static htsquirrel.database.InsertInto.insertIntoEvents;
@@ -88,6 +98,7 @@ import htsquirrel.translations.Translations;
 import static htsquirrel.utilities.ConfigProperties.getAccessTokenProperty;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -147,15 +158,12 @@ public class DownloadBase extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelTitle)
-                            .addComponent(labelText1)
-                            .addComponent(labelInfo)
-                            .addComponent(buttonDownload, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 80, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(labelTitle)
+                    .addComponent(labelText1)
+                    .addComponent(labelInfo)
+                    .addComponent(buttonDownload, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,6 +192,10 @@ public class DownloadBase extends javax.swing.JPanel {
         
         @Override
         protected Void doInBackground() throws Exception {
+            htsquirrel.HTSquirrel.getMenu().setVisible(false);
+            htsquirrel.HTSquirrel.getMenu().getLabelSwitchTeam().setVisible(false);
+            progressBar.setValue(0);
+            labelInfo.setForeground(getGreyLight());
             OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
             Token accessToken = getAccessTokenProperty();
             // teams table
@@ -399,11 +411,27 @@ public class DownloadBase extends javax.swing.JPanel {
         public void done() {
             progressBar.setValue(100);
             buttonDownload.setEnabled(true);
+            labelInfo.setForeground(getGreen());
             Translations translations = new Translations();
             Properties properties = null;
             try {
                 properties = translations.getTranslations(getLanguage());
                 labelInfo.setText(properties.getProperty("download_info_completed"));
+            } catch (IOException ex) {
+                Logger.getLogger(DownloadBase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                Connection db = createDatabaseConnection();
+                ensureTablesExist(db);
+                setTeams(getTeamsFromDb(db, getUserId()));
+                setCurrentTeam(getTeams().get(0));
+                getMenu().refreshMenu();
+                getMenu().getLabelDownload().setForeground(getOrange());
+                db.close();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(DownloadBase.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(DownloadBase.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(DownloadBase.class.getName()).log(Level.SEVERE, null, ex);
             }

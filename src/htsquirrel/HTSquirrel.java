@@ -27,6 +27,7 @@ import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
 import static htsquirrel.database.DatabaseManagement.ensureTablesExist;
 import static htsquirrel.database.GetInfo.getTeamsFromDb;
 import htsquirrel.game.Team;
+import htsquirrel.gui.menu.Menu;
 import static htsquirrel.utilities.ConfigProperties.getAccessTokenProperty;
 import static htsquirrel.utilities.ConfigProperties.getLanguageProperty;
 import static htsquirrel.utilities.ConfigProperties.getThemeProperty;
@@ -385,6 +386,10 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static Token accessToken;
     private static ArrayList<Team> teams;
     private static Team currentTeam;
+
+    public static Menu getMenu() {
+        return menu;
+    }
 
     public static String getTheme() {
         return theme;
