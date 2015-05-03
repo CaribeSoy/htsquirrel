@@ -55,6 +55,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     public HTSquirrel() {
         initComponents();
         menu.setVisible(false);
+        menu.getLabelSwitchTeam().setVisible(false);
         hideBigPages();
         try {
             setTheme(getThemeProperty());
