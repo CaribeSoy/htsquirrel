@@ -23,6 +23,7 @@
  */
 package htsquirrel.database;
 
+import htsquirrel.game.Match;
 import htsquirrel.game.Team;
 import java.io.IOException;
 import java.sql.Connection;
@@ -167,6 +168,36 @@ public class GetInfo {
             leagueIds.add(leagueId);
         }
         return leagueIds;
+    }
+    
+    public static ArrayList<Match> getMissingMatchesFromDb(Connection connection,
+            Team team) throws IOException, SQLException {
+        ArrayList<Match> matches = new ArrayList<>();
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/select/missing_matches.sql");
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(team.getTeamId()));
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            Match match = new Match();
+            match.setMatchId(resultSet.getLong("MATCH_ID"));
+            match.setTeamId(resultSet.getInt("TEAM_ID"));
+            match.setTeamName(resultSet.getString("TEAM_NAME"));
+            match.setOpponentTeamId(resultSet.getInt("OPPONENT_TEAM_ID"));
+            match.setOpponentTeamName(resultSet.getString("OPPONENT_TEAM_NAME"));
+            match.setVenue(resultSet.getString("VENUE"));
+            match.setMatchDate(resultSet.getTimestamp("MATCH_DATE"));
+            match.setSeason(resultSet.getInt("SEASON"));
+            match.setMatchType(resultSet.getInt("MATCH_TYPE"));
+            match.setMatchContextId(resultSet.getInt("MATCH_CONTEXT_ID"));
+            match.setCupLevel(resultSet.getInt("CUP_LEVEL"));
+            match.setCupLevelIndex(resultSet.getInt("CUP_LEVEL_INDEX"));
+            match.setGoalsFor(resultSet.getInt("GOALS_FOR"));
+            match.setGoalsAgainst(resultSet.getInt("GOALS_AGAINST"));
+            matches.add(match);
+        }
+        statement.close();
+        return matches;
     }
     
 }

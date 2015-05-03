@@ -23,9 +23,15 @@
  */
 package htsquirrel.database;
 
+import htsquirrel.game.Booking;
 import htsquirrel.game.Cup;
+import htsquirrel.game.Event;
+import htsquirrel.game.Goal;
+import htsquirrel.game.Injury;
 import htsquirrel.game.League;
 import htsquirrel.game.Match;
+import htsquirrel.game.MatchDetails;
+import htsquirrel.game.Referee;
 import htsquirrel.game.Team;
 import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
@@ -158,6 +164,167 @@ public class InsertInto {
             throws SQLException, IOException {
         ReadSql readSql = new ReadSql();
         String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/leagues.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoMatchDetails(Connection connection,
+            MatchDetails matchDetails) throws IOException, SQLException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/match_details.sql");
+        sqlCode = sqlCode.replaceAll("#match_id#", String.valueOf(matchDetails.getMatchId()));
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(matchDetails.getTeamId()));
+        sqlCode = sqlCode.replaceAll("#team_name#", matchDetails.getTeamName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#opponent_team_id#", String.valueOf(matchDetails.getOpponentTeamId()));
+        sqlCode = sqlCode.replaceAll("#opponent_team_name#", matchDetails.getOpponentTeamName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#goals_for#", String.valueOf(matchDetails.getGoalsFor()));
+        sqlCode = sqlCode.replaceAll("#goals_against#", String.valueOf(matchDetails.getGoalsAgainst()));
+        sqlCode = sqlCode.replaceAll("#match_type#", String.valueOf(matchDetails.getMatchType()));
+        sqlCode = sqlCode.replaceAll("#match_context_id#", String.valueOf(matchDetails.getMatchContextId()));
+        sqlCode = sqlCode.replaceAll("#cup_level#", String.valueOf(matchDetails.getCupLevel()));
+        sqlCode = sqlCode.replaceAll("#cup_level_index#", String.valueOf(matchDetails.getCupLevelIndex()));
+        sqlCode = sqlCode.replaceAll("#season#", String.valueOf(matchDetails.getSeason()));
+        sqlCode = sqlCode.replaceAll("#match_date#", String.valueOf(matchDetails.getMatchDate()));
+        sqlCode = sqlCode.replaceAll("#finished_date#", String.valueOf(matchDetails.getFinishedDate()));
+        sqlCode = sqlCode.replaceAll("#venue#", matchDetails.getVenue());
+        sqlCode = sqlCode.replaceAll("#arena_id#", String.valueOf(matchDetails.getArenaId()));
+        sqlCode = sqlCode.replaceAll("#arena_name#", matchDetails.getArenaName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#sold_total#", String.valueOf(matchDetails.getSoldTotal()));
+        sqlCode = sqlCode.replaceAll("#sold_terraces#", String.valueOf(matchDetails.getSoldTerraces()));
+        sqlCode = sqlCode.replaceAll("#sold_basic#", String.valueOf(matchDetails.getSoldBasic()));
+        sqlCode = sqlCode.replaceAll("#sold_roof#", String.valueOf(matchDetails.getSoldRoof()));
+        sqlCode = sqlCode.replaceAll("#sold_vip#", String.valueOf(matchDetails.getSoldVip()));
+        sqlCode = sqlCode.replaceAll("#weather_id#", String.valueOf(matchDetails.getWeatherId()));
+        sqlCode = sqlCode.replaceAll("#dress_uri#", matchDetails.getDressUri().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#formation#", matchDetails.getFormation().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#tactic_type#", String.valueOf(matchDetails.getTacticType()));
+        sqlCode = sqlCode.replaceAll("#tactic_skill#", String.valueOf(matchDetails.getTacticSkill()));
+        sqlCode = sqlCode.replaceAll("#team_attitude#", String.valueOf(matchDetails.getTeamAttitude()));
+        sqlCode = sqlCode.replaceAll("#rating_m#", String.valueOf(matchDetails.getRatingM()));
+        sqlCode = sqlCode.replaceAll("#rating_rd#", String.valueOf(matchDetails.getRatingRD()));
+        sqlCode = sqlCode.replaceAll("#rating_cd#", String.valueOf(matchDetails.getRatingCD()));
+        sqlCode = sqlCode.replaceAll("#rating_ld#", String.valueOf(matchDetails.getRatingLD()));
+        sqlCode = sqlCode.replaceAll("#rating_ra#", String.valueOf(matchDetails.getRatingRA()));
+        sqlCode = sqlCode.replaceAll("#rating_ca#", String.valueOf(matchDetails.getRatingCA()));
+        sqlCode = sqlCode.replaceAll("#rating_la#", String.valueOf(matchDetails.getRatingLA()));
+        sqlCode = sqlCode.replaceAll("#rating_ispd#", String.valueOf(matchDetails.getRatingISPD()));
+        sqlCode = sqlCode.replaceAll("#rating_ispa#", String.valueOf(matchDetails.getRatingISPA()));
+        sqlCode = sqlCode.replaceAll("#possession_1#", String.valueOf(matchDetails.getPossession1()));
+        sqlCode = sqlCode.replaceAll("#possession_2#", String.valueOf(matchDetails.getPossession2()));
+        sqlCode = sqlCode.replaceAll("#opponent_dress_uri#", matchDetails.getOpponentDressUri().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#opponent_formation#", matchDetails.getOpponentFormation().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#opponent_tactic_type#", String.valueOf(matchDetails.getOpponentTacticType()));
+        sqlCode = sqlCode.replaceAll("#opponent_tactic_skill#", String.valueOf(matchDetails.getOpponentTacticSkill()));
+        sqlCode = sqlCode.replaceAll("#opponent_rating_m#", String.valueOf(matchDetails.getOpponentRatingM()));
+        sqlCode = sqlCode.replaceAll("#opponent_rating_rd#", String.valueOf(matchDetails.getOpponentRatingRD()));
+        sqlCode = sqlCode.replaceAll("#opponent_rating_cd#", String.valueOf(matchDetails.getOpponentRatingCD()));
+        sqlCode = sqlCode.replaceAll("#opponent_rating_ld#", String.valueOf(matchDetails.getOpponentRatingLD()));
+        sqlCode = sqlCode.replaceAll("#opponent_rating_ra#", String.valueOf(matchDetails.getOpponentRatingRA()));
+        sqlCode = sqlCode.replaceAll("#opponent_rating_ca#", String.valueOf(matchDetails.getOpponentRatingCA()));
+        sqlCode = sqlCode.replaceAll("#opponent_rating_la#", String.valueOf(matchDetails.getOpponentRatingLA()));
+        sqlCode = sqlCode.replaceAll("#opponent_rating_ispd#", String.valueOf(matchDetails.getOpponentRatingISPD()));
+        sqlCode = sqlCode.replaceAll("#opponent_rating_ispa#", String.valueOf(matchDetails.getOpponentRatingISPA()));
+        sqlCode = sqlCode.replaceAll("#opponent_possession_1#", String.valueOf(matchDetails.getOpponentPossession1()));
+        sqlCode = sqlCode.replaceAll("#opponent_possession_2#", String.valueOf(matchDetails.getOpponentPossession2()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoReferees(Connection connection,
+            Referee referee) throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/referees.sql");
+        sqlCode = sqlCode.replaceAll("#match_id#", String.valueOf(referee.getMatchId()));
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(referee.getTeamId()));
+        sqlCode = sqlCode.replaceAll("#referee_role#", String.valueOf(referee.getRefereeRole()));
+        sqlCode = sqlCode.replaceAll("#referee_id#", String.valueOf(referee.getRefereeId()));
+        sqlCode = sqlCode.replaceAll("#referee_name#", referee.getRefereeName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#referee_country_id#", String.valueOf(referee.getRefereeCountryId()));
+        sqlCode = sqlCode.replaceAll("#referee_country_name#", referee.getRefereeCountryName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#referee_team_id#", String.valueOf(referee.getRefereeTeamId()));
+        sqlCode = sqlCode.replaceAll("#referee_team_name#", referee.getRefereeTeamName().replaceAll("'", "''"));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoGoals(Connection connection, Goal goal)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/goals.sql");
+        sqlCode = sqlCode.replaceAll("#match_id#", String.valueOf(goal.getMatchId()));
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(goal.getTeamId()));
+        sqlCode = sqlCode.replaceAll("#goal_index#", String.valueOf(goal.getGoalIndex()));
+        sqlCode = sqlCode.replaceAll("#goal_player_id#", String.valueOf(goal.getGoalPlayerId()));
+        sqlCode = sqlCode.replaceAll("#goal_player_name#", goal.getGoalPlayerName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#goal_team_id#", String.valueOf(goal.getGoalTeamId()));
+        sqlCode = sqlCode.replaceAll("#goal_goals_for#", String.valueOf(goal.getGoalGoalsFor()));
+        sqlCode = sqlCode.replaceAll("#goal_goals_against#", String.valueOf(goal.getGoalGoalsAgainst()));
+        sqlCode = sqlCode.replaceAll("#goal_minute#", String.valueOf(goal.getGoalMinute()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoBookings(Connection connection, Booking booking)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/bookings.sql");
+        sqlCode = sqlCode.replaceAll("#match_id#", String.valueOf(booking.getMatchId()));
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(booking.getTeamId()));
+        sqlCode = sqlCode.replaceAll("#booking_index#", String.valueOf(booking.getBookingIndex()));
+        sqlCode = sqlCode.replaceAll("#booking_player_id#", String.valueOf(booking.getBookingPlayerId()));
+        sqlCode = sqlCode.replaceAll("#booking_player_name#", booking.getBookingPlayerName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#booking_team_id#", String.valueOf(booking.getBookingTeamId()));
+        sqlCode = sqlCode.replaceAll("#booking_type#", String.valueOf(booking.getBookingType()));
+        sqlCode = sqlCode.replaceAll("#booking_minute#", String.valueOf(booking.getBookingMinute()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoInjuries(Connection connection, Injury injury)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/injuries.sql");
+        sqlCode = sqlCode.replaceAll("#match_id#", String.valueOf(injury.getMatchId()));
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(injury.getTeamId()));
+        sqlCode = sqlCode.replaceAll("#injury_index#", String.valueOf(injury.getInjuryIndex()));
+        sqlCode = sqlCode.replaceAll("#injury_player_id#", String.valueOf(injury.getInjuryPlayerId()));
+        sqlCode = sqlCode.replaceAll("#injury_player_name#", injury.getInjuryPlayerName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#injury_team_id#", String.valueOf(injury.getInjuryTeamId()));
+        sqlCode = sqlCode.replaceAll("#injury_type#", String.valueOf(injury.getInjuryType()));
+        sqlCode = sqlCode.replaceAll("#injury_minute#", String.valueOf(injury.getInjuryMinute()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoEvents(Connection connection, Event event)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/events.sql");
+        sqlCode = sqlCode.replaceAll("#match_id#", String.valueOf(event.getMatchId()));
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(event.getTeamId()));
+        sqlCode = sqlCode.replaceAll("#event_index#", String.valueOf(event.getEventIndex()));
+        sqlCode = sqlCode.replaceAll("#event_minute#", String.valueOf(event.getEventMinute()));
+        sqlCode = sqlCode.replaceAll("#event_type#", String.valueOf(event.getEventType()));
+        sqlCode = sqlCode.replaceAll("#event_variation#", String.valueOf(event.getEventVariation()));
+        sqlCode = sqlCode.replaceAll("#event_subject_team_id#", String.valueOf(event.getEventSubjectTeamId()));
+        sqlCode = sqlCode.replaceAll("#event_subject_player_id#", String.valueOf(event.getEventSubjectPlayerId()));
+        sqlCode = sqlCode.replaceAll("#event_object_player_id#", String.valueOf(event.getEventObjectPlayerId()));
+        sqlCode = sqlCode.replaceAll("#event_text#", event.getEventText().replaceAll("'", "''"));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoMatchesExtended(Connection connection)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/matches_extended.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

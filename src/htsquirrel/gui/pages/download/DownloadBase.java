@@ -29,6 +29,7 @@ import static htsquirrel.database.DeleteFrom.deleteFromCups;
 import static htsquirrel.database.DeleteFrom.deleteFromLeagueIds;
 import static htsquirrel.database.DeleteFrom.deleteFromLeagueNames;
 import static htsquirrel.database.DeleteFrom.deleteFromLeagues;
+import static htsquirrel.database.DeleteFrom.deleteFromMatchesExtended;
 import static htsquirrel.database.DeleteFrom.deleteFromTeams;
 import static htsquirrel.database.DeleteFrom.deleteFromTransfers;
 import static htsquirrel.database.GetInfo.getLastMatchDateFromDb;
@@ -36,28 +37,48 @@ import static htsquirrel.database.GetInfo.getLastSeasonFromDb;
 import static htsquirrel.database.GetInfo.getLeagueIdsFromDb;
 import static htsquirrel.database.GetInfo.getMaxSeasonFromDb;
 import static htsquirrel.database.GetInfo.getMinSeasonFromDb;
+import static htsquirrel.database.GetInfo.getMissingMatchesFromDb;
 import static htsquirrel.database.GetInfo.getMissingSeasonsFromDb;
 import static htsquirrel.database.GetInfo.getNumberOfSeasonsFromDb;
+import static htsquirrel.database.InsertInto.insertIntoBookings;
 import static htsquirrel.database.InsertInto.insertIntoCups;
+import static htsquirrel.database.InsertInto.insertIntoEvents;
+import static htsquirrel.database.InsertInto.insertIntoGoals;
+import static htsquirrel.database.InsertInto.insertIntoInjuries;
 import static htsquirrel.database.InsertInto.insertIntoLeagueIds;
 import static htsquirrel.database.InsertInto.insertIntoLeagueNames;
 import static htsquirrel.database.InsertInto.insertIntoLeagues;
+import static htsquirrel.database.InsertInto.insertIntoMatchDetails;
 import static htsquirrel.database.InsertInto.insertIntoMatches;
+import static htsquirrel.database.InsertInto.insertIntoMatchesExtended;
+import static htsquirrel.database.InsertInto.insertIntoReferees;
 import static htsquirrel.database.InsertInto.insertIntoTeams;
 import static htsquirrel.database.InsertInto.insertIntoTransfers;
 import static htsquirrel.database.Update.updateSeason;
+import htsquirrel.game.Booking;
 import htsquirrel.game.Cup;
+import htsquirrel.game.Event;
+import htsquirrel.game.Goal;
+import htsquirrel.game.Injury;
 import htsquirrel.game.League;
 import htsquirrel.game.Match;
+import htsquirrel.game.MatchDetails;
+import htsquirrel.game.Referee;
 import htsquirrel.game.Team;
 import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
 import static htsquirrel.oauth.OAuth.getOAuthService;
 import static htsquirrel.oauth.OAuth.getResponse;
+import static htsquirrel.oauth.Responses.getBookingsFromHt;
 import static htsquirrel.oauth.Responses.getCupsFromHt;
+import static htsquirrel.oauth.Responses.getEventsFromHt;
+import static htsquirrel.oauth.Responses.getGoalsFromHt;
+import static htsquirrel.oauth.Responses.getInjuriesFromHt;
 import static htsquirrel.oauth.Responses.getLeagueFromHt;
 import static htsquirrel.oauth.Responses.getLeagueIdFromSeasonFromHt;
+import static htsquirrel.oauth.Responses.getMatchDetailsFromHt;
 import static htsquirrel.oauth.Responses.getMatchesFromHt;
+import static htsquirrel.oauth.Responses.getRefereesFromHt;
 import static htsquirrel.oauth.Responses.getSeasonFromHt;
 import static htsquirrel.oauth.Responses.getTeamsFromHt;
 import static htsquirrel.oauth.Responses.getTransferPagesFromHt;
@@ -306,7 +327,86 @@ public class DownloadBase extends javax.swing.JPanel {
         
         @Override
         public void done() {
-            
+            DownloadMatchDetails downloadMatchDetails = new DownloadMatchDetails();
+            downloadMatchDetails.execute();
+        }
+        
+    }
+    
+    class DownloadMatchDetails extends SwingWorker<Void, Void> {
+        
+        @Override
+        protected Void doInBackground() throws Exception {
+            OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
+            Token accessToken = getAccessTokenProperty();
+            // match details table
+            Translations translations = new Translations();
+            Properties properties = null;
+            properties = translations.getTranslations(getLanguage());
+            labelInfo.setText(properties.getProperty("download_info_match_details"));
+            String teamDetailsXml = getResponse(oAuthService, accessToken,
+                "teamdetails&version=3.2");
+            ArrayList<Team> teams = getTeamsFromHt(teamDetailsXml);
+            Connection db = createDatabaseConnection();
+            int teamCnt = 0;
+            for (Team team : teams) {
+                teamCnt++;
+                ArrayList<Match> matches = new ArrayList<>();
+                matches = getMissingMatchesFromDb(db, team);
+                int matchCnt = 0;
+                for (Match match : matches) {
+                    matchCnt++;
+                    progressBar.setValue((int) 20 + 40 * (teamCnt - 1) + 80 * matchCnt / (matches.size() * teams.size()));
+                    String matchDetailsXml = getResponse(oAuthService,
+                            accessToken,
+                            "matchdetails&version=2.7&matchEvents=true&matchID="
+                                    + match.getMatchId());
+                    MatchDetails matchDetails = getMatchDetailsFromHt(matchDetailsXml, match);
+                    insertIntoMatchDetails(db, matchDetails);
+                    ArrayList<Referee> referees = getRefereesFromHt(matchDetailsXml,
+                            match);
+                    for (Referee referee : referees) {
+                        insertIntoReferees(db, referee);
+                    }
+                    ArrayList<Goal> goals = getGoalsFromHt(matchDetailsXml, match);
+                    for (Goal goal : goals) {
+                        insertIntoGoals(db, goal);
+                    }
+                    ArrayList<Booking> bookings = getBookingsFromHt(matchDetailsXml,
+                            match);
+                    for (Booking booking : bookings) {
+                        insertIntoBookings(db, booking);
+                    }
+                    ArrayList<Injury> injuries = getInjuriesFromHt(matchDetailsXml,
+                            match);
+                    for (Injury injury : injuries) {
+                        insertIntoInjuries(db, injury);
+                    }
+                    ArrayList<Event> events = getEventsFromHt(matchDetailsXml, match);
+                    for (Event event : events) {
+                        insertIntoEvents(db, event);
+                    }
+                }
+            }
+            // matches extended table
+            deleteFromMatchesExtended(db);
+            insertIntoMatchesExtended(db);
+            db.close();
+            return null;
+        }
+        
+        @Override
+        public void done() {
+            progressBar.setValue(100);
+            buttonDownload.setEnabled(true);
+            Translations translations = new Translations();
+            Properties properties = null;
+            try {
+                properties = translations.getTranslations(getLanguage());
+                labelInfo.setText(properties.getProperty("download_info_completed"));
+            } catch (IOException ex) {
+                Logger.getLogger(DownloadBase.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }

@@ -23,9 +23,15 @@
  */
 package htsquirrel.oauth;
 
+import htsquirrel.game.Booking;
 import htsquirrel.game.Cup;
+import htsquirrel.game.Event;
+import htsquirrel.game.Goal;
+import htsquirrel.game.Injury;
 import htsquirrel.game.League;
 import htsquirrel.game.Match;
+import htsquirrel.game.MatchDetails;
+import htsquirrel.game.Referee;
 import htsquirrel.game.Team;
 import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
@@ -273,6 +279,264 @@ public class Responses {
         league.setLeagueLevel(Integer.parseInt(leagueLevelElement.getTextContent()));
         league.setLeagueLevelUnitName(leagueLevelUnitNameElement.getTextContent());
         return league;
+    }
+    
+    public static MatchDetails getMatchDetailsFromHt(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        MatchDetails matchDetails = new MatchDetails();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element matchElement = (Element) document.getElementsByTagName("Match").item(0);
+        matchDetails.setMatchId(match.getMatchId());
+        matchDetails.setTeamId(match.getTeamId());
+        matchDetails.setTeamName(match.getTeamName());
+        matchDetails.setOpponentTeamId(match.getOpponentTeamId());
+        matchDetails.setOpponentTeamName(match.getOpponentTeamName());
+        matchDetails.setGoalsFor(match.getGoalsFor());
+        matchDetails.setGoalsAgainst(match.getGoalsAgainst());
+        matchDetails.setMatchType(match.getMatchType());
+        matchDetails.setMatchContextId(match.getMatchContextId());
+        matchDetails.setCupLevel(match.getCupLevel());
+        matchDetails.setCupLevelIndex(match.getCupLevelIndex());
+        matchDetails.setSeason(match.getSeason());
+        matchDetails.setMatchDate(match.getMatchDate());
+        matchDetails.setFinishedDate(Timestamp.valueOf(matchElement.getElementsByTagName("FinishedDate").item(0).getTextContent()));
+        matchDetails.setVenue(match.getVenue());
+        matchDetails.setArenaId(Integer.parseInt(matchElement.getElementsByTagName("ArenaID").item(0).getTextContent()));
+        matchDetails.setArenaName(matchElement.getElementsByTagName("ArenaName").item(0).getTextContent());
+        matchDetails.setSoldTotal(Integer.parseInt(matchElement.getElementsByTagName("SoldTotal").item(0).getTextContent()));
+        matchDetails.setSoldTerraces(-1);
+        matchDetails.setSoldBasic(-1);
+        matchDetails.setSoldRoof(-1);
+        matchDetails.setSoldVip(-1);
+        matchDetails.setWeatherId(Integer.parseInt(matchElement.getElementsByTagName("WeatherID").item(0).getTextContent()));
+        int homeTeamId = Integer.parseInt(matchElement.getElementsByTagName("HomeTeamID").item(0).getTextContent());
+        if (homeTeamId == match.getTeamId()) {
+            matchDetails.setSoldTerraces(Integer.parseInt(matchElement.getElementsByTagName("SoldTerraces").item(0).getTextContent()));
+            matchDetails.setSoldBasic(Integer.parseInt(matchElement.getElementsByTagName("SoldBasic").item(0).getTextContent()));
+            matchDetails.setSoldRoof(Integer.parseInt(matchElement.getElementsByTagName("SoldRoof").item(0).getTextContent()));
+            matchDetails.setSoldVip(Integer.parseInt(matchElement.getElementsByTagName("SoldVIP").item(0).getTextContent()));
+            Element homeTeamElement = (Element) matchElement.getElementsByTagName("HomeTeam").item(0);
+            matchDetails.setDressUri(homeTeamElement.getElementsByTagName("DressURI").item(0).getTextContent());
+            matchDetails.setFormation(homeTeamElement.getElementsByTagName("Formation").item(0).getTextContent());
+            matchDetails.setTacticType(Integer.parseInt(homeTeamElement.getElementsByTagName("TacticType").item(0).getTextContent()));
+            matchDetails.setTacticSkill(Integer.parseInt(homeTeamElement.getElementsByTagName("TacticSkill").item(0).getTextContent()));
+            matchDetails.setTeamAttitude(Integer.parseInt(homeTeamElement.getElementsByTagName("TeamAttitude").item(0).getTextContent()));
+            matchDetails.setRatingM(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingMidfield").item(0).getTextContent()));
+            matchDetails.setRatingRD(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingRightDef").item(0).getTextContent()));
+            matchDetails.setRatingCD(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingMidDef").item(0).getTextContent()));
+            matchDetails.setRatingLD(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingLeftDef").item(0).getTextContent()));
+            matchDetails.setRatingRA(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingRightAtt").item(0).getTextContent()));
+            matchDetails.setRatingCA(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingMidAtt").item(0).getTextContent()));
+            matchDetails.setRatingLA(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingLeftAtt").item(0).getTextContent()));
+            matchDetails.setRatingISPD(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingIndirectSetPiecesDef").item(0).getTextContent()));
+            matchDetails.setRatingISPA(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingIndirectSetPiecesAtt").item(0).getTextContent()));
+            matchDetails.setPossession1(Integer.parseInt(matchElement.getElementsByTagName("PossessionFirstHalfHome").item(0).getTextContent()));
+            matchDetails.setPossession2(Integer.parseInt(matchElement.getElementsByTagName("PossessionSecondHalfHome").item(0).getTextContent()));
+            Element awayTeamElement = (Element) matchElement.getElementsByTagName("AwayTeam").item(0);
+            matchDetails.setOpponentDressUri(awayTeamElement.getElementsByTagName("DressURI").item(0).getTextContent());
+            matchDetails.setOpponentFormation(awayTeamElement.getElementsByTagName("Formation").item(0).getTextContent());
+            matchDetails.setOpponentTacticType(Integer.parseInt(awayTeamElement.getElementsByTagName("TacticType").item(0).getTextContent()));
+            matchDetails.setOpponentTacticSkill(Integer.parseInt(awayTeamElement.getElementsByTagName("TacticSkill").item(0).getTextContent()));
+            matchDetails.setOpponentRatingM(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingMidfield").item(0).getTextContent()));
+            matchDetails.setOpponentRatingRD(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingRightDef").item(0).getTextContent()));
+            matchDetails.setOpponentRatingCD(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingMidDef").item(0).getTextContent()));
+            matchDetails.setOpponentRatingLD(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingLeftDef").item(0).getTextContent()));
+            matchDetails.setOpponentRatingRA(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingRightAtt").item(0).getTextContent()));
+            matchDetails.setOpponentRatingCA(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingMidAtt").item(0).getTextContent()));
+            matchDetails.setOpponentRatingLA(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingLeftAtt").item(0).getTextContent()));
+            matchDetails.setOpponentRatingISPD(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingIndirectSetPiecesDef").item(0).getTextContent()));
+            matchDetails.setOpponentRatingISPA(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingIndirectSetPiecesAtt").item(0).getTextContent()));
+            matchDetails.setOpponentPossession1(Integer.parseInt(matchElement.getElementsByTagName("PossessionFirstHalfAway").item(0).getTextContent()));
+            matchDetails.setOpponentPossession2(Integer.parseInt(matchElement.getElementsByTagName("PossessionSecondHalfAway").item(0).getTextContent()));
+        } else {
+            Element awayTeamElement = (Element) matchElement.getElementsByTagName("AwayTeam").item(0);
+            matchDetails.setDressUri(awayTeamElement.getElementsByTagName("DressURI").item(0).getTextContent());
+            matchDetails.setFormation(awayTeamElement.getElementsByTagName("Formation").item(0).getTextContent());
+            matchDetails.setTacticType(Integer.parseInt(awayTeamElement.getElementsByTagName("TacticType").item(0).getTextContent()));
+            matchDetails.setTacticSkill(Integer.parseInt(awayTeamElement.getElementsByTagName("TacticSkill").item(0).getTextContent()));
+            matchDetails.setTeamAttitude(Integer.parseInt(awayTeamElement.getElementsByTagName("TeamAttitude").item(0).getTextContent()));
+            matchDetails.setRatingM(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingMidfield").item(0).getTextContent()));
+            matchDetails.setRatingRD(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingRightDef").item(0).getTextContent()));
+            matchDetails.setRatingCD(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingMidDef").item(0).getTextContent()));
+            matchDetails.setRatingLD(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingLeftDef").item(0).getTextContent()));
+            matchDetails.setRatingRA(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingRightAtt").item(0).getTextContent()));
+            matchDetails.setRatingCA(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingMidAtt").item(0).getTextContent()));
+            matchDetails.setRatingLA(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingLeftAtt").item(0).getTextContent()));
+            matchDetails.setRatingISPD(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingIndirectSetPiecesDef").item(0).getTextContent()));
+            matchDetails.setRatingISPA(Integer.parseInt(awayTeamElement.getElementsByTagName("RatingIndirectSetPiecesAtt").item(0).getTextContent()));
+            matchDetails.setPossession1(Integer.parseInt(matchElement.getElementsByTagName("PossessionFirstHalfAway").item(0).getTextContent()));
+            matchDetails.setPossession2(Integer.parseInt(matchElement.getElementsByTagName("PossessionSecondHalfAway").item(0).getTextContent()));
+            Element homeTeamElement = (Element) matchElement.getElementsByTagName("HomeTeam").item(0);
+            matchDetails.setOpponentDressUri(homeTeamElement.getElementsByTagName("DressURI").item(0).getTextContent());
+            matchDetails.setOpponentFormation(homeTeamElement.getElementsByTagName("Formation").item(0).getTextContent());
+            matchDetails.setOpponentTacticType(Integer.parseInt(homeTeamElement.getElementsByTagName("TacticType").item(0).getTextContent()));
+            matchDetails.setOpponentTacticSkill(Integer.parseInt(homeTeamElement.getElementsByTagName("TacticSkill").item(0).getTextContent()));
+            matchDetails.setOpponentRatingM(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingMidfield").item(0).getTextContent()));
+            matchDetails.setOpponentRatingRD(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingRightDef").item(0).getTextContent()));
+            matchDetails.setOpponentRatingCD(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingMidDef").item(0).getTextContent()));
+            matchDetails.setOpponentRatingLD(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingLeftDef").item(0).getTextContent()));
+            matchDetails.setOpponentRatingRA(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingRightAtt").item(0).getTextContent()));
+            matchDetails.setOpponentRatingCA(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingMidAtt").item(0).getTextContent()));
+            matchDetails.setOpponentRatingLA(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingLeftAtt").item(0).getTextContent()));
+            matchDetails.setOpponentRatingISPD(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingIndirectSetPiecesDef").item(0).getTextContent()));
+            matchDetails.setOpponentRatingISPA(Integer.parseInt(homeTeamElement.getElementsByTagName("RatingIndirectSetPiecesAtt").item(0).getTextContent()));
+            matchDetails.setOpponentPossession1(Integer.parseInt(matchElement.getElementsByTagName("PossessionFirstHalfHome").item(0).getTextContent()));
+            matchDetails.setOpponentPossession2(Integer.parseInt(matchElement.getElementsByTagName("PossessionSecondHalfHome").item(0).getTextContent()));
+        }
+        return matchDetails;
+    }
+    
+    public static ArrayList<Referee> getRefereesFromHt(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Referee> referees = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element r0Element = (Element) document.getElementsByTagName("Referee").item(0);
+        Element r1Element = (Element) document.getElementsByTagName("RefereeAssistant1").item(0);
+        Element r2Element = (Element) document.getElementsByTagName("RefereeAssistant2").item(0);
+        Referee referee0 = new Referee();
+        Referee referee1 = new Referee();
+        Referee referee2 = new Referee();
+        referee0.setMatchId(match.getMatchId());
+        referee0.setTeamId(match.getTeamId());
+        referee0.setRefereeRole(0);
+        referee0.setRefereeId(Integer.parseInt(r0Element.getElementsByTagName("RefereeId").item(0).getTextContent()));
+        referee0.setRefereeName(r0Element.getElementsByTagName("RefereeName").item(0).getTextContent());
+        referee0.setRefereeCountryId(Integer.parseInt(r0Element.getElementsByTagName("RefereeCountryId").item(0).getTextContent()));
+        referee0.setRefereeCountryName(r0Element.getElementsByTagName("RefereeCountryName").item(0).getTextContent());
+        referee0.setRefereeTeamId(Integer.parseInt(r0Element.getElementsByTagName("RefereeTeamId").item(0).getTextContent()));
+        referee0.setRefereeTeamName(r0Element.getElementsByTagName("RefereeTeamname").item(0).getTextContent());
+        referee1.setMatchId(match.getMatchId());
+        referee1.setTeamId(match.getTeamId());
+        referee1.setRefereeRole(1);
+        referee1.setRefereeId(Integer.parseInt(r1Element.getElementsByTagName("RefereeId").item(0).getTextContent()));
+        referee1.setRefereeName(r1Element.getElementsByTagName("RefereeName").item(0).getTextContent());
+        referee1.setRefereeCountryId(Integer.parseInt(r1Element.getElementsByTagName("RefereeCountryId").item(0).getTextContent()));
+        referee1.setRefereeCountryName(r1Element.getElementsByTagName("RefereeCountryName").item(0).getTextContent());
+        referee1.setRefereeTeamId(Integer.parseInt(r1Element.getElementsByTagName("RefereeTeamId").item(0).getTextContent()));
+        referee1.setRefereeTeamName(r1Element.getElementsByTagName("RefereeTeamname").item(0).getTextContent());
+        referee2.setMatchId(match.getMatchId());
+        referee2.setTeamId(match.getTeamId());
+        referee2.setRefereeRole(2);
+        referee2.setRefereeId(Integer.parseInt(r2Element.getElementsByTagName("RefereeId").item(0).getTextContent()));
+        referee2.setRefereeName(r2Element.getElementsByTagName("RefereeName").item(0).getTextContent());
+        referee2.setRefereeCountryId(Integer.parseInt(r2Element.getElementsByTagName("RefereeCountryId").item(0).getTextContent()));
+        referee2.setRefereeCountryName(r2Element.getElementsByTagName("RefereeCountryName").item(0).getTextContent());
+        referee2.setRefereeTeamId(Integer.parseInt(r2Element.getElementsByTagName("RefereeTeamId").item(0).getTextContent()));
+        referee2.setRefereeTeamName(r2Element.getElementsByTagName("RefereeTeamname").item(0).getTextContent());
+        referees.add(referee0);
+        referees.add(referee1);
+        referees.add(referee2);
+        return referees;
+    }
+    
+    public static ArrayList<Goal> getGoalsFromHt(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Goal> goals = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element goalsElement = (Element) document.getElementsByTagName("Scorers").item(0);
+        NodeList goalNodes = goalsElement.getElementsByTagName("Goal");
+        if (goalNodes.getLength() > 0) {
+            for (int goalCnt = 0; goalCnt < goalNodes.getLength(); goalCnt++) {
+                Element goalElement = (Element) goalNodes.item(goalCnt);
+                Goal goal = new Goal();
+                goal.setMatchId(match.getMatchId());
+                goal.setTeamId(match.getTeamId());
+                goal.setGoalIndex(Integer.parseInt(goalElement.getAttribute("Index")));
+                goal.setGoalPlayerId(Integer.parseInt(goalElement.getElementsByTagName("ScorerPlayerID").item(0).getTextContent()));
+                goal.setGoalPlayerName(goalElement.getElementsByTagName("ScorerPlayerName").item(0).getTextContent());
+                goal.setGoalTeamId(Integer.parseInt(goalElement.getElementsByTagName("ScorerTeamID").item(0).getTextContent()));
+                if (match.getVenue() == "home") {
+                    goal.setGoalGoalsFor(Integer.parseInt(goalElement.getElementsByTagName("ScorerHomeGoals").item(0).getTextContent()));
+                    goal.setGoalGoalsAgainst(Integer.parseInt(goalElement.getElementsByTagName("ScorerAwayGoals").item(0).getTextContent()));
+                } else {
+                    goal.setGoalGoalsFor(Integer.parseInt(goalElement.getElementsByTagName("ScorerAwayGoals").item(0).getTextContent()));
+                    goal.setGoalGoalsAgainst(Integer.parseInt(goalElement.getElementsByTagName("ScorerHomeGoals").item(0).getTextContent()));
+                }
+                goal.setGoalMinute(Integer.parseInt(goalElement.getElementsByTagName("ScorerMinute").item(0).getTextContent()));
+                goals.add(goal);
+            }
+        }
+        return goals;
+    }
+    
+    public static ArrayList<Booking> getBookingsFromHt(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Booking> bookings = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element bookingsElement = (Element) document.getElementsByTagName("Bookings").item(0);
+        NodeList bookingNodes = bookingsElement.getElementsByTagName("Booking");
+        if (bookingNodes.getLength() > 0) {
+            for (int bookingCnt = 0; bookingCnt < bookingNodes.getLength(); bookingCnt++) {
+                Element bookingElement = (Element) bookingNodes.item(bookingCnt);
+                Booking booking = new Booking();
+                booking.setMatchId(match.getMatchId());
+                booking.setTeamId(match.getTeamId());
+                booking.setBookingIndex(Integer.parseInt(bookingElement.getAttribute("Index")));
+                booking.setBookingPlayerId(Integer.parseInt(bookingElement.getElementsByTagName("BookingPlayerID").item(0).getTextContent()));
+                booking.setBookingPlayerName(bookingElement.getElementsByTagName("BookingPlayerName").item(0).getTextContent());
+                booking.setBookingTeamId(Integer.parseInt(bookingElement.getElementsByTagName("BookingTeamID").item(0).getTextContent()));
+                booking.setBookingType(Integer.parseInt(bookingElement.getElementsByTagName("BookingType").item(0).getTextContent()));
+                booking.setBookingMinute(Integer.parseInt(bookingElement.getElementsByTagName("BookingMinute").item(0).getTextContent()));
+                bookings.add(booking);
+            }
+        }
+        return bookings;
+    }
+    
+    public static ArrayList<Injury> getInjuriesFromHt(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Injury> injuries = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element injuriesElement = (Element) document.getElementsByTagName("Injuries").item(0);
+        NodeList injuryNodes = injuriesElement.getElementsByTagName("Injury");
+        if (injuryNodes.getLength() > 0) {
+            for (int injuryCnt = 0; injuryCnt < injuryNodes.getLength(); injuryCnt++) {
+                Element injuryElement = (Element) injuryNodes.item(injuryCnt);
+                Injury injury = new Injury();
+                injury.setMatchId(match.getMatchId());
+                injury.setTeamId(match.getTeamId());
+                injury.setInjuryIndex(Integer.parseInt(injuryElement.getAttribute("Index")));
+                injury.setInjuryPlayerId(Integer.parseInt(injuryElement.getElementsByTagName("InjuryPlayerID").item(0).getTextContent()));
+                injury.setInjuryPlayerName(injuryElement.getElementsByTagName("InjuryPlayerName").item(0).getTextContent());
+                injury.setInjuryTeamId(Integer.parseInt(injuryElement.getElementsByTagName("InjuryTeamID").item(0).getTextContent()));
+                injury.setInjuryType(Integer.parseInt(injuryElement.getElementsByTagName("InjuryType").item(0).getTextContent()));
+                injury.setInjuryMinute(Integer.parseInt(injuryElement.getElementsByTagName("InjuryMinute").item(0).getTextContent()));
+                injuries.add(injury);
+            }
+        }
+        return injuries;
+    }
+    
+    public static ArrayList<Event> getEventsFromHt(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Event> events = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element eventsElement = (Element) document.getElementsByTagName("EventList").item(0);
+        NodeList eventNodes = eventsElement.getElementsByTagName("Event");
+        if (eventNodes.getLength() > 0) {
+            for (int eventCnt = 0; eventCnt < eventNodes.getLength(); eventCnt++) {
+                Element eventElement = (Element) eventNodes.item(eventCnt);
+                Event event = new Event();
+                event.setMatchId(match.getMatchId());
+                event.setTeamId(match.getTeamId());
+                event.setEventIndex(Integer.parseInt(eventElement.getAttribute("Index")));
+                event.setEventMinute(Integer.parseInt(eventElement.getElementsByTagName("Minute").item(0).getTextContent()));
+                event.setEventType(Integer.parseInt(eventElement.getElementsByTagName("EventTypeID").item(0).getTextContent()));
+                event.setEventVariation(Integer.parseInt(eventElement.getElementsByTagName("EventVariation").item(0).getTextContent()));
+                event.setEventSubjectTeamId(Integer.parseInt(eventElement.getElementsByTagName("SubjectTeamID").item(0).getTextContent()));
+                event.setEventSubjectPlayerId(Integer.parseInt(eventElement.getElementsByTagName("SubjectPlayerID").item(0).getTextContent()));
+                event.setEventObjectPlayerId(Integer.parseInt(eventElement.getElementsByTagName("ObjectPlayerID").item(0).getTextContent()));
+                event.setEventText(eventElement.getElementsByTagName("EventText").item(0).getTextContent());
+                events.add(event);
+            }
+        }
+        return events;
     }
     
     public static Document xmlStringToDoc(String xmlString)

@@ -87,4 +87,12 @@ public class DeleteFrom {
         statement.close();
     }
     
+    public static void deleteFromMatchesExtended(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = "DELETE FROM MATCHES_EXTENDED";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
 }
