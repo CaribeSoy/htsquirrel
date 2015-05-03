@@ -71,6 +71,9 @@ public class HTSquirrel extends javax.swing.JFrame {
                     Connection db = createDatabaseConnection();
                     ensureTablesExist(db);
                     teams = getTeamsFromDb(db, getUserId());
+                    if (teams.isEmpty()) {
+                        showDownload();
+                    }
                     db.close();
                 }
             }
@@ -110,6 +113,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelBigPage = new javax.swing.JPanel();
         pageLanguage = new htsquirrel.gui.pages.language.Language();
         pageAuthorization = new htsquirrel.gui.pages.authorization.Authorization();
+        pageDownload = new htsquirrel.gui.pages.download.Download();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -309,6 +313,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelBigPage.setLayout(new java.awt.CardLayout());
         panelBigPage.add(pageLanguage, "card2");
         panelBigPage.add(pageAuthorization, "card3");
+        panelBigPage.add(pageDownload, "card4");
 
         panelMain.add(panelBigPage, java.awt.BorderLayout.CENTER);
 
@@ -435,8 +440,15 @@ public class HTSquirrel extends javax.swing.JFrame {
         pageAuthorization.getAuthorizationBase1().refreshAuthorization();
     }
     
+    public static void showDownload() {
+        hideBigPages();
+        pageDownload.setVisible(true);
+        pageDownload.getDownloadBase1().refreshDownload();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static htsquirrel.gui.pages.authorization.Authorization pageAuthorization;
+    private static htsquirrel.gui.pages.download.Download pageDownload;
     private static htsquirrel.gui.pages.language.Language pageLanguage;
     private static javax.swing.JPanel panelBigPage;
     private javax.swing.JPanel panelBottom;

@@ -48,6 +48,10 @@ public class Cup {
         this.teamId = teamId;
     }
 
+    public Object getMatchType() {
+        return matchType;
+    }
+    
     public int getCupId() {
         return cupId;
     }
