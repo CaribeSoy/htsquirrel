@@ -24,10 +24,12 @@
 package htsquirrel.database;
 
 import htsquirrel.game.Team;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -70,4 +72,101 @@ public class GetInfo {
         statement.close();
         return teams;
     }
+    
+    public static int getLastSeasonFromDb(Connection connection, Team team)
+            throws SQLException {
+        int lastSeason = 1;
+        String sqlCode = "SELECT MAX(SEASON) AS LAST_SEASON FROM MATCHES " +
+                "WHERE TEAM_ID = " + team.getTeamId();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            lastSeason = resultSet.getInt("LAST_SEASON");
+        }
+        if (lastSeason == 0) {
+            lastSeason = 1;
+        }
+        statement.close();
+        return lastSeason;
+    }
+    
+    public static Timestamp getLastMatchDateFromDb(Connection connection,
+            Team team) throws SQLException {
+        Timestamp lastMatchDate = null;
+        String sqlCode = "SELECT MAX(MATCH_DATE) AS LAST_MATCH_DATE " +
+                "FROM MATCHES WHERE TEAM_ID = " + team.getTeamId();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            lastMatchDate = resultSet.getTimestamp("LAST_MATCH_DATE");
+        }
+        if (lastMatchDate == null) {
+            lastMatchDate = Timestamp.valueOf("1990-01-01 00:00:00.0");
+        }
+        statement.close();
+        return lastMatchDate;
+    }
+    
+    public static int getNumberOfSeasonsFromDb(Connection connection, Team team)
+            throws SQLException {
+        int seasons = 0;
+        String sqlCode = "SELECT COUNT(*) AS SEASONS FROM LEAGUE_IDS WHERE TEAM_ID = " + team.getTeamId();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            seasons = resultSet.getInt("SEASONS");
+        }
+        return seasons;
+    }
+    
+    public static ArrayList<Integer> getMissingSeasonsFromDb(Connection connection,
+            Team team) throws SQLException {
+        ArrayList<Integer> seasons = new ArrayList<>();
+        String sqlCode = "SELECT SEASON FROM LEAGUE_IDS WHERE MATCH_CONTEXT_ID IS NULL AND TEAM_ID = " + team.getTeamId();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            int season = resultSet.getInt("SEASON");
+            seasons.add(season);
+        }
+        return seasons;
+    }
+    
+    public static int getMinSeasonFromDb(Connection connection, Team team)
+            throws SQLException {
+        int season = 0;
+        String sqlCode = "SELECT MIN(SEASON) AS SEASON FROM LEAGUE_IDS WHERE TEAM_ID = " + team.getTeamId();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            season = resultSet.getInt("SEASON");
+        }
+        return season;
+    }
+    
+    public static int getMaxSeasonFromDb(Connection connection, Team team)
+            throws SQLException {
+        int season = 0;
+        String sqlCode = "SELECT MAX(SEASON) AS SEASON FROM LEAGUE_IDS WHERE TEAM_ID = " + team.getTeamId();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            season = resultSet.getInt("SEASON");
+        }
+        return season;
+    }
+    
+    public static ArrayList<Integer> getLeagueIdsFromDb(Connection connection)
+            throws SQLException {
+        ArrayList<Integer> leagueIds = new ArrayList<>();
+        String sqlCode = "SELECT DISTINCT MATCH_CONTEXT_ID FROM LEAGUE_IDS ORDER BY MATCH_CONTEXT_ID";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            int leagueId = resultSet.getInt("MATCH_CONTEXT_ID");
+            leagueIds.add(leagueId);
+        }
+        return leagueIds;
+    }
+    
 }

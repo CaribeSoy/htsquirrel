@@ -26,18 +26,39 @@ package htsquirrel.gui.pages.download;
 import static htsquirrel.HTSquirrel.getLanguage;
 import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
 import static htsquirrel.database.DeleteFrom.deleteFromCups;
+import static htsquirrel.database.DeleteFrom.deleteFromLeagueIds;
+import static htsquirrel.database.DeleteFrom.deleteFromLeagueNames;
+import static htsquirrel.database.DeleteFrom.deleteFromLeagues;
 import static htsquirrel.database.DeleteFrom.deleteFromTeams;
 import static htsquirrel.database.DeleteFrom.deleteFromTransfers;
+import static htsquirrel.database.GetInfo.getLastMatchDateFromDb;
+import static htsquirrel.database.GetInfo.getLastSeasonFromDb;
+import static htsquirrel.database.GetInfo.getLeagueIdsFromDb;
+import static htsquirrel.database.GetInfo.getMaxSeasonFromDb;
+import static htsquirrel.database.GetInfo.getMinSeasonFromDb;
+import static htsquirrel.database.GetInfo.getMissingSeasonsFromDb;
+import static htsquirrel.database.GetInfo.getNumberOfSeasonsFromDb;
 import static htsquirrel.database.InsertInto.insertIntoCups;
+import static htsquirrel.database.InsertInto.insertIntoLeagueIds;
+import static htsquirrel.database.InsertInto.insertIntoLeagueNames;
+import static htsquirrel.database.InsertInto.insertIntoLeagues;
+import static htsquirrel.database.InsertInto.insertIntoMatches;
 import static htsquirrel.database.InsertInto.insertIntoTeams;
 import static htsquirrel.database.InsertInto.insertIntoTransfers;
+import static htsquirrel.database.Update.updateSeason;
 import htsquirrel.game.Cup;
+import htsquirrel.game.League;
+import htsquirrel.game.Match;
 import htsquirrel.game.Team;
 import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
 import static htsquirrel.oauth.OAuth.getOAuthService;
 import static htsquirrel.oauth.OAuth.getResponse;
 import static htsquirrel.oauth.Responses.getCupsFromHt;
+import static htsquirrel.oauth.Responses.getLeagueFromHt;
+import static htsquirrel.oauth.Responses.getLeagueIdFromSeasonFromHt;
+import static htsquirrel.oauth.Responses.getMatchesFromHt;
+import static htsquirrel.oauth.Responses.getSeasonFromHt;
 import static htsquirrel.oauth.Responses.getTeamsFromHt;
 import static htsquirrel.oauth.Responses.getTransferPagesFromHt;
 import static htsquirrel.oauth.Responses.getTransfersFromHt;
@@ -46,6 +67,7 @@ import htsquirrel.translations.Translations;
 import static htsquirrel.utilities.ConfigProperties.getAccessTokenProperty;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -185,6 +207,99 @@ public class DownloadBase extends javax.swing.JPanel {
                     }
                 }
             }
+            db.close();
+            return null;
+        }
+        
+        @Override
+        public void done() {
+            DownloadMatchesArchive downloadMatchesArchive = new DownloadMatchesArchive();
+            downloadMatchesArchive.execute();
+        }
+        
+    }
+    
+    class DownloadMatchesArchive extends SwingWorker<Void, Void> {
+    
+        @Override
+        protected Void doInBackground() throws Exception {
+            OAuthService oAuthService = getOAuthService(); // TODO handle unsuccessful initialization
+            Token accessToken = getAccessTokenProperty();
+            // matches table
+            Translations translations = new Translations();
+            Properties properties = null;
+            properties = translations.getTranslations(getLanguage());
+            labelInfo.setText(properties.getProperty("download_info_match_list"));
+            String teamDetailsXml = getResponse(oAuthService, accessToken,
+                "teamdetails&version=3.2");
+            ArrayList<Team> teams = getTeamsFromHt(teamDetailsXml);
+            Connection db = createDatabaseConnection();
+            int teamCnt = 0;
+            for (Team team : teams) {
+                teamCnt++;
+                int currentSeason = getSeasonFromHt(oAuthService, accessToken, team);
+                int lastSeason = getLastSeasonFromDb(db, team);
+                Timestamp lastMatchDate = getLastMatchDateFromDb(db, team);
+                for (int seasonCnt = lastSeason; seasonCnt <= currentSeason; seasonCnt++) {
+                    progressBar.setValue((int) 10 * (teamCnt - 1) + 20 * (seasonCnt - lastSeason + 1) / ((currentSeason - lastSeason + 1) * teams.size()));
+                    ArrayList<Match> matchesList = new ArrayList<>();
+                    matchesList = getMatchesFromHt(oAuthService, accessToken,
+                            team, seasonCnt, lastMatchDate);
+                    for (Match match : matchesList) {
+                        insertIntoMatches(db, match);
+                    }
+                }
+            }
+            // league ids table
+            deleteFromLeagueIds(db);
+            insertIntoLeagueIds(db);
+            for (Team team : teams) {
+                int seasons = getNumberOfSeasonsFromDb(db, team);
+                ArrayList<Integer> missingSeasons = new ArrayList<>();
+                missingSeasons = getMissingSeasonsFromDb(db, team);
+                int firstSeason = getMinSeasonFromDb(db, team);
+                int lastSeason = getMaxSeasonFromDb(db, team);
+                if (missingSeasons.size() == 2) {
+                    int firstLeagueId = getLeagueIdFromSeasonFromHt(oAuthService,
+                            accessToken, team, firstSeason);
+                    int lastLeagueId = team.getLeagueLevelUnitId();
+                    updateSeason(db, team, firstSeason, firstLeagueId);
+                    updateSeason(db, team, lastSeason, lastLeagueId);
+                }
+                if (missingSeasons.size() == 1) {
+                    if (seasons > 1) {
+                        if (missingSeasons.get(0) == firstSeason) {
+                            int firstLeagueId = getLeagueIdFromSeasonFromHt(oAuthService,
+                                    accessToken, team, firstSeason);
+                            updateSeason(db, team, firstSeason, firstLeagueId);
+                        } else {
+                            int lastLeagueId = team.getLeagueLevelUnitId();
+                            updateSeason(db, team, lastSeason, lastLeagueId);
+                        }
+                    } else {
+                        int firstLeagueId = getLeagueIdFromSeasonFromHt(oAuthService,
+                            accessToken, team, firstSeason);
+                        if (firstLeagueId == 0) {
+                            int lastLeagueId = team.getLeagueLevelUnitId();
+                            updateSeason(db, team, lastSeason, lastLeagueId);
+                        } else {
+                            updateSeason(db, team, firstSeason, firstLeagueId);
+                        }
+                    }
+                }
+            }
+            // league names table
+            deleteFromLeagueNames(db);
+            ArrayList<Integer> leagueIds = new ArrayList<>();
+            leagueIds = getLeagueIdsFromDb(db);
+            for (int leagueId : leagueIds) {
+                League league = new League();
+                league = getLeagueFromHt(oAuthService, accessToken, leagueId);
+                insertIntoLeagueNames(db, league);
+            }
+            // leagues table
+            deleteFromLeagues(db);
+            insertIntoLeagues(db);
             db.close();
             return null;
         }

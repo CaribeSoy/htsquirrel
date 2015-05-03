@@ -25,6 +25,7 @@ package htsquirrel.database;
 
 import htsquirrel.game.Team;
 import htsquirrel.game.User;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -57,6 +58,30 @@ public class DeleteFrom {
             throws SQLException {
         String sqlCode = "DELETE FROM TRANSFERS WHERE TEAM_ID = " +
                 team.getTeamId();
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void deleteFromLeagueIds(Connection connection)
+            throws SQLException {
+        String sqlCode = "DELETE FROM LEAGUE_IDS";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void deleteFromLeagueNames(Connection connection)
+            throws SQLException {
+        String sqlCode = "DELETE FROM LEAGUE_NAMES";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void deleteFromLeagues(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = "DELETE FROM LEAGUES";
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

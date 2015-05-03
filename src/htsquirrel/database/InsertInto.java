@@ -24,6 +24,8 @@
 package htsquirrel.database;
 
 import htsquirrel.game.Cup;
+import htsquirrel.game.League;
+import htsquirrel.game.Match;
 import htsquirrel.game.Team;
 import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
@@ -103,6 +105,59 @@ public class InsertInto {
         sqlCode = sqlCode.replaceAll("#seller_team_id#", String.valueOf(transfer.getSellerTeamId()));
         sqlCode = sqlCode.replaceAll("#seller_team_name#", transfer.getSellerTeamName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("#price#", String.valueOf(transfer.getPrice()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoMatches(Connection connection, Match match)
+            throws IOException, SQLException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/matches.sql");
+        sqlCode = sqlCode.replaceAll("#match_id#", String.valueOf(match.getMatchId()));
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(match.getTeamId()));
+        sqlCode = sqlCode.replaceAll("#team_name#", match.getTeamName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#opponent_team_id#", String.valueOf(match.getOpponentTeamId()));
+        sqlCode = sqlCode.replaceAll("#opponent_team_name#", match.getOpponentTeamName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#venue#", match.getVenue().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#match_date#", String.valueOf(match.getMatchDate()));
+        sqlCode = sqlCode.replaceAll("#season#", String.valueOf(match.getSeason()));
+        sqlCode = sqlCode.replaceAll("#match_type#", String.valueOf(match.getMatchType()));
+        sqlCode = sqlCode.replaceAll("#match_context_id#", String.valueOf(match.getMatchContextId()));
+        sqlCode = sqlCode.replaceAll("#cup_level#", String.valueOf(match.getCupLevel()));
+        sqlCode = sqlCode.replaceAll("#cup_level_index#", String.valueOf(match.getCupLevelIndex()));
+        sqlCode = sqlCode.replaceAll("#goals_for#", String.valueOf(match.getGoalsFor()));
+        sqlCode = sqlCode.replaceAll("#goals_against#", String.valueOf(match.getGoalsAgainst()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoLeagueIds(Connection connection)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/league_ids.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoLeagueNames(Connection connection, League league)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/league_names.sql");
+        sqlCode = sqlCode.replaceAll("#league_level_unit_id#", String.valueOf(league.getLeagueLevelUnitId()));
+        sqlCode = sqlCode.replaceAll("#league_level#", String.valueOf(league.getLeagueLevel()));
+        sqlCode = sqlCode.replaceAll("#league_level_unit_name#", league.getLeagueLevelUnitName().replaceAll("'", "''"));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoLeagues(Connection connection)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/leagues.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

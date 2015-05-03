@@ -24,6 +24,8 @@
 package htsquirrel.oauth;
 
 import htsquirrel.game.Cup;
+import htsquirrel.game.League;
+import htsquirrel.game.Match;
 import htsquirrel.game.Team;
 import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
@@ -168,6 +170,109 @@ public class Responses {
             }
         }
         return transfers;
+    }
+    
+    public static int getSeasonFromHt(OAuthService oAuthService, Token accessToken,
+            Team team) throws ParserConfigurationException, SAXException,
+            IOException {
+        String xmlString = getResponse(oAuthService, accessToken,
+                "worlddetails&version=1.6&leagueID=" + team.getLeagueId());
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        int season = Integer.parseInt(document.getElementsByTagName("Season").item(0).getTextContent());
+        return season;
+    }
+    
+    public static ArrayList<Match> getMatchesFromHt(OAuthService oAuthService,
+            Token accessToken, Team team, int season, Timestamp lastMatchDate)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Match> matches = new ArrayList<>();
+        String xmlString = getResponse(oAuthService, accessToken,
+                "matchesarchive&version=1.3&teamID=" + team.getTeamId() +
+                        "&season=" + season);
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element matchListElement = (Element) document.getElementsByTagName("MatchList").item(0);
+        NodeList matchNodes = matchListElement.getElementsByTagName("Match");
+        if (matchNodes.getLength() > 0) {
+            for (int matchCnt = 0; matchCnt < matchNodes.getLength(); matchCnt++) {
+                Element matchElement = (Element) matchNodes.item(matchCnt);
+                Timestamp matchDate = Timestamp.valueOf(matchElement.getElementsByTagName("MatchDate").item(0).getTextContent());
+                if (matchDate.after(team.getFoundedDate()) & matchDate.after(lastMatchDate)) {
+                    Match match = new Match();
+                    match.setTeamId(team.getTeamId());
+                    match.setSeason(season);
+                    match.setMatchDate(matchDate);
+                    match.setMatchId(Integer.parseInt(matchElement.getElementsByTagName("MatchID").item(0).getTextContent()));
+                    match.setMatchType(Integer.parseInt(matchElement.getElementsByTagName("MatchType").item(0).getTextContent()));
+                    match.setMatchContextId(Integer.parseInt(matchElement.getElementsByTagName("MatchContextId").item(0).getTextContent()));
+                    match.setCupLevel(Integer.parseInt(matchElement.getElementsByTagName("CupLevel").item(0).getTextContent()));
+                    match.setCupLevelIndex(Integer.parseInt(matchElement.getElementsByTagName("CupLevelIndex").item(0).getTextContent()));
+                    int homeTeamId = Integer.parseInt(matchElement.getElementsByTagName("HomeTeamID").item(0).getTextContent());
+                    String homeTeamName = matchElement.getElementsByTagName("HomeTeamName").item(0).getTextContent();
+                    int awayTeamId = Integer.parseInt(matchElement.getElementsByTagName("AwayTeamID").item(0).getTextContent());
+                    String awayTeamName = matchElement.getElementsByTagName("AwayTeamName").item(0).getTextContent();
+                    int homeGoals = Integer.parseInt(matchElement.getElementsByTagName("HomeGoals").item(0).getTextContent());
+                    int awayGoals = Integer.parseInt(matchElement.getElementsByTagName("AwayGoals").item(0).getTextContent());
+                    if (homeTeamId == team.getTeamId()) {
+                        match.setTeamName(homeTeamName);
+                        match.setOpponentTeamId(awayTeamId);
+                        match.setOpponentTeamName(awayTeamName);
+                        match.setVenue("Home");
+                        match.setGoalsFor(homeGoals);
+                        match.setGoalsAgainst(awayGoals);
+                    } else {
+                        match.setTeamName(awayTeamName);
+                        match.setOpponentTeamId(homeTeamId);
+                        match.setOpponentTeamName(homeTeamName);
+                        match.setVenue("Away");
+                        match.setGoalsFor(awayGoals);
+                        match.setGoalsAgainst(homeGoals);
+                    }
+                    matches.add(match);
+                }
+            }
+        }
+        return matches;
+    }
+    
+    public static int getLeagueIdFromSeasonFromHt(OAuthService oAuthService,
+            Token accessToken, Team team, int season)
+            throws ParserConfigurationException, SAXException, IOException {
+        int leagueId = 0;
+        String xmlString = getResponse(oAuthService, accessToken,
+                "matchesarchive&version=1.3&teamID=" + team.getTeamId() +
+                        "&season=" + season);
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element matchListElement = (Element) document.getElementsByTagName("MatchList").item(0);
+        NodeList matchNodes = matchListElement.getElementsByTagName("Match");
+        for (int matchCnt = 0; matchCnt < matchNodes.getLength(); matchCnt++) {
+            Element matchElement = (Element) matchNodes.item(matchCnt);
+            int matchType = Integer.parseInt(matchElement.getElementsByTagName("MatchType").item(0).getTextContent());
+            int matchContextId = Integer.parseInt(matchElement.getElementsByTagName("MatchContextId").item(0).getTextContent());
+            if (matchType == 1) {
+                leagueId = matchContextId;
+            }
+        }
+        return leagueId;
+    }
+    
+    public static League getLeagueFromHt(OAuthService oAuthService, Token accessToken,
+            int leagueLevelUnitId)
+            throws ParserConfigurationException, SAXException, IOException {
+        League league = new League();
+        String xmlString = getResponse(oAuthService, accessToken,
+                "leaguedetails&version=1.4&leagueLevelUnitID="
+                        + leagueLevelUnitId);
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        league.setLeagueLevelUnitId(leagueLevelUnitId);
+        Element leagueLevelElement = (Element) document.getElementsByTagName("LeagueLevel").item(0);
+        Element leagueLevelUnitNameElement = (Element) document.getElementsByTagName("LeagueLevelUnitName").item(0);
+        league.setLeagueLevel(Integer.parseInt(leagueLevelElement.getTextContent()));
+        league.setLeagueLevelUnitName(leagueLevelUnitNameElement.getTextContent());
+        return league;
     }
     
     public static Document xmlStringToDoc(String xmlString)
