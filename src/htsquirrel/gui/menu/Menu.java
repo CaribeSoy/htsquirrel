@@ -25,7 +25,9 @@ package htsquirrel.gui.menu;
 
 import static htsquirrel.HTSquirrel.getCurrentTeam;
 import static htsquirrel.HTSquirrel.getLanguage;
+import static htsquirrel.HTSquirrel.getOrange;
 import static htsquirrel.HTSquirrel.getTeams;
+import static htsquirrel.HTSquirrel.showRecords;
 import htsquirrel.translations.Translations;
 import java.io.IOException;
 import java.util.Properties;
@@ -128,21 +130,41 @@ public class Menu extends javax.swing.JPanel {
         labelTeam.setForeground(new java.awt.Color(128, 128, 128));
         labelTeam.setText("TEAM");
         labelTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelTeam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelTeamMouseClicked(evt);
+            }
+        });
 
         labelRecords.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelRecords.setForeground(new java.awt.Color(128, 128, 128));
         labelRecords.setText("RECORDS");
         labelRecords.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelRecords.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelRecordsMouseClicked(evt);
+            }
+        });
 
         labelDownload.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelDownload.setForeground(new java.awt.Color(128, 128, 128));
         labelDownload.setText("DOWNLOAD");
         labelDownload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelDownload.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelDownloadMouseClicked(evt);
+            }
+        });
 
         labelSettings.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelSettings.setForeground(new java.awt.Color(128, 128, 128));
         labelSettings.setText("SETTINGS");
         labelSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelSettingsMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCenterLayout = new javax.swing.GroupLayout(panelCenter);
         panelCenter.setLayout(panelCenterLayout);
@@ -173,6 +195,26 @@ public class Menu extends javax.swing.JPanel {
 
         add(panelCenter, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void labelTeamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelTeamMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelTeamMouseClicked
+
+    private void labelRecordsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRecordsMouseClicked
+        labelTeam.setForeground(new java.awt.Color(128, 128, 128));
+        labelRecords.setForeground(getOrange());
+        labelDownload.setForeground(new java.awt.Color(128, 128, 128));
+        labelSettings.setForeground(new java.awt.Color(128, 128, 128));
+        showRecords();
+    }//GEN-LAST:event_labelRecordsMouseClicked
+
+    private void labelDownloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDownloadMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelDownloadMouseClicked
+
+    private void labelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSettingsMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelSettingsMouseClicked
 
     public JLabel getLabelDownload() {
         return labelDownload;

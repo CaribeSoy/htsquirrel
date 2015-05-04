@@ -89,7 +89,6 @@ public class HTSquirrel extends javax.swing.JFrame {
                     if (teams.isEmpty()) {
                         showDownload();
                     } else {
-                        System.out.println("ok");
                         setCurrentTeam(getTeams().get(0));
                         menu.refreshMenu();
                     }
@@ -135,6 +134,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         pageBlank = new javax.swing.JPanel();
         pageLanguage = new htsquirrel.gui.pages.language.Language();
         pageAuthorization = new htsquirrel.gui.pages.authorization.Authorization();
+        pageRecords = new htsquirrel.gui.pages.records.Records();
         pageDownload = new htsquirrel.gui.pages.download.Download();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -354,6 +354,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelBigPage.add(pageBlank, "card5");
         panelBigPage.add(pageLanguage, "card2");
         panelBigPage.add(pageAuthorization, "card3");
+        panelBigPage.add(pageRecords, "card6");
         panelBigPage.add(pageDownload, "card4");
 
         panelMain.add(panelBigPage, java.awt.BorderLayout.CENTER);
@@ -509,6 +510,12 @@ public class HTSquirrel extends javax.swing.JFrame {
         pageDownload.getDownloadBase1().refreshDownload();
     }
     
+    public static void showRecords() {
+        hideBigPages();
+        pageRecords.setVisible(true);
+        pageRecords.refreshRecords();
+    }
+    
     public static Color getWhite() {
         Color color = new java.awt.Color(242, 242, 242);
         return color;
@@ -551,6 +558,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private javax.swing.JPanel pageBlankSmall;
     private static htsquirrel.gui.pages.download.Download pageDownload;
     private static htsquirrel.gui.pages.language.Language pageLanguage;
+    private static htsquirrel.gui.pages.records.Records pageRecords;
     private static javax.swing.JPanel panelBigPage;
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;

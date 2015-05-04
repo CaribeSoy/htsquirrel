@@ -183,6 +183,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelTeamMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelRecords">
           <Properties>
@@ -197,6 +200,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelRecordsMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelDownload">
           <Properties>
@@ -211,6 +217,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelDownloadMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelSettings">
           <Properties>
@@ -225,6 +234,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelSettingsMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
