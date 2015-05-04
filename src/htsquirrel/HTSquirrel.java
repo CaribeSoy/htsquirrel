@@ -124,6 +124,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeftLeft = new javax.swing.JPanel();
         panelLeftRight = new javax.swing.JPanel();
         panelSmallPage = new javax.swing.JPanel();
+        pageBlankSmall = new javax.swing.JPanel();
         panelRight = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
         panelVerticalSeparator = new javax.swing.JPanel();
@@ -131,11 +132,13 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelMain = new javax.swing.JPanel();
         panelHorizontalSeparator = new javax.swing.JPanel();
         panelBigPage = new javax.swing.JPanel();
+        pageBlank = new javax.swing.JPanel();
         pageLanguage = new htsquirrel.gui.pages.language.Language();
         pageAuthorization = new htsquirrel.gui.pages.authorization.Authorization();
         pageDownload = new htsquirrel.gui.pages.download.Download();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("HT Squirrel");
 
         panelTop.setBackground(new java.awt.Color(51, 51, 51));
         panelTop.setMaximumSize(new java.awt.Dimension(32767, 52));
@@ -254,16 +257,20 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         panelLeft.add(panelLeftRight, java.awt.BorderLayout.LINE_END);
 
-        javax.swing.GroupLayout panelSmallPageLayout = new javax.swing.GroupLayout(panelSmallPage);
-        panelSmallPage.setLayout(panelSmallPageLayout);
-        panelSmallPageLayout.setHorizontalGroup(
-            panelSmallPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelSmallPage.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout pageBlankSmallLayout = new javax.swing.GroupLayout(pageBlankSmall);
+        pageBlankSmall.setLayout(pageBlankSmallLayout);
+        pageBlankSmallLayout.setHorizontalGroup(
+            pageBlankSmallLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 390, Short.MAX_VALUE)
         );
-        panelSmallPageLayout.setVerticalGroup(
-            panelSmallPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pageBlankSmallLayout.setVerticalGroup(
+            pageBlankSmallLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 638, Short.MAX_VALUE)
         );
+
+        panelSmallPage.add(pageBlankSmall, "card2");
 
         panelLeft.add(panelSmallPage, java.awt.BorderLayout.CENTER);
 
@@ -332,6 +339,19 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelMain.add(panelHorizontalSeparator, java.awt.BorderLayout.PAGE_START);
 
         panelBigPage.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout pageBlankLayout = new javax.swing.GroupLayout(pageBlank);
+        pageBlank.setLayout(pageBlankLayout);
+        pageBlankLayout.setHorizontalGroup(
+            pageBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 545, Short.MAX_VALUE)
+        );
+        pageBlankLayout.setVerticalGroup(
+            pageBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 643, Short.MAX_VALUE)
+        );
+
+        panelBigPage.add(pageBlank, "card5");
         panelBigPage.add(pageLanguage, "card2");
         panelBigPage.add(pageAuthorization, "card3");
         panelBigPage.add(pageDownload, "card4");
@@ -343,6 +363,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         getContentPane().add(panelCenter, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -526,6 +547,8 @@ public class HTSquirrel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static htsquirrel.gui.menu.Menu menu;
     private static htsquirrel.gui.pages.authorization.Authorization pageAuthorization;
+    private javax.swing.JPanel pageBlank;
+    private javax.swing.JPanel pageBlankSmall;
     private static htsquirrel.gui.pages.download.Download pageDownload;
     private static htsquirrel.gui.pages.language.Language pageLanguage;
     private static javax.swing.JPanel panelBigPage;
