@@ -619,6 +619,26 @@ public class MatchTypeCompetitions extends javax.swing.JPanel {
         return result;
     }
 
+    public void resetMatchTypeCompetitions() {
+        checkBoxCompetitions.setSelected(true);
+        checkBoxLeague.setSelected(true);
+        checkBoxQualification.setSelected(true);
+        checkBoxNationalCup.setSelected(true);
+        checkBoxNationalEmerald.setSelected(true);
+        checkBoxNationalRuby.setSelected(true);
+        checkBoxNationalSapphire.setSelected(true);
+        checkBoxNationalConsolation.setSelected(true);
+        checkBoxDivisionalCup.setSelected(true);
+        checkBoxDivisionalEmerald.setSelected(true);
+        checkBoxDivisionalRuby.setSelected(true);
+        checkBoxDivisionalSapphire.setSelected(true);
+        checkBoxDivisionalConsolation.setSelected(true);
+        checkBoxLevel7.setSelected(true);
+        checkBoxLevel8.setSelected(true);
+        checkBoxLevel9.setSelected(true);
+        checkBoxHattrickMasters.setSelected(true);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox checkBoxCompetitions;
     private javax.swing.JCheckBox checkBoxDivisionalConsolation;

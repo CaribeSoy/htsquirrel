@@ -144,6 +144,10 @@ public class MatchType extends javax.swing.JPanel {
         panelFriendlies.setVisible(true);
     }//GEN-LAST:event_buttonFriendliesActionPerformed
 
+    public void resetMatchType() {
+        panelCompetitions.resetMatchTypeCompetitions();
+        panelFriendlies.resetMatchTypeFriendlies();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton buttonCompetitions;

@@ -219,6 +219,14 @@ public class MatchTypeFriendlies extends javax.swing.JPanel {
         return result;
     }
 
+    public void resetMatchTypeFriendlies() {
+        checkBoxFriendlies.setSelected(false);
+        checkBoxFriendlyNormal.setSelected(false);
+        checkBoxFriendlyCup.setSelected(false);
+        checkBoxIntFriendlyNormal.setSelected(false);
+        checkBoxIntFriendlyCup.setSelected(false);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox checkBoxFriendlies;
     private javax.swing.JCheckBox checkBoxFriendlyCup;
