@@ -48,9 +48,9 @@ public class Formation extends javax.swing.JPanel {
 
         panelTop = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        buttonTeam = new javax.swing.JToggleButton();
         panelRight = new javax.swing.JPanel();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        buttonOpponent = new javax.swing.JToggleButton();
         panelBottom = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         panelBase = new javax.swing.JPanel();
@@ -62,26 +62,26 @@ public class Formation extends javax.swing.JPanel {
         panelTop.setMaximumSize(new java.awt.Dimension(32767, 50));
         panelTop.setMinimumSize(new java.awt.Dimension(100, 50));
         panelTop.setPreferredSize(new java.awt.Dimension(400, 50));
-        panelTop.setLayout(new java.awt.GridLayout());
+        panelTop.setLayout(new java.awt.GridLayout(1, 0));
 
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        jToggleButton1.setSelected(true);
-        jToggleButton1.setText("Team");
-        jToggleButton1.setMaximumSize(new java.awt.Dimension(180, 27));
-        jToggleButton1.setMinimumSize(new java.awt.Dimension(180, 27));
-        jToggleButton1.setPreferredSize(new java.awt.Dimension(180, 27));
-        panelLeft.add(jToggleButton1, new java.awt.GridBagConstraints());
+        buttonTeam.setSelected(true);
+        buttonTeam.setText("Team");
+        buttonTeam.setMaximumSize(new java.awt.Dimension(180, 27));
+        buttonTeam.setMinimumSize(new java.awt.Dimension(180, 27));
+        buttonTeam.setPreferredSize(new java.awt.Dimension(180, 27));
+        panelLeft.add(buttonTeam, new java.awt.GridBagConstraints());
 
         panelTop.add(panelLeft);
 
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        jToggleButton2.setText("Opponent");
-        jToggleButton2.setMaximumSize(new java.awt.Dimension(180, 27));
-        jToggleButton2.setMinimumSize(new java.awt.Dimension(180, 27));
-        jToggleButton2.setPreferredSize(new java.awt.Dimension(180, 27));
-        panelRight.add(jToggleButton2, new java.awt.GridBagConstraints());
+        buttonOpponent.setText("Opponent");
+        buttonOpponent.setMaximumSize(new java.awt.Dimension(180, 27));
+        buttonOpponent.setMinimumSize(new java.awt.Dimension(180, 27));
+        buttonOpponent.setPreferredSize(new java.awt.Dimension(180, 27));
+        panelRight.add(buttonOpponent, new java.awt.GridBagConstraints());
 
         panelTop.add(panelRight);
 
@@ -120,12 +120,16 @@ public class Formation extends javax.swing.JPanel {
         add(panelBottom, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void resetFormation() {
+        formationTeam.resetFormationBase();
+        formationOpponent.resetFormationBase();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton buttonOpponent;
+    private javax.swing.JToggleButton buttonTeam;
     private htsquirrel.gui.pages.matchfilter.FormationBase formationOpponent;
     private htsquirrel.gui.pages.matchfilter.FormationBase formationTeam;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JPanel panelBase;
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelLeft;

@@ -45,101 +45,101 @@ public class FormationBase extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        checkBoxAllFormations = new javax.swing.JCheckBox();
+        panelFormations = new javax.swing.JPanel();
+        panelBasic = new javax.swing.JPanel();
+        checkBox550 = new javax.swing.JCheckBox();
+        checkBox541 = new javax.swing.JCheckBox();
+        checkBox532 = new javax.swing.JCheckBox();
+        checkBox523 = new javax.swing.JCheckBox();
+        checkBox451 = new javax.swing.JCheckBox();
+        checkBox442 = new javax.swing.JCheckBox();
+        checkBox433 = new javax.swing.JCheckBox();
+        checkBox352 = new javax.swing.JCheckBox();
+        checkBox343 = new javax.swing.JCheckBox();
+        checkBox253 = new javax.swing.JCheckBox();
+        checkBoxOther = new javax.swing.JCheckBox();
+        checkBoxSpecific = new javax.swing.JCheckBox();
+        textFieldSpecific = new javax.swing.JFormattedTextField();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jCheckBox1.setText("All formations");
+        checkBoxAllFormations.setText("All formations");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Formations"));
+        panelFormations.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Formations"));
 
-        jPanel2.setLayout(new java.awt.GridLayout(5, 2, 0, 6));
+        panelBasic.setLayout(new java.awt.GridLayout(5, 2, 0, 6));
 
-        jCheckBox2.setText("5-5-0");
-        jPanel2.add(jCheckBox2);
+        checkBox550.setText("5-5-0");
+        panelBasic.add(checkBox550);
 
-        jCheckBox3.setText("5-4-1");
-        jPanel2.add(jCheckBox3);
+        checkBox541.setText("5-4-1");
+        panelBasic.add(checkBox541);
 
-        jCheckBox4.setText("5-3-2");
-        jPanel2.add(jCheckBox4);
+        checkBox532.setText("5-3-2");
+        panelBasic.add(checkBox532);
 
-        jCheckBox5.setText("5-2-3");
-        jPanel2.add(jCheckBox5);
+        checkBox523.setText("5-2-3");
+        panelBasic.add(checkBox523);
 
-        jCheckBox6.setText("4-5-1");
-        jPanel2.add(jCheckBox6);
+        checkBox451.setText("4-5-1");
+        panelBasic.add(checkBox451);
 
-        jCheckBox7.setText("4-4-2");
-        jPanel2.add(jCheckBox7);
+        checkBox442.setText("4-4-2");
+        panelBasic.add(checkBox442);
 
-        jCheckBox8.setText("4-3-3");
-        jPanel2.add(jCheckBox8);
+        checkBox433.setText("4-3-3");
+        panelBasic.add(checkBox433);
 
-        jCheckBox9.setText("3-5-2");
-        jPanel2.add(jCheckBox9);
+        checkBox352.setText("3-5-2");
+        panelBasic.add(checkBox352);
 
-        jCheckBox10.setText("3-4-3");
-        jPanel2.add(jCheckBox10);
+        checkBox343.setText("3-4-3");
+        panelBasic.add(checkBox343);
 
-        jCheckBox11.setText("2-5-3");
-        jPanel2.add(jCheckBox11);
+        checkBox253.setText("2-5-3");
+        panelBasic.add(checkBox253);
 
-        jCheckBox12.setText("Other");
+        checkBoxOther.setText("Other");
 
-        jCheckBox13.setText("Specific:");
+        checkBoxSpecific.setText("Specific:");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-#-#")));
+            textFieldSpecific.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-#-#")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setText("0-0-0");
+        textFieldSpecific.setText("0-0-0");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelFormationsLayout = new javax.swing.GroupLayout(panelFormations);
+        panelFormations.setLayout(panelFormationsLayout);
+        panelFormationsLayout.setHorizontalGroup(
+            panelFormationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormationsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox12)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jCheckBox13)
+                .addGroup(panelFormationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelBasic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelFormationsLayout.createSequentialGroup()
+                        .addGroup(panelFormationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkBoxOther)
+                            .addGroup(panelFormationsLayout.createSequentialGroup()
+                                .addComponent(checkBoxSpecific)
                                 .addGap(18, 18, 18)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(textFieldSpecific, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 178, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelFormationsLayout.setVerticalGroup(
+            panelFormationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormationsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelBasic, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox12)
+                .addComponent(checkBoxOther)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox13)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelFormationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkBoxSpecific)
+                    .addComponent(textFieldSpecific, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -151,39 +151,55 @@ public class FormationBase extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
+                        .addComponent(checkBoxAllFormations)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelFormations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCheckBox1)
+                .addComponent(checkBoxAllFormations)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelFormations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void resetFormationBase() {
+        checkBoxAllFormations.setSelected(true);
+        checkBox550.setSelected(true);
+        checkBox541.setSelected(true);
+        checkBox532.setSelected(true);
+        checkBox523.setSelected(true);
+        checkBox451.setSelected(true);
+        checkBox442.setSelected(true);
+        checkBox433.setSelected(true);
+        checkBox352.setSelected(true);
+        checkBox343.setSelected(true);
+        checkBox253.setSelected(true);
+        checkBoxOther.setSelected(true);
+        checkBoxSpecific.setSelected(false);
+        textFieldSpecific.setText("0-0-0");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JCheckBox checkBox253;
+    private javax.swing.JCheckBox checkBox343;
+    private javax.swing.JCheckBox checkBox352;
+    private javax.swing.JCheckBox checkBox433;
+    private javax.swing.JCheckBox checkBox442;
+    private javax.swing.JCheckBox checkBox451;
+    private javax.swing.JCheckBox checkBox523;
+    private javax.swing.JCheckBox checkBox532;
+    private javax.swing.JCheckBox checkBox541;
+    private javax.swing.JCheckBox checkBox550;
+    private javax.swing.JCheckBox checkBoxAllFormations;
+    private javax.swing.JCheckBox checkBoxOther;
+    private javax.swing.JCheckBox checkBoxSpecific;
+    private javax.swing.JPanel panelBasic;
+    private javax.swing.JPanel panelFormations;
+    private javax.swing.JFormattedTextField textFieldSpecific;
     // End of variables declaration//GEN-END:variables
 }
