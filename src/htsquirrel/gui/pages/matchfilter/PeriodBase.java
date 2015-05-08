@@ -23,6 +23,15 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import static htsquirrel.HTSquirrel.getCurrentTeam;
+import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -239,6 +248,68 @@ public class PeriodBase extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void resetPeriod() {
+        radioButtonSeason.setSelected(true);
+        radioButtonLeagueLevel.setSelected(true);
+        comboBoxSeasonFrom.removeAllItems();
+        comboBoxSeasonTo.removeAllItems();
+        comboBoxLevelFrom.removeAllItems();
+        comboBoxLevelTo.removeAllItems();
+        comboBoxLeagueName.removeAllItems();
+        try {
+            Connection db = createDatabaseConnection();
+            // season from and to
+            String sqlCode = "SELECT SEASON FROM LEAGUES WHERE TEAM_ID = "
+                    + getCurrentTeam().getTeamId();
+            Statement statement1 = db.createStatement();
+            ResultSet resultSet1 = statement1.executeQuery(sqlCode);
+            while (resultSet1.next()) {
+                int season = resultSet1.getInt("SEASON");
+                comboBoxSeasonFrom.addItem(season);
+                comboBoxSeasonTo.addItem(season);
+            }
+            comboBoxSeasonTo.setSelectedIndex(comboBoxSeasonTo.getItemCount() - 1);
+            statement1.close();
+            // specific league
+            sqlCode = "SELECT LEAGUE_LEVEL_UNIT_NAME FROM (SELECT DISTINCT LEAGUE_LEVEL_UNIT_ID, LEAGUE_LEVEL_UNIT_NAME FROM LEAGUES  WHERE TEAM_ID = "
+                    + getCurrentTeam().getTeamId() + " ORDER BY LEAGUE_LEVEL_UNIT_ID)";
+            Statement statement2 = db.createStatement();
+            ResultSet resultSet2 = statement2.executeQuery(sqlCode);
+            while (resultSet2.next()) {
+                String league = resultSet2.getString("LEAGUE_LEVEL_UNIT_NAME");
+                comboBoxLeagueName.addItem(league);
+            }
+            statement2.close();
+            // league level from and to
+            sqlCode = "SELECT DISTINCT LEAGUE_LEVEL FROM LEAGUES WHERE TEAM_ID = "
+                    + getCurrentTeam().getTeamId() + " ORDER BY LEAGUE_LEVEL";
+            Statement statement3 = db.createStatement();
+            ResultSet resultSet3 = statement3.executeQuery(sqlCode);
+            while (resultSet3.next()) {
+                int level = resultSet3.getInt("LEAGUE_LEVEL");
+                comboBoxLevelFrom.addItem(level);
+                comboBoxLevelTo.addItem(level);
+            }
+            comboBoxLevelTo.setSelectedIndex(comboBoxLevelTo.getItemCount() - 1);
+            statement3.close();
+            // date from and to
+            sqlCode = "SELECT TO_CHAR(MIN(MATCH_DATE), 'YYYY-MM-DD') AS FIRST_DATE,  TO_CHAR(MAX(MATCH_DATE) + 1, 'YYYY-MM-DD') AS LAST_DATE FROM MATCHES WHERE TEAM_ID = "
+                    + getCurrentTeam().getTeamId();
+            Statement statement4 = db.createStatement();
+            ResultSet resultSet4 = statement4.executeQuery(sqlCode);
+            while (resultSet4.next()) {
+                String firstDate = resultSet4.getString("FIRST_DATE");
+                String lastDate = resultSet4.getString("LAST_DATE");
+                textFieldDateFrom.setText(firstDate);
+                textFieldDateTo.setText(lastDate);
+            }
+            statement4.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PeriodBase.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PeriodBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupLeague;
