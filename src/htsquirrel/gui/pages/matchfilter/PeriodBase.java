@@ -328,6 +328,8 @@ public class PeriodBase extends javax.swing.JPanel {
             labelTo2.setText(properties.getProperty("to"));
             panelLeague.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("period_panel_league")));
             radioButtonLeagueLevel.setText(properties.getProperty("period_league_level"));
+            labelFrom3.setText(properties.getProperty("from"));
+            labelTo3.setText(properties.getProperty("to"));
             radioButtonSpecificLeague.setText(properties.getProperty("period_league_specific"));
             labelLeagueName.setText(properties.getProperty("period_league_name"));
         } catch (IOException ex) {
