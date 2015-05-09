@@ -27,8 +27,10 @@ import static htsquirrel.HTSquirrel.getCurrentTeam;
 import static htsquirrel.HTSquirrel.getLanguage;
 import static htsquirrel.HTSquirrel.getOrange;
 import static htsquirrel.HTSquirrel.getTeams;
+import static htsquirrel.HTSquirrel.setCurrentTeam;
 import static htsquirrel.HTSquirrel.showDownload;
 import static htsquirrel.HTSquirrel.showRecords;
+import static htsquirrel.HTSquirrel.showTeam;
 import htsquirrel.translations.Translations;
 import java.io.IOException;
 import java.util.Properties;
@@ -83,6 +85,11 @@ public class Menu extends javax.swing.JPanel {
         labelSwitchTeam.setForeground(new java.awt.Color(128, 128, 128));
         labelSwitchTeam.setText("switch team");
         labelSwitchTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelSwitchTeam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelSwitchTeamMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
         panelLeft.setLayout(panelLeftLayout);
@@ -220,6 +227,20 @@ public class Menu extends javax.swing.JPanel {
     private void labelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSettingsMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_labelSettingsMouseClicked
+
+    private void labelSwitchTeamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSwitchTeamMouseClicked
+        if (getCurrentTeam().getTeamId() == getTeams().get(0).getTeamId()) {
+            setCurrentTeam(getTeams().get(1));
+        } else {
+            setCurrentTeam(getTeams().get(0));
+        }
+        labelTeamName.setText(getCurrentTeam().getTeamName());
+        labelTeam.setForeground(getOrange());
+        labelRecords.setForeground(new java.awt.Color(128, 128, 128));
+        labelDownload.setForeground(new java.awt.Color(128, 128, 128));
+        labelSettings.setForeground(new java.awt.Color(128, 128, 128));
+        showTeam();
+    }//GEN-LAST:event_labelSwitchTeamMouseClicked
 
     public JLabel getLabelDownload() {
         return labelDownload;

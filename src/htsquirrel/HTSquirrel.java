@@ -123,6 +123,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeftLeft = new javax.swing.JPanel();
         panelLeftRight = new javax.swing.JPanel();
         panelSmallPage = new javax.swing.JPanel();
+        matchFilter = new htsquirrel.gui.pages.matchfilter.MatchFilter();
         pageBlankSmall = new javax.swing.JPanel();
         panelRight = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
@@ -197,7 +198,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeftTop.setLayout(panelLeftTopLayout);
         panelLeftTopLayout.setHorizontalGroup(
             panelLeftTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 422, Short.MAX_VALUE)
         );
         panelLeftTopLayout.setVerticalGroup(
             panelLeftTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +215,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeftBottom.setLayout(panelLeftBottomLayout);
         panelLeftBottomLayout.setHorizontalGroup(
             panelLeftBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 422, Short.MAX_VALUE)
         );
         panelLeftBottomLayout.setVerticalGroup(
             panelLeftBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,12 +259,13 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeft.add(panelLeftRight, java.awt.BorderLayout.LINE_END);
 
         panelSmallPage.setLayout(new java.awt.CardLayout());
+        panelSmallPage.add(matchFilter, "card3");
 
         javax.swing.GroupLayout pageBlankSmallLayout = new javax.swing.GroupLayout(pageBlankSmall);
         pageBlankSmall.setLayout(pageBlankSmallLayout);
         pageBlankSmallLayout.setHorizontalGroup(
             pageBlankSmallLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGap(0, 412, Short.MAX_VALUE)
         );
         pageBlankSmallLayout.setVerticalGroup(
             pageBlankSmallLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,7 +331,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelHorizontalSeparator.setLayout(panelHorizontalSeparatorLayout);
         panelHorizontalSeparatorLayout.setHorizontalGroup(
             panelHorizontalSeparatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 545, Short.MAX_VALUE)
+            .addGap(0, 523, Short.MAX_VALUE)
         );
         panelHorizontalSeparatorLayout.setVerticalGroup(
             panelHorizontalSeparatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,7 +346,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         pageBlank.setLayout(pageBlankLayout);
         pageBlankLayout.setHorizontalGroup(
             pageBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 545, Short.MAX_VALUE)
+            .addGap(0, 523, Short.MAX_VALUE)
         );
         pageBlankLayout.setVerticalGroup(
             pageBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -493,6 +495,13 @@ public class HTSquirrel extends javax.swing.JFrame {
         }
     }
     
+    public static void hideSmallPages() {
+        Component[] pages = panelSmallPage.getComponents();
+        for (Component page : pages) {
+            page.setVisible(false);
+        }
+    }
+    
     public static void showLanguage() {
         hideBigPages();
         pageLanguage.setVisible(true);
@@ -502,6 +511,13 @@ public class HTSquirrel extends javax.swing.JFrame {
         hideBigPages();
         pageAuthorization.setVisible(true);
         pageAuthorization.getAuthorizationBase1().refreshAuthorization();
+    }
+    
+    public static void showTeam() {
+        hideBigPages();
+        hideSmallPages();
+        pageBlankSmall.setVisible(true);
+        pageBlank.setVisible(true);
     }
     
     public static void showDownload() {
@@ -552,10 +568,11 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private htsquirrel.gui.pages.matchfilter.MatchFilter matchFilter;
     private static htsquirrel.gui.menu.Menu menu;
     private static htsquirrel.gui.pages.authorization.Authorization pageAuthorization;
-    private javax.swing.JPanel pageBlank;
-    private javax.swing.JPanel pageBlankSmall;
+    private static javax.swing.JPanel pageBlank;
+    private static javax.swing.JPanel pageBlankSmall;
     private static htsquirrel.gui.pages.download.Download pageDownload;
     private static htsquirrel.gui.pages.language.Language pageLanguage;
     private static htsquirrel.gui.pages.records.Records pageRecords;
@@ -571,7 +588,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private javax.swing.JPanel panelLeftTop;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelRight;
-    private javax.swing.JPanel panelSmallPage;
+    private static javax.swing.JPanel panelSmallPage;
     private javax.swing.JPanel panelTop;
     private javax.swing.JPanel panelVerticalLine;
     private javax.swing.JPanel panelVerticalSeparator;
