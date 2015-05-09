@@ -23,25 +23,16 @@
  */
 package htsquirrel.gui.pages.records;
 
-import static htsquirrel.HTSquirrel.getLanguage;
-import static htsquirrel.HTSquirrel.showRecords1;
-import htsquirrel.gui.menu.Menu;
-import htsquirrel.translations.Translations;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
  */
-public class Records extends javax.swing.JPanel {
+public class Records1 extends javax.swing.JPanel {
 
     /**
-     * Creates new form Records
+     * Creates new form Records1
      */
-    public Records() {
+    public Records1() {
         initComponents();
     }
 
@@ -54,20 +45,17 @@ public class Records extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelTeam = new javax.swing.JLabel();
-        labelTotalTeamScore = new javax.swing.JLabel();
+        labelTitle = new javax.swing.JLabel();
+        labelText1 = new javax.swing.JLabel();
+        labelText2 = new javax.swing.JLabel();
 
-        labelTeam.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        labelTeam.setForeground(new java.awt.Color(255, 102, 0));
-        labelTeam.setText("TEAM");
+        labelTitle.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        labelTitle.setForeground(new java.awt.Color(255, 102, 0));
+        labelTitle.setText("Title");
 
-        labelTotalTeamScore.setText("Total team score");
-        labelTotalTeamScore.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        labelTotalTeamScore.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelTotalTeamScoreMouseClicked(evt);
-            }
-        });
+        labelText1.setText("Text1");
+
+        labelText2.setText("Text2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -76,39 +64,28 @@ public class Records extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTeam)
-                    .addComponent(labelTotalTeamScore))
-                .addContainerGap(288, Short.MAX_VALUE))
+                    .addComponent(labelTitle)
+                    .addComponent(labelText1)
+                    .addComponent(labelText2))
+                .addContainerGap(354, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelTeam)
+                .addComponent(labelTitle)
                 .addGap(50, 50, 50)
-                .addComponent(labelTotalTeamScore)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addComponent(labelText1)
+                .addGap(18, 18, 18)
+                .addComponent(labelText2)
+                .addContainerGap(174, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void labelTotalTeamScoreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelTotalTeamScoreMouseClicked
-        showRecords1();
-    }//GEN-LAST:event_labelTotalTeamScoreMouseClicked
-
-    public void refreshRecords() {
-        Translations translations = new Translations();
-        Properties properties = null;
-        try {
-            properties = translations.getTranslations(getLanguage());
-            labelTeam.setText(properties.getProperty("records_team"));
-            labelTotalTeamScore.setText(properties.getProperty("records_total_team_score"));
-        } catch (IOException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel labelTeam;
-    private javax.swing.JLabel labelTotalTeamScore;
+    private javax.swing.JLabel labelText1;
+    private javax.swing.JLabel labelText2;
+    private javax.swing.JLabel labelTitle;
     // End of variables declaration//GEN-END:variables
 }

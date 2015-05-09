@@ -75,9 +75,9 @@ public class Menu extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         panelLeft.setBackground(new java.awt.Color(51, 51, 51));
-        panelLeft.setMaximumSize(new java.awt.Dimension(450, 50));
-        panelLeft.setMinimumSize(new java.awt.Dimension(450, 50));
-        panelLeft.setPreferredSize(new java.awt.Dimension(450, 50));
+        panelLeft.setMaximumSize(new java.awt.Dimension(480, 50));
+        panelLeft.setMinimumSize(new java.awt.Dimension(480, 50));
+        panelLeft.setPreferredSize(new java.awt.Dimension(480, 50));
 
         labelTeamName.setForeground(new java.awt.Color(255, 102, 0));
         labelTeamName.setText(" ");
@@ -101,7 +101,7 @@ public class Menu extends javax.swing.JPanel {
                 .addGroup(panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelTeamName)
                     .addComponent(labelSwitchTeam))
-                .addContainerGap(369, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
         panelLeftLayout.setVerticalGroup(
             panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,7 +188,7 @@ public class Menu extends javax.swing.JPanel {
                 .addComponent(labelDownload)
                 .addGap(18, 18, 18)
                 .addComponent(labelSettings)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         panelCenterLayout.setVerticalGroup(
             panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -123,8 +123,8 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeftLeft = new javax.swing.JPanel();
         panelLeftRight = new javax.swing.JPanel();
         panelSmallPage = new javax.swing.JPanel();
-        matchFilter = new htsquirrel.gui.pages.matchfilter.MatchFilter();
         pageBlankSmall = new javax.swing.JPanel();
+        matchFilter = new htsquirrel.gui.pages.matchfilter.MatchFilter();
         panelRight = new javax.swing.JPanel();
         panelCenter = new javax.swing.JPanel();
         panelVerticalSeparator = new javax.swing.JPanel();
@@ -137,6 +137,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         pageAuthorization = new htsquirrel.gui.pages.authorization.Authorization();
         pageRecords = new htsquirrel.gui.pages.records.Records();
         pageDownload = new htsquirrel.gui.pages.download.Download();
+        pageRecords1 = new htsquirrel.gui.pages.records.Records1();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HT Squirrel");
@@ -186,8 +187,8 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         getContentPane().add(panelBottom, java.awt.BorderLayout.PAGE_END);
 
-        panelLeft.setMaximumSize(new java.awt.Dimension(400, 32767));
-        panelLeft.setMinimumSize(new java.awt.Dimension(400, 100));
+        panelLeft.setMaximumSize(new java.awt.Dimension(430, 32767));
+        panelLeft.setMinimumSize(new java.awt.Dimension(430, 100));
         panelLeft.setLayout(new java.awt.BorderLayout());
 
         panelLeftTop.setMaximumSize(new java.awt.Dimension(32767, 50));
@@ -198,7 +199,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeftTop.setLayout(panelLeftTopLayout);
         panelLeftTopLayout.setHorizontalGroup(
             panelLeftTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 422, Short.MAX_VALUE)
+            .addGap(0, 430, Short.MAX_VALUE)
         );
         panelLeftTopLayout.setVerticalGroup(
             panelLeftTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +216,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelLeftBottom.setLayout(panelLeftBottomLayout);
         panelLeftBottomLayout.setHorizontalGroup(
             panelLeftBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 422, Short.MAX_VALUE)
+            .addGap(0, 430, Short.MAX_VALUE)
         );
         panelLeftBottomLayout.setVerticalGroup(
             panelLeftBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,14 +259,16 @@ public class HTSquirrel extends javax.swing.JFrame {
 
         panelLeft.add(panelLeftRight, java.awt.BorderLayout.LINE_END);
 
+        panelSmallPage.setMaximumSize(new java.awt.Dimension(420, 2147483647));
+        panelSmallPage.setMinimumSize(new java.awt.Dimension(420, 100));
+        panelSmallPage.setPreferredSize(new java.awt.Dimension(420, 638));
         panelSmallPage.setLayout(new java.awt.CardLayout());
-        panelSmallPage.add(matchFilter, "card3");
 
         javax.swing.GroupLayout pageBlankSmallLayout = new javax.swing.GroupLayout(pageBlankSmall);
         pageBlankSmall.setLayout(pageBlankSmallLayout);
         pageBlankSmallLayout.setHorizontalGroup(
             pageBlankSmallLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGap(0, 420, Short.MAX_VALUE)
         );
         pageBlankSmallLayout.setVerticalGroup(
             pageBlankSmallLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,6 +276,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         );
 
         panelSmallPage.add(pageBlankSmall, "card2");
+        panelSmallPage.add(matchFilter, "card3");
 
         panelLeft.add(panelSmallPage, java.awt.BorderLayout.CENTER);
 
@@ -331,7 +335,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelHorizontalSeparator.setLayout(panelHorizontalSeparatorLayout);
         panelHorizontalSeparatorLayout.setHorizontalGroup(
             panelHorizontalSeparatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 523, Short.MAX_VALUE)
+            .addGap(0, 515, Short.MAX_VALUE)
         );
         panelHorizontalSeparatorLayout.setVerticalGroup(
             panelHorizontalSeparatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,7 +350,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         pageBlank.setLayout(pageBlankLayout);
         pageBlankLayout.setHorizontalGroup(
             pageBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 523, Short.MAX_VALUE)
+            .addGap(0, 515, Short.MAX_VALUE)
         );
         pageBlankLayout.setVerticalGroup(
             pageBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,6 +362,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelBigPage.add(pageAuthorization, "card3");
         panelBigPage.add(pageRecords, "card6");
         panelBigPage.add(pageDownload, "card4");
+        panelBigPage.add(pageRecords1, "card7");
 
         panelMain.add(panelBigPage, java.awt.BorderLayout.CENTER);
 
@@ -500,7 +505,6 @@ public class HTSquirrel extends javax.swing.JFrame {
         for (Component page : pages) {
             page.setVisible(false);
         }
-        pageBlankSmall.setVisible(true);
     }
     
     public static void showLanguage() {
@@ -531,6 +535,13 @@ public class HTSquirrel extends javax.swing.JFrame {
         hideBigPages();
         pageRecords.setVisible(true);
         pageRecords.refreshRecords();
+    }
+    
+    public static void showRecords1() {
+        hideBigPages();
+        hideSmallPages();
+        pageRecords1.setVisible(true);
+        matchFilter.setVisible(true);
     }
     
     public static Color getWhite() {
@@ -569,7 +580,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private htsquirrel.gui.pages.matchfilter.MatchFilter matchFilter;
+    private static htsquirrel.gui.pages.matchfilter.MatchFilter matchFilter;
     private static htsquirrel.gui.menu.Menu menu;
     private static htsquirrel.gui.pages.authorization.Authorization pageAuthorization;
     private static javax.swing.JPanel pageBlank;
@@ -577,6 +588,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static htsquirrel.gui.pages.download.Download pageDownload;
     private static htsquirrel.gui.pages.language.Language pageLanguage;
     private static htsquirrel.gui.pages.records.Records pageRecords;
+    private static htsquirrel.gui.pages.records.Records1 pageRecords1;
     private static javax.swing.JPanel panelBigPage;
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
