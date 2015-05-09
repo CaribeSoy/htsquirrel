@@ -52,14 +52,14 @@ public class MatchFilter extends javax.swing.JPanel {
         panelRight = new javax.swing.JPanel();
         buttonCalculate = new javax.swing.JButton();
         panelIcons = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
+        jToggleButton5 = new javax.swing.JToggleButton();
+        jToggleButton6 = new javax.swing.JToggleButton();
+        jToggleButton7 = new javax.swing.JToggleButton();
+        jToggleButton8 = new javax.swing.JToggleButton();
         panelFilters = new javax.swing.JPanel();
         panelMatchType = new htsquirrel.gui.pages.matchfilter.MatchType();
         panelPeriod = new htsquirrel.gui.pages.matchfilter.Period();
@@ -70,7 +70,7 @@ public class MatchFilter extends javax.swing.JPanel {
         panelButtons.setMaximumSize(new java.awt.Dimension(32767, 50));
         panelButtons.setMinimumSize(new java.awt.Dimension(100, 50));
         panelButtons.setPreferredSize(new java.awt.Dimension(400, 50));
-        panelButtons.setLayout(new java.awt.GridLayout());
+        panelButtons.setLayout(new java.awt.GridLayout(1, 0));
 
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
@@ -102,29 +102,54 @@ public class MatchFilter extends javax.swing.JPanel {
         panelIcons.setMaximumSize(new java.awt.Dimension(32767, 100));
         panelIcons.setLayout(new java.awt.GridLayout(1, 8));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
-        panelIcons.add(jLabel1);
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
+        jToggleButton1.setSelected(true);
+        jToggleButton1.setMaximumSize(new java.awt.Dimension(50, 50));
+        jToggleButton1.setMinimumSize(new java.awt.Dimension(50, 50));
+        jToggleButton1.setPreferredSize(new java.awt.Dimension(50, 50));
+        panelIcons.add(jToggleButton1);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
-        panelIcons.add(jLabel2);
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
+        jToggleButton2.setMaximumSize(new java.awt.Dimension(50, 50));
+        jToggleButton2.setMinimumSize(new java.awt.Dimension(50, 50));
+        jToggleButton2.setPreferredSize(new java.awt.Dimension(50, 50));
+        panelIcons.add(jToggleButton2);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
-        panelIcons.add(jLabel3);
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
+        jToggleButton3.setMaximumSize(new java.awt.Dimension(50, 50));
+        jToggleButton3.setMinimumSize(new java.awt.Dimension(50, 50));
+        jToggleButton3.setPreferredSize(new java.awt.Dimension(50, 50));
+        panelIcons.add(jToggleButton3);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
-        panelIcons.add(jLabel4);
+        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
+        jToggleButton4.setMaximumSize(new java.awt.Dimension(50, 50));
+        jToggleButton4.setMinimumSize(new java.awt.Dimension(50, 50));
+        jToggleButton4.setPreferredSize(new java.awt.Dimension(50, 50));
+        panelIcons.add(jToggleButton4);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
-        panelIcons.add(jLabel5);
+        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
+        jToggleButton5.setMaximumSize(new java.awt.Dimension(50, 50));
+        jToggleButton5.setMinimumSize(new java.awt.Dimension(50, 50));
+        jToggleButton5.setPreferredSize(new java.awt.Dimension(50, 50));
+        panelIcons.add(jToggleButton5);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
-        panelIcons.add(jLabel6);
+        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
+        jToggleButton6.setMaximumSize(new java.awt.Dimension(50, 50));
+        jToggleButton6.setMinimumSize(new java.awt.Dimension(50, 50));
+        jToggleButton6.setPreferredSize(new java.awt.Dimension(50, 50));
+        panelIcons.add(jToggleButton6);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
-        panelIcons.add(jLabel7);
+        jToggleButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
+        jToggleButton7.setMaximumSize(new java.awt.Dimension(50, 50));
+        jToggleButton7.setMinimumSize(new java.awt.Dimension(50, 50));
+        jToggleButton7.setPreferredSize(new java.awt.Dimension(50, 50));
+        panelIcons.add(jToggleButton7);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
-        panelIcons.add(jLabel8);
+        jToggleButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
+        jToggleButton8.setMaximumSize(new java.awt.Dimension(50, 50));
+        jToggleButton8.setMinimumSize(new java.awt.Dimension(50, 50));
+        jToggleButton8.setPreferredSize(new java.awt.Dimension(50, 50));
+        panelIcons.add(jToggleButton8);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -150,14 +175,14 @@ public class MatchFilter extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCalculate;
     private javax.swing.JButton buttonReset;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
+    private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JToggleButton jToggleButton6;
+    private javax.swing.JToggleButton jToggleButton7;
+    private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JPanel panelButtons;
     private javax.swing.JPanel panelFilters;
     private javax.swing.JPanel panelIcons;
