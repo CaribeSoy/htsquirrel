@@ -62,7 +62,7 @@ public class MatchType extends javax.swing.JPanel {
         panelTop.setMaximumSize(new java.awt.Dimension(32767, 50));
         panelTop.setMinimumSize(new java.awt.Dimension(100, 50));
         panelTop.setPreferredSize(new java.awt.Dimension(400, 50));
-        panelTop.setLayout(new java.awt.GridLayout());
+        panelTop.setLayout(new java.awt.GridLayout(1, 0));
 
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
@@ -102,6 +102,8 @@ public class MatchType extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         add(panelTop, gridBagConstraints);
 
+        panelBottom.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         scrollPane.setBorder(null);
 
         panelBase.setLayout(new java.awt.CardLayout());
@@ -114,11 +116,11 @@ public class MatchType extends javax.swing.JPanel {
         panelBottom.setLayout(panelBottomLayout);
         panelBottomLayout.setHorizontalGroup(
             panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
         );
         panelBottomLayout.setVerticalGroup(
             panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();

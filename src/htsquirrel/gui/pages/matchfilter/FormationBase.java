@@ -62,8 +62,6 @@ public class FormationBase extends javax.swing.JPanel {
         checkBoxSpecific = new javax.swing.JCheckBox();
         textFieldSpecific = new javax.swing.JFormattedTextField();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         checkBoxAllFormations.setText("All formations");
 
         panelFormations.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Formations"));
@@ -126,7 +124,7 @@ public class FormationBase extends javax.swing.JPanel {
                                 .addComponent(checkBoxSpecific)
                                 .addGap(18, 18, 18)
                                 .addComponent(textFieldSpecific, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 178, Short.MAX_VALUE)))
+                        .addGap(0, 182, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelFormationsLayout.setVerticalGroup(

@@ -77,7 +77,7 @@ public class PeriodBase extends javax.swing.JPanel {
         labelLeagueName = new javax.swing.JLabel();
         comboBoxLeagueName = new javax.swing.JComboBox();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setBorder(null);
 
         panelSeason.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Season and date"));
 
@@ -202,7 +202,7 @@ public class PeriodBase extends javax.swing.JPanel {
                                 .addGroup(panelLeagueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(comboBoxLevelFrom, 0, 90, Short.MAX_VALUE)
                                     .addComponent(comboBoxLevelTo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         panelLeagueLayout.setVerticalGroup(
             panelLeagueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

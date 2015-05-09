@@ -102,6 +102,8 @@ public class Formation extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         add(panelTop, gridBagConstraints);
 
+        panelBottom.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         scrollPane.setBorder(null);
 
         panelBase.setLayout(new java.awt.CardLayout());
@@ -114,11 +116,11 @@ public class Formation extends javax.swing.JPanel {
         panelBottom.setLayout(panelBottomLayout);
         panelBottomLayout.setHorizontalGroup(
             panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
         );
         panelBottomLayout.setVerticalGroup(
             panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();

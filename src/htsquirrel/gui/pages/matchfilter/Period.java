@@ -48,6 +48,8 @@ public class Period extends javax.swing.JPanel {
         scrollPane = new javax.swing.JScrollPane();
         periodBase1 = new htsquirrel.gui.pages.matchfilter.PeriodBase();
 
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         scrollPane.setBorder(null);
         scrollPane.setViewportView(periodBase1);
 
@@ -55,11 +57,11 @@ public class Period extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

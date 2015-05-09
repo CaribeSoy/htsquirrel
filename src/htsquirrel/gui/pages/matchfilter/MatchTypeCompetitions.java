@@ -70,7 +70,7 @@ public class MatchTypeCompetitions extends javax.swing.JPanel {
         panelHattrickMasters = new javax.swing.JPanel();
         checkBoxHattrickMasters = new javax.swing.JCheckBox();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setBorder(null);
 
         checkBoxCompetitions.setSelected(true);
         checkBoxCompetitions.setText("All competitions");
@@ -280,7 +280,7 @@ public class MatchTypeCompetitions extends javax.swing.JPanel {
                     .addComponent(checkBoxDivisionalSapphire)
                     .addComponent(checkBoxDivisionalConsolation)
                     .addComponent(checkBoxDivisionalRuby))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         panelDivisionalCupLayout.setVerticalGroup(
             panelDivisionalCupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

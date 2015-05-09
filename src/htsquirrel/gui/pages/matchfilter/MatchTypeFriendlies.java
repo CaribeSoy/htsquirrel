@@ -54,7 +54,7 @@ public class MatchTypeFriendlies extends javax.swing.JPanel {
         checkBoxIntFriendlyNormal = new javax.swing.JCheckBox();
         checkBoxIntFriendlyCup = new javax.swing.JCheckBox();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setBorder(null);
 
         checkBoxFriendlies.setText("All friendlies");
         checkBoxFriendlies.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +104,7 @@ public class MatchTypeFriendlies extends javax.swing.JPanel {
                     .addComponent(checkBoxFriendlyCup)
                     .addComponent(checkBoxIntFriendlyNormal)
                     .addComponent(checkBoxIntFriendlyCup))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         panelFriendliesLayout.setVerticalGroup(
             panelFriendliesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
