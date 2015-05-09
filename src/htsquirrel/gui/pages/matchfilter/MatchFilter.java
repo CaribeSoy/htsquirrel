@@ -23,6 +23,13 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import static htsquirrel.HTSquirrel.getLanguage;
+import htsquirrel.translations.Translations;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -174,6 +181,15 @@ public class MatchFilter extends javax.swing.JPanel {
     public void resetMatchFilter() {
         panelMatchType.resetMatchType();
         panelPeriod.resetPeriod();
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            buttonReset.setText(properties.getProperty("match_filter_reset"));
+            buttonCalculate.setText(properties.getProperty("match_filter_calculate"));
+        } catch (IOException ex) {
+            Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
