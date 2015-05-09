@@ -25,6 +25,7 @@ package htsquirrel.gui.pages.matchfilter;
 
 import static htsquirrel.HTSquirrel.getLanguage;
 import htsquirrel.translations.Translations;
+import java.awt.Component;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -119,12 +120,22 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton1.setMaximumSize(new java.awt.Dimension(50, 50));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(50, 50));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(50, 50));
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
         panelIcons.add(jToggleButton1);
 
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
         jToggleButton2.setMaximumSize(new java.awt.Dimension(50, 50));
         jToggleButton2.setMinimumSize(new java.awt.Dimension(50, 50));
         jToggleButton2.setPreferredSize(new java.awt.Dimension(50, 50));
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
         panelIcons.add(jToggleButton2);
 
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png"))); // NOI18N
@@ -187,6 +198,39 @@ public class MatchFilter extends javax.swing.JPanel {
         resetMatchFilter();
     }//GEN-LAST:event_buttonResetActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        jToggleButton1.setSelected(true);
+        jToggleButton2.setSelected(false);
+        jToggleButton3.setSelected(false);
+        jToggleButton4.setSelected(false);
+        jToggleButton5.setSelected(false);
+        jToggleButton6.setSelected(false);
+        jToggleButton7.setSelected(false);
+        jToggleButton8.setSelected(false);
+        hideFilters();
+        panelMatchType.setVisible(true);
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        jToggleButton1.setSelected(false);
+        jToggleButton2.setSelected(true);
+        jToggleButton3.setSelected(false);
+        jToggleButton4.setSelected(false);
+        jToggleButton5.setSelected(false);
+        jToggleButton6.setSelected(false);
+        jToggleButton7.setSelected(false);
+        jToggleButton8.setSelected(false);
+        hideFilters();
+        panelPeriod.setVisible(true);
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void hideFilters() {
+        Component[] filters = panelFilters.getComponents();
+        for (Component filter : filters) {
+            filter.setVisible(false);
+        }
+    }
+    
     public void resetMatchFilter() {
         panelMatchType.resetMatchType();
         panelPeriod.resetPeriod();
