@@ -23,6 +23,13 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import static htsquirrel.HTSquirrel.getLanguage;
+import htsquirrel.translations.Translations;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -149,6 +156,15 @@ public class Formation extends javax.swing.JPanel {
     public void resetFormation() {
         formationTeam.resetFormationBase();
         formationOpponent.resetFormationBase();
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            buttonTeam.setText(properties.getProperty("formation_team"));
+            buttonOpponent.setText(properties.getProperty("formation_opponent"));
+        } catch (IOException ex) {
+            Logger.getLogger(Formation.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -23,6 +23,15 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import static htsquirrel.HTSquirrel.getLanguage;
+import htsquirrel.translations.Translations;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.border.EtchedBorder;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -180,6 +189,17 @@ public class FormationBase extends javax.swing.JPanel {
         checkBoxOther.setSelected(true);
         checkBoxSpecific.setSelected(false);
         textFieldSpecific.setText("0-0-0");
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            checkBoxAllFormations.setText(properties.getProperty("formation_all_formations"));
+            panelFormations.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("formation_panel_formations")));
+            checkBoxOther.setText(properties.getProperty("formation_other"));
+            checkBoxSpecific.setText(properties.getProperty("formation_specific"));
+        } catch (IOException ex) {
+            Logger.getLogger(FormationBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
