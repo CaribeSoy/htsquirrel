@@ -24,13 +24,19 @@
 package htsquirrel.gui.pages.matchfilter;
 
 import static htsquirrel.HTSquirrel.getCurrentTeam;
+import static htsquirrel.HTSquirrel.getLanguage;
 import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
+import htsquirrel.translations.Translations;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.border.EtchedBorder;
 
 /**
  *
@@ -307,6 +313,24 @@ public class PeriodBase extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PeriodBase.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            Logger.getLogger(PeriodBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            panelSeason.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("period_panel_season")));
+            radioButtonSeason.setText(properties.getProperty("period_season"));
+            radioButtonDate.setText(properties.getProperty("period_date"));
+            labelFrom1.setText(properties.getProperty("from"));
+            labelTo1.setText(properties.getProperty("to"));
+            labelFrom2.setText(properties.getProperty("from"));
+            labelTo2.setText(properties.getProperty("to"));
+            panelLeague.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("period_panel_league")));
+            radioButtonLeagueLevel.setText(properties.getProperty("period_league_level"));
+            radioButtonSpecificLeague.setText(properties.getProperty("period_league_specific"));
+            labelLeagueName.setText(properties.getProperty("period_league_name"));
+        } catch (IOException ex) {
             Logger.getLogger(PeriodBase.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
