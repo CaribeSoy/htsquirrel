@@ -66,6 +66,7 @@ public class MatchType extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
+        panelTop.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panelTop.setMaximumSize(new java.awt.Dimension(32767, 50));
         panelTop.setMinimumSize(new java.awt.Dimension(100, 50));
         panelTop.setPreferredSize(new java.awt.Dimension(400, 50));
