@@ -27,6 +27,7 @@ import static htsquirrel.HTSquirrel.getCurrentTeam;
 import static htsquirrel.HTSquirrel.getLanguage;
 import static htsquirrel.HTSquirrel.getOrange;
 import static htsquirrel.HTSquirrel.getTeams;
+import static htsquirrel.HTSquirrel.hideSmallPages;
 import static htsquirrel.HTSquirrel.setCurrentTeam;
 import static htsquirrel.HTSquirrel.showDownload;
 import static htsquirrel.HTSquirrel.showRecords;
@@ -213,6 +214,7 @@ public class Menu extends javax.swing.JPanel {
         labelRecords.setForeground(getOrange());
         labelDownload.setForeground(new java.awt.Color(128, 128, 128));
         labelSettings.setForeground(new java.awt.Color(128, 128, 128));
+        hideSmallPages();
         showRecords();
     }//GEN-LAST:event_labelRecordsMouseClicked
 

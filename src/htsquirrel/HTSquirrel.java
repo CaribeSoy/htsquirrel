@@ -500,6 +500,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         for (Component page : pages) {
             page.setVisible(false);
         }
+        pageBlankSmall.setVisible(true);
     }
     
     public static void showLanguage() {
