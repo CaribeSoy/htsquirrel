@@ -23,7 +23,15 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import static htsquirrel.HTSquirrel.getLanguage;
+import htsquirrel.translations.Translations;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
+import javax.swing.border.EtchedBorder;
 
 /**
  *
@@ -225,6 +233,19 @@ public class MatchTypeFriendlies extends javax.swing.JPanel {
         checkBoxFriendlyCup.setSelected(false);
         checkBoxIntFriendlyNormal.setSelected(false);
         checkBoxIntFriendlyCup.setSelected(false);
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            checkBoxFriendlies.setText(properties.getProperty("match_type_friendlies"));
+            panelFriendlies.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("match_type_panel_friendlies")));
+            checkBoxFriendlyNormal.setText(properties.getProperty("match_type_friendly_normal"));
+            checkBoxFriendlyCup.setText(properties.getProperty("match_type_friendly_cup"));
+            checkBoxIntFriendlyNormal.setText(properties.getProperty("match_type_int_friendly_normal"));
+            checkBoxIntFriendlyCup.setText(properties.getProperty("match_type_int_friendly_cup"));
+        } catch (IOException ex) {
+            Logger.getLogger(MatchTypeFriendlies.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
