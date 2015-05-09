@@ -171,6 +171,10 @@ public class MatchFilter extends javax.swing.JPanel {
         add(panelFilters, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void resetMatchFilter() {
+        panelMatchType.resetMatchType();
+        panelPeriod.resetPeriod();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCalculate;

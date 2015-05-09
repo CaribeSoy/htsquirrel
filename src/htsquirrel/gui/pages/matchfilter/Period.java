@@ -65,6 +65,9 @@ public class Period extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void resetPeriod() {
+        periodBase1.resetPeriod();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private htsquirrel.gui.pages.matchfilter.PeriodBase periodBase1;

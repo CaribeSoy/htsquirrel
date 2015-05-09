@@ -91,6 +91,7 @@ public class HTSquirrel extends javax.swing.JFrame {
                     } else {
                         setCurrentTeam(getTeams().get(0));
                         menu.refreshMenu();
+                        showTeam();
                     }
                     db.close();
                 }
@@ -523,6 +524,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         hideSmallPages();
         pageBlankSmall.setVisible(true);
         pageBlank.setVisible(true);
+        matchFilter.resetMatchFilter();
     }
     
     public static void showDownload() {
