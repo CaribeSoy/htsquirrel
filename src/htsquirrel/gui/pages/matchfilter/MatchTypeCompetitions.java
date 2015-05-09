@@ -23,7 +23,15 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import static htsquirrel.HTSquirrel.getLanguage;
+import htsquirrel.translations.Translations;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
+import javax.swing.border.EtchedBorder;
 
 /**
  *
@@ -637,6 +645,32 @@ public class MatchTypeCompetitions extends javax.swing.JPanel {
         checkBoxLevel8.setSelected(true);
         checkBoxLevel9.setSelected(true);
         checkBoxHattrickMasters.setSelected(true);
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            checkBoxCompetitions.setText(properties.getProperty("match_type_competitions"));
+            panelLeague.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("match_type_panel_league")));
+            checkBoxLeague.setText(properties.getProperty("match_type_league"));
+            checkBoxQualification.setText(properties.getProperty("match_type_qualification"));
+            panelNationalCup.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("match_type_panel_national_cup")));
+            checkBoxNationalCup.setText(properties.getProperty("match_type_national_cup"));
+            checkBoxNationalEmerald.setText(properties.getProperty("match_type_national_emerald"));
+            checkBoxNationalRuby.setText(properties.getProperty("match_type_national_ruby"));
+            checkBoxNationalSapphire.setText(properties.getProperty("match_type_national_sapphire"));
+            checkBoxNationalConsolation.setText(properties.getProperty("match_type_national_consolation"));
+            panelDivisionalCup.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("match_type_panel_divisional_cup")));
+            checkBoxDivisionalCup.setText(properties.getProperty("match_type_divisional_cup"));
+            checkBoxDivisionalEmerald.setText(properties.getProperty("match_type_divisional_emerald"));
+            checkBoxDivisionalRuby.setText(properties.getProperty("match_type_divisional_ruby"));
+            checkBoxDivisionalSapphire.setText(properties.getProperty("match_type_divisional_sapphire"));
+            checkBoxDivisionalConsolation.setText(properties.getProperty("match_type_divisional_consolation"));
+            labelLevels.setText(properties.getProperty("match_type_divisional_levels"));
+            panelHattrickMasters.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("match_type_panel_hattrick_masters")));
+            checkBoxHattrickMasters.setText(properties.getProperty("match_type_hattrick_masters"));
+        } catch (IOException ex) {
+            Logger.getLogger(MatchTypeCompetitions.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
