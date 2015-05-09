@@ -85,6 +85,11 @@ public class MatchFilter extends javax.swing.JPanel {
         buttonReset.setMaximumSize(new java.awt.Dimension(120, 27));
         buttonReset.setMinimumSize(new java.awt.Dimension(120, 27));
         buttonReset.setPreferredSize(new java.awt.Dimension(120, 27));
+        buttonReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonResetActionPerformed(evt);
+            }
+        });
         panelLeft.add(buttonReset, new java.awt.GridBagConstraints());
 
         panelButtons.add(panelLeft);
@@ -177,6 +182,10 @@ public class MatchFilter extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         add(panelFilters, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResetActionPerformed
+        resetMatchFilter();
+    }//GEN-LAST:event_buttonResetActionPerformed
 
     public void resetMatchFilter() {
         panelMatchType.resetMatchType();
