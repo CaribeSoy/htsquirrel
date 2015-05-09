@@ -243,6 +243,8 @@ public class MatchFilter extends javax.swing.JPanel {
         } catch (IOException ex) {
             Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
         }
+        hideFilters();
+        panelMatchType.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
