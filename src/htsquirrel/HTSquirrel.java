@@ -35,7 +35,10 @@ import static htsquirrel.utilities.ConfigProperties.getUserIdProperty;
 import static htsquirrel.utilities.ConfigProperties.saveConfigProperties;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -55,6 +58,17 @@ public class HTSquirrel extends javax.swing.JFrame {
      * Creates new form HTSquirrel
      */
     public HTSquirrel() {
+        // TODO include custom font later
+//        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("htsquirrel/gui/fonts/OpenSans-Regular.ttf");
+//        try {
+//            Font font = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+//            Font sizedFont = font.deriveFont(12f);
+//            UIManager.getLookAndFeelDefaults().put("defaultFont",  sizedFont);
+//        } catch (FontFormatException ex) {
+//            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(HTSquirrel.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         initComponents();
         menu.setVisible(false);
         menu.getLabelSwitchTeam().setVisible(false);
