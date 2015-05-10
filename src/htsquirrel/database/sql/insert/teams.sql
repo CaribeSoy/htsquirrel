@@ -22,5 +22,5 @@ INSERT INTO TEAMS VALUES (
     #fanclub_size#,
     '#logo_uri#',
     '#dress_uri#',
-    '#dress_alternate_uri'
+    '#dress_alternate_uri#'
 )
