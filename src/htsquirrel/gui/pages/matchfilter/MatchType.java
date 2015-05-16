@@ -140,6 +140,14 @@ public class MatchType extends javax.swing.JPanel {
         add(panelBottom, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public MatchTypeCompetitions getPanelCompetitions() {
+        return panelCompetitions;
+    }
+
+    public MatchTypeFriendlies getPanelFriendlies() {
+        return panelFriendlies;
+    }
+
     private void buttonCompetitionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCompetitionsActionPerformed
         buttonCompetitions.setSelected(true);
         buttonFriendlies.setSelected(false);
