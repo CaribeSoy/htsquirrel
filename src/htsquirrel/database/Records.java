@@ -61,30 +61,30 @@ public class Records {
     private static String matchFilterToSql() throws IOException {
         ReadSql readSql = new ReadSql();
         String sqlCode = readSql.sqlToString("htsquirrel/database/sql/where/match_filter.sql");
-        sqlCode = sqlCode.replaceAll("\\b#team_id#\\b", String.valueOf(getCurrentTeam().getTeamId()));
-        sqlCode = sqlCode.replaceAll("\\b#match_type_l#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxLeague().isSelected(), 1, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#match_type_q#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxQualification().isSelected(), 2, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#match_type_hm#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxHattrickMasters().isSelected(), 7, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#match_type_fn#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelFriendlies().getCheckBoxFriendlyNormal().isSelected(), 4, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#match_type_fc#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelFriendlies().getCheckBoxFriendlyCup().isSelected(), 5, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#match_type_ifn#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelFriendlies().getCheckBoxIntFriendlyNormal().isSelected(), 8, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#match_type_ifc#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelFriendlies().getCheckBoxIntFriendlyCup().isSelected(), 9, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#cup_level_n#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxNationalCup().isSelected(), 1, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#cup_level_index_ne#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxNationalEmerald().isSelected(), 1, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#cup_level_index_nr#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxNationalRuby().isSelected(), 2, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#cup_level_index_ns#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxNationalSapphire().isSelected(), 3, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#cup_level_nc#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxNationalConsolation().isSelected(), 3, 999)));
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(getCurrentTeam().getTeamId()));
+        sqlCode = sqlCode.replaceAll("#match_type_l#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxLeague().isSelected(), 1, 999)));
+        sqlCode = sqlCode.replaceAll("#match_type_q#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxQualification().isSelected(), 2, 999)));
+        sqlCode = sqlCode.replaceAll("#match_type_hm#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxHattrickMasters().isSelected(), 7, 999)));
+        sqlCode = sqlCode.replaceAll("#match_type_fn#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelFriendlies().getCheckBoxFriendlyNormal().isSelected(), 4, 999)));
+        sqlCode = sqlCode.replaceAll("#match_type_fc#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelFriendlies().getCheckBoxFriendlyCup().isSelected(), 5, 999)));
+        sqlCode = sqlCode.replaceAll("#match_type_ifn#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelFriendlies().getCheckBoxIntFriendlyNormal().isSelected(), 8, 999)));
+        sqlCode = sqlCode.replaceAll("#match_type_ifc#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelFriendlies().getCheckBoxIntFriendlyCup().isSelected(), 9, 999)));
+        sqlCode = sqlCode.replaceAll("#cup_level_n#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxNationalCup().isSelected(), 1, 999)));
+        sqlCode = sqlCode.replaceAll("#cup_level_index_ne#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxNationalEmerald().isSelected(), 1, 999)));
+        sqlCode = sqlCode.replaceAll("#cup_level_index_nr#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxNationalRuby().isSelected(), 2, 999)));
+        sqlCode = sqlCode.replaceAll("#cup_level_index_ns#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxNationalSapphire().isSelected(), 3, 999)));
+        sqlCode = sqlCode.replaceAll("#cup_level_nc#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxNationalConsolation().isSelected(), 3, 999)));
         String cupLevels = "(999";
         if (getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxLevel7().isSelected()) cupLevels = cupLevels + ", 7";
         if (getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxLevel8().isSelected()) cupLevels = cupLevels + ", 8";
         if (getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxLevel9().isSelected()) cupLevels = cupLevels + ", 9";
         cupLevels = cupLevels + ")";
-        sqlCode = sqlCode.replaceAll("\\b#cup_league_level_d#\\b", cupLevels);
-        sqlCode = sqlCode.replaceAll("\\b#cup_level_d#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxDivisionalCup().isSelected(), 1, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#cup_level_index_de#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxDivisionalEmerald().isSelected(), 1, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#cup_level_index_dr#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxDivisionalRuby().isSelected(), 2, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#cup_level_index_ds#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxDivisionalSapphire().isSelected(), 3, 999)));
-        sqlCode = sqlCode.replaceAll("\\b#cup_level_dc#\\b", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxDivisionalConsolation().isSelected(), 3, 999)));
+        sqlCode = sqlCode.replaceAll("#cup_league_level_d#", cupLevels);
+        sqlCode = sqlCode.replaceAll("#cup_level_d#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxDivisionalCup().isSelected(), 1, 999)));
+        sqlCode = sqlCode.replaceAll("#cup_level_index_de#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxDivisionalEmerald().isSelected(), 1, 999)));
+        sqlCode = sqlCode.replaceAll("#cup_level_index_dr#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxDivisionalRuby().isSelected(), 2, 999)));
+        sqlCode = sqlCode.replaceAll("#cup_level_index_ds#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxDivisionalSapphire().isSelected(), 3, 999)));
+        sqlCode = sqlCode.replaceAll("#cup_level_dc#", String.valueOf(mapBoolean(getMatchFilter().getPanelMatchType().getPanelCompetitions().getCheckBoxDivisionalConsolation().isSelected(), 3, 999)));
         String seasonFrom = "0";
         String seasonTo = "999";
         if (getMatchFilter().getPanelPeriod().getPeriodBase1().getRadioButtonSeason().isSelected()) {
@@ -107,16 +107,16 @@ public class Records {
         if (getMatchFilter().getPanelPeriod().getPeriodBase1().getRadioButtonSpecificLeague().isSelected()) {
             league = getMatchFilter().getPanelPeriod().getPeriodBase1().getComboBoxLeagueName().getSelectedItem().toString();
         }
-        sqlCode = sqlCode.replaceAll("\\b#season_from#\\b", seasonFrom);
-        sqlCode = sqlCode.replaceAll("\\b#season_to#\\b", seasonTo);
-        sqlCode = sqlCode.replaceAll("\\b#match_date_from#\\b", dateFrom);
-        sqlCode = sqlCode.replaceAll("\\b#match_date_to#\\b", dateTo);
-        sqlCode = sqlCode.replaceAll("\\b#league_level_from#\\b", leagueFrom);
-        sqlCode = sqlCode.replaceAll("\\b#league_level_to#\\b", leagueTo);
-        sqlCode = sqlCode.replaceAll("\\b#league_level_unit_name#\\b", league);
+        sqlCode = sqlCode.replaceAll("#season_from#", seasonFrom);
+        sqlCode = sqlCode.replaceAll("#season_to#", seasonTo);
+        sqlCode = sqlCode.replaceAll("#match_date_from#", dateFrom);
+        sqlCode = sqlCode.replaceAll("#match_date_to#", dateTo);
+        sqlCode = sqlCode.replaceAll("#league_level_from#", leagueFrom);
+        sqlCode = sqlCode.replaceAll("#league_level_to#", leagueTo);
+        sqlCode = sqlCode.replaceAll("#league_level_unit_name#", league);
         return sqlCode;
     }
-    
+
     public static void showTotalTeamScore(Connection connection)
             throws SQLException, IOException {
         ReadSql readSql = new ReadSql();
