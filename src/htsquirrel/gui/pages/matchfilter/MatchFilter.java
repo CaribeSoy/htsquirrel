@@ -24,9 +24,14 @@
 package htsquirrel.gui.pages.matchfilter;
 
 import static htsquirrel.HTSquirrel.getLanguage;
+import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
+import static htsquirrel.database.Records.getMode;
+import static htsquirrel.database.Records.showTotalTeamScore;
 import htsquirrel.translations.Translations;
 import java.awt.Component;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -101,6 +106,11 @@ public class MatchFilter extends javax.swing.JPanel {
         buttonCalculate.setMaximumSize(new java.awt.Dimension(120, 27));
         buttonCalculate.setMinimumSize(new java.awt.Dimension(120, 27));
         buttonCalculate.setPreferredSize(new java.awt.Dimension(120, 27));
+        buttonCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCalculateActionPerformed(evt);
+            }
+        });
         panelRight.add(buttonCalculate, new java.awt.GridBagConstraints());
 
         panelButtons.add(panelRight);
@@ -235,6 +245,22 @@ public class MatchFilter extends javax.swing.JPanel {
         hideFilters();
         panelPeriod.setVisible(true);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void buttonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCalculateActionPerformed
+        try {
+            Connection db = createDatabaseConnection();
+            if ("total_team_score".equals(getMode())) {
+                showTotalTeamScore(db);
+            }
+            db.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MatchFilter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buttonCalculateActionPerformed
 
     private void hideFilters() {
         Component[] filters = panelFilters.getComponents();
