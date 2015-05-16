@@ -29,6 +29,7 @@ import static htsquirrel.database.GetInfo.getTeamsFromDb;
 import htsquirrel.game.Team;
 import htsquirrel.gui.menu.Menu;
 import htsquirrel.gui.pages.matchfilter.MatchFilter;
+import htsquirrel.gui.pages.records.Records1;
 import static htsquirrel.utilities.ConfigProperties.getAccessTokenProperty;
 import static htsquirrel.utilities.ConfigProperties.getLanguageProperty;
 import static htsquirrel.utilities.ConfigProperties.getThemeProperty;
@@ -486,6 +487,10 @@ public class HTSquirrel extends javax.swing.JFrame {
 
     public static MatchFilter getMatchFilter() {
         return matchFilter;
+    }
+
+    public static Records1 getPageRecords1() {
+        return pageRecords1;
     }
     
     public static void applyTheme() {
