@@ -65,6 +65,10 @@ public class Period extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public PeriodBase getPeriodBase1() {
+        return periodBase1;
+    }
+
     public void resetPeriod() {
         periodBase1.resetPeriod();
     }

@@ -36,6 +36,9 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JRadioButton;
 import javax.swing.border.EtchedBorder;
 
 /**
@@ -253,6 +256,50 @@ public class PeriodBase extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public JComboBox getComboBoxLeagueName() {
+        return comboBoxLeagueName;
+    }
+
+    public JComboBox getComboBoxLevelFrom() {
+        return comboBoxLevelFrom;
+    }
+
+    public JComboBox getComboBoxLevelTo() {
+        return comboBoxLevelTo;
+    }
+
+    public JComboBox getComboBoxSeasonFrom() {
+        return comboBoxSeasonFrom;
+    }
+
+    public JComboBox getComboBoxSeasonTo() {
+        return comboBoxSeasonTo;
+    }
+
+    public JRadioButton getRadioButtonDate() {
+        return radioButtonDate;
+    }
+
+    public JRadioButton getRadioButtonLeagueLevel() {
+        return radioButtonLeagueLevel;
+    }
+
+    public JRadioButton getRadioButtonSeason() {
+        return radioButtonSeason;
+    }
+
+    public JRadioButton getRadioButtonSpecificLeague() {
+        return radioButtonSpecificLeague;
+    }
+
+    public JFormattedTextField getTextFieldDateFrom() {
+        return textFieldDateFrom;
+    }
+
+    public JFormattedTextField getTextFieldDateTo() {
+        return textFieldDateTo;
+    }
 
     public void resetPeriod() {
         radioButtonSeason.setSelected(true);
