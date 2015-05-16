@@ -25,6 +25,7 @@ package htsquirrel.gui.pages.records;
 
 import static htsquirrel.HTSquirrel.getLanguage;
 import static htsquirrel.HTSquirrel.showRecords1;
+import static htsquirrel.database.Records.setMode;
 import htsquirrel.gui.menu.Menu;
 import htsquirrel.translations.Translations;
 import java.io.IOException;
@@ -92,6 +93,7 @@ public class Records extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void labelTotalTeamScoreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelTotalTeamScoreMouseClicked
+        setMode("total_team_score");
         showRecords1();
     }//GEN-LAST:event_labelTotalTeamScoreMouseClicked
 
