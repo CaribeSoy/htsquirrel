@@ -82,6 +82,24 @@ public class Records1 extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setTitle(String text) {
+        labelTitle.setText(text);
+    }
+    
+    public void hideLabels() {
+        labelText1.setVisible(false);
+        labelText2.setVisible(false);
+    }
+    
+    public void showLabel1(String text) {
+        labelText1.setText(text);
+        labelText1.setVisible(true);
+    }
+    
+    public void showLabel2(String text) {
+        labelText2.setText(text);
+        labelText2.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel labelText1;
