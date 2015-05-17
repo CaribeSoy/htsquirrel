@@ -566,6 +566,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     public static void showRecords1() {
         hideBigPages();
         hideSmallPages();
+        pageRecords1.getjScrollPane1().setVisible(false);
         pageRecords1.setVisible(true);
         matchFilter.setVisible(true);
     }

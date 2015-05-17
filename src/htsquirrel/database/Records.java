@@ -26,11 +26,17 @@ package htsquirrel.database;
 import static htsquirrel.HTSquirrel.getCurrentTeam;
 import static htsquirrel.HTSquirrel.getMatchFilter;
 import static htsquirrel.HTSquirrel.getPageRecords1;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -119,6 +125,25 @@ public class Records {
 
     public static void showTotalTeamScore(Connection connection)
             throws SQLException, IOException {
+//        getPageRecords1().getjScrollPane1().setSize(375, 60);
+//        getPageRecords1().getjScrollPane1().setPreferredSize(new Dimension(375, 60));
+//        getPageRecords1().getjTable1().setPreferredSize(new Dimension(375, 30));
+//        getPageRecords1().getjTable1().setSize(375, 30);
+        DefaultTableModel model = (DefaultTableModel) getPageRecords1().getjTable1().getModel();
+        model.setColumnCount(0);
+        model.addColumn("Category");
+        model.addColumn("Total");
+        model.addColumn("Average");
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(JLabel.LEFT);
+        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+        getPageRecords1().getjTable1().getColumnModel().getColumn(0).setCellRenderer(leftRenderer);
+        getPageRecords1().getjTable1().getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+        getPageRecords1().getjTable1().getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
         ReadSql readSql = new ReadSql();
         String sqlCode = readSql.sqlToString("htsquirrel/database/sql/select/total_team_score.sql");
         sqlCode = sqlCode + " " + matchFilterToSql();
@@ -131,19 +156,30 @@ public class Records {
             int goalsFor = resultSet.getInt("GF");
             int goalsAgainst = resultSet.getInt("GA");
             int matches = wins + draws + losses;
-            double goalsForPerMatch = (double) goalsFor / (double) matches;
-            double goalsAgainstPerMatch = (double) goalsAgainst / (double) matches;
-            String text;
-            text = "<html>Matches: " + matches + "<br><br>";
-            text = text + "Wins: " + wins + "<br>";
-            text = text + "Draws: " + draws + "<br>";
-            text = text + "Losses: " + losses + "<br><br>";
-            text = text + "Goals for: " + goalsFor + " (" + String.format("%.1f", goalsForPerMatch) + " per match)<br>";
-            text = text + "Goals against: " + goalsAgainst + " (" + String.format("%.1f", goalsAgainstPerMatch) + " per match)</html>";
-            getPageRecords1().showLabel2(text);
+            String matchesPerMatch = "100.0%";
+            String winsPerMatch = String.format("%.1f", 100.0 * (double) wins / (double) matches) + "%";
+            String drawsPerMatch = String.format("%.1f", 100.0 * (double) draws / (double) matches) + "%";
+            String lossesPerMatch = String.format("%.1f", 100.0 * (double) losses / (double) matches) + "%";
+            String goalsForPerMatch = String.format("%.1f", (double) goalsFor / (double) matches);
+            String goalsAgainstPerMatch = String.format("%.1f", (double) goalsAgainst / (double) matches);
+            if (matches == 0) {
+                matchesPerMatch = "-";
+                winsPerMatch = "-";
+                drawsPerMatch = "-";
+                lossesPerMatch = "-";
+                goalsForPerMatch = "-";
+                goalsAgainstPerMatch = "-";
+            }
+            model.addRow(new Object[]{"Matches", matches, matchesPerMatch});
+            model.addRow(new Object[]{"Wins", wins, winsPerMatch});
+            model.addRow(new Object[]{"Draws", draws, drawsPerMatch});
+            model.addRow(new Object[]{"Losses", losses, lossesPerMatch});
+            model.addRow(new Object[]{"Goals for", goalsFor, goalsForPerMatch});
+            model.addRow(new Object[]{"Goals against", goalsAgainst, goalsAgainstPerMatch});
         }
         statement.close();
-
+        getPageRecords1().getjScrollPane1().setVisible(true);
+        getPageRecords1().requestFocusInWindow();
     }
 
 }

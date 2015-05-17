@@ -122,6 +122,7 @@ public class MatchFilter extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         add(panelButtons, gridBagConstraints);
 
+        panelIcons.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panelIcons.setMaximumSize(new java.awt.Dimension(32767, 100));
         panelIcons.setLayout(new java.awt.GridLayout(1, 8));
 
