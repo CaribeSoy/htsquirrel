@@ -178,8 +178,6 @@ public class Records {
             model.addRow(new Object[]{"Goals against", goalsAgainst, goalsAgainstPerMatch});
         }
         statement.close();
-        getPageRecords1().getjScrollPane1().setVisible(true);
-        getPageRecords1().requestFocusInWindow();
     }
 
 }
