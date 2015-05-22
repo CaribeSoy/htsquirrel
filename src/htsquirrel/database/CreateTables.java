@@ -50,6 +50,9 @@ public class CreateTables {
         createLeaguesTable(connection);
         createMatchesExtendedTable(connection);
         createTransfersTable(connection);
+        createStartingLineupsTable(connection);
+        createSubstitutionsTable(connection);
+        createLineupsTable(connection);
     }
     
     private static void createTeamsTable(Connection connection)
@@ -173,6 +176,33 @@ public class CreateTables {
             throws SQLException, IOException {
         ReadSql readSql = new ReadSql();
         String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create/transfers.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    private static void createStartingLineupsTable(Connection connection)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create/starting_lineups.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    private static void createSubstitutionsTable(Connection connection)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create/substitutions.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    private static void createLineupsTable(Connection connection)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create/lineups.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();

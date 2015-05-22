@@ -66,6 +66,9 @@ public class DatabaseManagement {
         if (!(tableExists(connection, "LEAGUES"))) allExist = false;
         if (!(tableExists(connection, "MATCHES_EXTENDED"))) allExist = false;
         if (!(tableExists(connection, "TRANSFERS"))) allExist = false;
+        if (!(tableExists(connection, "STARTING_LINEUPS"))) allExist = false;
+        if (!(tableExists(connection, "SUBSTITUTIONS"))) allExist = false;
+        if (!(tableExists(connection, "LINEUPS"))) allExist = false;
         if (!(allExist)) {
             dropAllTables(connection);
             createAllTables(connection);
