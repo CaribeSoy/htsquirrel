@@ -29,6 +29,7 @@ import htsquirrel.game.Event;
 import htsquirrel.game.Goal;
 import htsquirrel.game.Injury;
 import htsquirrel.game.League;
+import htsquirrel.game.Lineup;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
@@ -361,6 +362,25 @@ public class InsertInto {
         sqlCode = sqlCode.replaceAll("#new_position#", String.valueOf(substitution.getNewPosition()));
         sqlCode = sqlCode.replaceAll("#behaviour_id#", String.valueOf(substitution.getBehaviour()));
         sqlCode = sqlCode.replaceAll("#match_minute#", String.valueOf(substitution.getMinute()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoLineups(Connection connection, Lineup lineup)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/lineups.sql");
+        sqlCode = sqlCode.replaceAll("#match_id#", String.valueOf(lineup.getMatchId()));
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(lineup.getTeamId()));
+        sqlCode = sqlCode.replaceAll("#player_id#", String.valueOf(lineup.getPlayerId()));
+        sqlCode = sqlCode.replaceAll("#role_id#", String.valueOf(lineup.getRole()));
+        sqlCode = sqlCode.replaceAll("#first_name#", lineup.getFirstName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#last_name#", lineup.getLastName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#nick_name#", lineup.getNickName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#behaviour_id#", String.valueOf(lineup.getBehaviour()));
+        sqlCode = sqlCode.replaceAll("#rating_stars#", String.valueOf(lineup.getRatingStars()));
+        sqlCode = sqlCode.replaceAll("#rating_stars_end#", String.valueOf(lineup.getRatingStarsEnd()));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
