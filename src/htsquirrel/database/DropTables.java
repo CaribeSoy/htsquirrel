@@ -50,6 +50,10 @@ public class DropTables {
         if (tableExists(connection, "LEAGUES")) dropLeaguesTable(connection);
         if (tableExists(connection, "MATCHES_EXTENDED")) dropMatchesExtendedTable(connection);
         if (tableExists(connection, "TRANSFERS")) dropTransfersTable(connection);
+        if (tableExists(connection, "STARTING_LINEUPS")) dropStartingLineupsTable(connection);
+        if (tableExists(connection, "SUBSTITUTIONS")) dropSubstitutionsTable(connection);
+        if (tableExists(connection, "LINEUPS")) dropLineupsTable(connection);
+        if (tableExists(connection, "PLAYERS")) dropPlayersTable(connection);
     }
     
     private static void dropTeamsTable(Connection connection)
@@ -163,4 +167,37 @@ public class DropTables {
         statement.execute(sqlCode);
         statement.close();
     }
+    
+    private static void dropStartingLineupsTable(Connection connection)
+            throws SQLException {
+        String sqlCode = "DROP TABLE STARTING_LINEUPS";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    private static void dropSubstitutionsTable(Connection connection)
+            throws SQLException {
+        String sqlCode = "DROP TABLE SUBSTITUTIONS";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    private static void dropLineupsTable(Connection connection)
+            throws SQLException {
+        String sqlCode = "DROP TABLE LINEUPS";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    private static void dropPlayersTable(Connection connection)
+            throws SQLException {
+        String sqlCode = "DROP TABLE PLAYERS";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
 }
