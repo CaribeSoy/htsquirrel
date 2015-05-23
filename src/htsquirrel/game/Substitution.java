@@ -35,7 +35,6 @@ public class Substitution {
     private int objectPlayerId;
     private int orderType;
     private int newPosition;
-    private int role;
     private int behaviour;
     private int minute;
 
@@ -88,14 +87,6 @@ public class Substitution {
 
     public void setNewPosition(int newPosition) {
         this.newPosition = newPosition;
-    }
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
     }
 
     public int getBehaviour() {
