@@ -32,6 +32,7 @@ import htsquirrel.game.League;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
+import htsquirrel.game.StartingLineup;
 import htsquirrel.game.Team;
 import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
@@ -325,6 +326,23 @@ public class InsertInto {
             throws SQLException, IOException {
         ReadSql readSql = new ReadSql();
         String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/matches_extended.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoStartingLineups(Connection connection, StartingLineup startingLineup)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/starting_lineups.sql");
+        sqlCode = sqlCode.replaceAll("#match_id#", String.valueOf(startingLineup.getMatchId()));
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(startingLineup.getTeamId()));
+        sqlCode = sqlCode.replaceAll("#player_id#", String.valueOf(startingLineup.getPlayerId()));
+        sqlCode = sqlCode.replaceAll("#role_id#", String.valueOf(startingLineup.getRole()));
+        sqlCode = sqlCode.replaceAll("#first_name#", startingLineup.getFirstName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#last_name#", startingLineup.getLastName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#nick_name#", startingLineup.getNickName().replaceAll("'", "''"));
+        sqlCode = sqlCode.replaceAll("#behaviour_id#", String.valueOf(startingLineup.getBehaviour()));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
