@@ -560,7 +560,12 @@ public class Responses {
                 startingLineup.setFirstName(playerElement.getElementsByTagName("FirstName").item(0).getTextContent());
                 startingLineup.setLastName(playerElement.getElementsByTagName("LastName").item(0).getTextContent());
                 startingLineup.setNickName(playerElement.getElementsByTagName("NickName").item(0).getTextContent());
-                startingLineup.setBehaviour(Integer.parseInt(playerElement.getElementsByTagName("Behaviour").item(0).getTextContent()));
+                NodeList behaviourNodes = playerElement.getElementsByTagName("Behaviour");
+                if (behaviourNodes.getLength() > 0) {
+                    startingLineup.setBehaviour(Integer.parseInt(playerElement.getElementsByTagName("Behaviour").item(0).getTextContent()));
+                } else {
+                    startingLineup.setBehaviour(-999);
+                }
                 startingLineups.add(startingLineup);
             }
         }
@@ -584,7 +589,12 @@ public class Responses {
                 substitution.setObjectPlayerId(Integer.parseInt(substitutionElement.getElementsByTagName("ObjectPlayerID").item(0).getTextContent()));
                 substitution.setOrderType(Integer.parseInt(substitutionElement.getElementsByTagName("OrderType").item(0).getTextContent()));
                 substitution.setNewPosition(Integer.parseInt(substitutionElement.getElementsByTagName("NewPositionId").item(0).getTextContent()));
-                substitution.setBehaviour(Integer.parseInt(substitutionElement.getElementsByTagName("NewPositionBehaviour").item(0).getTextContent()));
+                NodeList behaviourNodes = substitutionElement.getElementsByTagName("NewPositionBehaviour");
+                if (behaviourNodes.getLength() > 0) {
+                    substitution.setBehaviour(Integer.parseInt(substitutionElement.getElementsByTagName("NewPositionBehaviour").item(0).getTextContent()));
+                } else {
+                    substitution.setBehaviour(-999);
+                }
                 substitution.setMinute(Integer.parseInt(substitutionElement.getElementsByTagName("MatchMinute").item(0).getTextContent()));
                 substitutions.add(substitution);
             }
@@ -610,7 +620,12 @@ public class Responses {
                 lineup.setFirstName(playerElement.getElementsByTagName("FirstName").item(0).getTextContent());
                 lineup.setLastName(playerElement.getElementsByTagName("LastName").item(0).getTextContent());
                 lineup.setNickName(playerElement.getElementsByTagName("NickName").item(0).getTextContent());
-                lineup.setBehaviour(Integer.parseInt(playerElement.getElementsByTagName("Behaviour").item(0).getTextContent()));
+                NodeList behaviourNodes = playerElement.getElementsByTagName("Behaviour");
+                if (behaviourNodes.getLength() > 0) {
+                    lineup.setBehaviour(Integer.parseInt(playerElement.getElementsByTagName("Behaviour").item(0).getTextContent()));
+                } else {
+                    lineup.setBehaviour(-999);
+                }
                 lineup.setRatingStars(Double.parseDouble(playerElement.getElementsByTagName("RatingStars").item(0).getTextContent()));
                 lineup.setRatingStarsEnd(Double.parseDouble(playerElement.getElementsByTagName("RatingStarsEndOfMatch").item(0).getTextContent()));
                 lineups.add(lineup);
