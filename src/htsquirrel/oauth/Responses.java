@@ -626,8 +626,18 @@ public class Responses {
                 } else {
                     lineup.setBehaviour(-999);
                 }
-                lineup.setRatingStars(Double.parseDouble(playerElement.getElementsByTagName("RatingStars").item(0).getTextContent()));
-                lineup.setRatingStarsEnd(Double.parseDouble(playerElement.getElementsByTagName("RatingStarsEndOfMatch").item(0).getTextContent()));
+                NodeList ratingNodes = playerElement.getElementsByTagName("RatingStars");
+                if (ratingNodes.getLength() > 0) {
+                    lineup.setRatingStars(Double.parseDouble(playerElement.getElementsByTagName("RatingStars").item(0).getTextContent()));
+                } else {
+                    lineup.setRatingStars(-999);
+                }
+                NodeList ratingEndNodes = playerElement.getElementsByTagName("RatingStarsEndOfMatch");
+                if (ratingEndNodes.getLength() > 0) {
+                    lineup.setRatingStarsEnd(Double.parseDouble(playerElement.getElementsByTagName("RatingStarsEndOfMatch").item(0).getTextContent()));
+                } else {
+                    lineup.setRatingStarsEnd(-999);
+                }
                 lineups.add(lineup);
             }
         }
