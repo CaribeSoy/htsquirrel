@@ -33,6 +33,7 @@ import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
 import htsquirrel.game.StartingLineup;
+import htsquirrel.game.Substitution;
 import htsquirrel.game.Team;
 import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
@@ -343,6 +344,23 @@ public class InsertInto {
         sqlCode = sqlCode.replaceAll("#last_name#", startingLineup.getLastName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("#nick_name#", startingLineup.getNickName().replaceAll("'", "''"));
         sqlCode = sqlCode.replaceAll("#behaviour_id#", String.valueOf(startingLineup.getBehaviour()));
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    public static void insertIntoSubstitutions(Connection connection, Substitution substitution)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/substitution.sql");
+        sqlCode = sqlCode.replaceAll("#match_id#", String.valueOf(substitution.getMatchId()));
+        sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(substitution.getTeamId()));
+        sqlCode = sqlCode.replaceAll("#subject_player_id#", String.valueOf(substitution.getSubjectPlayerId()));
+        sqlCode = sqlCode.replaceAll("#object_player_id#", String.valueOf(substitution.getObjectPlayerId()));
+        sqlCode = sqlCode.replaceAll("#order_type#", String.valueOf(substitution.getOrderType()));
+        sqlCode = sqlCode.replaceAll("#new_position#", String.valueOf(substitution.getNewPosition()));
+        sqlCode = sqlCode.replaceAll("#behaviour_id#", String.valueOf(substitution.getBehaviour()));
+        sqlCode = sqlCode.replaceAll("#match_minute#", String.valueOf(substitution.getMinute()));
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
