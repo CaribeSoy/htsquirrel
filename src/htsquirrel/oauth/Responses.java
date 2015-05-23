@@ -33,6 +33,7 @@ import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
 import htsquirrel.game.StartingLineup;
+import htsquirrel.game.Substitution;
 import htsquirrel.game.Team;
 import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
@@ -563,6 +564,31 @@ public class Responses {
             }
         }
         return startingLineups;
+    }
+    
+    public static ArrayList<Substitution> getSubstitutionsFromHt(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Substitution> substitutions = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element substitutionsElement = (Element) document.getElementsByTagName("Substitutions").item(0);
+        NodeList substitutionNodes = substitutionsElement.getElementsByTagName("Substitution");
+        if (substitutionNodes.getLength() > 0) {
+            for (int substitutionCnt = 0; substitutionCnt < substitutionNodes.getLength(); substitutionCnt++) {
+                Element substitutionElement = (Element) substitutionNodes.item(substitutionCnt);
+                Substitution substitution = new Substitution();
+                substitution.setMatchId(match.getMatchId());
+                substitution.setTeamId(match.getTeamId());
+                substitution.setSubjectPlayerId(Integer.parseInt(substitutionElement.getElementsByTagName("SubjectPlayerID").item(0).getTextContent()));
+                substitution.setObjectPlayerId(Integer.parseInt(substitutionElement.getElementsByTagName("ObjectPlayerID").item(0).getTextContent()));
+                substitution.setOrderType(Integer.parseInt(substitutionElement.getElementsByTagName("OrderType").item(0).getTextContent()));
+                substitution.setNewPosition(Integer.parseInt(substitutionElement.getElementsByTagName("NewPositionId").item(0).getTextContent()));
+                substitution.setBehaviour(Integer.parseInt(substitutionElement.getElementsByTagName("NewPositionBehaviour").item(0).getTextContent()));
+                substitution.setMinute(Integer.parseInt(substitutionElement.getElementsByTagName("MatchMinute").item(0).getTextContent()));
+                substitutions.add(substitution);
+            }
+        }
+        return substitutions;
     }
     
     public static Document xmlStringToDoc(String xmlString)
