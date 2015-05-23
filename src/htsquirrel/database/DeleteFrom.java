@@ -95,4 +95,12 @@ public class DeleteFrom {
         statement.close();
     }
     
+    public static void deleteFromPlayers(Connection connection)
+            throws SQLException, IOException {
+        String sqlCode = "DELETE FROM PLAYERS";
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
 }
