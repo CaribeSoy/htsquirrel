@@ -39,6 +39,7 @@ import static htsquirrel.database.DeleteFrom.deleteFromLeagueIds;
 import static htsquirrel.database.DeleteFrom.deleteFromLeagueNames;
 import static htsquirrel.database.DeleteFrom.deleteFromLeagues;
 import static htsquirrel.database.DeleteFrom.deleteFromMatchesExtended;
+import static htsquirrel.database.DeleteFrom.deleteFromPlayers;
 import static htsquirrel.database.DeleteFrom.deleteFromTeams;
 import static htsquirrel.database.DeleteFrom.deleteFromTransfers;
 import static htsquirrel.database.GetInfo.getLastMatchDateFromDb;
@@ -62,6 +63,7 @@ import static htsquirrel.database.InsertInto.insertIntoLineups;
 import static htsquirrel.database.InsertInto.insertIntoMatchDetails;
 import static htsquirrel.database.InsertInto.insertIntoMatches;
 import static htsquirrel.database.InsertInto.insertIntoMatchesExtended;
+import static htsquirrel.database.InsertInto.insertIntoPlayers;
 import static htsquirrel.database.InsertInto.insertIntoReferees;
 import static htsquirrel.database.InsertInto.insertIntoStartingLineups;
 import static htsquirrel.database.InsertInto.insertIntoSubstitutions;
@@ -430,6 +432,9 @@ public class DownloadBase extends javax.swing.JPanel {
             // matches extended table
             deleteFromMatchesExtended(db);
             insertIntoMatchesExtended(db);
+            // players table
+            deleteFromPlayers(db);
+            insertIntoPlayers(db);
             db.close();
             return null;
         }
