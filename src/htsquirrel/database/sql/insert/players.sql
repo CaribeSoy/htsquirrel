@@ -1,0 +1,21 @@
+INSERT INTO PLAYERS
+SELECT DISTINCT
+    T1.TEAM_ID,
+    T1.PLAYER_ID,
+    T1.FIRST_NAME,
+    T1.LAST_NAME,
+    T1.NICK_NAME
+FROM
+    LINEUPS T1
+WHERE
+    NOT EXISTS
+    (
+        SELECT
+            0
+        FROM
+            LINEUPS T2
+        WHERE
+            T2.TEAM_ID = T1.TEAM_ID
+            AND T2.PLAYER_ID = T1.PLAYER_ID
+            AND T2.MATCH_ID > T1.MATCH_ID
+    )

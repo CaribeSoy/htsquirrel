@@ -386,4 +386,13 @@ public class InsertInto {
         statement.close();
     }
     
+    public static void insertIntoPlayers(Connection connection)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/players.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
 }
