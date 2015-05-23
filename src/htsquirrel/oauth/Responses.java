@@ -32,6 +32,7 @@ import htsquirrel.game.League;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
+import htsquirrel.game.StartingLineup;
 import htsquirrel.game.Team;
 import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
@@ -537,6 +538,31 @@ public class Responses {
             }
         }
         return events;
+    }
+    
+    public static ArrayList<StartingLineup> getStartingLineupFromHt(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<StartingLineup> startingLineups = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element startingLineupElement = (Element) document.getElementsByTagName("StartingLineup").item(0);
+        NodeList playerNodes = startingLineupElement.getElementsByTagName("Player");
+        if (playerNodes.getLength() > 0) {
+            for (int playerCnt = 0; playerCnt < playerNodes.getLength(); playerCnt++) {
+                Element playerElement = (Element) playerNodes.item(playerCnt);
+                StartingLineup startingLineup = new StartingLineup();
+                startingLineup.setMatchId(match.getMatchId());
+                startingLineup.setTeamId(match.getTeamId());
+                startingLineup.setPlayerId(Integer.parseInt(playerElement.getElementsByTagName("PlayerID").item(0).getTextContent()));
+                startingLineup.setRole(Integer.parseInt(playerElement.getElementsByTagName("RoleID").item(0).getTextContent()));
+                startingLineup.setFirstName(playerElement.getElementsByTagName("FirstName").item(0).getTextContent());
+                startingLineup.setLastName(playerElement.getElementsByTagName("LastName").item(0).getTextContent());
+                startingLineup.setNickName(playerElement.getElementsByTagName("NickName").item(0).getTextContent());
+                startingLineup.setBehaviour(Integer.parseInt(playerElement.getElementsByTagName("Behaviour").item(0).getTextContent()));
+                startingLineups.add(startingLineup);
+            }
+        }
+        return startingLineups;
     }
     
     public static Document xmlStringToDoc(String xmlString)
