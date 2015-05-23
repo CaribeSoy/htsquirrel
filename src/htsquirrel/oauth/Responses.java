@@ -29,6 +29,7 @@ import htsquirrel.game.Event;
 import htsquirrel.game.Goal;
 import htsquirrel.game.Injury;
 import htsquirrel.game.League;
+import htsquirrel.game.Lineup;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
@@ -589,6 +590,33 @@ public class Responses {
             }
         }
         return substitutions;
+    }
+    
+    public static ArrayList<Lineup> getLineupFromHt(String xmlString, Match match)
+            throws ParserConfigurationException, SAXException, IOException {
+        ArrayList<Lineup> lineups = new ArrayList<>();
+        Document document = xmlStringToDoc(xmlString);
+        document.getDocumentElement().normalize();
+        Element lineupElement = (Element) document.getElementsByTagName("Lineup").item(0);
+        NodeList playerNodes = lineupElement.getElementsByTagName("Player");
+        if (playerNodes.getLength() > 0) {
+            for (int playerCnt = 0; playerCnt < playerNodes.getLength(); playerCnt++) {
+                Element playerElement = (Element) playerNodes.item(playerCnt);
+                Lineup lineup = new Lineup();
+                lineup.setMatchId(match.getMatchId());
+                lineup.setTeamId(match.getTeamId());
+                lineup.setPlayerId(Integer.parseInt(playerElement.getElementsByTagName("PlayerID").item(0).getTextContent()));
+                lineup.setRole(Integer.parseInt(playerElement.getElementsByTagName("RoleID").item(0).getTextContent()));
+                lineup.setFirstName(playerElement.getElementsByTagName("FirstName").item(0).getTextContent());
+                lineup.setLastName(playerElement.getElementsByTagName("LastName").item(0).getTextContent());
+                lineup.setNickName(playerElement.getElementsByTagName("NickName").item(0).getTextContent());
+                lineup.setBehaviour(Integer.parseInt(playerElement.getElementsByTagName("Behaviour").item(0).getTextContent()));
+                lineup.setRatingStars(Double.parseDouble(playerElement.getElementsByTagName("RatingStars").item(0).getTextContent()));
+                lineup.setRatingStarsEnd(Double.parseDouble(playerElement.getElementsByTagName("RatingStarsEndOfMatch").item(0).getTextContent()));
+                lineups.add(lineup);
+            }
+        }
+        return lineups;
     }
     
     public static Document xmlStringToDoc(String xmlString)
