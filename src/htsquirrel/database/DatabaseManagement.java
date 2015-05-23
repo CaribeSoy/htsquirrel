@@ -69,6 +69,7 @@ public class DatabaseManagement {
         if (!(tableExists(connection, "STARTING_LINEUPS"))) allExist = false;
         if (!(tableExists(connection, "SUBSTITUTIONS"))) allExist = false;
         if (!(tableExists(connection, "LINEUPS"))) allExist = false;
+        if (!(tableExists(connection, "PLAYERS"))) allExist = false;
         if (!(allExist)) {
             dropAllTables(connection);
             createAllTables(connection);

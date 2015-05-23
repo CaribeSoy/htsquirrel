@@ -53,6 +53,7 @@ public class CreateTables {
         createStartingLineupsTable(connection);
         createSubstitutionsTable(connection);
         createLineupsTable(connection);
+        createPlayersTable(connection);
     }
     
     private static void createTeamsTable(Connection connection)
@@ -203,6 +204,15 @@ public class CreateTables {
             throws SQLException, IOException {
         ReadSql readSql = new ReadSql();
         String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create/lineups.sql");
+        Statement statement = connection.createStatement();
+        statement.execute(sqlCode);
+        statement.close();
+    }
+    
+    private static void createPlayersTable(Connection connection)
+            throws SQLException, IOException {
+        ReadSql readSql = new ReadSql();
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/create/players.sql");
         Statement statement = connection.createStatement();
         statement.execute(sqlCode);
         statement.close();
