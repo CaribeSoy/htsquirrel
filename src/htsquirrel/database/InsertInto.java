@@ -353,7 +353,7 @@ public class InsertInto {
     public static void insertIntoSubstitutions(Connection connection, Substitution substitution)
             throws SQLException, IOException {
         ReadSql readSql = new ReadSql();
-        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/substitution.sql");
+        String sqlCode = readSql.sqlToString("htsquirrel/database/sql/insert/substitutions.sql");
         sqlCode = sqlCode.replaceAll("#match_id#", String.valueOf(substitution.getMatchId()));
         sqlCode = sqlCode.replaceAll("#team_id#", String.valueOf(substitution.getTeamId()));
         sqlCode = sqlCode.replaceAll("#subject_player_id#", String.valueOf(substitution.getSubjectPlayerId()));
