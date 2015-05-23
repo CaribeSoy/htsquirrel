@@ -58,10 +58,13 @@ import static htsquirrel.database.InsertInto.insertIntoInjuries;
 import static htsquirrel.database.InsertInto.insertIntoLeagueIds;
 import static htsquirrel.database.InsertInto.insertIntoLeagueNames;
 import static htsquirrel.database.InsertInto.insertIntoLeagues;
+import static htsquirrel.database.InsertInto.insertIntoLineups;
 import static htsquirrel.database.InsertInto.insertIntoMatchDetails;
 import static htsquirrel.database.InsertInto.insertIntoMatches;
 import static htsquirrel.database.InsertInto.insertIntoMatchesExtended;
 import static htsquirrel.database.InsertInto.insertIntoReferees;
+import static htsquirrel.database.InsertInto.insertIntoStartingLineups;
+import static htsquirrel.database.InsertInto.insertIntoSubstitutions;
 import static htsquirrel.database.InsertInto.insertIntoTeams;
 import static htsquirrel.database.InsertInto.insertIntoTransfers;
 import static htsquirrel.database.Update.updateSeason;
@@ -71,9 +74,12 @@ import htsquirrel.game.Event;
 import htsquirrel.game.Goal;
 import htsquirrel.game.Injury;
 import htsquirrel.game.League;
+import htsquirrel.game.Lineup;
 import htsquirrel.game.Match;
 import htsquirrel.game.MatchDetails;
 import htsquirrel.game.Referee;
+import htsquirrel.game.StartingLineup;
+import htsquirrel.game.Substitution;
 import htsquirrel.game.Team;
 import htsquirrel.game.Transfer;
 import htsquirrel.game.User;
@@ -86,10 +92,13 @@ import static htsquirrel.oauth.Responses.getGoalsFromHt;
 import static htsquirrel.oauth.Responses.getInjuriesFromHt;
 import static htsquirrel.oauth.Responses.getLeagueFromHt;
 import static htsquirrel.oauth.Responses.getLeagueIdFromSeasonFromHt;
+import static htsquirrel.oauth.Responses.getLineupFromHt;
 import static htsquirrel.oauth.Responses.getMatchDetailsFromHt;
 import static htsquirrel.oauth.Responses.getMatchesFromHt;
 import static htsquirrel.oauth.Responses.getRefereesFromHt;
 import static htsquirrel.oauth.Responses.getSeasonFromHt;
+import static htsquirrel.oauth.Responses.getStartingLineupFromHt;
+import static htsquirrel.oauth.Responses.getSubstitutionsFromHt;
 import static htsquirrel.oauth.Responses.getTeamsFromHt;
 import static htsquirrel.oauth.Responses.getTransferPagesFromHt;
 import static htsquirrel.oauth.Responses.getTransfersFromHt;
@@ -397,6 +406,24 @@ public class DownloadBase extends javax.swing.JPanel {
                     ArrayList<Event> events = getEventsFromHt(matchDetailsXml, match);
                     for (Event event : events) {
                         insertIntoEvents(db, event);
+                    }
+                    // lineups
+                    String matchLineupXml = getResponse(oAuthService,
+                            accessToken,
+                            "matchlineup&version=1.8&matchID="
+                                    + match.getMatchId()
+                                    + "&teamID=" + match.getTeamId());
+                    ArrayList<StartingLineup> startingLineups = getStartingLineupFromHt(matchLineupXml, match);
+                    for (StartingLineup startingLineup : startingLineups) {
+                        insertIntoStartingLineups(db, startingLineup);
+                    }
+                    ArrayList<Substitution> substitutions = getSubstitutionsFromHt(matchLineupXml, match);
+                    for (Substitution substitution : substitutions) {
+                        insertIntoSubstitutions(db, substitution);
+                    }
+                    ArrayList<Lineup> lineups = getLineupFromHt(matchLineupXml, match);
+                    for (Lineup lineup : lineups) {
+                        insertIntoLineups(db, lineup);
                     }
                 }
             }
