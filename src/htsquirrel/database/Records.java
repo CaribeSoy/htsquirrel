@@ -120,6 +120,49 @@ public class Records {
         sqlCode = sqlCode.replaceAll("#league_level_from#", leagueFrom);
         sqlCode = sqlCode.replaceAll("#league_level_to#", leagueTo);
         sqlCode = sqlCode.replaceAll("#league_level_unit_name#", league);
+        String venue = "('999'";
+        if (getMatchFilter().getPanelArena().getPanelGeneral().getCheckBoxHome().isSelected()) venue = venue + ", 'Home'";
+        if (getMatchFilter().getPanelArena().getPanelGeneral().getCheckBoxAway().isSelected()) venue = venue + ", 'Away'";
+        venue = venue + ")";
+        sqlCode = sqlCode.replaceAll("#venue#", venue);
+        String weather = "(999";
+        if (getMatchFilter().getPanelArena().getPanelGeneral().getCheckBoxRain().isSelected()) weather = weather + ", 0";
+        if (getMatchFilter().getPanelArena().getPanelGeneral().getCheckBoxOvercast().isSelected()) weather = weather + ", 1";
+        if (getMatchFilter().getPanelArena().getPanelGeneral().getCheckBoxPartiallyCloudy().isSelected()) weather = weather + ", 2";
+        if (getMatchFilter().getPanelArena().getPanelGeneral().getCheckBoxSunny().isSelected()) weather = weather + ", 3";
+        weather = weather + ")";
+        sqlCode = sqlCode.replaceAll("#weather_id#", weather);
+        sqlCode = sqlCode.replaceAll("#sold_total_from#", String.valueOf(getMatchFilter().getPanelArena().getPanelGeneral().getSpinnerFrom().getValue()));
+        sqlCode = sqlCode.replaceAll("#sold_total_to#", String.valueOf(getMatchFilter().getPanelArena().getPanelGeneral().getSpinnerTo().getValue()));
+        if (getMatchFilter().getPanelArena().getPanelSeatType().getCheckBoxTerraces().isSelected()) {
+            sqlCode = sqlCode.replaceAll("#sold_terraces_from#", String.valueOf(getMatchFilter().getPanelArena().getPanelSeatType().getSpinnerTerracesFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("#sold_terraces_to#", String.valueOf(getMatchFilter().getPanelArena().getPanelSeatType().getSpinnerTerracesTo().getValue()));
+        } else {
+            sqlCode = sqlCode.replaceAll("#sold_terraces_from#", "-1");
+            sqlCode = sqlCode.replaceAll("#sold_terraces_to#", "999999");
+        }
+        if (getMatchFilter().getPanelArena().getPanelSeatType().getCheckBoxBasic().isSelected()) {
+            sqlCode = sqlCode.replaceAll("#sold_basic_from#", String.valueOf(getMatchFilter().getPanelArena().getPanelSeatType().getSpinnerBasicFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("#sold_basic_to#", String.valueOf(getMatchFilter().getPanelArena().getPanelSeatType().getSpinnerBasicTo().getValue()));
+        } else {
+            sqlCode = sqlCode.replaceAll("#sold_basic_from#", "-1");
+            sqlCode = sqlCode.replaceAll("#sold_basic_to#", "999999");
+        }
+        if (getMatchFilter().getPanelArena().getPanelSeatType().getCheckBoxRoof().isSelected()) {
+            sqlCode = sqlCode.replaceAll("#sold_roof_from#", String.valueOf(getMatchFilter().getPanelArena().getPanelSeatType().getSpinnerRoofFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("#sold_roof_to#", String.valueOf(getMatchFilter().getPanelArena().getPanelSeatType().getSpinnerRoofTo().getValue()));
+        } else {
+            sqlCode = sqlCode.replaceAll("#sold_roof_from#", "-1");
+            sqlCode = sqlCode.replaceAll("#sold_roof_to#", "999999");
+        }
+        if (getMatchFilter().getPanelArena().getPanelSeatType().getCheckBoxVip().isSelected()) {
+            sqlCode = sqlCode.replaceAll("#sold_vip_from#", String.valueOf(getMatchFilter().getPanelArena().getPanelSeatType().getSpinnerVipFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("#sold_vip_to#", String.valueOf(getMatchFilter().getPanelArena().getPanelSeatType().getSpinnerVipTo().getValue()));
+        } else {
+            sqlCode = sqlCode.replaceAll("#sold_vip_from#", "-1");
+            sqlCode = sqlCode.replaceAll("#sold_vip_to#", "999999");
+        }
+        System.out.println(sqlCode);
         return sqlCode;
     }
 
