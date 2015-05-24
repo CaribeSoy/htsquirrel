@@ -79,6 +79,8 @@ public class MatchTypeCompetitions extends javax.swing.JPanel {
         checkBoxHattrickMasters = new javax.swing.JCheckBox();
 
         setBorder(null);
+        setMaximumSize(new java.awt.Dimension(400, 32767));
+        setMinimumSize(new java.awt.Dimension(400, 0));
 
         checkBoxCompetitions.setSelected(true);
         checkBoxCompetitions.setText("All competitions");
@@ -89,6 +91,8 @@ public class MatchTypeCompetitions extends javax.swing.JPanel {
         });
 
         panelLeague.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "League"));
+        panelLeague.setMaximumSize(new java.awt.Dimension(388, 32767));
+        panelLeague.setMinimumSize(new java.awt.Dimension(388, 0));
 
         checkBoxLeague.setSelected(true);
         checkBoxLeague.setText("League");
@@ -128,6 +132,8 @@ public class MatchTypeCompetitions extends javax.swing.JPanel {
         );
 
         panelNationalCup.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "National Cup"));
+        panelNationalCup.setMaximumSize(new java.awt.Dimension(388, 32767));
+        panelNationalCup.setMinimumSize(new java.awt.Dimension(388, 0));
 
         checkBoxNationalCup.setSelected(true);
         checkBoxNationalCup.setText("National Cup");
@@ -200,6 +206,8 @@ public class MatchTypeCompetitions extends javax.swing.JPanel {
         );
 
         panelDivisionalCup.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Divisional Cup"));
+        panelDivisionalCup.setMaximumSize(new java.awt.Dimension(388, 32767));
+        panelDivisionalCup.setMinimumSize(new java.awt.Dimension(388, 0));
 
         checkBoxDivisionalCup.setSelected(true);
         checkBoxDivisionalCup.setText("Divisional Cup");
@@ -313,6 +321,8 @@ public class MatchTypeCompetitions extends javax.swing.JPanel {
         );
 
         panelHattrickMasters.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Hattrick Masters"));
+        panelHattrickMasters.setMaximumSize(new java.awt.Dimension(388, 32767));
+        panelHattrickMasters.setMinimumSize(new java.awt.Dimension(388, 0));
 
         checkBoxHattrickMasters.setSelected(true);
         checkBoxHattrickMasters.setText("Hattrick Masters");
@@ -345,15 +355,13 @@ public class MatchTypeCompetitions extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(checkBoxCompetitions)
                     .addComponent(panelLeague, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelNationalCup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDivisionalCup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(checkBoxCompetitions)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(panelHattrickMasters, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -63,6 +63,8 @@ public class MatchTypeFriendlies extends javax.swing.JPanel {
         checkBoxIntFriendlyCup = new javax.swing.JCheckBox();
 
         setBorder(null);
+        setMaximumSize(new java.awt.Dimension(400, 32767));
+        setPreferredSize(new java.awt.Dimension(400, 175));
 
         checkBoxFriendlies.setText("All friendlies");
         checkBoxFriendlies.addActionListener(new java.awt.event.ActionListener() {
@@ -72,6 +74,8 @@ public class MatchTypeFriendlies extends javax.swing.JPanel {
         });
 
         panelFriendlies.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Friendlies"));
+        panelFriendlies.setMaximumSize(new java.awt.Dimension(388, 32767));
+        panelFriendlies.setPreferredSize(new java.awt.Dimension(388, 127));
 
         checkBoxFriendlyNormal.setText("Friendly (normal rules)");
         checkBoxFriendlyNormal.addActionListener(new java.awt.event.ActionListener() {
@@ -135,11 +139,9 @@ public class MatchTypeFriendlies extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(checkBoxFriendlies)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(panelFriendlies, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(checkBoxFriendlies)
+                    .addComponent(panelFriendlies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +149,7 @@ public class MatchTypeFriendlies extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(checkBoxFriendlies)
                 .addGap(18, 18, 18)
-                .addComponent(panelFriendlies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelFriendlies, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
