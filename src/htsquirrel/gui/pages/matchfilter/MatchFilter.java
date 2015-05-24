@@ -239,7 +239,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton8.setSelected(false);
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_on.png")));
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png")));
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png")));
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png")));
         hideFilters();
         panelMatchType.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
@@ -255,7 +255,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton8.setSelected(false);
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png")));
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_on.png")));
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png")));
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png")));
         hideFilters();
         panelPeriod.setVisible(true);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
@@ -287,7 +287,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton8.setSelected(false);
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png")));
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png")));
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_on.png")));
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_on.png")));
         hideFilters();
         panelPeriod.setVisible(true);
     }//GEN-LAST:event_jToggleButton3ActionPerformed
@@ -324,7 +324,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton8.setSelected(false);
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_on.png")));
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png")));
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png")));
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png")));
         jToggleButton1.requestFocus(true);
     }
 
