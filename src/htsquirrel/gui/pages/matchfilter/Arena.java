@@ -168,7 +168,7 @@ public class Arena extends javax.swing.JPanel {
         panelGeneral.setVisible(true);
         panelSeatType.setVisible(false);
         buttonGeneral.setSelected(true);
-        buttonGeneral.setSelected(false);
+        buttonSeatType.setSelected(false);
         Translations translations = new Translations();
         Properties properties = null;
         try {
