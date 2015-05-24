@@ -48,14 +48,14 @@ public class Arena extends javax.swing.JPanel {
 
         panelTop = new javax.swing.JPanel();
         panelLeft = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        buttonGeneral = new javax.swing.JToggleButton();
         panelRight = new javax.swing.JPanel();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        buttonSeatType = new javax.swing.JToggleButton();
         panelBottom = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         panelBase = new javax.swing.JPanel();
-        arenaGeneral1 = new htsquirrel.gui.pages.matchfilter.ArenaGeneral();
-        arenaSeatType1 = new htsquirrel.gui.pages.matchfilter.ArenaSeatType();
+        panelGeneral = new htsquirrel.gui.pages.matchfilter.ArenaGeneral();
+        panelSeatType = new htsquirrel.gui.pages.matchfilter.ArenaSeatType();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -63,26 +63,26 @@ public class Arena extends javax.swing.JPanel {
         panelTop.setMaximumSize(new java.awt.Dimension(32767, 50));
         panelTop.setMinimumSize(new java.awt.Dimension(100, 50));
         panelTop.setPreferredSize(new java.awt.Dimension(400, 50));
-        panelTop.setLayout(new java.awt.GridLayout());
+        panelTop.setLayout(new java.awt.GridLayout(1, 0));
 
         panelLeft.setLayout(new java.awt.GridBagLayout());
 
-        jToggleButton1.setSelected(true);
-        jToggleButton1.setText("General");
-        jToggleButton1.setMaximumSize(new java.awt.Dimension(180, 27));
-        jToggleButton1.setMinimumSize(new java.awt.Dimension(180, 27));
-        jToggleButton1.setPreferredSize(new java.awt.Dimension(180, 27));
-        panelLeft.add(jToggleButton1, new java.awt.GridBagConstraints());
+        buttonGeneral.setSelected(true);
+        buttonGeneral.setText("General");
+        buttonGeneral.setMaximumSize(new java.awt.Dimension(180, 27));
+        buttonGeneral.setMinimumSize(new java.awt.Dimension(180, 27));
+        buttonGeneral.setPreferredSize(new java.awt.Dimension(180, 27));
+        panelLeft.add(buttonGeneral, new java.awt.GridBagConstraints());
 
         panelTop.add(panelLeft);
 
         panelRight.setLayout(new java.awt.GridBagLayout());
 
-        jToggleButton2.setText("Seat type");
-        jToggleButton2.setMaximumSize(new java.awt.Dimension(180, 27));
-        jToggleButton2.setMinimumSize(new java.awt.Dimension(180, 27));
-        jToggleButton2.setPreferredSize(new java.awt.Dimension(180, 27));
-        panelRight.add(jToggleButton2, new java.awt.GridBagConstraints());
+        buttonSeatType.setText("Seat type");
+        buttonSeatType.setMaximumSize(new java.awt.Dimension(180, 27));
+        buttonSeatType.setMinimumSize(new java.awt.Dimension(180, 27));
+        buttonSeatType.setPreferredSize(new java.awt.Dimension(180, 27));
+        panelRight.add(buttonSeatType, new java.awt.GridBagConstraints());
 
         panelTop.add(panelRight);
 
@@ -98,8 +98,8 @@ public class Arena extends javax.swing.JPanel {
         scrollPane.setBorder(null);
 
         panelBase.setLayout(new java.awt.CardLayout());
-        panelBase.add(arenaGeneral1, "card2");
-        panelBase.add(arenaSeatType1, "card3");
+        panelBase.add(panelGeneral, "card2");
+        panelBase.add(panelSeatType, "card3");
 
         scrollPane.setViewportView(panelBase);
 
@@ -125,14 +125,14 @@ public class Arena extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private htsquirrel.gui.pages.matchfilter.ArenaGeneral arenaGeneral1;
-    private htsquirrel.gui.pages.matchfilter.ArenaSeatType arenaSeatType1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton buttonGeneral;
+    private javax.swing.JToggleButton buttonSeatType;
     private javax.swing.JPanel panelBase;
     private javax.swing.JPanel panelBottom;
+    private htsquirrel.gui.pages.matchfilter.ArenaGeneral panelGeneral;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
+    private htsquirrel.gui.pages.matchfilter.ArenaSeatType panelSeatType;
     private javax.swing.JPanel panelTop;
     private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables

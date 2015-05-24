@@ -48,7 +48,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+            <Component class="javax.swing.JToggleButton" name="buttonGeneral">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="General"/>
@@ -74,7 +74,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JToggleButton" name="jToggleButton2">
+            <Component class="javax.swing.JToggleButton" name="buttonSeatType">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Seat type"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -137,14 +137,14 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
               <SubComponents>
-                <Component class="htsquirrel.gui.pages.matchfilter.ArenaGeneral" name="arenaGeneral1">
+                <Component class="htsquirrel.gui.pages.matchfilter.ArenaGeneral" name="panelGeneral">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card2"/>
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="htsquirrel.gui.pages.matchfilter.ArenaSeatType" name="arenaSeatType1">
+                <Component class="htsquirrel.gui.pages.matchfilter.ArenaSeatType" name="panelSeatType">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card3"/>
