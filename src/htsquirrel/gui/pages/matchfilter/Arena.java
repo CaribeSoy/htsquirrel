@@ -23,6 +23,13 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import static htsquirrel.HTSquirrel.getLanguage;
+import htsquirrel.translations.Translations;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -155,6 +162,23 @@ public class Arena extends javax.swing.JPanel {
         return panelSeatType;
     }
 
+    public void resetArena() {
+        panelGeneral.resetArenaGeneral();
+        panelSeatType.resetArenaSeatType();
+        panelGeneral.setVisible(true);
+        panelSeatType.setVisible(false);
+        buttonGeneral.setSelected(true);
+        buttonGeneral.setSelected(false);
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            buttonGeneral.setText(properties.getProperty("arena_button_general"));
+            buttonSeatType.setText(properties.getProperty("arena_button_seat_type"));
+        } catch (IOException ex) {
+            Logger.getLogger(MatchType.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton buttonGeneral;
