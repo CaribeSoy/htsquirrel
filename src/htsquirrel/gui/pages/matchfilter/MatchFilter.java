@@ -289,7 +289,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png")));
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_on.png")));
         hideFilters();
-        panelPeriod.setVisible(true);
+        panelArena.setVisible(true);
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void hideFilters() {
