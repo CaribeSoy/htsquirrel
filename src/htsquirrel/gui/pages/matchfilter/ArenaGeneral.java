@@ -63,8 +63,10 @@ public class ArenaGeneral extends javax.swing.JPanel {
 
         panelVenue.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Venue"));
 
+        checkBoxHome.setSelected(true);
         checkBoxHome.setText("Home");
 
+        checkBoxAway.setSelected(true);
         checkBoxAway.setText("Away");
 
         javax.swing.GroupLayout panelVenueLayout = new javax.swing.GroupLayout(panelVenue);
@@ -127,12 +129,16 @@ public class ArenaGeneral extends javax.swing.JPanel {
 
         panelWeather.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Weather"));
 
+        checkBoxSunny.setSelected(true);
         checkBoxSunny.setText("Sunny");
 
+        checkBoxPartiallyCloudy.setSelected(true);
         checkBoxPartiallyCloudy.setText("Partially cloudy");
 
+        checkBoxOvercast.setSelected(true);
         checkBoxOvercast.setText("Overcast");
 
+        checkBoxRain.setSelected(true);
         checkBoxRain.setText("Rain");
 
         javax.swing.GroupLayout panelWeatherLayout = new javax.swing.GroupLayout(panelWeather);

@@ -88,11 +88,13 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="checkBoxHome">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Home"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxAway">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Away"/>
           </Properties>
         </Component>
@@ -216,21 +218,25 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="checkBoxSunny">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Sunny"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxPartiallyCloudy">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Partially cloudy"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxOvercast">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Overcast"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxRain">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Rain"/>
           </Properties>
         </Component>
