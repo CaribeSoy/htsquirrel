@@ -72,6 +72,11 @@ public class Arena extends javax.swing.JPanel {
         buttonGeneral.setMaximumSize(new java.awt.Dimension(180, 27));
         buttonGeneral.setMinimumSize(new java.awt.Dimension(180, 27));
         buttonGeneral.setPreferredSize(new java.awt.Dimension(180, 27));
+        buttonGeneral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGeneralActionPerformed(evt);
+            }
+        });
         panelLeft.add(buttonGeneral, new java.awt.GridBagConstraints());
 
         panelTop.add(panelLeft);
@@ -82,6 +87,11 @@ public class Arena extends javax.swing.JPanel {
         buttonSeatType.setMaximumSize(new java.awt.Dimension(180, 27));
         buttonSeatType.setMinimumSize(new java.awt.Dimension(180, 27));
         buttonSeatType.setPreferredSize(new java.awt.Dimension(180, 27));
+        buttonSeatType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeatTypeActionPerformed(evt);
+            }
+        });
         panelRight.add(buttonSeatType, new java.awt.GridBagConstraints());
 
         panelTop.add(panelRight);
@@ -122,6 +132,20 @@ public class Arena extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         add(panelBottom, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGeneralActionPerformed
+        buttonGeneral.setSelected(true);
+        buttonSeatType.setSelected(false);
+        panelGeneral.setVisible(true);
+        panelSeatType.setVisible(false);
+    }//GEN-LAST:event_buttonGeneralActionPerformed
+
+    private void buttonSeatTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeatTypeActionPerformed
+        buttonGeneral.setSelected(false);
+        buttonSeatType.setSelected(true);
+        panelGeneral.setVisible(false);
+        panelSeatType.setVisible(true);
+    }//GEN-LAST:event_buttonSeatTypeActionPerformed
 
     public ArenaGeneral getPanelGeneral() {
         return panelGeneral;
