@@ -23,8 +23,16 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import static htsquirrel.HTSquirrel.getLanguage;
+import htsquirrel.translations.Translations;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
+import javax.swing.border.EtchedBorder;
 
 /**
  *
@@ -228,6 +236,33 @@ public class ArenaGeneral extends javax.swing.JPanel {
         return spinnerTo;
     }
 
+    public void resetArenaGeneral() {
+        checkBoxHome.setSelected(true);
+        checkBoxAway.setSelected(true);
+        checkBoxSunny.setSelected(true);
+        checkBoxPartiallyCloudy.setSelected(true);
+        checkBoxOvercast.setSelected(true);
+        checkBoxRain.setSelected(true);
+        spinnerFrom.setValue(0);
+        spinnerTo.setValue(999000);
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            panelVenue.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("arena_panel_venue")));
+            checkBoxHome.setText(properties.getProperty("arena_home"));
+            checkBoxAway.setText(properties.getProperty("arena_away"));
+            panelSpectators.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("arena_panel_spectators")));
+            labelFrom.setText(properties.getProperty("from"));
+            labelTo.setText(properties.getProperty("to"));
+            checkBoxSunny.setText(properties.getProperty("arena_sunny"));
+            checkBoxPartiallyCloudy.setText(properties.getProperty("arena_partially_cloudy"));
+            checkBoxOvercast.setText(properties.getProperty("arena_overcast"));
+            checkBoxRain.setText(properties.getProperty("arena_rain"));
+        } catch (IOException ex) {
+            Logger.getLogger(PeriodBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox checkBoxAway;
