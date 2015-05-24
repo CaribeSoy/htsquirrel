@@ -23,8 +23,16 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import static htsquirrel.HTSquirrel.getLanguage;
+import htsquirrel.translations.Translations;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
+import javax.swing.border.EtchedBorder;
 
 /**
  *
@@ -266,6 +274,40 @@ public class ArenaSeatType extends javax.swing.JPanel {
         return spinnerVipTo;
     }
 
+    public void resetArenaSeatType() {
+        checkBoxTerraces.setSelected(false);
+        checkBoxBasic.setSelected(false);
+        checkBoxRoof.setSelected(false);
+        checkBoxVip.setSelected(false);
+        spinnerTerracesFrom.setValue(0);
+        spinnerTerracesTo.setValue(999000);
+        spinnerBasicFrom.setValue(0);
+        spinnerBasicTo.setValue(999000);
+        spinnerRoofFrom.setValue(0);
+        spinnerRoofTo.setValue(999000);
+        spinnerVipFrom.setValue(0);
+        spinnerVipTo.setValue(999000);
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            panelSeatType.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("arena_panel_seat_type")));
+            checkBoxTerraces.setText(properties.getProperty("arena_terraces"));
+            checkBoxBasic.setText(properties.getProperty("arena_basic"));
+            checkBoxRoof.setText(properties.getProperty("arena_roof"));
+            checkBoxVip.setText(properties.getProperty("arena_vip"));
+            labelFrom1.setText(properties.getProperty("from"));
+            labelTo1.setText(properties.getProperty("to"));
+            labelFrom2.setText(properties.getProperty("from"));
+            labelTo2.setText(properties.getProperty("to"));
+            labelFrom3.setText(properties.getProperty("from"));
+            labelTo3.setText(properties.getProperty("to"));
+            labelFrom4.setText(properties.getProperty("from"));
+            labelTo4.setText(properties.getProperty("to"));
+        } catch (IOException ex) {
+            Logger.getLogger(PeriodBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox checkBoxBasic;
