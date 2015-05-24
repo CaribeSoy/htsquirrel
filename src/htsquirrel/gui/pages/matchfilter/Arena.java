@@ -123,6 +123,14 @@ public class Arena extends javax.swing.JPanel {
         add(panelBottom, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public ArenaGeneral getPanelGeneral() {
+        return panelGeneral;
+    }
+
+    public ArenaSeatType getPanelSeatType() {
+        return panelSeatType;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton buttonGeneral;
