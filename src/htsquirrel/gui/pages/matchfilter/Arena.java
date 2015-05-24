@@ -44,25 +44,96 @@ public class Arena extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        panelTop = new javax.swing.JPanel();
+        panelLeft = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        panelRight = new javax.swing.JPanel();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        panelBottom = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
+        panelBase = new javax.swing.JPanel();
+        arenaGeneral1 = new htsquirrel.gui.pages.matchfilter.ArenaGeneral();
+        arenaSeatType1 = new htsquirrel.gui.pages.matchfilter.ArenaSeatType();
+
+        setLayout(new java.awt.GridBagLayout());
+
+        panelTop.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelTop.setMaximumSize(new java.awt.Dimension(32767, 50));
+        panelTop.setMinimumSize(new java.awt.Dimension(100, 50));
+        panelTop.setPreferredSize(new java.awt.Dimension(400, 50));
+        panelTop.setLayout(new java.awt.GridLayout());
+
+        panelLeft.setLayout(new java.awt.GridBagLayout());
+
+        jToggleButton1.setSelected(true);
+        jToggleButton1.setText("General");
+        jToggleButton1.setMaximumSize(new java.awt.Dimension(180, 27));
+        jToggleButton1.setMinimumSize(new java.awt.Dimension(180, 27));
+        jToggleButton1.setPreferredSize(new java.awt.Dimension(180, 27));
+        panelLeft.add(jToggleButton1, new java.awt.GridBagConstraints());
+
+        panelTop.add(panelLeft);
+
+        panelRight.setLayout(new java.awt.GridBagLayout());
+
+        jToggleButton2.setText("Seat type");
+        jToggleButton2.setMaximumSize(new java.awt.Dimension(180, 27));
+        jToggleButton2.setMinimumSize(new java.awt.Dimension(180, 27));
+        jToggleButton2.setPreferredSize(new java.awt.Dimension(180, 27));
+        panelRight.add(jToggleButton2, new java.awt.GridBagConstraints());
+
+        panelTop.add(panelRight);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        add(panelTop, gridBagConstraints);
+
+        panelBottom.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         scrollPane.setBorder(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+        panelBase.setLayout(new java.awt.CardLayout());
+        panelBase.add(arenaGeneral1, "card2");
+        panelBase.add(arenaSeatType1, "card3");
+
+        scrollPane.setViewportView(panelBase);
+
+        javax.swing.GroupLayout panelBottomLayout = new javax.swing.GroupLayout(panelBottom);
+        panelBottom.setLayout(panelBottomLayout);
+        panelBottomLayout.setHorizontalGroup(
+            panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+        panelBottomLayout.setVerticalGroup(
+            panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        add(panelBottom, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private htsquirrel.gui.pages.matchfilter.ArenaGeneral arenaGeneral1;
+    private htsquirrel.gui.pages.matchfilter.ArenaSeatType arenaSeatType1;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JPanel panelBase;
+    private javax.swing.JPanel panelBottom;
+    private javax.swing.JPanel panelLeft;
+    private javax.swing.JPanel panelRight;
+    private javax.swing.JPanel panelTop;
     private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 }
