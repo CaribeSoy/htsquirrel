@@ -23,6 +23,9 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import javax.swing.JCheckBox;
+import javax.swing.JSpinner;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -192,6 +195,38 @@ public class ArenaGeneral extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public JCheckBox getCheckBoxAway() {
+        return checkBoxAway;
+    }
+
+    public JCheckBox getCheckBoxHome() {
+        return checkBoxHome;
+    }
+
+    public JCheckBox getCheckBoxOvercast() {
+        return checkBoxOvercast;
+    }
+
+    public JCheckBox getCheckBoxPartiallyCloudy() {
+        return checkBoxPartiallyCloudy;
+    }
+
+    public JCheckBox getCheckBoxRain() {
+        return checkBoxRain;
+    }
+
+    public JCheckBox getCheckBoxSunny() {
+        return checkBoxSunny;
+    }
+
+    public JSpinner getSpinnerFrom() {
+        return spinnerFrom;
+    }
+
+    public JSpinner getSpinnerTo() {
+        return spinnerTo;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
