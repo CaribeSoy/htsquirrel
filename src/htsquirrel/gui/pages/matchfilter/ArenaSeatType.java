@@ -45,155 +45,155 @@ public class ArenaSeatType extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel2 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jLabel3 = new javax.swing.JLabel();
-        jSpinner3 = new javax.swing.JSpinner();
-        jLabel4 = new javax.swing.JLabel();
-        jSpinner4 = new javax.swing.JSpinner();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
-        jSpinner5 = new javax.swing.JSpinner();
-        jLabel6 = new javax.swing.JLabel();
-        jSpinner6 = new javax.swing.JSpinner();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jLabel7 = new javax.swing.JLabel();
-        jSpinner7 = new javax.swing.JSpinner();
-        jLabel8 = new javax.swing.JLabel();
-        jSpinner8 = new javax.swing.JSpinner();
+        panelSeatType = new javax.swing.JPanel();
+        checkBoxTerraces = new javax.swing.JCheckBox();
+        labelFrom1 = new javax.swing.JLabel();
+        spinnerTerracesFrom = new javax.swing.JSpinner();
+        labelTo1 = new javax.swing.JLabel();
+        spinnerTerracesTo = new javax.swing.JSpinner();
+        checkBoxBasic = new javax.swing.JCheckBox();
+        labelFrom2 = new javax.swing.JLabel();
+        spinnerBasicFrom = new javax.swing.JSpinner();
+        labelTo2 = new javax.swing.JLabel();
+        spinnerBasicTo = new javax.swing.JSpinner();
+        checkBoxRoof = new javax.swing.JCheckBox();
+        labelFrom3 = new javax.swing.JLabel();
+        spinnerRoofFrom = new javax.swing.JSpinner();
+        labelTo3 = new javax.swing.JLabel();
+        spinnerRoofTo = new javax.swing.JSpinner();
+        checkBoxVip = new javax.swing.JCheckBox();
+        labelFrom4 = new javax.swing.JLabel();
+        spinnerVipFrom = new javax.swing.JSpinner();
+        labelTo4 = new javax.swing.JLabel();
+        spinnerVipTo = new javax.swing.JSpinner();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Seat type"));
+        panelSeatType.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Seat type"));
 
-        jCheckBox1.setText("Terraces");
+        checkBoxTerraces.setText("Terraces");
 
-        jLabel1.setText("From:");
+        labelFrom1.setText("From:");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        spinnerTerracesFrom.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jLabel2.setText("To:");
+        labelTo1.setText("To:");
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        spinnerTerracesTo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jCheckBox2.setText("Basic");
+        checkBoxBasic.setText("Basic");
 
-        jLabel3.setText("From:");
+        labelFrom2.setText("From:");
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        spinnerBasicFrom.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jLabel4.setText("To:");
+        labelTo2.setText("To:");
 
-        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        spinnerBasicTo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jCheckBox3.setText("Under roof");
+        checkBoxRoof.setText("Under roof");
 
-        jLabel5.setText("From:");
+        labelFrom3.setText("From:");
 
-        jSpinner5.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        spinnerRoofFrom.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jLabel6.setText("To:");
+        labelTo3.setText("To:");
 
-        jSpinner6.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        spinnerRoofTo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jCheckBox4.setText("VIP");
+        checkBoxVip.setText("VIP");
 
-        jLabel7.setText("From:");
+        labelFrom4.setText("From:");
 
-        jSpinner7.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        spinnerVipFrom.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jLabel8.setText("To:");
+        labelTo4.setText("To:");
 
-        jSpinner8.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        spinnerVipTo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelSeatTypeLayout = new javax.swing.GroupLayout(panelSeatType);
+        panelSeatType.setLayout(panelSeatTypeLayout);
+        panelSeatTypeLayout.setHorizontalGroup(
+            panelSeatTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSeatTypeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox4)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(panelSeatTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkBoxTerraces)
+                    .addComponent(checkBoxBasic)
+                    .addComponent(checkBoxRoof)
+                    .addComponent(checkBoxVip)
+                    .addGroup(panelSeatTypeLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                        .addGroup(panelSeatTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelSeatTypeLayout.createSequentialGroup()
+                                .addComponent(labelFrom2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner3))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(spinnerBasicFrom))
+                            .addGroup(panelSeatTypeLayout.createSequentialGroup()
+                                .addComponent(labelFrom1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel5))
+                                .addComponent(spinnerTerracesFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelSeatTypeLayout.createSequentialGroup()
+                                .addGroup(panelSeatTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelFrom4)
+                                    .addComponent(labelFrom3))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSpinner7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jSpinner5))))
+                                .addGroup(panelSeatTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(spinnerVipFrom, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(spinnerRoofFrom))))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                        .addGroup(panelSeatTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelSeatTypeLayout.createSequentialGroup()
+                                .addComponent(labelTo1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(spinnerTerracesTo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelSeatTypeLayout.createSequentialGroup()
+                                .addComponent(labelTo2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner4))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addComponent(spinnerBasicTo))
+                            .addGroup(panelSeatTypeLayout.createSequentialGroup()
+                                .addComponent(labelTo3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner6))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
+                                .addComponent(spinnerRoofTo))
+                            .addGroup(panelSeatTypeLayout.createSequentialGroup()
+                                .addComponent(labelTo4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner8)))))
+                                .addComponent(spinnerVipTo)))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelSeatTypeLayout.setVerticalGroup(
+            panelSeatTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSeatTypeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCheckBox1)
+                .addComponent(checkBoxTerraces)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSeatTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spinnerTerracesFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFrom1)
+                    .addComponent(labelTo1)
+                    .addComponent(spinnerTerracesTo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2)
+                .addComponent(checkBoxBasic)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSeatTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spinnerBasicFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFrom2)
+                    .addComponent(labelTo2)
+                    .addComponent(spinnerBasicTo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
+                .addComponent(checkBoxRoof)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jSpinner6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSeatTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spinnerRoofFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFrom3)
+                    .addComponent(labelTo3)
+                    .addComponent(spinnerRoofTo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4)
+                .addComponent(checkBoxVip)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jSpinner8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSeatTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spinnerVipFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFrom4)
+                    .addComponent(labelTo4)
+                    .addComponent(spinnerVipTo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -203,40 +203,40 @@ public class ArenaSeatType extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelSeatType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelSeatType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JSpinner jSpinner5;
-    private javax.swing.JSpinner jSpinner6;
-    private javax.swing.JSpinner jSpinner7;
-    private javax.swing.JSpinner jSpinner8;
+    private javax.swing.JCheckBox checkBoxBasic;
+    private javax.swing.JCheckBox checkBoxRoof;
+    private javax.swing.JCheckBox checkBoxTerraces;
+    private javax.swing.JCheckBox checkBoxVip;
+    private javax.swing.JLabel labelFrom1;
+    private javax.swing.JLabel labelFrom2;
+    private javax.swing.JLabel labelFrom3;
+    private javax.swing.JLabel labelFrom4;
+    private javax.swing.JLabel labelTo1;
+    private javax.swing.JLabel labelTo2;
+    private javax.swing.JLabel labelTo3;
+    private javax.swing.JLabel labelTo4;
+    private javax.swing.JPanel panelSeatType;
+    private javax.swing.JSpinner spinnerBasicFrom;
+    private javax.swing.JSpinner spinnerBasicTo;
+    private javax.swing.JSpinner spinnerRoofFrom;
+    private javax.swing.JSpinner spinnerRoofTo;
+    private javax.swing.JSpinner spinnerTerracesFrom;
+    private javax.swing.JSpinner spinnerTerracesTo;
+    private javax.swing.JSpinner spinnerVipFrom;
+    private javax.swing.JSpinner spinnerVipTo;
     // End of variables declaration//GEN-END:variables
 }
