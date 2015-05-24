@@ -27,12 +27,12 @@ package htsquirrel.gui.pages.matchfilter;
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
  */
-public class ArenaBase extends javax.swing.JPanel {
+public class ArenaGeneral extends javax.swing.JPanel {
 
     /**
      * Creates new form ArenaBase
      */
-    public ArenaBase() {
+    public ArenaGeneral() {
         initComponents();
     }
 
@@ -49,13 +49,17 @@ public class ArenaBase extends javax.swing.JPanel {
         checkBoxHome = new javax.swing.JCheckBox();
         checkBoxAway = new javax.swing.JCheckBox();
         panelSpectators = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel2 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
+        labelFrom = new javax.swing.JLabel();
+        spinnerFrom = new javax.swing.JSpinner();
+        labelTo = new javax.swing.JLabel();
+        spinnerTo = new javax.swing.JSpinner();
+        panelWeather = new javax.swing.JPanel();
+        checkBoxSunny = new javax.swing.JCheckBox();
+        checkBoxPartiallyCloudy = new javax.swing.JCheckBox();
+        checkBoxOvercast = new javax.swing.JCheckBox();
+        checkBoxRain = new javax.swing.JCheckBox();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setBorder(null);
 
         panelVenue.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Venue"));
 
@@ -86,13 +90,13 @@ public class ArenaBase extends javax.swing.JPanel {
 
         panelSpectators.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Spectators"));
 
-        jCheckBox1.setText("Total");
+        labelFrom.setText("From:");
 
-        jLabel1.setText("From:");
+        spinnerFrom.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
+        labelTo.setText("To:");
 
-        jLabel2.setText("To:");
+        spinnerTo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1000)));
 
         javax.swing.GroupLayout panelSpectatorsLayout = new javax.swing.GroupLayout(panelSpectators);
         panelSpectators.setLayout(panelSpectatorsLayout);
@@ -100,31 +104,62 @@ public class ArenaBase extends javax.swing.JPanel {
             panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSpectatorsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addGroup(panelSpectatorsLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addComponent(labelFrom)
+                .addGap(18, 18, 18)
+                .addComponent(spinnerFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelTo)
+                .addGap(18, 18, 18)
+                .addComponent(spinnerTo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         panelSpectatorsLayout.setVerticalGroup(
             panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSpectatorsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSpectatorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(104, Short.MAX_VALUE))
+                    .addComponent(spinnerFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFrom)
+                    .addComponent(labelTo)
+                    .addComponent(spinnerTo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panelWeather.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Weather"));
+
+        checkBoxSunny.setText("Sunny");
+
+        checkBoxPartiallyCloudy.setText("Partially cloudy");
+
+        checkBoxOvercast.setText("Overcast");
+
+        checkBoxRain.setText("Rain");
+
+        javax.swing.GroupLayout panelWeatherLayout = new javax.swing.GroupLayout(panelWeather);
+        panelWeather.setLayout(panelWeatherLayout);
+        panelWeatherLayout.setHorizontalGroup(
+            panelWeatherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelWeatherLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelWeatherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkBoxSunny)
+                    .addComponent(checkBoxPartiallyCloudy)
+                    .addComponent(checkBoxOvercast)
+                    .addComponent(checkBoxRain))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelWeatherLayout.setVerticalGroup(
+            panelWeatherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelWeatherLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(checkBoxSunny)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxPartiallyCloudy)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxOvercast)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxRain)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -135,7 +170,8 @@ public class ArenaBase extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelVenue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelSpectators, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelSpectators, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelWeather, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -144,8 +180,10 @@ public class ArenaBase extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(panelVenue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panelSpectators, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panelSpectators, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panelWeather, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,12 +191,16 @@ public class ArenaBase extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox checkBoxAway;
     private javax.swing.JCheckBox checkBoxHome;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JCheckBox checkBoxOvercast;
+    private javax.swing.JCheckBox checkBoxPartiallyCloudy;
+    private javax.swing.JCheckBox checkBoxRain;
+    private javax.swing.JCheckBox checkBoxSunny;
+    private javax.swing.JLabel labelFrom;
+    private javax.swing.JLabel labelTo;
     private javax.swing.JPanel panelSpectators;
     private javax.swing.JPanel panelVenue;
+    private javax.swing.JPanel panelWeather;
+    private javax.swing.JSpinner spinnerFrom;
+    private javax.swing.JSpinner spinnerTo;
     // End of variables declaration//GEN-END:variables
 }
