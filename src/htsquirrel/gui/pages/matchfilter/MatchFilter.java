@@ -302,6 +302,7 @@ public class MatchFilter extends javax.swing.JPanel {
     public void resetMatchFilter() {
         panelMatchType.resetMatchType();
         panelPeriod.resetPeriod();
+        panelArena.resetArena();
         Translations translations = new Translations();
         Properties properties = null;
         try {
@@ -323,6 +324,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton8.setSelected(false);
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_on.png")));
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png")));
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png")));
         jToggleButton1.requestFocus(true);
     }
 
