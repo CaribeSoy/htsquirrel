@@ -23,6 +23,9 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import javax.swing.JCheckBox;
+import javax.swing.JSpinner;
+
 /**
  *
  * @author aleksandar
@@ -214,6 +217,54 @@ public class ArenaSeatType extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public JCheckBox getCheckBoxBasic() {
+        return checkBoxBasic;
+    }
+
+    public JCheckBox getCheckBoxRoof() {
+        return checkBoxRoof;
+    }
+
+    public JCheckBox getCheckBoxTerraces() {
+        return checkBoxTerraces;
+    }
+
+    public JCheckBox getCheckBoxVip() {
+        return checkBoxVip;
+    }
+
+    public JSpinner getSpinnerBasicFrom() {
+        return spinnerBasicFrom;
+    }
+
+    public JSpinner getSpinnerBasicTo() {
+        return spinnerBasicTo;
+    }
+
+    public JSpinner getSpinnerRoofFrom() {
+        return spinnerRoofFrom;
+    }
+
+    public JSpinner getSpinnerRoofTo() {
+        return spinnerRoofTo;
+    }
+
+    public JSpinner getSpinnerTerracesFrom() {
+        return spinnerTerracesFrom;
+    }
+
+    public JSpinner getSpinnerTerracesTo() {
+        return spinnerTerracesTo;
+    }
+
+    public JSpinner getSpinnerVipFrom() {
+        return spinnerVipFrom;
+    }
+
+    public JSpinner getSpinnerVipTo() {
+        return spinnerVipTo;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
