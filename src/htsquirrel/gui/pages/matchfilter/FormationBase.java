@@ -30,6 +30,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.border.EtchedBorder;
 
 /**
@@ -185,6 +187,62 @@ public class FormationBase extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public JCheckBox getCheckBox253() {
+        return checkBox253;
+    }
+
+    public JCheckBox getCheckBox343() {
+        return checkBox343;
+    }
+
+    public JCheckBox getCheckBox352() {
+        return checkBox352;
+    }
+
+    public JCheckBox getCheckBox433() {
+        return checkBox433;
+    }
+
+    public JCheckBox getCheckBox442() {
+        return checkBox442;
+    }
+
+    public JCheckBox getCheckBox451() {
+        return checkBox451;
+    }
+
+    public JCheckBox getCheckBox523() {
+        return checkBox523;
+    }
+
+    public JCheckBox getCheckBox532() {
+        return checkBox532;
+    }
+
+    public JCheckBox getCheckBox541() {
+        return checkBox541;
+    }
+
+    public JCheckBox getCheckBox550() {
+        return checkBox550;
+    }
+
+    public JCheckBox getCheckBoxAllFormations() {
+        return checkBoxAllFormations;
+    }
+
+    public JCheckBox getCheckBoxOther() {
+        return checkBoxOther;
+    }
+
+    public JCheckBox getCheckBoxSpecific() {
+        return checkBoxSpecific;
+    }
+
+    public JFormattedTextField getTextFieldSpecific() {
+        return textFieldSpecific;
+    }
 
     public void resetFormationBase() {
         checkBoxAllFormations.setSelected(true);
