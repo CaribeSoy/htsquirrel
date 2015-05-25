@@ -71,42 +71,54 @@ public class FormationBase extends javax.swing.JPanel {
         checkBoxSpecific = new javax.swing.JCheckBox();
         textFieldSpecific = new javax.swing.JFormattedTextField();
 
+        checkBoxAllFormations.setSelected(true);
         checkBoxAllFormations.setText("All formations");
 
         panelFormations.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Formations"));
 
         panelBasic.setLayout(new java.awt.GridLayout(5, 2, 0, 6));
 
+        checkBox550.setSelected(true);
         checkBox550.setText("5-5-0");
         panelBasic.add(checkBox550);
 
+        checkBox541.setSelected(true);
         checkBox541.setText("5-4-1");
         panelBasic.add(checkBox541);
 
+        checkBox532.setSelected(true);
         checkBox532.setText("5-3-2");
         panelBasic.add(checkBox532);
 
+        checkBox523.setSelected(true);
         checkBox523.setText("5-2-3");
         panelBasic.add(checkBox523);
 
+        checkBox451.setSelected(true);
         checkBox451.setText("4-5-1");
         panelBasic.add(checkBox451);
 
+        checkBox442.setSelected(true);
         checkBox442.setText("4-4-2");
         panelBasic.add(checkBox442);
 
+        checkBox433.setSelected(true);
         checkBox433.setText("4-3-3");
         panelBasic.add(checkBox433);
 
+        checkBox352.setSelected(true);
         checkBox352.setText("3-5-2");
         panelBasic.add(checkBox352);
 
+        checkBox343.setSelected(true);
         checkBox343.setText("3-4-3");
         panelBasic.add(checkBox343);
 
+        checkBox253.setSelected(true);
         checkBox253.setText("2-5-3");
         panelBasic.add(checkBox253);
 
+        checkBoxOther.setSelected(true);
         checkBoxOther.setText("Other");
 
         checkBoxSpecific.setText("Specific:");
