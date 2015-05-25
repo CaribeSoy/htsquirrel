@@ -140,6 +140,14 @@ public class Formation extends javax.swing.JPanel {
         add(panelBottom, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public FormationBase getFormationOpponent() {
+        return formationOpponent;
+    }
+
+    public FormationBase getFormationTeam() {
+        return formationTeam;
+    }
+
     private void buttonTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTeamActionPerformed
         buttonTeam.setSelected(true);
         buttonOpponent.setSelected(false);
