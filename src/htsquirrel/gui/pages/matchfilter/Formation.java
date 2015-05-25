@@ -157,6 +157,10 @@ public class Formation extends javax.swing.JPanel {
     public void resetFormation() {
         formationTeam.resetFormationBase();
         formationOpponent.resetFormationBase();
+        formationTeam.setVisible(true);
+        formationOpponent.setVisible(false);
+        buttonTeam.setSelected(true);
+        buttonOpponent.setSelected(false);
         Translations translations = new Translations();
         Properties properties = null;
         try {
