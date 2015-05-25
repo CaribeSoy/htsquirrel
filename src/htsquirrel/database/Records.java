@@ -162,6 +162,54 @@ public class Records {
             sqlCode = sqlCode.replaceAll("#sold_vip_from#", "-1");
             sqlCode = sqlCode.replaceAll("#sold_vip_to#", "999999");
         }
+        if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBoxAllFormations().isSelected()) {
+            sqlCode = sqlCode.replace("AND (FORMATION IN #formation#", "");
+            sqlCode = sqlCode.replace("OR FORMATION NOT IN ('5-5-0', '5-4-1', '5-3-2', '5-2-3', '4-5-1', '4-4-2', '4-3-3', '3-5-2', '3-4-3', '2-5-3'))", "");
+        } else {
+            String formation = "('999'";
+            if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBox550().isSelected()) formation = formation + ", '5-5-0'";
+            if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBox541().isSelected()) formation = formation + ", '5-4-1'";
+            if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBox532().isSelected()) formation = formation + ", '5-3-2'";
+            if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBox523().isSelected()) formation = formation + ", '5-2-3'";
+            if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBox451().isSelected()) formation = formation + ", '4-5-1'";
+            if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBox442().isSelected()) formation = formation + ", '4-4-2'";
+            if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBox433().isSelected()) formation = formation + ", '4-3-3'";
+            if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBox352().isSelected()) formation = formation + ", '3-5-2'";
+            if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBox343().isSelected()) formation = formation + ", '3-4-3'";
+            if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBox253().isSelected()) formation = formation + ", '2-5-3'";
+            if (getMatchFilter().getPanelFormation().getFormationTeam().getCheckBoxSpecific().isSelected()) {
+                formation = formation + ", '" + getMatchFilter().getPanelFormation().getFormationTeam().getTextFieldSpecific().getText() + "'";
+            }
+            formation = formation + ")";
+            sqlCode = sqlCode.replaceAll("#formation#", formation);
+            if (!(getMatchFilter().getPanelFormation().getFormationTeam().getCheckBoxOther().isSelected())) {
+                sqlCode = sqlCode.replace("OR FORMATION NOT IN ('5-5-0', '5-4-1', '5-3-2', '5-2-3', '4-5-1', '4-4-2', '4-3-3', '3-5-2', '3-4-3', '2-5-3')", "");
+            }
+        }
+        if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBoxAllFormations().isSelected()) {
+            sqlCode = sqlCode.replace("AND (OPPONENT_FORMATION IN #opponent_formation#", "");
+            sqlCode = sqlCode.replace("OR OPPONENT_FORMATION NOT IN ('5-5-0', '5-4-1', '5-3-2', '5-2-3', '4-5-1', '4-4-2', '4-3-3', '3-5-2', '3-4-3', '2-5-3'))", "");
+        } else {
+            String formation = "('999'";
+            if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBox550().isSelected()) formation = formation + ", '5-5-0'";
+            if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBox541().isSelected()) formation = formation + ", '5-4-1'";
+            if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBox532().isSelected()) formation = formation + ", '5-3-2'";
+            if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBox523().isSelected()) formation = formation + ", '5-2-3'";
+            if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBox451().isSelected()) formation = formation + ", '4-5-1'";
+            if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBox442().isSelected()) formation = formation + ", '4-4-2'";
+            if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBox433().isSelected()) formation = formation + ", '4-3-3'";
+            if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBox352().isSelected()) formation = formation + ", '3-5-2'";
+            if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBox343().isSelected()) formation = formation + ", '3-4-3'";
+            if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBox253().isSelected()) formation = formation + ", '2-5-3'";
+            if (getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBoxSpecific().isSelected()) {
+                formation = formation + ", '" + getMatchFilter().getPanelFormation().getFormationOpponent().getTextFieldSpecific().getText() + "'";
+            }
+            formation = formation + ")";
+            sqlCode = sqlCode.replaceAll("#opponent_formation#", formation);
+            if (!(getMatchFilter().getPanelFormation().getFormationOpponent().getCheckBoxOther().isSelected())) {
+                sqlCode = sqlCode.replace("OR OPPONENT_FORMATION NOT IN ('5-5-0', '5-4-1', '5-3-2', '5-2-3', '4-5-1', '4-4-2', '4-3-3', '3-5-2', '3-4-3', '2-5-3')", "");
+            }
+        }
         System.out.println(sqlCode);
         return sqlCode;
     }

@@ -28,3 +28,7 @@ WHERE
     AND SOLD_ROOF BETWEEN #sold_roof_from# AND #sold_roof_to#
     AND SOLD_VIP BETWEEN #sold_vip_from# AND #sold_vip_to#
     AND WEATHER_ID IN #weather_id#
+    AND (FORMATION IN #formation#
+        OR FORMATION NOT IN ('5-5-0', '5-4-1', '5-3-2', '5-2-3', '4-5-1', '4-4-2', '4-3-3', '3-5-2', '3-4-3', '2-5-3'))
+    AND (OPPONENT_FORMATION IN #opponent_formation#
+        OR OPPONENT_FORMATION NOT IN ('5-5-0', '5-4-1', '5-3-2', '5-2-3', '4-5-1', '4-4-2', '4-3-3', '3-5-2', '3-4-3', '2-5-3'))
