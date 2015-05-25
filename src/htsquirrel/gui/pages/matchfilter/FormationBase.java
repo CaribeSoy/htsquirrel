@@ -75,6 +75,11 @@ public class FormationBase extends javax.swing.JPanel {
 
         checkBoxAllFormations.setSelected(true);
         checkBoxAllFormations.setText("All formations");
+        checkBoxAllFormations.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxAllFormationsActionPerformed(evt);
+            }
+        });
 
         panelFormations.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Formations"));
 
@@ -82,46 +87,101 @@ public class FormationBase extends javax.swing.JPanel {
 
         checkBox550.setSelected(true);
         checkBox550.setText("5-5-0");
+        checkBox550.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox550ActionPerformed(evt);
+            }
+        });
         panelBasic.add(checkBox550);
 
         checkBox541.setSelected(true);
         checkBox541.setText("5-4-1");
+        checkBox541.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox541ActionPerformed(evt);
+            }
+        });
         panelBasic.add(checkBox541);
 
         checkBox532.setSelected(true);
         checkBox532.setText("5-3-2");
+        checkBox532.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox532ActionPerformed(evt);
+            }
+        });
         panelBasic.add(checkBox532);
 
         checkBox523.setSelected(true);
         checkBox523.setText("5-2-3");
+        checkBox523.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox523ActionPerformed(evt);
+            }
+        });
         panelBasic.add(checkBox523);
 
         checkBox451.setSelected(true);
         checkBox451.setText("4-5-1");
+        checkBox451.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox451ActionPerformed(evt);
+            }
+        });
         panelBasic.add(checkBox451);
 
         checkBox442.setSelected(true);
         checkBox442.setText("4-4-2");
+        checkBox442.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox442ActionPerformed(evt);
+            }
+        });
         panelBasic.add(checkBox442);
 
         checkBox433.setSelected(true);
         checkBox433.setText("4-3-3");
+        checkBox433.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox433ActionPerformed(evt);
+            }
+        });
         panelBasic.add(checkBox433);
 
         checkBox352.setSelected(true);
         checkBox352.setText("3-5-2");
+        checkBox352.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox352ActionPerformed(evt);
+            }
+        });
         panelBasic.add(checkBox352);
 
         checkBox343.setSelected(true);
         checkBox343.setText("3-4-3");
+        checkBox343.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox343ActionPerformed(evt);
+            }
+        });
         panelBasic.add(checkBox343);
 
         checkBox253.setSelected(true);
         checkBox253.setText("2-5-3");
+        checkBox253.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox253ActionPerformed(evt);
+            }
+        });
         panelBasic.add(checkBox253);
 
         checkBoxOther.setSelected(true);
         checkBoxOther.setText("Other");
+        checkBoxOther.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxOtherActionPerformed(evt);
+            }
+        });
 
         checkBoxSpecific.setText("Specific:");
 
@@ -187,6 +247,126 @@ public class FormationBase extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void checkBoxAllFormationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxAllFormationsActionPerformed
+        if (checkBoxAllFormations.isSelected()) {
+            checkBox550.setSelected(true);
+            checkBox541.setSelected(true);
+            checkBox532.setSelected(true);
+            checkBox523.setSelected(true);
+            checkBox451.setSelected(true);
+            checkBox442.setSelected(true);
+            checkBox433.setSelected(true);
+            checkBox352.setSelected(true);
+            checkBox343.setSelected(true);
+            checkBox253.setSelected(true);
+            checkBoxOther.setSelected(true);
+            checkBoxSpecific.setSelected(false);
+            textFieldSpecific.setText("0-0-0");
+        } else {
+            checkBox550.setSelected(false);
+            checkBox541.setSelected(false);
+            checkBox532.setSelected(false);
+            checkBox523.setSelected(false);
+            checkBox451.setSelected(false);
+            checkBox442.setSelected(false);
+            checkBox433.setSelected(false);
+            checkBox352.setSelected(false);
+            checkBox343.setSelected(false);
+            checkBox253.setSelected(false);
+            checkBoxOther.setSelected(false);
+            checkBoxSpecific.setSelected(false);
+            textFieldSpecific.setText("0-0-0");
+        }
+    }//GEN-LAST:event_checkBoxAllFormationsActionPerformed
+
+    private void checkBox550ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox550ActionPerformed
+        if (allFormationsSelected()) {
+            checkBoxAllFormations.setSelected(true);
+        } else {
+            checkBoxAllFormations.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox550ActionPerformed
+
+    private void checkBox541ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox541ActionPerformed
+        if (allFormationsSelected()) {
+            checkBoxAllFormations.setSelected(true);
+        } else {
+            checkBoxAllFormations.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox541ActionPerformed
+
+    private void checkBox532ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox532ActionPerformed
+        if (allFormationsSelected()) {
+            checkBoxAllFormations.setSelected(true);
+        } else {
+            checkBoxAllFormations.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox532ActionPerformed
+
+    private void checkBox523ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox523ActionPerformed
+        if (allFormationsSelected()) {
+            checkBoxAllFormations.setSelected(true);
+        } else {
+            checkBoxAllFormations.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox523ActionPerformed
+
+    private void checkBox451ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox451ActionPerformed
+        if (allFormationsSelected()) {
+            checkBoxAllFormations.setSelected(true);
+        } else {
+            checkBoxAllFormations.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox451ActionPerformed
+
+    private void checkBox442ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox442ActionPerformed
+        if (allFormationsSelected()) {
+            checkBoxAllFormations.setSelected(true);
+        } else {
+            checkBoxAllFormations.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox442ActionPerformed
+
+    private void checkBox433ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox433ActionPerformed
+        if (allFormationsSelected()) {
+            checkBoxAllFormations.setSelected(true);
+        } else {
+            checkBoxAllFormations.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox433ActionPerformed
+
+    private void checkBox352ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox352ActionPerformed
+        if (allFormationsSelected()) {
+            checkBoxAllFormations.setSelected(true);
+        } else {
+            checkBoxAllFormations.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox352ActionPerformed
+
+    private void checkBox343ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox343ActionPerformed
+        if (allFormationsSelected()) {
+            checkBoxAllFormations.setSelected(true);
+        } else {
+            checkBoxAllFormations.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox343ActionPerformed
+
+    private void checkBox253ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox253ActionPerformed
+        if (allFormationsSelected()) {
+            checkBoxAllFormations.setSelected(true);
+        } else {
+            checkBoxAllFormations.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox253ActionPerformed
+
+    private void checkBoxOtherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxOtherActionPerformed
+        if (allFormationsSelected()) {
+            checkBoxAllFormations.setSelected(true);
+        } else {
+            checkBoxAllFormations.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBoxOtherActionPerformed
 
     public JCheckBox getCheckBox253() {
         return checkBox253;
@@ -272,6 +452,22 @@ public class FormationBase extends javax.swing.JPanel {
         }
     }
 
+    private boolean allFormationsSelected() {
+        boolean result = false;
+        result = checkBox550.isSelected() &&
+                checkBox541.isSelected() &&
+                checkBox532.isSelected() &&
+                checkBox523.isSelected() &&
+                checkBox451.isSelected() &&
+                checkBox442.isSelected() &&
+                checkBox433.isSelected() &&
+                checkBox352.isSelected() &&
+                checkBox343.isSelected() &&
+                checkBox253.isSelected() &&
+                checkBoxOther.isSelected();
+        return result;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox checkBox253;
     private javax.swing.JCheckBox checkBox343;
