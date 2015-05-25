@@ -226,6 +226,10 @@ public class MatchFilter extends javax.swing.JPanel {
         return panelArena;
     }
 
+    public Formation getPanelFormation() {
+        return panelFormation;
+    }
+
     private void buttonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResetActionPerformed
         resetMatchFilter();
     }//GEN-LAST:event_buttonResetActionPerformed
