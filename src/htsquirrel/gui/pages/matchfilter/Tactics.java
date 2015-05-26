@@ -72,6 +72,11 @@ public class Tactics extends javax.swing.JPanel {
         buttonTeam.setMaximumSize(new java.awt.Dimension(180, 27));
         buttonTeam.setMinimumSize(new java.awt.Dimension(180, 27));
         buttonTeam.setPreferredSize(new java.awt.Dimension(180, 27));
+        buttonTeam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTeamActionPerformed(evt);
+            }
+        });
         panelLeft.add(buttonTeam, new java.awt.GridBagConstraints());
 
         panelTop.add(panelLeft);
@@ -82,6 +87,11 @@ public class Tactics extends javax.swing.JPanel {
         buttonOpponent.setMaximumSize(new java.awt.Dimension(180, 27));
         buttonOpponent.setMinimumSize(new java.awt.Dimension(180, 27));
         buttonOpponent.setPreferredSize(new java.awt.Dimension(180, 27));
+        buttonOpponent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOpponentActionPerformed(evt);
+            }
+        });
         panelRight.add(buttonOpponent, new java.awt.GridBagConstraints());
 
         panelTop.add(panelRight);
@@ -122,6 +132,20 @@ public class Tactics extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         add(panelBottom, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTeamActionPerformed
+        buttonTeam.setSelected(true);
+        buttonOpponent.setSelected(false);
+        panelTeam.setVisible(true);
+        panelOpponent.setVisible(false);
+    }//GEN-LAST:event_buttonTeamActionPerformed
+
+    private void buttonOpponentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpponentActionPerformed
+        buttonTeam.setSelected(false);
+        buttonOpponent.setSelected(true);
+        panelTeam.setVisible(false);
+        panelOpponent.setVisible(true);
+    }//GEN-LAST:event_buttonOpponentActionPerformed
 
     public TacticsOpponent getPanelOpponent() {
         return panelOpponent;
