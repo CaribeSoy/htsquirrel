@@ -23,8 +23,18 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import static htsquirrel.HTSquirrel.getLanguage;
+import htsquirrel.translations.Translations;
+import static htsquirrel.translations.Translations.getSkillLevels;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.border.EtchedBorder;
 
 /**
  *
@@ -231,6 +241,43 @@ public class TacticsOpponent extends javax.swing.JPanel {
         return comboBoxTo;
     }
 
+    public void resetTacticsOpponent() {
+        checkBoxAllTactics.setSelected(true);
+        checkBoxNormal.setSelected(true);
+        checkBoxPressing.setSelected(true);
+        checkBoxCA.setSelected(true);
+        checkBoxMiddle.setSelected(true);
+        checkBoxWings.setSelected(true);
+        checkBoxCreatively.setSelected(true);
+        checkBoxLongShots.setSelected(true);
+        comboBoxFrom.removeAllItems();
+        comboBoxTo.removeAllItems();
+        ArrayList<String> levels = getSkillLevels();
+        for (String level : levels) {
+            comboBoxFrom.addItem(level);
+            comboBoxTo.addItem(level);
+        }
+        comboBoxTo.setSelectedIndex(comboBoxTo.getItemCount() - 1);
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            panelTactics.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("tactics_panel_tactics")));
+            panelSkill.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("tactics_panel_skill")));
+            checkBoxAllTactics.setText(properties.getProperty("tactics_all_tactics"));
+            checkBoxNormal.setText(properties.getProperty("tactics_normal"));
+            checkBoxPressing.setText(properties.getProperty("tactics_pressing"));
+            checkBoxCA.setText(properties.getProperty("tactics_ca"));
+            checkBoxMiddle.setText(properties.getProperty("tactics_middle"));
+            checkBoxWings.setText(properties.getProperty("tactics_wings"));
+            checkBoxCreatively.setText(properties.getProperty("tactics_creatively"));
+            checkBoxLongShots.setText(properties.getProperty("tactics_long_shots"));
+            labelFrom.setText(properties.getProperty("from"));
+            labelTo.setText(properties.getProperty("to"));
+        } catch (IOException ex) {
+            Logger.getLogger(PeriodBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox checkBoxAllTactics;
