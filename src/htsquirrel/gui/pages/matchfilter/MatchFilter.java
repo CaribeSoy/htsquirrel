@@ -368,6 +368,7 @@ public class MatchFilter extends javax.swing.JPanel {
         panelPeriod.resetPeriod();
         panelArena.resetArena();
         panelFormation.resetFormation();
+        panelTactics.resetTactics();
         Translations translations = new Translations();
         Properties properties = null;
         try {
@@ -391,6 +392,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png")));
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png")));
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/formation_off.png")));
+        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/tactics_off.png")));
         jToggleButton1.requestFocus(true);
     }
 
