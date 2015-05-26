@@ -23,6 +23,9 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -229,6 +232,58 @@ public class TacticsTeam extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public JCheckBox getCheckBoxAllTactics() {
+        return checkBoxAllTactics;
+    }
+
+    public JCheckBox getCheckBoxCA() {
+        return checkBoxCA;
+    }
+
+    public JCheckBox getCheckBoxCreatively() {
+        return checkBoxCreatively;
+    }
+
+    public JCheckBox getCheckBoxLongShots() {
+        return checkBoxLongShots;
+    }
+
+    public JCheckBox getCheckBoxMOTS() {
+        return checkBoxMOTS;
+    }
+
+    public JCheckBox getCheckBoxMiddle() {
+        return checkBoxMiddle;
+    }
+
+    public JCheckBox getCheckBoxNorm() {
+        return checkBoxNorm;
+    }
+
+    public JCheckBox getCheckBoxNormal() {
+        return checkBoxNormal;
+    }
+
+    public JCheckBox getCheckBoxPIC() {
+        return checkBoxPIC;
+    }
+
+    public JCheckBox getCheckBoxPressing() {
+        return checkBoxPressing;
+    }
+
+    public JCheckBox getCheckBoxWings() {
+        return checkBoxWings;
+    }
+
+    public JComboBox getComboBoxFrom() {
+        return comboBoxFrom;
+    }
+
+    public JComboBox getComboBoxTo() {
+        return comboBoxTo;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
