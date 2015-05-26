@@ -23,8 +23,10 @@
  */
 package htsquirrel.translations;
 
+import static htsquirrel.HTSquirrel.getLanguage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Properties;
 
 /**
@@ -39,6 +41,57 @@ public class Translations {
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(translationsPath);
         properties.load(inputStream);
         return properties;
+    }
+    
+    public static ArrayList<String> getSkillLevels() {
+        ArrayList<String> result = new ArrayList<>();
+        if ("English".equals(getLanguage())) {
+            result.add("Non-existent (0)");
+            result.add("Disastrous (1)");
+            result.add("Wretched (2)");
+            result.add("Poor (3)");
+            result.add("Weak (4)");
+            result.add("Inadequate (5)");
+            result.add("Passable (6)");
+            result.add("Solid (7)");
+            result.add("Excellent (8)");
+            result.add("Formidable (9)");
+            result.add("Outstanding (10)");
+            result.add("Brilliant (11)");
+            result.add("Magnificent (12)");
+            result.add("World class (13)");
+            result.add("Supernatural (14)");
+            result.add("Titanic (15)");
+            result.add("Extra-terrestrial (16)");
+            result.add("Mythical (17)");
+            result.add("Magical (18)");
+            result.add("Utopian (19)");
+            result.add("Divine (20)");
+        }
+        if ("Srpski".equals(getLanguage())) {
+            result.add("Nepostojeći (0)");
+            result.add("Katastrofalan (1)");
+            result.add("Očajan (2)");
+            result.add("Jadan (3)");
+            result.add("Slab (4)");
+            result.add("Nedovoljan (5)");
+            result.add("Prosečan (6)");
+            result.add("Dobar (7)");
+            result.add("Odličan (8)");
+            result.add("Silan (9)");
+            result.add("Izuzetan (10)");
+            result.add("Briljantan (11)");
+            result.add("Fantastičan (12)");
+            result.add("Svetska klasa (13)");
+            result.add("Natprirodan (14)");
+            result.add("Veličanstven (15)");
+            result.add("Legendaran (16)");
+            result.add("Epski (17)");
+            result.add("Magičan (18)");
+            result.add("Savršen (19)");
+            result.add("Božanski (20)");
+        }
+        return result;
     }
     
 }
