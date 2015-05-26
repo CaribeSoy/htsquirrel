@@ -45,19 +45,164 @@ public class TacticsBase extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        checkBoxAllTactics = new javax.swing.JCheckBox();
+        panelTactics = new javax.swing.JPanel();
+        checkBoxNormal = new javax.swing.JCheckBox();
+        checkBoxPressing = new javax.swing.JCheckBox();
+        checkBoxCA = new javax.swing.JCheckBox();
+        checkBoxMiddle = new javax.swing.JCheckBox();
+        checkBoxWings = new javax.swing.JCheckBox();
+        checkBoxCreatively = new javax.swing.JCheckBox();
+        checkBoxLongShots = new javax.swing.JCheckBox();
+        panelSkill = new javax.swing.JPanel();
+        labelFrom = new javax.swing.JLabel();
+        comboBoxFrom = new javax.swing.JComboBox();
+        labelTo = new javax.swing.JLabel();
+        comboBoxTo = new javax.swing.JComboBox();
+
+        checkBoxAllTactics.setSelected(true);
+        checkBoxAllTactics.setText("All tactics");
+
+        panelTactics.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tactics")));
+
+        checkBoxNormal.setSelected(true);
+        checkBoxNormal.setText("Normal");
+
+        checkBoxPressing.setSelected(true);
+        checkBoxPressing.setText("Pressing");
+
+        checkBoxCA.setSelected(true);
+        checkBoxCA.setText("Counter-attacks");
+
+        checkBoxMiddle.setSelected(true);
+        checkBoxMiddle.setText("Attack in the middle");
+
+        checkBoxWings.setSelected(true);
+        checkBoxWings.setText("Attack on wings");
+
+        checkBoxCreatively.setSelected(true);
+        checkBoxCreatively.setText("Play creatively");
+
+        checkBoxLongShots.setSelected(true);
+        checkBoxLongShots.setText("Long shots");
+
+        javax.swing.GroupLayout panelTacticsLayout = new javax.swing.GroupLayout(panelTactics);
+        panelTactics.setLayout(panelTacticsLayout);
+        panelTacticsLayout.setHorizontalGroup(
+            panelTacticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTacticsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelTacticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkBoxNormal)
+                    .addComponent(checkBoxPressing)
+                    .addComponent(checkBoxCA)
+                    .addComponent(checkBoxMiddle)
+                    .addComponent(checkBoxWings)
+                    .addComponent(checkBoxCreatively)
+                    .addComponent(checkBoxLongShots))
+                .addContainerGap(223, Short.MAX_VALUE))
+        );
+        panelTacticsLayout.setVerticalGroup(
+            panelTacticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTacticsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(checkBoxNormal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxPressing)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxCA)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxMiddle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxWings)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxCreatively)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxLongShots)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panelSkill.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Skill"));
+
+        labelFrom.setText("From:");
+
+        comboBoxFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        labelTo.setText("To:");
+
+        comboBoxTo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout panelSkillLayout = new javax.swing.GroupLayout(panelSkill);
+        panelSkill.setLayout(panelSkillLayout);
+        panelSkillLayout.setHorizontalGroup(
+            panelSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSkillLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelFrom)
+                    .addComponent(labelTo))
+                .addGap(18, 18, 18)
+                .addGroup(panelSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comboBoxFrom, 0, 150, Short.MAX_VALUE)
+                    .addComponent(comboBoxTo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelSkillLayout.setVerticalGroup(
+            panelSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSkillLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFrom))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelTactics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(checkBoxAllTactics)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(panelSkill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(checkBoxAllTactics)
+                .addGap(18, 18, 18)
+                .addComponent(panelTactics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panelSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox checkBoxAllTactics;
+    private javax.swing.JCheckBox checkBoxCA;
+    private javax.swing.JCheckBox checkBoxCreatively;
+    private javax.swing.JCheckBox checkBoxLongShots;
+    private javax.swing.JCheckBox checkBoxMiddle;
+    private javax.swing.JCheckBox checkBoxNormal;
+    private javax.swing.JCheckBox checkBoxPressing;
+    private javax.swing.JCheckBox checkBoxWings;
+    private javax.swing.JComboBox comboBoxFrom;
+    private javax.swing.JComboBox comboBoxTo;
+    private javax.swing.JLabel labelFrom;
+    private javax.swing.JLabel labelTo;
+    private javax.swing.JPanel panelSkill;
+    private javax.swing.JPanel panelTactics;
     // End of variables declaration//GEN-END:variables
 }
