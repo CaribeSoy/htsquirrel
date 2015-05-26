@@ -78,6 +78,7 @@ public class MatchFilter extends javax.swing.JPanel {
         panelPeriod = new htsquirrel.gui.pages.matchfilter.Period();
         panelArena = new htsquirrel.gui.pages.matchfilter.Arena();
         panelFormation = new htsquirrel.gui.pages.matchfilter.Formation();
+        panelTactics = new htsquirrel.gui.pages.matchfilter.Tactics();
 
         setMinimumSize(new java.awt.Dimension(400, 100));
         setLayout(new java.awt.GridBagLayout());
@@ -173,7 +174,7 @@ public class MatchFilter extends javax.swing.JPanel {
         });
         panelIcons.add(jToggleButton4);
 
-        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/blank.png"))); // NOI18N
+        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/tactics_off.png"))); // NOI18N
         jToggleButton5.setMaximumSize(new java.awt.Dimension(50, 50));
         jToggleButton5.setMinimumSize(new java.awt.Dimension(50, 50));
         jToggleButton5.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -209,6 +210,7 @@ public class MatchFilter extends javax.swing.JPanel {
         panelFilters.add(panelPeriod, "card3");
         panelFilters.add(panelArena, "card4");
         panelFilters.add(panelFormation, "card5");
+        panelFilters.add(panelTactics, "card6");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -381,5 +383,6 @@ public class MatchFilter extends javax.swing.JPanel {
     private htsquirrel.gui.pages.matchfilter.MatchType panelMatchType;
     private htsquirrel.gui.pages.matchfilter.Period panelPeriod;
     private javax.swing.JPanel panelRight;
+    private htsquirrel.gui.pages.matchfilter.Tactics panelTactics;
     // End of variables declaration//GEN-END:variables
 }
