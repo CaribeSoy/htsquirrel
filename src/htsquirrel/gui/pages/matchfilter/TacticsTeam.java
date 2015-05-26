@@ -27,12 +27,12 @@ package htsquirrel.gui.pages.matchfilter;
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
  */
-public class TacticsBase extends javax.swing.JPanel {
+public class TacticsTeam extends javax.swing.JPanel {
 
     /**
      * Creates new form TacticsBase
      */
-    public TacticsBase() {
+    public TacticsTeam() {
         initComponents();
     }
 
