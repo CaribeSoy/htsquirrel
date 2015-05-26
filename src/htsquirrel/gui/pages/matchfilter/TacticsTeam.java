@@ -59,6 +59,10 @@ public class TacticsTeam extends javax.swing.JPanel {
         comboBoxFrom = new javax.swing.JComboBox();
         labelTo = new javax.swing.JLabel();
         comboBoxTo = new javax.swing.JComboBox();
+        panelAttitude = new javax.swing.JPanel();
+        checkBoxNorm = new javax.swing.JCheckBox();
+        checkBoxPIC = new javax.swing.JCheckBox();
+        checkBoxMOTS = new javax.swing.JCheckBox();
 
         checkBoxAllTactics.setSelected(true);
         checkBoxAllTactics.setText("All tactics");
@@ -161,6 +165,41 @@ public class TacticsTeam extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        panelAttitude.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Attitude"));
+
+        checkBoxNorm.setSelected(true);
+        checkBoxNorm.setText("Normal");
+
+        checkBoxPIC.setSelected(true);
+        checkBoxPIC.setText("Play it cool");
+
+        checkBoxMOTS.setSelected(true);
+        checkBoxMOTS.setText("Match of the season");
+
+        javax.swing.GroupLayout panelAttitudeLayout = new javax.swing.GroupLayout(panelAttitude);
+        panelAttitude.setLayout(panelAttitudeLayout);
+        panelAttitudeLayout.setHorizontalGroup(
+            panelAttitudeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAttitudeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAttitudeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkBoxNorm)
+                    .addComponent(checkBoxPIC)
+                    .addComponent(checkBoxMOTS))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelAttitudeLayout.setVerticalGroup(
+            panelAttitudeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAttitudeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(checkBoxNorm)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxPIC)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxMOTS)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,10 +208,11 @@ public class TacticsTeam extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelTactics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelSkill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(checkBoxAllTactics)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(panelSkill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelAttitude, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -184,6 +224,8 @@ public class TacticsTeam extends javax.swing.JPanel {
                 .addComponent(panelTactics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panelSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panelAttitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -194,14 +236,18 @@ public class TacticsTeam extends javax.swing.JPanel {
     private javax.swing.JCheckBox checkBoxCA;
     private javax.swing.JCheckBox checkBoxCreatively;
     private javax.swing.JCheckBox checkBoxLongShots;
+    private javax.swing.JCheckBox checkBoxMOTS;
     private javax.swing.JCheckBox checkBoxMiddle;
+    private javax.swing.JCheckBox checkBoxNorm;
     private javax.swing.JCheckBox checkBoxNormal;
+    private javax.swing.JCheckBox checkBoxPIC;
     private javax.swing.JCheckBox checkBoxPressing;
     private javax.swing.JCheckBox checkBoxWings;
     private javax.swing.JComboBox comboBoxFrom;
     private javax.swing.JComboBox comboBoxTo;
     private javax.swing.JLabel labelFrom;
     private javax.swing.JLabel labelTo;
+    private javax.swing.JPanel panelAttitude;
     private javax.swing.JPanel panelSkill;
     private javax.swing.JPanel panelTactics;
     // End of variables declaration//GEN-END:variables
