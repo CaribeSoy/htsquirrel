@@ -123,6 +123,14 @@ public class Tactics extends javax.swing.JPanel {
         add(panelBottom, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public TacticsOpponent getPanelOpponent() {
+        return panelOpponent;
+    }
+
+    public TacticsTeam getPanelTeam() {
+        return panelTeam;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton buttonOpponent;
