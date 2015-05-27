@@ -53,6 +53,9 @@
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="All tactics"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxAllTacticsActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="panelTactics">
       <Properties>
@@ -117,42 +120,63 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Normal"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxNormalActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxPressing">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Pressing"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxPressingActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxCA">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Counter-attacks"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxCAActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxMiddle">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Attack in the middle"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxMiddleActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxWings">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Attack on wings"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxWingsActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxCreatively">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Play creatively"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxCreativelyActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxLongShots">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Long shots"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxLongShotsActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

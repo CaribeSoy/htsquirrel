@@ -79,29 +79,69 @@ public class TacticsTeam extends javax.swing.JPanel {
 
         checkBoxAllTactics.setSelected(true);
         checkBoxAllTactics.setText("All tactics");
+        checkBoxAllTactics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxAllTacticsActionPerformed(evt);
+            }
+        });
 
         panelTactics.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tactics")));
 
         checkBoxNormal.setSelected(true);
         checkBoxNormal.setText("Normal");
+        checkBoxNormal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxNormalActionPerformed(evt);
+            }
+        });
 
         checkBoxPressing.setSelected(true);
         checkBoxPressing.setText("Pressing");
+        checkBoxPressing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxPressingActionPerformed(evt);
+            }
+        });
 
         checkBoxCA.setSelected(true);
         checkBoxCA.setText("Counter-attacks");
+        checkBoxCA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxCAActionPerformed(evt);
+            }
+        });
 
         checkBoxMiddle.setSelected(true);
         checkBoxMiddle.setText("Attack in the middle");
+        checkBoxMiddle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxMiddleActionPerformed(evt);
+            }
+        });
 
         checkBoxWings.setSelected(true);
         checkBoxWings.setText("Attack on wings");
+        checkBoxWings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxWingsActionPerformed(evt);
+            }
+        });
 
         checkBoxCreatively.setSelected(true);
         checkBoxCreatively.setText("Play creatively");
+        checkBoxCreatively.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxCreativelyActionPerformed(evt);
+            }
+        });
 
         checkBoxLongShots.setSelected(true);
         checkBoxLongShots.setText("Long shots");
+        checkBoxLongShots.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxLongShotsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelTacticsLayout = new javax.swing.GroupLayout(panelTactics);
         panelTactics.setLayout(panelTacticsLayout);
@@ -243,6 +283,94 @@ public class TacticsTeam extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void checkBoxAllTacticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxAllTacticsActionPerformed
+        if (checkBoxAllTactics.isSelected()) {
+            checkBoxNormal.setSelected(true);
+            checkBoxPressing.setSelected(true);
+            checkBoxCA.setSelected(true);
+            checkBoxMiddle.setSelected(true);
+            checkBoxWings.setSelected(true);
+            checkBoxCreatively.setSelected(true);
+            checkBoxLongShots.setSelected(true);
+        } else {
+            checkBoxNormal.setSelected(false);
+            checkBoxPressing.setSelected(false);
+            checkBoxCA.setSelected(false);
+            checkBoxMiddle.setSelected(false);
+            checkBoxWings.setSelected(false);
+            checkBoxCreatively.setSelected(false);
+            checkBoxLongShots.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBoxAllTacticsActionPerformed
+
+    private void checkBoxNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxNormalActionPerformed
+        if (allTacticsSelected()) {
+            checkBoxAllTactics.setSelected(true);
+        } else {
+            checkBoxAllTactics.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBoxNormalActionPerformed
+
+    private void checkBoxPressingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPressingActionPerformed
+        if (allTacticsSelected()) {
+            checkBoxAllTactics.setSelected(true);
+        } else {
+            checkBoxAllTactics.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBoxPressingActionPerformed
+
+    private void checkBoxCAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxCAActionPerformed
+        if (allTacticsSelected()) {
+            checkBoxAllTactics.setSelected(true);
+        } else {
+            checkBoxAllTactics.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBoxCAActionPerformed
+
+    private void checkBoxMiddleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxMiddleActionPerformed
+        if (allTacticsSelected()) {
+            checkBoxAllTactics.setSelected(true);
+        } else {
+            checkBoxAllTactics.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBoxMiddleActionPerformed
+
+    private void checkBoxWingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxWingsActionPerformed
+        if (allTacticsSelected()) {
+            checkBoxAllTactics.setSelected(true);
+        } else {
+            checkBoxAllTactics.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBoxWingsActionPerformed
+
+    private void checkBoxCreativelyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxCreativelyActionPerformed
+        if (allTacticsSelected()) {
+            checkBoxAllTactics.setSelected(true);
+        } else {
+            checkBoxAllTactics.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBoxCreativelyActionPerformed
+
+    private void checkBoxLongShotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxLongShotsActionPerformed
+        if (allTacticsSelected()) {
+            checkBoxAllTactics.setSelected(true);
+        } else {
+            checkBoxAllTactics.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBoxLongShotsActionPerformed
+
+    private boolean allTacticsSelected() {
+        boolean result = false;
+        result = checkBoxNormal.isSelected() &&
+                checkBoxPressing.isSelected() &&
+                checkBoxCA.isSelected() &&
+                checkBoxMiddle.isSelected() &&
+                checkBoxWings.isSelected() &&
+                checkBoxCreatively.isSelected() &&
+                checkBoxLongShots.isSelected();
+        return result;
+    }
+    
     public JCheckBox getCheckBoxAllTactics() {
         return checkBoxAllTactics;
     }
