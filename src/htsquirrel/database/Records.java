@@ -210,6 +210,46 @@ public class Records {
                 sqlCode = sqlCode.replace("OR OPPONENT_FORMATION NOT IN ('5-5-0', '5-4-1', '5-3-2', '5-2-3', '4-5-1', '4-4-2', '4-3-3', '3-5-2', '3-4-3', '2-5-3')", "");
             }
         }
+        String tacticType = "(999";
+        if (getMatchFilter().getPanelTactics().getPanelTeam().getCheckBoxPressing().isSelected()) tacticType = tacticType + ", 1";
+        if (getMatchFilter().getPanelTactics().getPanelTeam().getCheckBoxCA().isSelected()) tacticType = tacticType + ", 2";
+        if (getMatchFilter().getPanelTactics().getPanelTeam().getCheckBoxMiddle().isSelected()) tacticType = tacticType + ", 3";
+        if (getMatchFilter().getPanelTactics().getPanelTeam().getCheckBoxWings().isSelected()) tacticType = tacticType + ", 4";
+        if (getMatchFilter().getPanelTactics().getPanelTeam().getCheckBoxLongShots().isSelected()) tacticType = tacticType + ", 8";
+        tacticType = tacticType + ")";
+        sqlCode = sqlCode.replaceAll("#tactic_type_1#", tacticType);
+        String tacticSkillFrom = String.valueOf(getMatchFilter().getPanelTactics().getPanelTeam().getComboBoxFrom().getSelectedIndex());
+        String tacticSkillTo = String.valueOf(getMatchFilter().getPanelTactics().getPanelTeam().getComboBoxTo().getSelectedIndex());
+        sqlCode = sqlCode.replaceAll("#tactic_skill_from#", tacticSkillFrom);
+        sqlCode = sqlCode.replaceAll("#tactic_skill_to#", tacticSkillTo);
+        tacticType = "(999";
+        if (getMatchFilter().getPanelTactics().getPanelTeam().getCheckBoxNormal().isSelected()) tacticType = tacticType + ", 0";
+        if (getMatchFilter().getPanelTactics().getPanelTeam().getCheckBoxCreatively().isSelected()) tacticType = tacticType + ", 7";
+        tacticType = tacticType + ")";
+        sqlCode = sqlCode.replaceAll("#tactic_type_2#", tacticType);
+        String teamAttitude = "(999";
+        if (getMatchFilter().getPanelTactics().getPanelTeam().getCheckBoxNorm().isSelected()) teamAttitude = teamAttitude + ", 0";
+        if (getMatchFilter().getPanelTactics().getPanelTeam().getCheckBoxPIC().isSelected()) teamAttitude = teamAttitude + ", -1";
+        if (getMatchFilter().getPanelTactics().getPanelTeam().getCheckBoxMOTS().isSelected()) teamAttitude = teamAttitude + ", 1";
+        teamAttitude = teamAttitude + ")";
+        sqlCode = sqlCode.replaceAll("#team_attitude#", teamAttitude);
+        tacticType = "(999";
+        if (getMatchFilter().getPanelTactics().getPanelOpponent().getCheckBoxPressing().isSelected()) tacticType = tacticType + ", 1";
+        if (getMatchFilter().getPanelTactics().getPanelOpponent().getCheckBoxCA().isSelected()) tacticType = tacticType + ", 2";
+        if (getMatchFilter().getPanelTactics().getPanelOpponent().getCheckBoxMiddle().isSelected()) tacticType = tacticType + ", 3";
+        if (getMatchFilter().getPanelTactics().getPanelOpponent().getCheckBoxWings().isSelected()) tacticType = tacticType + ", 4";
+        if (getMatchFilter().getPanelTactics().getPanelOpponent().getCheckBoxLongShots().isSelected()) tacticType = tacticType + ", 8";
+        tacticType = tacticType + ")";
+        sqlCode = sqlCode.replaceAll("#opponent_tactic_type_1#", tacticType);
+        tacticSkillFrom = String.valueOf(getMatchFilter().getPanelTactics().getPanelOpponent().getComboBoxFrom().getSelectedIndex());
+        tacticSkillTo = String.valueOf(getMatchFilter().getPanelTactics().getPanelOpponent().getComboBoxTo().getSelectedIndex());
+        sqlCode = sqlCode.replaceAll("#opponent_tactic_skill_from#", tacticSkillFrom);
+        sqlCode = sqlCode.replaceAll("#opponent_tactic_skill_to#", tacticSkillTo);
+        tacticType = "(999";
+        if (getMatchFilter().getPanelTactics().getPanelOpponent().getCheckBoxNormal().isSelected()) tacticType = tacticType + ", 0";
+        if (getMatchFilter().getPanelTactics().getPanelOpponent().getCheckBoxCreatively().isSelected()) tacticType = tacticType + ", 7";
+        tacticType = tacticType + ")";
+        sqlCode = sqlCode.replaceAll("#opponent_tactic_type_2#", tacticType);
         System.out.println(sqlCode);
         return sqlCode;
     }

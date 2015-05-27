@@ -32,3 +32,8 @@ WHERE
         OR FORMATION NOT IN ('5-5-0', '5-4-1', '5-3-2', '5-2-3', '4-5-1', '4-4-2', '4-3-3', '3-5-2', '3-4-3', '2-5-3'))
     AND (OPPONENT_FORMATION IN #opponent_formation#
         OR OPPONENT_FORMATION NOT IN ('5-5-0', '5-4-1', '5-3-2', '5-2-3', '4-5-1', '4-4-2', '4-3-3', '3-5-2', '3-4-3', '2-5-3'))
+    AND ((TACTIC_TYPE IN #tactic_type_1# AND TACTIC_SKILL BETWEEN #tactic_skill_from# AND #tactic_skill_to#)
+        OR TACTIC_TYPE IN #tactic_type_2#)
+    AND TEAM_ATTITUDE IN #team_attitude#
+    AND ((OPPONENT_TACTIC_TYPE IN #opponent_tactic_type_1# AND OPPONENT_TACTIC_SKILL BETWEEN #opponent_tactic_skill_from# AND #opponent_tactic_skill_to#)
+        OR OPPONENT_TACTIC_TYPE IN #opponent_tactic_type_2#)
