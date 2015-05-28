@@ -335,4 +335,38 @@ public class Records {
         statement.close();
     }
 
+    public static void showMostGoals(Connection connection)
+            throws SQLException, IOException {
+        DefaultTableModel model = (DefaultTableModel) getPageRecords1().getjTable1().getModel();
+        model.setColumnCount(0);
+        model.addColumn("Player");
+        model.addColumn("Goals");
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(JLabel.LEFT);
+        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+        getPageRecords1().getjTable1().getColumnModel().getColumn(0).setCellRenderer(leftRenderer);
+        getPageRecords1().getjTable1().getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+        ReadSql readSql = new ReadSql();
+        String sqlCode = "SELECT T2.FIRST_NAME || ' ' || T2.LAST_NAME AS PLAYER, T1.GOALS FROM "
+                + "(SELECT T1.TEAM_ID, T2.GOAL_PLAYER_ID, COUNT(*) AS GOALS "
+                + "FROM (SELECT TEAM_ID, MATCH_ID FROM MATCHES_EXTENDED "
+                + matchFilterToSql() + ") T1 INNER JOIN GOALS T2 ON "
+                + "T1.MATCH_ID = T2.MATCH_ID AND T1.TEAM_ID = T2.GOAL_TEAM_ID "
+                + "GROUP BY T1.TEAM_ID, T2.GOAL_PLAYER_ID ) T1 "
+                + "INNER JOIN PLAYERS T2 ON "
+                + "T1.TEAM_ID = T2.TEAM_ID AND T1.GOAL_PLAYER_ID = T2.PLAYER_ID "
+                + "ORDER BY T1.GOALS DESC";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCode);
+        while (resultSet.next()) {
+            String player = resultSet.getString("PLAYER");
+            int goals = resultSet.getInt("GOALS");
+            model.addRow(new Object[]{player, goals});
+        }
+        statement.close();
+    }
 }

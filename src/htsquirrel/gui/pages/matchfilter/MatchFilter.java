@@ -26,6 +26,7 @@ package htsquirrel.gui.pages.matchfilter;
 import static htsquirrel.HTSquirrel.getLanguage;
 import static htsquirrel.database.DatabaseManagement.createDatabaseConnection;
 import static htsquirrel.database.Records.getMode;
+import static htsquirrel.database.Records.showMostGoals;
 import static htsquirrel.database.Records.showTotalTeamScore;
 import htsquirrel.translations.Translations;
 import java.awt.Component;
@@ -304,6 +305,9 @@ public class MatchFilter extends javax.swing.JPanel {
             Connection db = createDatabaseConnection();
             if ("total_team_score".equals(getMode())) {
                 showTotalTeamScore(db);
+            }
+            if ("most_goals".equals(getMode())) {
+                showMostGoals(db);
             }
             db.close();
         } catch (ClassNotFoundException ex) {

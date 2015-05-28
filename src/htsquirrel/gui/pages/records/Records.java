@@ -57,6 +57,8 @@ public class Records extends javax.swing.JPanel {
 
         labelTeam = new javax.swing.JLabel();
         labelTotalTeamScore = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         labelTeam.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelTeam.setForeground(new java.awt.Color(255, 102, 0));
@@ -70,6 +72,18 @@ public class Records extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel1.setText("PLAYERS");
+
+        jLabel2.setText("Most goals");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,7 +92,9 @@ public class Records extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelTeam)
-                    .addComponent(labelTotalTeamScore))
+                    .addComponent(labelTotalTeamScore)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addContainerGap(288, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -88,7 +104,11 @@ public class Records extends javax.swing.JPanel {
                 .addComponent(labelTeam)
                 .addGap(50, 50, 50)
                 .addComponent(labelTotalTeamScore)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel2)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -96,6 +116,11 @@ public class Records extends javax.swing.JPanel {
         setMode("total_team_score");
         showRecords1();
     }//GEN-LAST:event_labelTotalTeamScoreMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        setMode("most_goals");
+        showRecords1();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     public void refreshRecords() {
         Translations translations = new Translations();
@@ -110,6 +135,8 @@ public class Records extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelTeam;
     private javax.swing.JLabel labelTotalTeamScore;
     // End of variables declaration//GEN-END:variables
