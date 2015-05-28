@@ -190,6 +190,11 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton6.setMaximumSize(new java.awt.Dimension(50, 50));
         jToggleButton6.setMinimumSize(new java.awt.Dimension(50, 50));
         jToggleButton6.setPreferredSize(new java.awt.Dimension(50, 50));
+        jToggleButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton6ActionPerformed(evt);
+            }
+        });
         panelIcons.add(jToggleButton6);
 
         jToggleButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/blank.png"))); // NOI18N
@@ -270,6 +275,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png")));
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/formation_off.png")));
         jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/tactics_off.png")));
+        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/result_off.png")));
         hideFilters();
         panelMatchType.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
@@ -288,6 +294,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png")));
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/formation_off.png")));
         jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/tactics_off.png")));
+        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/result_off.png")));
         hideFilters();
         panelPeriod.setVisible(true);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
@@ -322,6 +329,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_on.png")));
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/formation_off.png")));
         jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/tactics_off.png")));
+        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/result_off.png")));
         hideFilters();
         panelArena.setVisible(true);
     }//GEN-LAST:event_jToggleButton3ActionPerformed
@@ -340,6 +348,7 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png")));
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/formation_on.png")));
         jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/tactics_off.png")));
+        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/result_off.png")));
         hideFilters();
         panelFormation.setVisible(true);
     }//GEN-LAST:event_jToggleButton4ActionPerformed
@@ -358,9 +367,29 @@ public class MatchFilter extends javax.swing.JPanel {
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png")));
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/formation_off.png")));
         jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/tactics_on.png")));
+        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/result_off.png")));
         hideFilters();
         panelTactics.setVisible(true);
     }//GEN-LAST:event_jToggleButton5ActionPerformed
+
+    private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
+        jToggleButton1.setSelected(false);
+        jToggleButton2.setSelected(false);
+        jToggleButton3.setSelected(false);
+        jToggleButton4.setSelected(false);
+        jToggleButton5.setSelected(false);
+        jToggleButton6.setSelected(true);
+        jToggleButton7.setSelected(false);
+        jToggleButton8.setSelected(false);
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/match_type_off.png")));
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/period_off.png")));
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/arena_off.png")));
+        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/formation_off.png")));
+        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/tactics_off.png")));
+        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/htsquirrel/gui/images/result_on.png")));
+        hideFilters();
+        panelResult.setVisible(true);
+    }//GEN-LAST:event_jToggleButton6ActionPerformed
 
     private void hideFilters() {
         Component[] filters = panelFilters.getComponents();
