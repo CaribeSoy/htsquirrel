@@ -250,6 +250,30 @@ public class Records {
         if (getMatchFilter().getPanelTactics().getPanelOpponent().getCheckBoxCreatively().isSelected()) tacticType = tacticType + ", 7";
         tacticType = tacticType + ")";
         sqlCode = sqlCode.replaceAll("#opponent_tactic_type_2#", tacticType);
+        if (getMatchFilter().getPanelResult().getResultBase().getCheckBoxFor().isSelected()) {
+            sqlCode = sqlCode.replaceAll("#goals_for_from#", String.valueOf(getMatchFilter().getPanelResult().getResultBase().getSpinnerForFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("#goals_for_to#", String.valueOf(getMatchFilter().getPanelResult().getResultBase().getSpinnerForTo().getValue()));
+        } else {
+            sqlCode = sqlCode.replace("AND GOALS_FOR BETWEEN #goals_for_from# AND #goals_for_to#", "");
+        }
+        if (getMatchFilter().getPanelResult().getResultBase().getCheckBoxAgainst().isSelected()) {
+            sqlCode = sqlCode.replaceAll("#goals_against_from#", String.valueOf(getMatchFilter().getPanelResult().getResultBase().getSpinnerAgainstFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("#goals_against_to#", String.valueOf(getMatchFilter().getPanelResult().getResultBase().getSpinnerAgainstTo().getValue()));
+        } else {
+            sqlCode = sqlCode.replace("AND GOALS_AGAINST BETWEEN #goals_against_from# AND #goals_against_to#", "");
+        }
+        if (getMatchFilter().getPanelResult().getResultBase().getCheckBoxTotal().isSelected()) {
+            sqlCode = sqlCode.replaceAll("#goals_total_from#", String.valueOf(getMatchFilter().getPanelResult().getResultBase().getSpinnerTotalFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("#goals_total_to#", String.valueOf(getMatchFilter().getPanelResult().getResultBase().getSpinnerTotalTo().getValue()));
+        } else {
+            sqlCode = sqlCode.replace("AND GOALS_FOR + GOALS_AGAINST BETWEEN #goals_total_from# AND #goals_total_to#", "");
+        }
+        if (getMatchFilter().getPanelResult().getResultBase().getCheckBoxDifference().isSelected()) {
+            sqlCode = sqlCode.replaceAll("#goal_difference_from#", String.valueOf(getMatchFilter().getPanelResult().getResultBase().getSpinnerDifferenceFrom().getValue()));
+            sqlCode = sqlCode.replaceAll("#goal_difference_to#", String.valueOf(getMatchFilter().getPanelResult().getResultBase().getSpinnerDifferenceTo().getValue()));
+        } else {
+            sqlCode = sqlCode.replace("AND GOALS_FOR - GOALS_AGAINST BETWEEN #goal_difference_from# AND #goal_difference_to#", "");
+        }
         System.out.println(sqlCode);
         return sqlCode;
     }

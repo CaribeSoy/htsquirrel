@@ -37,3 +37,7 @@ WHERE
     AND TEAM_ATTITUDE IN #team_attitude#
     AND ((OPPONENT_TACTIC_TYPE IN #opponent_tactic_type_1# AND OPPONENT_TACTIC_SKILL BETWEEN #opponent_tactic_skill_from# AND #opponent_tactic_skill_to#)
         OR OPPONENT_TACTIC_TYPE IN #opponent_tactic_type_2#)
+    AND GOALS_FOR BETWEEN #goals_for_from# AND #goals_for_to#
+    AND GOALS_AGAINST BETWEEN #goals_against_from# AND #goals_against_to#
+    AND GOALS_FOR + GOALS_AGAINST BETWEEN #goals_total_from# AND #goals_total_to#
+    AND GOALS_FOR - GOALS_AGAINST BETWEEN #goal_difference_from# AND #goal_difference_to#
