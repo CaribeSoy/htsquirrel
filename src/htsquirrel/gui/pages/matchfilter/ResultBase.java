@@ -23,8 +23,16 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import static htsquirrel.HTSquirrel.getLanguage;
+import htsquirrel.translations.Translations;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
+import javax.swing.border.EtchedBorder;
 
 /**
  *
@@ -266,6 +274,40 @@ public class ResultBase extends javax.swing.JPanel {
         return spinnerTotalTo;
     }
 
+    public void resetResultBase() {
+        checkBoxFor.setSelected(false);
+        checkBoxAgainst.setSelected(false);
+        checkBoxTotal.setSelected(false);
+        checkBoxDifference.setSelected(false);
+        spinnerForFrom.setValue(0);
+        spinnerForTo.setValue(20);
+        spinnerAgainstFrom.setValue(0);
+        spinnerAgainstTo.setValue(20);
+        spinnerTotalFrom.setValue(0);
+        spinnerTotalTo.setValue(20);
+        spinnerDifferenceFrom.setValue(-20);
+        spinnerDifferenceTo.setValue(20);
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            panelResult.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), properties.getProperty("result_panel_result")));
+            checkBoxFor.setText(properties.getProperty("result_goals_for"));
+            checkBoxAgainst.setText(properties.getProperty("result_goals_against"));
+            checkBoxTotal.setText(properties.getProperty("result_goals_total"));
+            checkBoxDifference.setText(properties.getProperty("result_goals_difference"));
+            labelForFrom.setText(properties.getProperty("from"));
+            labelForTo.setText(properties.getProperty("to"));
+            labelAgainstFrom.setText(properties.getProperty("from"));
+            labelAgainstTo.setText(properties.getProperty("to"));
+            labelTotalFrom.setText(properties.getProperty("from"));
+            labelTotalTo.setText(properties.getProperty("to"));
+            labelDifferenceFrom.setText(properties.getProperty("from"));
+            labelDifferenceTo.setText(properties.getProperty("to"));
+        } catch (IOException ex) {
+            Logger.getLogger(PeriodBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox checkBoxAgainst;
