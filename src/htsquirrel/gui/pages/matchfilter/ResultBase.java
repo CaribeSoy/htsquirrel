@@ -23,6 +23,9 @@
  */
 package htsquirrel.gui.pages.matchfilter;
 
+import javax.swing.JCheckBox;
+import javax.swing.JSpinner;
+
 /**
  *
  * @author aleksandar
@@ -214,6 +217,54 @@ public class ResultBase extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public JCheckBox getCheckBoxAgainst() {
+        return checkBoxAgainst;
+    }
+
+    public JCheckBox getCheckBoxDifference() {
+        return checkBoxDifference;
+    }
+
+    public JCheckBox getCheckBoxFor() {
+        return checkBoxFor;
+    }
+
+    public JCheckBox getCheckBoxTotal() {
+        return checkBoxTotal;
+    }
+
+    public JSpinner getSpinnerAgainstFrom() {
+        return spinnerAgainstFrom;
+    }
+
+    public JSpinner getSpinnerAgainstTo() {
+        return spinnerAgainstTo;
+    }
+
+    public JSpinner getSpinnerDifferenceFrom() {
+        return spinnerDifferenceFrom;
+    }
+
+    public JSpinner getSpinnerDifferenceTo() {
+        return spinnerDifferenceTo;
+    }
+
+    public JSpinner getSpinnerForFrom() {
+        return spinnerForFrom;
+    }
+
+    public JSpinner getSpinnerForTo() {
+        return spinnerForTo;
+    }
+
+    public JSpinner getSpinnerTotalFrom() {
+        return spinnerTotalFrom;
+    }
+
+    public JSpinner getSpinnerTotalTo() {
+        return spinnerTotalTo;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
