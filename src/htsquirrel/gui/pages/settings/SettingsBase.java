@@ -23,6 +23,10 @@
  */
 package htsquirrel.gui.pages.settings;
 
+import static htsquirrel.HTSquirrel.applyTheme;
+import static htsquirrel.HTSquirrel.getTheme;
+import static htsquirrel.HTSquirrel.setTheme;
+
 /**
  *
  * @author Aleksandar Cvetković <arcvetkovic@gmail.com>
@@ -45,23 +49,31 @@ public class SettingsBase extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        labelTitle = new javax.swing.JLabel();
+        labelLanguage = new javax.swing.JLabel();
+        comboBoxLanguage = new javax.swing.JComboBox();
+        labelTheme = new javax.swing.JLabel();
+        comboBoxTheme = new javax.swing.JComboBox();
+        buttonOk = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
-        jLabel1.setText("Settings");
+        labelTitle.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        labelTitle.setForeground(new java.awt.Color(255, 102, 0));
+        labelTitle.setText("Settings");
 
-        jLabel2.setText("Language:");
+        labelLanguage.setText("Language:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", "Srpski" }));
+        comboBoxLanguage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", "Srpski" }));
 
-        jLabel3.setText("Theme:");
+        labelTheme.setText("Theme:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dark", "Light" }));
+        comboBoxTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dark", "Light" }));
+
+        buttonOk.setText("Ok");
+        buttonOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -70,40 +82,52 @@ public class SettingsBase extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(labelTitle)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(labelLanguage)
+                            .addComponent(labelTheme))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, 100, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(buttonOk, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(comboBoxLanguage, 0, 100, Short.MAX_VALUE)
+                                .addComponent(comboBoxTheme, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(210, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(labelTitle)
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelLanguage)
+                    .addComponent(comboBoxLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(159, Short.MAX_VALUE))
+                    .addComponent(labelTheme)
+                    .addComponent(comboBoxTheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(buttonOk)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
+        if (!(comboBoxTheme.getSelectedItem().toString().equals(getTheme()))) {
+            setTheme(comboBoxTheme.getSelectedItem().toString());
+            applyTheme();
+        }
+    }//GEN-LAST:event_buttonOkActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton buttonOk;
+    private javax.swing.JComboBox comboBoxLanguage;
+    private javax.swing.JComboBox comboBoxTheme;
+    private javax.swing.JLabel labelLanguage;
+    private javax.swing.JLabel labelTheme;
+    private javax.swing.JLabel labelTitle;
     // End of variables declaration//GEN-END:variables
 }
