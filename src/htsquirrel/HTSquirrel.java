@@ -154,6 +154,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         pageAuthorization = new htsquirrel.gui.pages.authorization.Authorization();
         pageRecords = new htsquirrel.gui.pages.records.Records();
         pageDownload = new htsquirrel.gui.pages.download.Download();
+        pageSettings = new htsquirrel.gui.pages.settings.Settings();
         pageRecords1 = new htsquirrel.gui.pages.records.Records1();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -379,6 +380,7 @@ public class HTSquirrel extends javax.swing.JFrame {
         panelBigPage.add(pageAuthorization, "card3");
         panelBigPage.add(pageRecords, "card6");
         panelBigPage.add(pageDownload, "card4");
+        panelBigPage.add(pageSettings, "card8");
         panelBigPage.add(pageRecords1, "card7");
 
         panelMain.add(panelBigPage, java.awt.BorderLayout.CENTER);
@@ -557,6 +559,11 @@ public class HTSquirrel extends javax.swing.JFrame {
         pageDownload.getDownloadBase1().refreshDownload();
     }
     
+    public static void showSettings() {
+        hideBigPages();
+        pageSettings.setVisible(true);
+    }
+    
     public static void showRecords() {
         hideBigPages();
         pageRecords.setVisible(true);
@@ -615,6 +622,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     private static htsquirrel.gui.pages.language.Language pageLanguage;
     private static htsquirrel.gui.pages.records.Records pageRecords;
     private static htsquirrel.gui.pages.records.Records1 pageRecords1;
+    private static htsquirrel.gui.pages.settings.Settings pageSettings;
     private static javax.swing.JPanel panelBigPage;
     private javax.swing.JPanel panelBottom;
     private javax.swing.JPanel panelCenter;
