@@ -23,11 +23,14 @@
  */
 package htsquirrel.gui.pages.settings;
 
-import static htsquirrel.HTSquirrel.applyTheme;
+import static htsquirrel.HTSquirrel.getLanguage;
 import static htsquirrel.HTSquirrel.getTheme;
 import static htsquirrel.HTSquirrel.setTheme;
+import htsquirrel.gui.menu.Menu;
+import htsquirrel.translations.Translations;
 import static htsquirrel.utilities.ConfigProperties.saveConfigProperties;
 import java.io.IOException;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,6 +62,7 @@ public class SettingsBase extends javax.swing.JPanel {
         labelTheme = new javax.swing.JLabel();
         comboBoxTheme = new javax.swing.JComboBox();
         buttonOk = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         labelTitle.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(255, 102, 0));
@@ -79,6 +83,9 @@ public class SettingsBase extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setForeground(new java.awt.Color(128, 128, 128));
+        jLabel1.setText("(requires restart)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,10 +101,11 @@ public class SettingsBase extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buttonOk, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(comboBoxLanguage, 0, 100, Short.MAX_VALUE)
-                                .addComponent(comboBoxTheme, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(210, Short.MAX_VALUE))
+                            .addComponent(comboBoxLanguage, 0, 100, Short.MAX_VALUE)
+                            .addComponent(comboBoxTheme, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +119,8 @@ public class SettingsBase extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTheme)
-                    .addComponent(comboBoxTheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxTheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(50, 50, 50)
                 .addComponent(buttonOk)
                 .addContainerGap(82, Short.MAX_VALUE))
@@ -119,8 +128,16 @@ public class SettingsBase extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
-        if (!(comboBoxTheme.getSelectedItem().toString().equals(getTheme()))) {
-            setTheme(comboBoxTheme.getSelectedItem().toString());
+        int currentIndex = 0;
+        if ("Light".equals(getTheme())) {
+            currentIndex = 1;
+        }
+        if (!(comboBoxTheme.getSelectedIndex() == currentIndex)) {
+            if ("Dark".equals(getTheme())) {
+                setTheme("Light");
+            } else {
+                setTheme("Dark");
+            }
             try {
                 saveConfigProperties();
             } catch (IOException ex) {
@@ -129,11 +146,42 @@ public class SettingsBase extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_buttonOkActionPerformed
 
+    public void refreshSettings() {
+        comboBoxLanguage.setSelectedItem(getLanguage());
+        int index = 0;
+        if ("Light".equals(getTheme())) {
+            index = 1;
+        }
+        comboBoxTheme.setSelectedIndex(index);
+        Translations translations = new Translations();
+        Properties properties = null;
+        try {
+            properties = translations.getTranslations(getLanguage());
+            labelTitle.setText(properties.getProperty("settings_title"));
+            labelLanguage.setText(properties.getProperty("settings_language"));
+            labelTheme.setText(properties.getProperty("settings_theme"));
+            jLabel1.setText(properties.getProperty("settings_restart"));
+            comboBoxTheme.removeAllItems();
+            if ("English".equals(getLanguage())) {
+                comboBoxTheme.addItem("Dark");
+                comboBoxTheme.addItem("Light");
+                comboBoxTheme.setSelectedIndex(index);
+            }
+            if ("Srpski".equals(getLanguage())) {
+                comboBoxTheme.addItem("Tamna");
+                comboBoxTheme.addItem("Svetla");
+                comboBoxTheme.setSelectedIndex(index);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonOk;
     private javax.swing.JComboBox comboBoxLanguage;
     private javax.swing.JComboBox comboBoxTheme;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelLanguage;
     private javax.swing.JLabel labelTheme;
     private javax.swing.JLabel labelTitle;

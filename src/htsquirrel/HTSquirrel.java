@@ -562,6 +562,7 @@ public class HTSquirrel extends javax.swing.JFrame {
     public static void showSettings() {
         hideBigPages();
         pageSettings.setVisible(true);
+        pageSettings.getSettingsBase1().refreshSettings();
     }
     
     public static void showRecords() {
