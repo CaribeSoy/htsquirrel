@@ -26,6 +26,10 @@ package htsquirrel.gui.pages.settings;
 import static htsquirrel.HTSquirrel.applyTheme;
 import static htsquirrel.HTSquirrel.getTheme;
 import static htsquirrel.HTSquirrel.setTheme;
+import static htsquirrel.utilities.ConfigProperties.saveConfigProperties;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -117,7 +121,11 @@ public class SettingsBase extends javax.swing.JPanel {
     private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
         if (!(comboBoxTheme.getSelectedItem().toString().equals(getTheme()))) {
             setTheme(comboBoxTheme.getSelectedItem().toString());
-            applyTheme();
+            try {
+                saveConfigProperties();
+            } catch (IOException ex) {
+                Logger.getLogger(SettingsBase.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_buttonOkActionPerformed
 
