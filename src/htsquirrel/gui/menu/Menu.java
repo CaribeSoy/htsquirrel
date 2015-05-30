@@ -31,6 +31,7 @@ import static htsquirrel.HTSquirrel.hideSmallPages;
 import static htsquirrel.HTSquirrel.setCurrentTeam;
 import static htsquirrel.HTSquirrel.showDownload;
 import static htsquirrel.HTSquirrel.showRecords;
+import static htsquirrel.HTSquirrel.showSettings;
 import static htsquirrel.HTSquirrel.showTeam;
 import htsquirrel.translations.Translations;
 import java.io.IOException;
@@ -227,7 +228,11 @@ public class Menu extends javax.swing.JPanel {
     }//GEN-LAST:event_labelDownloadMouseClicked
 
     private void labelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSettingsMouseClicked
-        // TODO add your handling code here:
+        labelTeam.setForeground(new java.awt.Color(128, 128, 128));
+        labelRecords.setForeground(new java.awt.Color(128, 128, 128));
+        labelDownload.setForeground(new java.awt.Color(128, 128, 128));
+        labelSettings.setForeground(getOrange());
+        showSettings();
     }//GEN-LAST:event_labelSettingsMouseClicked
 
     private void labelSwitchTeamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSwitchTeamMouseClicked
