@@ -24,7 +24,9 @@
 package htsquirrel.gui.pages.settings;
 
 import static htsquirrel.HTSquirrel.getLanguage;
+import static htsquirrel.HTSquirrel.getMenu;
 import static htsquirrel.HTSquirrel.getTheme;
+import static htsquirrel.HTSquirrel.setLanguage;
 import static htsquirrel.HTSquirrel.setTheme;
 import htsquirrel.gui.menu.Menu;
 import htsquirrel.translations.Translations;
@@ -128,6 +130,17 @@ public class SettingsBase extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
+        if (comboBoxLanguage.getSelectedItem().toString().equals("English")) {
+            setLanguage("English");
+        }
+        if (comboBoxLanguage.getSelectedItem().toString().equals("Srpski")) {
+            setLanguage("Srpski");
+        }
+        try {
+            saveConfigProperties();
+        } catch (IOException ex) {
+            Logger.getLogger(SettingsBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int currentIndex = 0;
         if ("Light".equals(getTheme())) {
             currentIndex = 1;
@@ -144,6 +157,8 @@ public class SettingsBase extends javax.swing.JPanel {
                 Logger.getLogger(SettingsBase.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        refreshSettings();
+        getMenu().refreshMenu();
     }//GEN-LAST:event_buttonOkActionPerformed
 
     public void refreshSettings() {
